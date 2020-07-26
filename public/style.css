@@ -296,7 +296,7 @@ textarea {
 	right: 0;
 	text-align: left;
 	background-color: #f9f9f9;
-	min-width: 400px;
+	min-width: 200px;
 	z-index: 1;
 	padding: 5px;
 }
