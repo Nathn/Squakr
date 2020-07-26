@@ -2,7 +2,7 @@ extends layout
 block content
 	.single_wrap
 		h2 Your Account
-		form.form(action=`/${user.username}` method='POST' enctype='multipart/form-data')
+		form.form(action='/account' method='POST' enctype='multipart/form-data')
 			label(for='name') Nom :
 			input(type='text' name='name' value=user.name)
 			label(for='email') Adresse email :
