@@ -1,0 +1,12 @@
+mixin regForm()
+	form.form(action='/register' method='POST')
+
+		label(for='username') Nom d'utilisateur:
+		input(type='text' name='username' )
+		label(for='email') Adresse email :
+		input(type='email' name='email')
+		label(for='password') Mot de passe :
+		input(type='password' name='password' )
+		label(for='password-confirm') Confirmez votre mot de passe :
+		input(type='password' name='password-confirm' )
+		input(type='submit' class='button' value='Créer un compte')

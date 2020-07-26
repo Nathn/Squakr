@@ -1,0 +1,331 @@
+/* Importing the parts of the CSS  */
+@import "./css/normalize.css";
+@import "./css/grid.css";
+
+/* Main CSS layout goes here  */
+body {
+	font-size: 1rem;
+	font-family: Arial, sans-serif;
+	word-break: break-word;
+	color: #333333;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* All input types and textarea restyled  */
+input,
+textarea {
+	border-radius: 5px;
+	padding: 5px 7px;
+}
+
+.form_inline input {
+	border: 0;
+	margin: 0 10px;
+}
+
+.form_inline input[type='submit'] {
+	margin: 0;
+}
+
+.form input,
+.form textarea {
+	margin: 10px 0;
+	border: 1px solid #cccccc;
+	display: block;
+}
+
+.form input[type='submit'] {
+	border: 0;
+}
+
+.tweet_textarea {
+	/* padding: 5px 7px; */
+	border: 2px solid #add8e6;
+	margin-bottom: 10px;
+}
+
+.tweet_textarea,
+.tweet_button {
+	font-size: 1.3rem;
+}
+
+/* For all the buttons like login register and tweet  */
+.button {
+	background-color: #ffd97d;
+	border-radius: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 0;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #e5bf63;
+}
+
+.form .button {
+	margin: 20px 0;
+}
+
+
+/* Header section  */
+/**************************************/
+.header {
+	background-color: #4bd3db;
+	min-height: 60px;
+	color: #2C2F33;
+
+	/* overflow: auto; */
+	position: fixed;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	/* box-shadow: 0 10px 10px rgba(21, 77, 75, 0.36); */
+}
+
+.site_title {
+	margin: 10px 0;
+	color: 2C2F33;
+
+}
+
+.site_title a {
+	color: #2C2F33;
+	text-decoration: none;
+}
+
+#navigation {
+	text-align: right;
+	color: #2C2F33;
+}
+
+.nav_link {
+	margin: 0 10px;
+	font-weight: bold;
+	color: #2C2F33;
+	text-decoration: none;
+}
+
+.nav_link:hover {
+	text-decoration: none;
+}
+
+/* Login form on top  */
+.form_inline {
+	margin: 15px 0;
+	color: #2C2F33;
+}
+
+
+/* Header avatar  */
+.avatar_top {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	/* margin-left: 10px; */
+	vertical-align: middle;
+}
+
+/* Content Section  */
+/***************************************/
+.content_area {
+	margin-top: 60px;
+}
+
+.content {
+	background-color: #ffffff;
+	padding: 20px;
+}
+
+/* Home section  */
+/* .tweet_avatar {
+	display: inline-block;
+	float: left;
+} */
+
+.tweet_avatar img {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+}
+
+
+
+/* Profile section  */
+/*************************/
+.profile_section,
+.feed_section {
+	/* padding: 10px; */
+}
+
+
+.profile_avatar {
+	border-radius: 10px;
+	border: 1px solid #dddddd;
+}
+
+/* Feed section  */
+.tweet_card {
+	/* border: 1px solid red; */
+	padding: 10px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.tweet_card:last-child {
+	border: 0;
+}
+
+.tweet_hover:hover {
+	background-color: #efefef;
+}
+
+.author_name,
+.tweet_meta {
+	margin: 0;
+}
+
+.author_name {
+	/* font-weight: bold; */
+}
+
+.author_name a {
+	color: #333333;
+	text-decoration: none;
+}
+
+.author_name a:hover {
+	color: green;
+	text-decoration: underline;
+}
+
+.the_tweet {
+	font-size: 1.3rem;
+	margin: 5px 0;
+}
+
+.tweet_actions {}
+
+.heart {
+	background-color: rgba(255, 255, 255, 0);
+	border: 0;
+	padding: 0;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+
+.hearted {
+	color: orange;
+}
+
+.tweet_meta {
+	font-size: 1rem;
+	color: #000;
+}
+
+.tweet_meta a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.tweet_meta a:hover {
+	text-decoration: underline;
+	color: green;
+}
+
+/* Single tweet page  */
+.single_tweet {
+	/* padding: 50px; */
+	font-size: 2rem;
+}
+
+/* Tweet form styles  */
+.tweet_text textarea {
+	width: 100%;
+}
+
+
+/* Footer section  */
+.footer {
+	text-align: center;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+
+/* Dropdown account menu  */
+
+/* Style The Dropdown Button */
+.dropbtn {
+	/* background-color: #4CAF50; */
+	color: white;
+	padding: 5px 10px;
+	/* padding-bottom: 0; */
+	/* font-size: 16px; */
+	border: none;
+	cursor: pointer;
+	/* border-top-right-radius: 50%;
+		border-top-left-radius: 50%; */
+}
+
+.dropbtn a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	/* Set to none by default */
+	position: absolute;
+	right: 0;
+	text-align: left;
+	background-color: #f9f9f9;
+	min-width: 200px;
+	z-index: 1;
+	padding: 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #dddddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #ffffff;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown:hover .dropbtn a {
+	color: #333333;
+}

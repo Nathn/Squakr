@@ -1,0 +1,27 @@
+mixin tweetCard(tweet={})
+	.tweet_card.tweet_hover
+		.tweet_avatar
+			a(href=`/${tweet.author.username}`)
+				img(src=`/uploads/${tweet.author.avatar || 'no-avatar.jpg'}`)
+		.tweet_text
+			p.author_name
+				a(href=`/${tweet.author.username}`)
+					strong #{tweet.author.name || tweet.author.username}
+				span  @#{tweet.author.username}
+			a(href=`/tweet/${tweet._id}` style="text-decoration:none; color: #000")
+				div
+					p.the_tweet #{tweet.tweet}
+			p.tweet_actions
+				//- if user
+				//- 	form.heart(method='POST' action=`/api/tweets/${tweet._id}/heart`)
+				//- 		- const heartStrings = user.hearts.map(obj => obj.toString())
+				//- 		- const heartClass = heartStrings.includes(tweet._id.toString()) ? 'hearted' : ''
+				//- 		button(type='submit' name='heart' class=heartClass)
+				//- 			| ♥
+			p.tweet_meta
+				span
+					a(href=`/tweet/${tweet._id}` title=`${tweet.created}`) #{moment(tweet.created).fromNow()}
+				if user && (tweet.author.equals(user._id) || user.username == 'n')
+					span  &middot;
+					span
+					a(href=`/delete/${tweet._id}`) Supprimer

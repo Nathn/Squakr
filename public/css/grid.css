@@ -1,0 +1,67 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #2C2F33;
+}
+
+.wrapper {
+	width: 1000px;
+	max-width: 100%;
+	margin: 0 auto;
+	/* padding: 10px; */
+	display: grid;
+	grid-template-columns: 25% 75%;
+
+}
+
+.double_content {
+	width: 1000px;
+	max-width: 100%;
+	margin: 0 auto;
+	/* padding: 10px; */
+	display: grid;
+	grid-template-columns: 25% 600px;
+	background-color: #ffffff;
+}
+
+.single_wrap {
+	width: 700px;
+	max-width: 100%;
+	margin: 0 auto;
+	background-color: #ffffff;
+	padding: 20px 50px 50px 50px;
+	border-radius: 9px;
+}
+
+.double_wrap {
+	width: 1000px;
+	max-width: 100%;
+	margin: 0 auto;
+	background-color: #ffffff;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-column-gap: 20px;
+	padding: 20px;
+}
+
+.single_content {
+	width: 700px;
+	max-width: 100%;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+
+
+.content {
+	/* display: grid;
+	grid-template-columns: 25% 70%; */
+}
+
+
+/* Tweet card grid  */
+.tweet_card {
+	display: grid;
+	grid-template-columns: 60px auto;
+}

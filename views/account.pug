@@ -1,0 +1,16 @@
+extends layout
+block content
+	.single_wrap
+		h2 Your Account
+		form.form(action='/account' method='POST' enctype='multipart/form-data')
+			label(for='name') Nom :
+			input(type='text' name='name' value=user.name)
+			label(for='email') Adresse email :
+			input(type='email' name='email' value=user.email)
+			label(for='website') Site Web :
+			input(type='url' name='website' placeholder='https://' value=user.website)
+			h3 Photo de profil :
+			input(type='file' name='avatar' accepts='image/png, image/jpeg')
+			h3 A propos de vous :
+			textarea(name='bio' rows='4' cols='50' maxlength='140')= user.bio
+			input(type='submit' class='button' value='Update')

@@ -1,0 +1,8 @@
+mixin tweetForm()
+	form.tweet_card(action='/tweet' method='POST')
+		.tweet_avatar
+			img(src=`/uploads/${user.avatar || 'no-avatar.jpg'}`)
+		.tweet_text
+			textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="280" rows='3' required)
+			.tweet_button
+				input(type='submit' class='button tweet_button' value='Nweet')

@@ -1,0 +1,23 @@
+extends layout
+include mixins/_tweetForm
+include mixins/_tweetCard
+block content
+	.double_wrap
+		.profile_section
+			img.profile_avatar(src=`/uploads/${reqUser.avatar || 'no-avatar.jpg'}`)
+			h2.profile_name #{reqUser.name || reqUser.username}
+			h4 @#{reqUser.username}
+			p.profile_bio #{reqUser.bio || ''}
+			if reqUser.website
+				p.profile_url
+					a(href=reqUser.website rel='no_follow' target='_blank')= reqUser.website
+			if user
+				if (reqUser._id.toString() == user._id.toString())
+					p
+						a(href='/account') Modifier vos informations
+		.feed_section.single_content
+			if user
+				+tweetForm()
+			//- - const items = [1,2,3,4,5,6,7,8,9]
+			each tweet in tweets
+				+tweetCard(tweet)

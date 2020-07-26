@@ -1,0 +1,14 @@
+extends layout
+block content
+	.single_wrap
+		.single_tweet
+			p= tweet.tweet
+			.tweet_avatar(style="display: inline;")
+				a(href=`/${tweet.author.username}`)
+					img(src=`/uploads/${tweet.author.avatar || 'no-avatar.jpg'}` width="100" height="100" style="vertical-align:middle;")
+			p.tweet_meta(style="display: inline;")
+				a(href=`/${tweet.author.username}`)
+					strong    #{tweet.author.name || tweet.author.username}
+				span  @#{tweet.author.username}
+				span  &middot;
+				span= moment(tweet.created).fromNow()

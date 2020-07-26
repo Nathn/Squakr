@@ -1,0 +1,11 @@
+mixin accountMenu()
+	a(href=`/${user.username}` class='nav_link') #{(user.name || user.username).split(' ')[0]}
+	.dropdown
+		.dropbtn
+			a(href=`/${user.username}`)
+				img.avatar_top(src=`/uploads/${user.avatar || 'no-avatar.jpg'}`)
+		.dropdown-content
+			a(href='/') Acceuil
+			a(href=`/${user.username}`) Profil
+			a(href='/account') Paramètres
+			a(href='/logout') Déconnection
