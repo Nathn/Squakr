@@ -10,7 +10,9 @@ const routes = require('./routes');
 require('./handlers/passport');
 
 // Dot Env
-require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({
+	path: 'variables.env'
+});
 
 // Mongoose
 mongoose.connect(process.env.DATABASE);
@@ -20,7 +22,9 @@ mongoose.connection.on('error', (err) => {
 })
 
 // Express session
-app.use(session({ secret: process.env.SECRET }));
+app.use(session({
+	secret: process.env.SECRET
+}));
 
 // Passport.js
 app.use(passport.initialize());
@@ -36,7 +40,9 @@ app.use('/uploads', express.static(__dirname + '/public'));
 
 // Body Parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
 // Express validator
 app.use(expressValidator());
@@ -50,7 +56,7 @@ app.use((req, res, next) => {
 // Setting up the routes
 app.use('/', routes);
 
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // Starting the server
-app.listen(PORT, () => console.log('We have a server running on PORT: ' + PORT));
+app.listen(port);
