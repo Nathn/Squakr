@@ -3,6 +3,6 @@ mixin nweetForm()
 		.nweet_avatar
 			img(src=`/uploads/${user.avatar || 'no-avatar.jpg'}`)
 		.nweet_text
-			textarea(name='nweet' class='nweet_textarea' placeholder='Exprimez-vous...' maxlength="280" rows='3' required)
+			textarea(name='nweet' class='nweet_textarea' placeholder='Exprimez-vous...' maxlength="128000" rows='3' required)
 			.nweet_button
 				input(type='submit' class='button nweet_button' value='Nweet')
