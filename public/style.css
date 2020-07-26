@@ -42,18 +42,18 @@ textarea {
 	border: 0;
 }
 
-.nweet_textarea {
+.tweet_textarea {
 	/* padding: 5px 7px; */
 	border: 2px solid #add8e6;
 	margin-bottom: 10px;
 }
 
-.nweet_textarea,
-.nweet_button {
+.tweet_textarea,
+.tweet_button {
 	font-size: 1.3rem;
 }
 
-/* For all the buttons like login register and nweet  */
+/* For all the buttons like login register and tweet  */
 .button {
 	background-color: #ffd97d;
 	border-radius: 0;
@@ -145,12 +145,12 @@ textarea {
 }
 
 /* Home section  */
-/* .nweet_avatar {
+/* .tweet_avatar {
 	display: inline-block;
 	float: left;
 } */
 
-.nweet_avatar img {
+.tweet_avatar img {
 	width: 48px;
 	height: 48px;
 	border-radius: 50%;
@@ -172,22 +172,22 @@ textarea {
 }
 
 /* Feed section  */
-.nweet_card {
+.tweet_card {
 	/* border: 1px solid red; */
 	padding: 10px;
 	border-bottom: 1px solid #dddddd;
 }
 
-.nweet_card:last-child {
+.tweet_card:last-child {
 	border: 0;
 }
 
-.nweet_hover:hover {
+.tweet_hover:hover {
 	background-color: #efefef;
 }
 
 .author_name,
-.nweet_meta {
+.tweet_meta {
 	margin: 0;
 }
 
@@ -205,12 +205,12 @@ textarea {
 	text-decoration: underline;
 }
 
-.the_nweet {
+.the_tweet {
 	font-size: 1.3rem;
 	margin: 5px 0;
 }
 
-.nweet_actions {}
+.tweet_actions {}
 
 .heart {
 	background-color: rgba(255, 255, 255, 0);
@@ -225,29 +225,29 @@ textarea {
 	color: orange;
 }
 
-.nweet_meta {
+.tweet_meta {
 	font-size: 1rem;
 	color: #000;
 }
 
-.nweet_meta a {
+.tweet_meta a {
 	color: inherit;
 	text-decoration: none;
 }
 
-.nweet_meta a:hover {
+.tweet_meta a:hover {
 	text-decoration: underline;
 	color: green;
 }
 
-/* Single nweet page  */
-.single_nweet {
+/* Single tweet page  */
+.single_tweet {
 	/* padding: 50px; */
 	font-size: 2rem;
 }
 
-/* nweet form styles  */
-.nweet_text textarea {
+/* Tweet form styles  */
+.tweet_text textarea {
 	width: 100%;
 }
 

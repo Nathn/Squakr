@@ -1,6 +1,6 @@
 extends layout
-include mixins/_nweetForm
-include mixins/_nweetCard
+include mixins/_tweetForm
+include mixins/_tweetCard
 block content
 	.double_wrap
 		.profile_section
@@ -17,7 +17,7 @@ block content
 						a(href='/account') Modifier vos informations
 		.feed_section.single_content
 			if user
-				+nweetForm()
+				+tweetForm()
 			//- - const items = [1,2,3,4,5,6,7,8,9]
-			each nweet in nweets
-				+nweetCard(nweet)
+			each tweet in tweets
+				+tweetCard(tweet)

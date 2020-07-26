@@ -1,46 +1,46 @@
-const nweet = require('../models/nweet');
+const Tweet = require('../models/Tweet');
 const moment = require('moment');
 moment.locale('fr')
 
-// Home page to list all nweets
-exports.postnweet = async (req, res) => {
+// Home page to list all tweets
+exports.postTweet = async (req, res) => {
 	try {
 		req.body.author = req.user._id;
-		const nweet = new nweet(req.body);
-		await nweet.save();
+		const tweet = new Tweet(req.body);
+		await tweet.save();
 		res.redirect('back');
 		// res.json(req.body)
 
 
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?msg=Failed to nweet')
+		res.redirect('/?msg=Failed to tweet')
 	}
 }
 
 
 
 
-// Delete a nweet controller
-// nweet deleting function
-const confirmedOwner = (nweet, user) => {
-	if (!nweet.author.equals(user._id)) {
+// Delete a tweet controller
+// Tweet deleting function
+const confirmedOwner = (tweet, user) => {
+	if (!tweet.author.equals(user._id)) {
 		// You don't have permission to delete this.
 		throw Error('You don\'t have permission to delete this')
 	}
 }
 
 
-exports.deletenweet = async (req, res) => {
+exports.deleteTweet = async (req, res) => {
 	try {
-		const nweet = await nweet.findOne({
+		const tweet = await Tweet.findOne({
 			_id: req.params.id
 		});
 		if (!req.user.username === 'tamal') {
-			confirmedOwner(nweet, req.user);
+			confirmedOwner(tweet, req.user);
 		}
 
-		const deletenweet = await nweet.deleteOne(nweet);
+		const deleteTweet = await Tweet.deleteOne(tweet);
 		res.redirect('back')
 	} catch (e) {
 		console.log(e);
@@ -50,20 +50,20 @@ exports.deletenweet = async (req, res) => {
 
 }
 
-// Getting a single nweet
-exports.singlenweetPage = async (req, res) => {
+// Getting a single Tweet
+exports.singleTweetPage = async (req, res) => {
 	try {
-		const nweet = await nweet.findOne({
+		const tweet = await Tweet.findOne({
 			_id: req.params.id
 		}).populate('author');
 		res.render('single', {
-			nweet,
+			tweet,
 			moment
 		});
 
 	} catch (err) {
 		console.log(err);
-		res.redirect('/?msg=No nweets found')
+		res.redirect('/?msg=No tweets found')
 	}
 
 }

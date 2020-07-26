@@ -30,16 +30,16 @@ const userSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	hearts: [
-		{
-			type: mongoose.Schema.ObjectId,
-			ref: 'nweet'
-		}
-	]
+	hearts: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'Tweet'
+	}]
 
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email'});
+userSchema.plugin(passportLocalMongoose, {
+	usernameField: 'email'
+});
 userSchema.plugin(mongodbErrorHandler);
 
 // userSchema.virtual('gravatar').get(function() {
