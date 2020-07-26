@@ -60,8 +60,8 @@ body {
 }
 
 
-/* Tweet card grid  */
-.tweet_card {
+/* nweet card grid  */
+.nweet_card {
 	display: grid;
 	grid-template-columns: 60px auto;
 }

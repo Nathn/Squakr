@@ -1,6 +1,6 @@
 // Importing the model for use on this controller
 const User = require('../models/User');
-const Tweet = require('../models/Tweet');
+const nweet = require('../models/nweet');
 const promisify = require('es6-promisify');
 const moment = require('moment');
 const multer = require('multer');
@@ -25,8 +25,8 @@ exports.profilePage = async (req, res) => {
 		});
 
 		if (reqUser) {
-			// Find all tweets by that user with the _id
-			const tweets = await Tweet.find({
+			// Find all nweets by that user with the _id
+			const nweets = await nweet.find({
 				author: reqUser._id
 			}).populate('author').sort({
 				created: 'desc'
@@ -35,7 +35,7 @@ exports.profilePage = async (req, res) => {
 			// Display the profile page
 			res.render('profile', {
 				reqUser,
-				tweets,
+				nweets,
 				moment
 			});
 			return;
@@ -181,8 +181,8 @@ exports.registerUser = async (req, res, next) => {
 }
 
 
-// Heart a tweet
-exports.heartTweet = async (req, res) => {
+// Heart a nweet
+exports.heartnweet = async (req, res) => {
 	const hearts = req.user.hearts.map(obj => obj.toString());
 	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
 	const user = await User.findByIdAndUpdate(

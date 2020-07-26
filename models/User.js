@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
 	hearts: [
 		{
 			type: mongoose.Schema.ObjectId,
-			ref: 'Tweet'
+			ref: 'nweet'
 		}
 	]
 

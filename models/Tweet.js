@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const tweetSchema = new mongoose.Schema({
-	tweet: {
+const nweetSchema = new mongoose.Schema({
+	nweet: {
 		type: String,
 		required: true,
 		trim: true
@@ -15,4 +15,4 @@ const tweetSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('Tweet', tweetSchema);
+module.exports = mongoose.model('nweet', nweetSchema);

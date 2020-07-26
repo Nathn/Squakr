@@ -4,17 +4,17 @@ const router = express.Router();
 const appController = require('../controllers/appController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
-const tweetController = require('../controllers/tweetController');
+const nweetController = require('../controllers/nweetController');
 
 // Index page
 router.get('/', appController.indexPage);
 
-// Single tweet page
-router.get('/tweet/:id', tweetController.singleTweetPage);
+// Single nweet page
+router.get('/nweet/:id', nweetController.singlenweetPage);
 
 // API
 ////////////////////////////////
-router.post('/api/tweets/:id/heart', userController.heartTweet)
+router.post('/api/nweets/:id/heart', userController.heartnweet)
 
 // Registration page
 router.get('/register', userController.registerPage);
@@ -53,13 +53,13 @@ router.post('/upload',
 	userController.resize,
 	userController.accountUpdate);
 
-// Tweet Specific routes
+// nweet Specific routes
 ///////////////////////////////
-router.post('/tweet', tweetController.postTweet);
+router.post('/nweet', nweetController.postnweet);
 
 router.get('/delete/:id',
 	authController.isLoggedIn,
-	tweetController.deleteTweet);
+	nweetController.deletenweet);
 
 // Profile Page at the end because :username
 router.get('/:username', userController.profilePage);

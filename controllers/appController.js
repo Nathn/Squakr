@@ -1,4 +1,4 @@
-const Tweet = require('../models/Tweet');
+const nweet = require('../models/nweet');
 const moment = require('moment');
 moment.locale('fr')
 
@@ -6,14 +6,14 @@ moment.locale('fr')
 // The home page
 exports.indexPage = async (req, res) => {
 	try {
-		const tweets = await Tweet.find({})
+		const nweets = await nweet.find({})
 			.populate('author')
 			.limit(50)
 			.sort({
 				created: 'desc'
 			});
 		res.render('index', {
-			tweets,
+			nweets,
 			moment
 		});
 
