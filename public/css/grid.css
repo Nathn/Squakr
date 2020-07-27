@@ -32,7 +32,7 @@ body {
 	margin: 0 auto;
 	background-color: #ffffff;
 	padding: 20px 50px 50px 50px;
-	border-radius: 9px;
+	border-radius: 10px;
 }
 
 .double_wrap {
@@ -44,6 +44,7 @@ body {
 	grid-template-columns: auto auto;
 	grid-column-gap: 20px;
 	padding: 20px;
+	border-radius: 10px;
 }
 
 .single_content {
