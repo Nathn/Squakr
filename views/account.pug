@@ -1,7 +1,7 @@
 extends layout
 block content
 	.single_wrap
-		h2 Your Account
+		h2 Votre compte
 		form.form(action='/account' method='POST' enctype='multipart/form-data')
 			label(for='name') Nom :
 			input(type='text' name='name' value=user.name)
