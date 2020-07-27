@@ -1,7 +1,7 @@
-shotNwittr
+#Nwittr
 
 https://nwittr.herokuapp.com/
 
-![Homepage](https://raw.githubusercontent.com/Nathn/Nwittr/master/screenshot-home.jpg)
+![Homepage](https://github.com/Nathn/Nwittr/blob/master/screenshot-home.png)
 
-![Profile page](https://raw.githubusercontent.com/Nathn/Nwittr/master/screenshot-profile.jpg)
+![Profile page](https://github.com/Nathn/Nwittr/blob/master/screenshot-home.png)
