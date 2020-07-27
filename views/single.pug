@@ -8,7 +8,11 @@ block content
 					img(src=`/uploads/${tweet.author.avatar || 'no-avatar.jpg'}` width="100" height="100" style="vertical-align:middle;")
 			p.tweet_meta(style="display: inline;")
 				a(href=`/${tweet.author.username}`)
-					strong    #{tweet.author.name || tweet.author.username}
+					if (tweet.author.verified == 'True')
+						strong #{tweet.author.name || tweet.author.username}
+					else
+						strong #{tweet.author.name || tweet.author.username}
+						img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png" style="vertical-align:middle;")
 				span  @#{tweet.author.username}
 				span  &middot;
 				span= moment(tweet.created).fromNow()
