@@ -20,7 +20,7 @@ block content
 					p
 						a(href='/account') Modifier vos informations
 		.feed_section.single_content
-			if user
+			if (reqUser._id.toString() == user._id.toString())
 				+tweetForm()
 			//- - const items = [1,2,3,4,5,6,7,8,9]
 			each tweet in tweets
