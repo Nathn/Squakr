@@ -5,7 +5,7 @@ block content
 	.double_wrap
 		.profile_section
 			img.profile_avatar(src=`/uploads/${reqUser.avatar || 'no-avatar.jpg'}`)
-			if (reqUser.equals('5f1d6f018c3e615140eb1bac') || reqUser.equals('5f1daf2680067f0017a9a7e8'))
+			if (reqUser.equals('5f1d6f018c3e615140eb1bac') || reqUser.equals('5f1daf2680067f0017a9a7e8') || reqUser.equals('5f1ea87352f68c001720c9a3'))
 				h2.profile_name #{reqUser.name || reqUser.username}
 					img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png" width="30" height="30" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
 			else
