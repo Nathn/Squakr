@@ -1,0 +1,47 @@
+include mixins/_loginForm
+include mixins/_accountMenu
+<!DOCTYPE html>
+html(lang="fr")
+	head
+		meta(charset="UTF-8")
+		meta(lang="fr")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		link(rel='stylesheet' href='/style.css')
+		link(rel="shortcut icon" type="image/png" href="https://png.pngtree.com/template/20190716/ourlarge/pngtree-n-circle-letter-initial-logo-icon-design-vector-illustration-image_228217.jpg")
+		meta(property="og:title" content=`@${tweet.author.username} sur Nwittr`)
+		meta(property="og:type" content="website")
+		meta(property="og:url" content="nwittr.herokuapp.com")
+		meta(property="og:image" content="https://png.pngtree.com/template/20190716/ourlarge/pngtree-n-circle-letter-initial-logo-icon-design-vector-illustration-image_228217.jpg")
+		meta(property="og:description" content="Partagez vos indées avec Nwittr")
+		title Nwittr
+	body
+		.header
+			.wrapper
+				#logo
+					h1.site_title
+						a(href='/') Nwittr
+				#navigation
+					if user
+						//- span hello #{user.username}
+						//- a(href='/account') Account
+						//- a(href='/logout') logout
+						+accountMenu()
+					else
+						form.form_inline(action='/login' method='POST')
+							span
+								strong
+									a(href="/register" style="color: #2C2F33;") S'inscrire
+							span ​ · ​
+							span
+								strong
+									a(href="/login" style="color: #2C2F33;") Se connecter
+		<br/>
+		.content_area
+				block content
+		.footer
+			p
+				small © 2020 Nwittr · v1.0.3 <br/>
+					a(href='https://github.com/Nathn' target='_blank' style="text-decoration: none; color: #fff;") Nathn
+
+
