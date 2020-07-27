@@ -14,7 +14,7 @@ exports.postTweet = async (req, res) => {
 
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?msg=Failed to tweet')
+		res.redirect('/?msg=nweet_failed')
 	}
 }
 
@@ -26,7 +26,7 @@ exports.postTweet = async (req, res) => {
 const confirmedOwner = (tweet, user) => {
 	if (!tweet.author.equals(user._id)) {
 		// You don't have permission to delete this.
-		throw Error('You don\'t have permission to delete this')
+		throw Error('Vous n\'avez pas assez de permissions pour supprimer ça.')
 	}
 }
 
@@ -36,7 +36,7 @@ exports.deleteTweet = async (req, res) => {
 		const tweet = await Tweet.findOne({
 			_id: req.params.id
 		});
-		if (!req.user.username === 'tamal') {
+		if (!req.user.username === 'n') {
 			confirmedOwner(tweet, req.user);
 		}
 
@@ -44,7 +44,7 @@ exports.deleteTweet = async (req, res) => {
 		res.redirect('back')
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?msg=Failed to delete')
+		res.redirect('/?msg=delete_failed')
 	}
 
 
@@ -63,7 +63,7 @@ exports.singleTweetPage = async (req, res) => {
 
 	} catch (err) {
 		console.log(err);
-		res.redirect('/?msg=No tweets found')
+		res.redirect('/?msg=no_nweets_found')
 	}
 
 }

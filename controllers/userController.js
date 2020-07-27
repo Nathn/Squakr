@@ -82,7 +82,7 @@ exports.accountUpdate = async (req, res) => {
 			context: 'query'
 		})
 
-		res.redirect('/account?msg=account updated')
+		res.redirect('/account?msg=account_updated')
 	} catch (e) {
 		console.log(e);
 		res.redirect('back')
@@ -99,7 +99,7 @@ const multerOptions = {
 			next(null, true);
 		} else {
 			next({
-				message: 'You must supply a valid image file.'
+				message: 'Le fichier sélectionné n\'est pas une image valide.'
 			}, false)
 		}
 	}
@@ -128,13 +128,13 @@ exports.resize = async (req, res, next) => {
 // Verify the reg data
 exports.verifyRegister = async (req, res, next) => {
 	req.sanitizeBody('username');
-	req.checkBody('username', 'Username should not be empty!').notEmpty();
+	req.checkBody('username', 'Le nom d\'utilisateur ne peut pas être vide').notEmpty();
 	req.sanitizeBody('email');
-	req.checkBody('email', 'Email should not be empty').notEmpty();
-	req.checkBody('email', 'You must enter a valid email to register').isEmail();
-	req.checkBody('password', 'Password should not be empty').notEmpty();
-	req.checkBody('password-confirm', 'Password confirmation should not be empty').notEmpty();
-	req.checkBody('password-confirm', 'Both passwords does not match!').equals(req.body.password);
+	req.checkBody('email', 'L\'email ne peut pas être vide').notEmpty();
+	req.checkBody('email', 'L\'email spécifié n\'est pas valide').isEmail();
+	req.checkBody('password', 'Le mot de passe ne peut pas être vide').notEmpty();
+	req.checkBody('password-confirm', 'La confirmation de mot de passe ne peut pas être vide').notEmpty();
+	req.checkBody('password-confirm', 'Les mots de passe ne correspondent pas').equals(req.body.password);
 
 	const errors = req.validationErrors();
 	if (errors) {
@@ -155,7 +155,7 @@ exports.checkUserExists = async (req, res, next) => {
 	// console.log(user);
 
 	if (user.length) {
-		res.send('A user already exists with the username or email.');
+		res.send('Un utilisateur est déjà inscrit avec ce nom d\'utilisateur ou cette adresse email');
 		return;
 	}
 	next();
