@@ -8,9 +8,10 @@ mixin tweetCard(tweet={})
 				a(href=`/${tweet.author.username}`)
 					if (tweet.author.verified == 'True')
 						strong #{tweet.author.name || tweet.author.username}
+						img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png" width="50" height="50" style="vertical-align:middle;")
+
 					else
 						strong #{tweet.author.name || tweet.author.username}
-						img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png" style="vertical-align:middle;")
 				span  @#{tweet.author.username}
 			a(href=`/tweet/${tweet._id}` style="text-decoration:none; color: #000")
 				div
