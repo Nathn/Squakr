@@ -55,17 +55,18 @@ textarea {
 
 /* For all the buttons like login register and tweet  */
 .button {
-	background-color: #ffd97d;
+	background-color: #4bd3db;
 	border-radius: 0;
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 0;
 	font-weight: bold;
 	cursor: pointer;
+	border-radius: 7px;
 }
 
 .button:hover {
-	background-color: #e5bf63;
+	background-color: #39aeb4;
 }
 
 .form .button {
