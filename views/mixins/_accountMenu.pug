@@ -3,7 +3,7 @@ mixin accountMenu()
 	.dropdown
 		.dropbtn
 			a(href=`/${user.username}`)
-				img.avatar_top(src=`/uploads/${user.avatar || 'no-avatar.jpg'}`)
+				img.avatar_top(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.dropdown-content
 			a(href='/') Acceuil
 			a(href=`/${user.username}`) Profil

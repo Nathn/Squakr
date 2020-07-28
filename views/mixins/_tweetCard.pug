@@ -2,7 +2,7 @@ mixin tweetCard(tweet={})
 	.tweet_card.tweet_hover
 		.tweet_avatar
 			a(href=`/${tweet.author.username}`)
-				img(src=`/uploads/${tweet.author.avatar || 'no-avatar.jpg'}`)
+				img(src=`${tweet.author.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			p.author_name(style="display: inline;")
 				a(href=`/${tweet.author.username}`)
