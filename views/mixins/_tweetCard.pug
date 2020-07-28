@@ -8,7 +8,7 @@ mixin tweetCard(tweet={})
 				a(href=`/${tweet.author.username}`)
 					if (tweet.author.equals('5f1d6f018c3e615140eb1bac') || tweet.author.equals('5f1daf2680067f0017a9a7e8') || tweet.author.equals('5f1ea87352f68c001720c9a3') || tweet.author.equals('5f1efa150d15b1001731f0be'))
 						strong #{tweet.author.name || tweet.author.username}
-						img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
+						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{tweet.author.name || tweet.author.username}
 				span  @#{tweet.author.username}
