@@ -39,10 +39,11 @@ exports.profilePage = async (req, res) => {
 				moment
 			});
 			return;
+		} else {
+			res.render('404', {})
 		}
 
 		// Else display a not found page
-		// res.redirect('/404');
 
 
 	} catch (e) {
