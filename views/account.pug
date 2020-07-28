@@ -10,7 +10,7 @@ block content
 			label(for='website') Site Web :
 			input(type='url' name='website' placeholder='https://' value=user.website)
 			h3 Photo de profil :
-			input(type='url' name='avatar' placeholder='https://' value=user.avatar)
+			input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off')
 			small Les uploads d'avatar sont actuellement désactivés te temps de trouver une solution d'hébergement viable.
 			h3 A propos de vous :
 			textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
