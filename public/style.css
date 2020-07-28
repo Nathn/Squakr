@@ -53,6 +53,10 @@ textarea {
 	font-size: 1.3rem;
 }
 
+.edit_button {
+	font-size: 1rem;
+}
+
 /* For all the buttons like login register and tweet  */
 .button {
 	background-color: #4bd3db;
