@@ -19,6 +19,8 @@ block content
 				if (reqUser._id.toString() == user._id.toString())
 					p
 						a(href='/account') Modifier vos informations
+						.tweet_button
+							input(type="button" onclick="window.location.href = '/account';" class='button tweet_button' value='Modifier vos informations')
 		.feed_section.single_content
 			if user
 				if (reqUser._id.toString() == user._id.toString())
