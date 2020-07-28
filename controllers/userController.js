@@ -130,6 +130,7 @@ exports.verifyRegister = async (req, res, next) => {
 	req.sanitizeBody('username');
 	req.checkBody('username', 'Le nom d\'utilisateur ne peut pas être vide').notEmpty();
 	req.check('username', 'Le nom \'utilisateur ne peut pas contenir d\'espaces').custom(value => !/\s/.test(value))
+	req.check('username', 'Le nom \'utilisateur ne peut pas contenir de caractères spéciaux').custom(value => /^[0-9a-zA-Z]+$/.test(value))
 	req.sanitizeBody('email');
 	req.checkBody('email', 'L\'email ne peut pas être vide').notEmpty();
 	req.checkBody('email', 'L\'email spécifié n\'est pas valide').isEmail();
@@ -140,7 +141,7 @@ exports.verifyRegister = async (req, res, next) => {
 	const errors = req.validationErrors();
 	if (errors) {
 		console.log(errors);
-		res.redirect('back')
+		res.redirect(`back`)
 		return;
 	}
 	next();
