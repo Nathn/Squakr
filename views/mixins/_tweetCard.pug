@@ -24,8 +24,8 @@ mixin tweetCard(tweet={})
 				//- 			| ♥
 			p.tweet_meta
 				span
-					a(href=`/tweet/${tweet._id}` title=`${tweet.created}`) #{moment(tweet.created).fromNow()}
+					a(href=`/tweet/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none;") #{moment(tweet.created).fromNow()}
 				if user && (tweet.author.equals(user._id) || user.username == 'n')
 					span  &middot;
 					span
-					a(href=`/delete/${tweet._id}`) Supprimer
+					a(href=`/delete/${tweet._id}` style="text-decoration: none;")  Supprimer
