@@ -23,7 +23,7 @@ exports.profilePage = async (req, res) => {
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
-
+		var months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
 		if (reqUser) {
 			// Find all tweets by that user with the _id
 			const tweets = await Tweet.find({
@@ -36,7 +36,8 @@ exports.profilePage = async (req, res) => {
 			res.render('profile', {
 				reqUser,
 				tweets,
-				moment
+				moment,
+				months
 			});
 			return;
 		} else {
