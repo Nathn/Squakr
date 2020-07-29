@@ -67,5 +67,7 @@ router.get('/:username', userController.profilePage);
 
 
 
+
+
 // Exporting the module
 module.exports = router;
