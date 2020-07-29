@@ -1,5 +1,5 @@
 mixin tweetForm()
-	form.tweet_card(action='/tweet' method='POST')
+	form.tweet_card(action='/nweet' method='POST')
 		.tweet_avatar
 			img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text

@@ -12,7 +12,7 @@ mixin tweetCard(tweet={})
 					else
 						strong #{tweet.author.name || tweet.author.username}
 				span  @#{tweet.author.username}
-			a(href=`/tweet/${tweet._id}` style="text-decoration:none; color: #000")
+			a(href=`/nweet/${tweet._id}` style="text-decoration:none; color: #000")
 				div
 					p.the_tweet #{tweet.tweet}
 			p.tweet_actions
@@ -24,7 +24,7 @@ mixin tweetCard(tweet={})
 				//- 			| ♥
 			p.tweet_meta
 				span
-					a(href=`/tweet/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none;") #{moment(tweet.created).fromNow()}
+					a(href=`/nweet/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none;") #{moment(tweet.created).fromNow()}
 				if user && (tweet.author.equals(user._id) || user.username == 'n')
 					span  &middot;
 					span
