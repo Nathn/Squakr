@@ -13,7 +13,7 @@ html(lang="fr")
 		meta(property="og:type" content="website")
 		meta(property="og:url" content="nwittr.herokuapp.com")
 		meta(property="og:image" content="https://png.pngtree.com/template/20190716/ourlarge/pngtree-n-circle-letter-initial-logo-icon-design-vector-illustration-image_228217.jpg")
-		meta(property="og:description" content=`Découvrez ce que partagent ${reqUser.name} (@${reqUser.username}) et d'autres sur Nwittr, le premier réseau antisocial.`)
+		meta(property="og:description" content=`Découvrez ce que partagent ${reqUser.name || reqUser.username} (@${reqUser.username}) et d'autres sur Nwittr, le premier réseau antisocial.`)
 		title Nwittr
 	body
 		.header
