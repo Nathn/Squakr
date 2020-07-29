@@ -12,7 +12,7 @@ block content
 				h2.profile_name #{reqUser.name || reqUser.username}
 			h4 @#{reqUser.username}
 			h5(style="padding-bottom: 5px") A rejoint Nwittr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
-			p.profile_bio #{reqUser.bio || ''}
+			p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
 			if reqUser.website
 				p.profile_url
 					a(href=reqUser.website rel='no_follow' target='_blank')= reqUser.website
