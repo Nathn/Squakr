@@ -15,17 +15,16 @@ mixin tweetCard(tweet={})
 			a(href=`/nweet/${tweet._id}` style="text-decoration:none; color: #000")
 				div
 					p.the_tweet #{tweet.tweet}
-			p.tweet_actions
-				//- if user
-				//- 	form.heart(method='POST' action=`/api/tweets/${tweet._id}/heart`)
-				//- 		- const heartStrings = user.hearts.map(obj => obj.toString())
-				//- 		- const heartClass = heartStrings.includes(tweet._id.toString()) ? 'hearted' : ''
-				//- 		button(type='submit' name='heart' class=heartClass)
-				//- 			| ♥
 			p.tweet_meta
+				if user
+					form.heart(method='POST' action=`/api/tweets/${tweet._id}/heart` style="display: inline;")
+						- const heartStrings = user.hearts.map(obj => obj.toString())
+						- const heartClass = heartStrings.includes(tweet._id.toString()) ? 'hearted' : ''
+						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
+							| ❤
 				span
-					a(href=`/nweet/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none;") #{moment(tweet.created).fromNow()}
+					a(href=`/nweet/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none; color: #000") #{moment(tweet.created).fromNow()}
 				if user && (tweet.author.equals(user._id) || user.username == 'n')
 					span  &middot;
 					span
-					a(href=`/delete/${tweet._id}` style="text-decoration: none;")  Supprimer
+					a(href=`/delete/${tweet._id}` style="text-decoration: none; color: #000")  Supprimer

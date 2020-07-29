@@ -15,4 +15,11 @@ block content
 						strong #{tweet.author.name || tweet.author.username}
 				span  @#{tweet.author.username}
 				span  &middot;
-				span= moment(tweet.created).fromNow()
+				span(style="padding-left: 3px")=  moment(tweet.created).fromNow()
+				span  &middot;
+				if user
+					form.heart(method='POST' action=`/api/tweets/${tweet._id}/heart` style="display: inline;")
+						- const heartStrings = user.hearts.map(obj => obj.toString())
+						- const heartClass = heartStrings.includes(tweet._id.toString()) ? 'hearted' : ''
+						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
+							| ❤

@@ -198,4 +198,5 @@ exports.heartTweet = async (req, res) => {
 			new: true
 		}
 	);
+	res.redirect('back')
 }

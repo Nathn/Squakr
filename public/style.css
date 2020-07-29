@@ -234,15 +234,15 @@ textarea {
 
 .heart {
 	background-color: rgba(255, 255, 255, 0);
-	border: 0;
 	padding: 0;
-	font-size: 1.5rem;
-	cursor: pointer;
+	border: none;
+	background: none;
+	font-size: 1rem;
 }
 
 
 .hearted {
-	color: orange;
+	color: red;
 }
 
 .tweet_meta {
