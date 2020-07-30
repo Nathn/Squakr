@@ -32,6 +32,7 @@ exports.profilePage = async (req, res) => {
 				created: 'desc'
 			});
 
+
 			// Display the profile page
 			res.render('profile', {
 				reqUser,
@@ -52,6 +53,47 @@ exports.profilePage = async (req, res) => {
 		res.redirect('/')
 	}
 }
+
+
+exports.likesProfilePage = async (req, res) => {
+	try {
+		const reqUser = await User.findOne({
+			username: req.params.username
+		});
+		var months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+		if (reqUser) {
+
+			const likes = await Tweet.find({
+					author: {
+						$ne: reqUser._id
+					}
+				},
+				tweet => tweet in reqUser.hearts
+			).populate('author').sort({
+				created: 'desc'
+			});
+
+			// Display the profile page
+			res.render('profilelikes', {
+				reqUser,
+				moment,
+				months,
+				likes
+			});
+			return;
+		} else {
+			res.render('404', {})
+		}
+
+		// Else display a not found page
+
+
+	} catch (e) {
+		console.log(e);
+		res.redirect('/')
+	}
+}
+
 
 
 

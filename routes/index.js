@@ -61,9 +61,12 @@ router.get('/delete/:id',
 	authController.isLoggedIn,
 	tweetController.deleteTweet);
 
+
+router.get('/:username/likes', userController.likesProfilePage);
+
+
 // Profile Page at the end because :username
 router.get('/:username', userController.profilePage);
-
 
 
 

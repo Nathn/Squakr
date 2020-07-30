@@ -21,14 +21,7 @@ block content
 					p
 						.edit_button
 							input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
-			input(type="button" onclick=`window.location.href = '/${reqUser.username}/likes';` class='button edit_button' value='Nweets Likés')
 		.feed_section.single_content
-			if user
-				if (reqUser._id.toString() == user._id.toString())
-					+tweetForm()
-				//- - const items = [1,2,3,4,5,6,7,8,9]
-				each tweet in tweets
-					+tweetCard(tweet)
-			else
-				each tweet in tweets
-					+tweetCard(tweet)
+			h2 Nweets likés par #{reqUser.name}
+			each tweet in likes
+				+tweetCard(tweet)
