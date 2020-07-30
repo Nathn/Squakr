@@ -21,8 +21,11 @@ block content
 					p
 						.edit_button
 							input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
-			input(type="button" onclick=`window.location.href = '/${reqUser.username}';` class='button edit_button' value='Voir les nweets')
 		.feed_section.single_content
-			h2 Nweets likés par #{reqUser.name}
+			nav
+				a(href=`/${reqUser.username}`) Nweets
+				a(href="") Likes
+				.animation.start-about
+			<br/>
 			each tweet in likes
 				+tweetCard(tweet)
