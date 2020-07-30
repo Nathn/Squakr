@@ -64,12 +64,13 @@ exports.likesProfilePage = async (req, res) => {
 		if (reqUser) {
 
 			const likes = await Tweet.find({
-					author: {
-						$ne: reqUser._id
-					}
+				author: {
+					$ne: reqUser._id
 				},
-				tweet => tweet in reqUser.hearts
-			).populate('author').sort({
+				_id: {
+					$in: reqUser.hearts
+				}
+			}).populate('author').sort({
 				created: 'desc'
 			});
 
