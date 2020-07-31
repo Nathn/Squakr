@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
 	},
 	name: String,
 	avatar: String,
+	banner: String,
 	bio: {
 		type: String,
 		trim: true

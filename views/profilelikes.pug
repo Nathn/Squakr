@@ -22,21 +22,14 @@ block content
 						.edit_button
 							input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
 		.feed_section.single_content
-			if user
-				if (reqUser._id.toString() == user._id.toString())
-					+tweetForm()
-				nav
-					a(href=`/${reqUser.username}`) Nweets
-					a(href="") Likes
-					.animation.start-about
-				<br/>
-				each tweet in likes
-					+tweetCard(tweet)
-			else
-				nav
-					a(href=`/${reqUser.username}`) Nweets
-					a(href="") Likes
-					.animation.start-about
-				<br/>
-				each tweet in likes
-					+tweetCard(tweet)
+			div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.png"}')`)
+			nav
+				a(href=`/${reqUser.username}`) Nweets
+				a(href="") Likes
+				.animation.start-about
+			<br/>
+			each tweet in likes
+				+tweetCard(tweet)
+
+
+

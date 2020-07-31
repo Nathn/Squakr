@@ -25,6 +25,8 @@ block content
 			if user
 				if (reqUser._id.toString() == user._id.toString())
 					+tweetForm()
+				else
+					div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.png"}')`)
 				nav
 					a(href="") Nweets
 					a(href=`/${reqUser.username}/likes`) Likes
@@ -34,6 +36,7 @@ block content
 				each tweet in tweets
 					+tweetCard(tweet)
 			else
+				div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.png"}')`)
 				nav
 					a(href="#") Nweets
 					a(href=`/${reqUser.username}/likes`) Likes

@@ -116,7 +116,8 @@ exports.accountUpdate = async (req, res) => {
 			email: req.body.email,
 			website: req.body.website,
 			bio: req.body.bio,
-			avatar: req.body.avatar || req.user.avatar
+			avatar: req.body.avatar || req.user.avatar,
+			banner: req.body.banner || req.user.banner
 		}
 
 		const user = await User.findOneAndUpdate({
