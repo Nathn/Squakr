@@ -9,10 +9,12 @@ block content
 			input(type='email' name='email' value=user.email autocomplete='off')
 			label(for='website') Site Web :
 			input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
-			h3 Photo de profil :
-			input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off')
+			h3 Image de profil :
+			small Taille idéale : 240x240
+			input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off' style="width: 415px")
 			h3 Image de bannière :
-			input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off')
+			small Taille idéale : 800x160
+			input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off' style="width: 415px")
 			small Les uploads d'images sont actuellement désactivés te temps de trouver une solution d'hébergement viable.
 			h3 A propos de vous :
 			textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
