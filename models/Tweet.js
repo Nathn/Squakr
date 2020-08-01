@@ -12,6 +12,10 @@ const tweetSchema = new mongoose.Schema({
 	author: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'User'
+	},
+	image: {
+		type: String,
+		trim: true
 	}
 });
 
