@@ -176,20 +176,20 @@ exports.resize = async (req, res, next) => {
 // Verify the reg data
 exports.verifyRegister = async (req, res, next) => {
 	req.sanitizeBody('username');
-	req.checkBody('username', 'Le nom d\'utilisateur ne peut pas être vide').notEmpty();
-	req.check('username', 'Le nom \'utilisateur ne peut pas contenir d\'espaces').custom(value => !/\s/.test(value))
-	req.check('username', 'Le nom \'utilisateur ne peut pas contenir de caractères spéciaux').custom(value => /^[0-9a-zA-Z]+$/.test(value))
+	req.checkBody('username', '200').notEmpty();
+	req.check('username', '201').custom(value => !/\s/.test(value))
+	req.check('username', '202').custom(value => /^[0-9a-zA-Z]+$/.test(value))
 	req.sanitizeBody('email');
-	req.checkBody('email', 'L\'email ne peut pas être vide').notEmpty();
-	req.checkBody('email', 'L\'email spécifié n\'est pas valide').isEmail();
-	req.checkBody('password', 'Le mot de passe ne peut pas être vide').notEmpty();
-	req.checkBody('password-confirm', 'La confirmation de mot de passe ne peut pas être vide').notEmpty();
-	req.checkBody('password-confirm', 'Les mots de passe ne correspondent pas').equals(req.body.password);
+	req.checkBody('email', '203').notEmpty();
+	req.checkBody('email', '204').isEmail();
+	req.checkBody('password', '205').notEmpty();
+	req.checkBody('password-confirm', '206').notEmpty();
+	req.checkBody('password-confirm', '207').equals(req.body.password);
 
 	const errors = req.validationErrors();
 	if (errors) {
 		console.log(errors);
-		res.redirect(`back`)
+		res.redirect(`register?err=${errors[0].msg}`)
 		return;
 	}
 	next();
@@ -197,15 +197,23 @@ exports.verifyRegister = async (req, res, next) => {
 
 // Check if the user already exists Will hook it up later
 exports.checkUserExists = async (req, res, next) => {
-	const user = await User.find({
-		username: req.body.username,
-		email: req.body.email
+	var user = await User.find({
+		username: req.body.username
 	})
 
 	// console.log(user);
 
 	if (user.length) {
-		res.send('Un utilisateur est déjà inscrit avec ce nom d\'utilisateur ou cette adresse email');
+		res.redirect(`register?err=208`)
+		return;
+	}
+
+	user = await User.find({
+		email: req.body.email
+	})
+
+	if (user.length) {
+		res.redirect(`register?err=209`)
 		return;
 	}
 	next();
