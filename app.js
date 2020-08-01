@@ -18,7 +18,7 @@ require('dotenv').config({
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
-	console.log('We have an error with the database: ' + err);
+	console.log('Une erreur est survenue avec la base de données : ' + err);
 })
 
 // Express session

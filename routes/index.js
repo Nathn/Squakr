@@ -9,7 +9,7 @@ const tweetController = require('../controllers/tweetController');
 // Index page
 router.get('/', appController.indexPage);
 
-// Single tweet page
+// Single nweet page
 router.get('/nweet/:id', tweetController.singleTweetPage);
 
 // API
