@@ -8,6 +8,11 @@ const jimp = require('jimp');
 const uuid = require('uuid');
 moment.locale('fr')
 
+
+require('dotenv').config({
+	path: 'variables.env'
+});
+
 // The default controller for this app
 exports.registerPage = (req, res) => {
 	res.render('register');
@@ -229,14 +234,28 @@ exports.registerUser = async (req, res, next) => {
 
 		const register = promisify(User.register, User);
 		await register(user, req.body.password);
-		// res.send('User registration successfull!')
+		const Discord = require("discord.js");
+		const {
+			Client,
+			Util
+		} = require("discord.js");
+		const client = new Discord.Client();
+		client.login(process.env.TOKEN);
+		client.on('ready', () => {
+			var userEmbed = new Discord.MessageEmbed()
+			userEmbed.setColor(0x3333ff);
+			userEmbed.setTitle("Nouveau membre sur Nwittr !");
+			userEmbed.setDescription(`Souhaitez la bienvenue à @${req.body.username} !`);
+			var logschannel = client.channels.cache.get('735169754989592648');
+			logschannel.send(userEmbed)
+		});
 		next();
 
 	} catch (error) {
 		res.redirect('/register');
 		console.log(error);
 	}
-}
+};
 
 
 // Heart a tweet
