@@ -24,7 +24,7 @@ mixin tweetCard(tweet={})
 							| ❤
 				span
 					a(href=`/nweet/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none; color: #000") #{moment(tweet.created).fromNow()}
-				if user && (tweet.author.equals(user._id) || user.username == 'n')
+				if user && (tweet.author.equals(user._id) || user.moderator)
 					span  &middot;
 					span
 					a(href=`/delete/${tweet._id}` style="text-decoration: none; color: #000")  Supprimer
