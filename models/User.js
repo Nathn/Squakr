@@ -35,7 +35,8 @@ const userSchema = new mongoose.Schema({
 		type: mongoose.Schema.ObjectId,
 		ref: 'Tweet'
 	}],
-	verified: Boolean
+	verified: Boolean,
+	moderator: Boolean
 
 });
 
