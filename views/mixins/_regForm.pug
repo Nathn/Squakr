@@ -1,7 +1,6 @@
 mixin regForm()
 
-	div(class="regform")
-		form.form(action='/register' method='POST')
+	form.form(action='/register' method='POST')
 
 			label(for='username') Nom d'utilisateur:
 			input(type='text' name='username' required)
@@ -13,22 +12,7 @@ mixin regForm()
 			input(type='password' name='password-confirm' required)
 			input(type='submit' class='button' value='Créer un compte')
 
-	div(class="paragraph")
-		p
-		| Le nom d'utilisateur ne peut pas :<br/>
-		| - Être vide<br/>
-		| - Être déjà utilisé<br/>
-		| - Contenir des espaces<br/>
-		| - Contenir des caractères spéciaux ou accentués<br/><br/>
-		| Vous pouvez vérifier la disponibilité d'un nom n'utilisateur en vous rendant sur sa page :<br/>
-		i https://nwittr.herokuapp.com/{nom}<br/><br/>
-		| Si vous n'arrivez toujours pas à vous inscrire, vous pouvez toujours demander de l'aide sur le
-		|
-		a(href="https://discord.gg/C8WPK2B") Discord
-		|  !
 
-
-	div(class="clearfix")
 
 
 
