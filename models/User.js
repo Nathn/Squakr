@@ -35,8 +35,14 @@ const userSchema = new mongoose.Schema({
 		type: mongoose.Schema.ObjectId,
 		ref: 'Tweet'
 	}],
-	verified: Boolean
-
+	verified: {
+		type: String,
+		default: 'false'
+	},
+	moderator: {
+		type: Boolean,
+		default: false
+	}
 });
 
 userSchema.plugin(passportLocalMongoose, {
@@ -44,9 +50,6 @@ userSchema.plugin(passportLocalMongoose, {
 });
 userSchema.plugin(mongodbErrorHandler);
 
-// userSchema.virtual('gravatar').get(function() {
-// 	const hash = md5(this.email);
-// 	return `https://gravatar.com/avatar/${hash}?s=300`;
-// })
+
 
 module.exports = mongoose.model('User', userSchema);

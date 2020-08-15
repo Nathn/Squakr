@@ -277,27 +277,6 @@ textarea {
 	position: relative;
 }
 
-.icon-user {
-	position: absolute;
-	width: 16px;
-	height: 16px;
-	left: 10px;
-	bottom: 20px;
-}
-
-.image-input {
-	display: none;
-	position: absolute;
-	width: 16px;
-	height: 16px;
-	left: 25px;
-	bottom: 20px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-.nweet-textarea:hover .image-input {
-	display: inline
-}
 
 /* Footer section  */
 .footer {
