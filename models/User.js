@@ -35,21 +35,14 @@ const userSchema = new mongoose.Schema({
 		type: mongoose.Schema.ObjectId,
 		ref: 'Tweet'
 	}],
-	verified: {
-		type: String,
-		default: 'false'
-	},
-	moderator: {
-		type: Boolean,
-		default: false
-	}
+	verified: Boolean
+
 });
 
 userSchema.plugin(passportLocalMongoose, {
 	usernameField: 'email'
 });
 userSchema.plugin(mongodbErrorHandler);
-
 
 
 module.exports = mongoose.model('User', userSchema);

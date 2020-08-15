@@ -254,12 +254,3 @@ exports.heartTweet = async (req, res) => {
 	);
 	res.redirect('back')
 }
-
-exports.verifyUser = async (req, res) => {
-	const user = await User.findByIdAndUpdate(
-		req.id, {
-			verified: 'true'
-		}
-	);
-	res.redirect('back')
-}
