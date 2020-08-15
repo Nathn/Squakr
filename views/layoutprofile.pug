@@ -15,6 +15,36 @@ html(lang="fr")
 		meta(property="og:image" content="https://png.pngtree.com/template/20190716/ourlarge/pngtree-n-circle-letter-initial-logo-icon-design-vector-illustration-image_228217.jpg")
 		meta(property="og:description" content=`Découvrez ce que partagent ${reqUser.name || reqUser.username} (@${reqUser.username}) et d'autres sur Nwittr, le premier réseau antisocial.`)
 		title Nwittr
+		script.
+			function GetURLParameter(sParam)
+			{
+			var sPageURL = window.location.search.substring(1);
+			var sURLVariables = sPageURL.split('&');
+			for (var i = 0; i < sURLVariables.length; i++)
+			{
+			var sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] == sParam)
+			{
+			return sParameterName[1];
+			}
+			}
+			}
+			function GetErrorString(err)
+			{
+			if(err == '200') return 'Le nom d\'utilisateur ne peut pas être vide'
+			if(err == '201') return 'Le nom d\'utilisateur ne peut pas contenir d\'espaces'
+			if(err == '202') return 'Le nom d\'utilisateur ne peut pas contenir de caractères spéciaux'
+			if(err == '203') return 'L\'email ne peut pas être vide'
+			if(err == '204') return 'L\'email spécifié n\'est pas valide'
+			if(err == '205') return 'Le mot de passe ne peut pas être vide'
+			if(err == '206') return 'La confirmation de mot de passe ne peut pas être vide'
+			if(err == '207') return 'Les mots de passe ne correspondent pas'
+			if(err == '208') return 'Un utilisateur est déjà inscrit avec ce nom d\'utilisateur'
+			if(err == '209') return 'Un utilisateur est déjà inscrit avec cette adresse email'
+			if(err == '300') return 'La connexion a échoué, veuillez réessayer'
+			if(err == '301') return 'Vous devez être connecté pour effectuer cette action'
+			return;
+			}
 	body
 		.header
 			.wrapper
@@ -40,10 +70,14 @@ html(lang="fr")
 									a(href="/login" style="color: #2C2F33;") Se connecter
 		<br/>
 		.content_area
+				h4(style="color: white; text-align: center;")
+					script(type="text/javascript").
+						if(GetErrorString(GetURLParameter('err')))
+							document.write(GetErrorString(GetURLParameter('err')))
 				block content
 		.footer
 			p
-				small © 2020 Nwittr · v1.2.4.1 <br/>
+				small © 2020 Nwittr · v1.2.4.2 <br/>
 					a(href='https://discord.gg/C8WPK2B' target='_blank' style="color: #fff;") Discord server <br/>
 					a(href='https://github.com/Nathn' target='_blank' style="text-decoration: none; color: #fff;") Nathn <br/>
 

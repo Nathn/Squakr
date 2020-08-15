@@ -41,6 +41,8 @@ html(lang="fr")
 			if(err == '207') return 'Les mots de passe ne correspondent pas'
 			if(err == '208') return 'Un utilisateur est déjà inscrit avec ce nom d\'utilisateur'
 			if(err == '209') return 'Un utilisateur est déjà inscrit avec cette adresse email'
+			if(err == '300') return 'La connexion a échoué, veuillez réessayer'
+			if(err == '301') return 'Vous devez être connecté pour effectuer cette action'
 			return;
 			}
 	body
@@ -68,10 +70,14 @@ html(lang="fr")
 									a(href="/login" style="color: #2C2F33;") Se connecter
 		<br/>
 		.content_area
+				h4(style="color: white; text-align: center;")
+					script(type="text/javascript").
+						if(GetErrorString(GetURLParameter('err')))
+							document.write(GetErrorString(GetURLParameter('err')))
 				block content
 		.footer
 			p
-				small © 2020 Nwittr · v1.2.4.1 <br/>
+				small © 2020 Nwittr · v1.2.4.2 <br/>
 					a(href='https://discord.gg/C8WPK2B' target='_blank' style="color: #fff;") Discord server <br/>
 					a(href='https://github.com/Nathn' target='_blank' style="text-decoration: none; color: #fff;") Nathn <br/>
 
