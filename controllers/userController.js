@@ -247,7 +247,11 @@ exports.registerUser = async (req, res, next) => {
 			userEmbed.setTitle("Nouveau membre sur Nwittr !");
 			userEmbed.setDescription(`Souhaitez la bienvenue à @${req.body.username} !`);
 			var logschannel = client.channels.cache.get('735169754989592648');
-			logschannel.send(userEmbed)
+			try {
+				logschannel.send(userEmbed)
+			} catch (e) {
+				console.log(e)
+			}
 		});
 		next();
 
