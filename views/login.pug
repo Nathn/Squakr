@@ -3,4 +3,8 @@ include mixins/_loginForm
 block content
 	.single_wrap
 		h1 Connectez-vous !
+		h4(style="color: red;")
+			script(type="text/javascript").
+				if(GetErrorString(GetURLParameter('err')))
+					document.write(GetErrorString(GetURLParameter('err')))
 		+loginForm()

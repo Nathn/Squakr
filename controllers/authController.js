@@ -1,7 +1,7 @@
 const passport = require('passport');
 
 exports.login = passport.authenticate('local', {
-	failureRedirect: '/?err=300',
+	failureRedirect: '/login?err=300',
 	successRedirect: '/'
 });
 
