@@ -1,6 +1,6 @@
 # Nwittr
 
-https://nwittr.herokuapp.com/
+https://nwittr.cleverapps.io/
 
 ![Homepage](https://github.com/Nathn/Nwittr/blob/master/screenshot-home.png)
 
