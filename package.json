@@ -6,6 +6,7 @@
   "dependencies": {
     "aws-sdk": "2.x",
     "body-parser": "^1.18.3",
+    "discord.js": "^12.2.0",
     "dotenv": "^5.0.1",
     "ejs": "2.x",
     "es6-promisify": "^5.0.0",
