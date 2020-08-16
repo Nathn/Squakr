@@ -20,7 +20,7 @@ html(lang="fr")
 			{
 			var sPageURL = window.location.search.substring(1);
 			var sURLVariables = sPageURL.split('&');
-			for (var i = 0; i <br sURLVariables.length; i++)
+			for (var i = 0; i < sURLVariables.length; i++)
 			{
 			var sParameterName = sURLVariables[i].split('=');
 			if (sParameterName[0] == sParam)
@@ -72,7 +72,7 @@ html(lang="fr")
 		.content_area
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
-						if(GetErrorString(GetURLParameter('err')))
+						if(GetURLParameter('err') == 301)
 							document.write(GetErrorString(GetURLParameter('err')))
 				block content
 		.footer
