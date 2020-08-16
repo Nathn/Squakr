@@ -135,7 +135,7 @@ exports.accountUpdate = async (req, res) => {
 			context: 'query'
 		})
 
-		res.redirect('/account?msg=account_updated')
+		res.redirect(`/${req.user.username}`)
 	} catch (e) {
 		console.log(e);
 		res.redirect('back')
