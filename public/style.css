@@ -85,6 +85,7 @@ textarea {
 .header {
 	background-color: #4bd3db;
 	min-height: 60px;
+	max-height: 60px;
 	color: #2C2F33;
 
 	/* overflow: auto; */
@@ -111,6 +112,10 @@ textarea {
 #navigation {
 	text-align: right;
 	color: #2C2F33;
+}
+
+#flag {
+	text-align: right;
 }
 
 .nav_link {
@@ -343,6 +348,7 @@ textarea {
 	color: #333333;
 	z-index: 50;
 }
+
 
 
 nav {
