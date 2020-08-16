@@ -264,6 +264,7 @@ exports.registerUser = async (req, res, next) => {
 
 // Heart a tweet
 exports.heartTweet = async (req, res) => {
+	backURL = req.header('Referer') || '/';
 	const hearts = req.user.hearts.map(obj => obj.toString());
 	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
 	const user = await User.findByIdAndUpdate(
@@ -275,5 +276,5 @@ exports.heartTweet = async (req, res) => {
 			new: true
 		}
 	);
-	res.redirect('back')
+	res.redirect(`${backURL}#${req.params.id}`)
 }

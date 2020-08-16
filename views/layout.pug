@@ -45,6 +45,16 @@ html(lang="fr")
 			if(err == '301') return 'Vous devez être connecté pour effectuer cette action'
 			return;
 			}
+			// The function actually applying the offset
+			function offsetAnchor() {
+			if(location.hash.length !== 0) {
+			window.scrollTo(window.scrollX, window.scrollY - 300);
+			}
+			}
+
+			// This will capture hash changes while on the page
+			window.addEventListener("hashchange", offsetAnchor);
+			window.setTimeout(offsetAnchor, 1);
 	body
 		.header
 			.wrapper
