@@ -16,7 +16,12 @@ const tweetSchema = new mongoose.Schema({
 	image: {
 		type: String,
 		trim: true
+	},
+	lang: {
+		type: String,
+		default: 'fr'
 	}
+
 });
 
 module.exports = mongoose.model('Tweet', tweetSchema);

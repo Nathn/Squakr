@@ -6,7 +6,9 @@ moment.locale('fr')
 // The home page
 exports.indexPage = async (req, res) => {
 	try {
-		const tweets = await Tweet.find({})
+		const tweets = await Tweet.find({
+				lang: 'fr'
+			})
 			.populate('author')
 			.limit(50)
 			.sort({
