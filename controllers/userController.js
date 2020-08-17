@@ -22,6 +22,10 @@ exports.loginPage = (req, res) => {
 	res.render('login');
 }
 
+exports.cguPage = (req, res) => {
+	res.render('cgu');
+}
+
 // The profile page controller
 exports.profilePage = async (req, res) => {
 	try {

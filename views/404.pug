@@ -2,9 +2,9 @@ extends layout
 include mixins/_tweetForm
 include mixins/_tweetCard
 block content
-	.double_wrap
+	.single_wrap
 		strong Utilisateur non trouvé.<br/><br/>
-        if user
-            strong Invitez vos amis dès maintenant pour qu'ils puissent obtenir ce superbe @ !
-        else
-            strong Inscrivez-vous dès maintenant pour obtenir ce superbe @ !
+		if user
+			strong Invitez vos amis dès maintenant pour qu'ils puissent obtenir ce superbe @ !
+		else
+			strong Inscrivez-vous dès maintenant pour obtenir ce superbe @ !
