@@ -10,7 +10,7 @@ const tweetController = require('../controllers/tweetController');
 router.get('/', appController.indexPage);
 
 // Single tweet page
-router.get('/nweet/:id', tweetController.singleTweetPage);
+router.get('/squak/:id', tweetController.singleTweetPage);
 
 // API
 ////////////////////////////////
@@ -57,7 +57,7 @@ router.post('/upload',
 
 // Tweet Specific routes
 ///////////////////////////////
-router.post('/nweet', tweetController.postTweet);
+router.post('/squak', tweetController.postTweet);
 
 router.get('/delete/:id',
 	authController.isLoggedIn,

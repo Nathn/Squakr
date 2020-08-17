@@ -14,7 +14,7 @@ exports.postTweet = async (req, res) => {
 
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?msg=nweet_failed')
+		res.redirect('/?msg=squak_failed')
 	}
 }
 
@@ -63,7 +63,7 @@ exports.singleTweetPage = async (req, res) => {
 
 	} catch (err) {
 		console.log(err);
-		res.redirect('/?msg=no_nweets_found')
+		res.redirect('/?msg=no_squaks_found')
 	}
 
 }

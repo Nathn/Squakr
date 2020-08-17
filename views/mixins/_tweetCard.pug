@@ -12,7 +12,7 @@ mixin tweetCard(tweet={})
 					else
 						strong #{tweet.author.name || tweet.author.username}
 				span  @#{tweet.author.username}
-			a(href=`/nweet/${tweet._id}` style="text-decoration:none; color: #000")
+			a(href=`/squak/${tweet._id}` style="text-decoration:none; color: #000")
 				div
 					p.the_tweet #{tweet.tweet}
 			p.tweet_meta
@@ -23,7 +23,7 @@ mixin tweetCard(tweet={})
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							| ❤
 				span
-					a(href=`/nweet/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none; color: #000") #{moment(tweet.created).fromNow()}
+					a(href=`/squak/${tweet._id}` title=`${moment(tweet.created)}` style="text-decoration: none; color: #000") #{moment(tweet.created).fromNow()}
 				if user && (tweet.author.equals(user._id) || user.moderator)
 					span  &middot;
 					span
