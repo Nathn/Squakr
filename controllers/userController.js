@@ -41,11 +41,23 @@ exports.profilePage = async (req, res) => {
 				created: 'desc'
 			});
 
+			const likes = await Tweet.find({
+				author: {
+					$ne: reqUser._id
+				},
+				_id: {
+					$in: reqUser.hearts
+				}
+			}).populate('author').sort({
+				created: 'desc'
+			});
+
 
 			// Display the profile page
 			res.render('profile', {
 				reqUser,
 				tweets,
+				likes,
 				moment,
 				months
 			});
