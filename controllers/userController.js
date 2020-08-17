@@ -248,7 +248,7 @@ exports.registerUser = async (req, res, next) => {
 		client.on('ready', () => {
 			var userEmbed = new Discord.MessageEmbed()
 			userEmbed.setColor(0x3333ff);
-			userEmbed.setTitle("Nouveau membre sur Nwittr !");
+			userEmbed.setTitle("Nouveau membre sur Squakr !");
 			userEmbed.setDescription(`Souhaitez la bienvenue à @${req.body.username} !`);
 			var logschannel = client.channels.cache.get('735169754989592648');
 			try {
