@@ -12,13 +12,20 @@ block content
 				h2.profile_name #{reqUser.name || reqUser.username}
 			h4 @#{reqUser.username}
 			h5 A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
-			p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
+			if reqUser.bio
+				p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
 			if reqUser.website
 				p
 					a(href=reqUser.website rel='no_follow' target='_blank')= reqUser.website
 			<br/>
 			if reqUser.moderator
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")
+			if reqUser.avatar
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-meme-1.svg" width="35" height = "35" title="A ajouté un avatar à son profil")
+			if reqUser.banner
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-image-1.svg" width="35" height = "35" title="A ajouté une image de bannière à son profil")
+			if reqUser.bio
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-story-1.svg" width="35" height = "35" title="A ajouté une biographie à son profil")
 			if (tweets[0])
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-forum-1.svg" width="35" height = "35" title="A publié au moins un squak")
 			if (tweets[10])
