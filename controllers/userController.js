@@ -72,6 +72,12 @@ exports.likesProfilePage = async (req, res) => {
 		var months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
 		if (reqUser) {
 
+			const tweets = await Tweet.find({
+				author: reqUser._id
+			}).populate('author').sort({
+				created: 'desc'
+			});
+
 			const likes = await Tweet.find({
 				author: {
 					$ne: reqUser._id
@@ -88,7 +94,8 @@ exports.likesProfilePage = async (req, res) => {
 				reqUser,
 				moment,
 				months,
-				likes
+				likes,
+				tweets
 			});
 			return;
 		} else {
