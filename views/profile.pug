@@ -48,13 +48,13 @@ block content
 				else
 					div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 				nav
-					a(href="") squaks
+					a(href="") Squaks
 					a(href=`/${reqUser.username}/likes`) Likes
 					.animation.start-home
 				<br/>
 				//- - const items = [1,2,3,4,5,6,7,8,9]
-				each tweet in tweets
-					+tweetCard(tweet)
+				each squak in tweets
+					+tweetCard(squak)
 			else
 				div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 				nav
@@ -62,5 +62,5 @@ block content
 					a(href=`/${reqUser.username}/likes`) Likes
 					.animation.start-home
 				<br/>
-				each tweet in tweets
-					+tweetCard(tweet)
+				each squak in tweets
+					+tweetCard(squak)
