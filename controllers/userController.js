@@ -165,11 +165,11 @@ exports.accountUpdate = async (req, res) => {
 	try {
 		const updates = {
 			name: req.body.name,
-			email: req.body.email,
+			email: req.body.email || req.user.email,
 			website: req.body.website,
 			bio: req.body.bio,
-			avatar: req.body.avatar || req.user.avatar,
-			banner: req.body.banner || req.user.banner
+			avatar: req.body.avatar,
+			banner: req.body.banner
 		}
 
 		const user = await User.findOneAndUpdate({
