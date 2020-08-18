@@ -26,6 +26,30 @@ exports.cguPage = (req, res) => {
 	res.render('cgu');
 }
 
+exports.searchPage = async (req, res) => {
+	try {
+		var query = req.query.query;
+		const searchresults = await User.find({
+				username: {
+					$regex: `^${query}.*`,
+					$options: "i"
+				}
+			},
+			(err, data) => {
+				console.log(data);
+			}
+		);
+
+		res.render('search', {
+			searchresults
+		});
+		return;
+	} catch (e) {
+		console.log(e);
+		res.redirect('/')
+	}
+}
+
 // The profile page controller
 exports.profilePage = async (req, res) => {
 	try {

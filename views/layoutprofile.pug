@@ -16,7 +16,8 @@ html(lang="fr")
 		meta(property="og:url" content="Squakr.cleverapps.io/")
 		meta(property="og:image" content="https://i.imgur.com/xCsWr5s.png")
 		meta(property="og:description" content=`Découvrez ce que partagent ${reqUser.name || reqUser.username} (@${reqUser.username}) et d'autres sur Squakr, le premier réseau antisocial.`)
-		title Squakr
+		title #{reqUser.name || reqUser.username} - Squakr
+		script(src='https://use.fontawesome.com/74eb59777f.js')
 		script.
 			function GetURLParameter(sParam)
 			{
@@ -80,6 +81,11 @@ html(lang="fr")
 									a(href="/login" style="color: #2C2F33;") Se connecter
 		<br/>
 		.content_area
+				.search(width= "270px")
+					form(action="/search" style="padding-left: 21%;")
+						input.searchTerm(type='text' placeholder='Rechercher un utilisateur' name="query" autocomplete="off")
+						button.searchButton(type='submit')
+							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
 						if(GetErrorString(GetURLParameter('err')))

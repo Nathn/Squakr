@@ -111,8 +111,11 @@ textarea {
 
 #navigation {
 	text-align: right;
+	float: right;
 	color: #2C2F33;
 }
+
+
 
 #flag {
 	text-align: right;
@@ -224,6 +227,11 @@ textarea {
 	margin: 5px 0;
 }
 
+.the_bio {
+	font-size: 1.1rem;
+	margin: 5px 0;
+}
+
 .tweet_actions {}
 
 .heart {
@@ -321,32 +329,27 @@ textarea {
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
-	z-index: 50;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
 	background-color: #dddddd;
-	z-index: 50;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
 	display: block;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 50;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
 	background-color: #ffffff;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 50;
 }
 
 .dropdown:hover .dropbtn a {
 	color: #333333;
-	z-index: 50;
 }
 
 
@@ -410,4 +413,41 @@ a:nth-child(2):hover~.animation {
 	left: 400px;
 	background-color: #39aeb4;
 	z-index: 0;
+}
+
+.search {
+	width: 100%;
+	z-index: 0;
+}
+
+.searchTerm {
+	width: 225px;
+	border: 2px solid #00B4CC;
+	border-bottom: 0px;
+	border-right: none;
+	padding: 5px;
+	height: 37px;
+	border-radius: 5px 0 0 5px;
+	outline: none;
+	color: #9DBFAF;
+	display: inline-block;
+	z-index: 0;
+}
+
+.searchTerm:focus {
+	color: #00B4CC;
+}
+
+.searchButton {
+	width: 40px;
+	height: 36px;
+	border: 0px solid #00B4CC;
+	border-bottom: 1px solid #00B4CC;
+	background: #00B4CC;
+	text-align: center;
+	color: #fff;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+	font-size: 20px;
+	display: inline-block;
 }

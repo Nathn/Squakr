@@ -1,0 +1,9 @@
+extends layout
+include mixins/_tweetForm
+include mixins/_tweetCard
+include mixins/_userCard
+block content
+	.single_wrap
+		h3 Utilisateurs correspondant à votre recherche :
+		each user in searchresults
+			+userCard(user)

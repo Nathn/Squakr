@@ -24,6 +24,8 @@ router.get('/login', userController.loginPage);
 
 router.get('/cgu', userController.cguPage);
 
+router.get('/search', userController.searchPage);
+
 // Registration POST request
 router.post('/register',
 	userController.verifyRegister,

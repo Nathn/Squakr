@@ -5,7 +5,7 @@ mixin tweetCard(squak={})
 				img(src=`${squak.author.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			p.author_name(style="display: inline;")
-				a(href=`/${squak.author.username}`)
+				a(href=`/${squak.author.username}` style="text-decoration: none;")
 					if (squak.author.verified)
 						strong(style="vertical-align:middle;") #{squak.author.name || squak.author.username}
 						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
