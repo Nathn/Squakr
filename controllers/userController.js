@@ -36,9 +36,12 @@ exports.searchPage = async (req, res) => {
 				}
 			},
 			(err, data) => {
-				console.log(data);
+				console.log(err);
 			}
-		);
+		).sort({
+			verified: 'desc',
+			moderator: 'desc'
+		});
 
 		res.render('search', {
 			searchresults
