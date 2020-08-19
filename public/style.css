@@ -87,7 +87,7 @@ textarea {
 	min-height: 60px;
 	max-height: 60px;
 	color: #2C2F33;
-
+	z-index: 20;
 	/* overflow: auto; */
 	position: fixed;
 	/* Set the navbar to fixed position */
