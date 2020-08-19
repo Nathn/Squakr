@@ -374,3 +374,14 @@ exports.verifyUser = async (req, res) => {
 	);
 	res.redirect(`back`)
 }
+
+exports.confirmUser = async (req, res) => {
+	const user = await User.findByIdAndUpdate(
+		req.params.id, {
+			'$set': {
+				confirmed: true
+			}
+		}
+	);
+	res.redirect(`back`)
+}

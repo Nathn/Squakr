@@ -18,6 +18,8 @@ router.post('/api/tweets/:id/heart', userController.heartTweet)
 
 router.get('/api/users/:id/verify', userController.verifyUser)
 
+router.get('/api/users/:id/confirm', userController.confirmUser)
+
 // Registration page
 router.get('/register', userController.registerPage);
 

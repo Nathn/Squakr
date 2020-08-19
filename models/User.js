@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
 	moderator: {
 		type: Boolean,
 		default: false
+	},
+	confirmed: {
+		type: Boolean,
+		default: false
 	}
 
 });

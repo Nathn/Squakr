@@ -38,6 +38,8 @@ block content
 				img(src="https://i.postimg.cc/7brhRQ3g/badge-voting-11.png" width = "44" title="A liké au moins 11 squaks")
 			if (((new Date() - new Date(reqUser.created)) / (1000 * 3600 * 24*365) > 1 ))
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-years-1.svg" width = "35" height = "35" title="Membre depuis 1 an")
+			if (reqUser.confirmed)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-verified-1.svg" width = "35" height = "35" title="Confirmé par l'équipe de modération")
 			if user
 				if (reqUser._id.toString() == user._id.toString())
 					p
@@ -47,6 +49,10 @@ block content
 					p
 						.edit_button
 							input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Vérifier l\'utilisateur')
+				if ((user.moderator) && !(reqUser.confirmed))
+					p
+						.edit_button
+							input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
 		.feed_section.single_content
 			div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 			nav
