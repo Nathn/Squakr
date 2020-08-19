@@ -20,6 +20,10 @@ const tweetSchema = new mongoose.Schema({
 	lang: {
 		type: String,
 		default: 'fr'
+	},
+	likes: {
+		type: Number,
+		default: 0
 	}
 
 });

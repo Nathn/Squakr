@@ -22,4 +22,10 @@ block content
 						- const heartStrings = user.hearts.map(obj => obj.toString())
 						- const heartClass = heartStrings.includes(tweet._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
-							| ❤
+							i.fa.fa-heart
+							small  #{tweet.likes.toString()}
+				else
+					if tweet.likes.toString() > 1
+						|  #{tweet.likes.toString()} likes
+					else
+						|  #{tweet.likes.toString()} like

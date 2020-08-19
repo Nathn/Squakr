@@ -22,8 +22,14 @@ mixin tweetCard(squak={})
 						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							| ❤
+							small  #{squak.likes.toString()}
+				else
+					if squak.likes.toString() > 1
+						|  #{squak.likes.toString()} likes
+					else
+						|  #{squak.likes.toString()} like
 				span
-					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000") #{moment(squak.created).fromNow()}
+					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000")  &middot; #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
 					span  &middot;
 					span

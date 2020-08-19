@@ -317,6 +317,7 @@ exports.heartTweet = async (req, res) => {
 	backURL = req.header('Referer') || '/';
 	const hearts = req.user.hearts.map(obj => obj.toString());
 	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
+	const operatornumber = '$set';
 	const user = await User.findByIdAndUpdate(
 		req.user._id, {
 			[operator]: {
@@ -326,5 +327,38 @@ exports.heartTweet = async (req, res) => {
 			new: true
 		}
 	);
+	if (hearts.includes(req.params.id) == true) {
+		Tweet.findByIdAndUpdate({
+				_id: req.params.id
+			}, {
+				$inc: {
+					likes: -1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
+	} else {
+		Tweet.findByIdAndUpdate({
+				_id: req.params.id
+			}, {
+				$inc: {
+					likes: 1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
+	}
 	res.redirect(`${backURL}#${req.params.id}`)
 }
