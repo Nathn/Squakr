@@ -16,6 +16,8 @@ router.get('/squak/:id', tweetController.singleTweetPage);
 ////////////////////////////////
 router.post('/api/tweets/:id/heart', userController.heartTweet)
 
+router.get('/api/users/:id/verify', userController.verifyUser)
+
 // Registration page
 router.get('/register', userController.registerPage);
 
