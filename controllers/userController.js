@@ -28,6 +28,9 @@ exports.cguPage = (req, res) => {
 
 exports.searchPage = async (req, res) => {
 	try {
+		backURL = req.header('Referer') || '/';
+		if (!req.query.query && !backURL.endsWith('err=400')) return res.redirect(`${backURL}?err=400`)
+		if (!req.query.query) return res.redirect(`${backURL}`)
 		var query = req.query.query;
 		const searchresults = await User.find({
 				username: {
@@ -50,7 +53,7 @@ exports.searchPage = async (req, res) => {
 		return;
 	} catch (e) {
 		console.log(e);
-		res.redirect('/')
+		res.redirect('back')
 	}
 }
 

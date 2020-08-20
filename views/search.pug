@@ -4,6 +4,9 @@ include mixins/_tweetCard
 include mixins/_userCard
 block content
 	.single_wrap
-		h3 Utilisateurs correspondant à votre recherche :
-		each user in searchresults
-			+userCard(user)
+		if searchresults[0]
+			h2 Utilisateurs correspondant à votre recherche :
+			each user in searchresults
+				+userCard(user)
+		else
+			h2 La recherche n'a retourné aucun résultat.
