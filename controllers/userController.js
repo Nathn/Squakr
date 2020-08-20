@@ -343,9 +343,39 @@ exports.heartTweet = async (req, res) => {
 				}
 			}
 		);
+		User.findByIdAndUpdate({
+				_id: req.user._id
+			}, {
+				$inc: {
+					likes: -1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
 	} else {
 		Tweet.findByIdAndUpdate({
 				_id: req.params.id
+			}, {
+				$inc: {
+					likes: 1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
+		User.findByIdAndUpdate({
+				_id: req.user._id
 			}, {
 				$inc: {
 					likes: 1

@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
 		type: mongoose.Schema.ObjectId,
 		ref: 'Tweet'
 	}],
+	likes: {
+		type: Number,
+		default: 0
+	},
 	verified: {
 		type: Boolean,
 		default: false
