@@ -19,6 +19,8 @@ block content
 					a(href=reqUser.website rel='no_follow' target='_blank')= reqUser.website
 			if reqUser.moderator
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")
+			if (reqUser.developer)
+				img(src="https://i.postimg.cc/dV4jqpv6/badge-devlopement.png" width = "35" height = "35" title="A été d'une aide précieuse pendant\nle dévelopemment de Squakr. Merci !")
 			if reqUser.avatar
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-meme-1.svg" width="35" height = "35" title="A ajouté un avatar à son profil")
 			if reqUser.banner

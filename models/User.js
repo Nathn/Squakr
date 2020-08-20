@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	developer: {
+		type: Boolean,
+		default: false
+	},
 	confirmed: {
 		type: Boolean,
 		default: false
