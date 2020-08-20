@@ -39,8 +39,9 @@ exports.searchPage = async (req, res) => {
 				console.log(err);
 			}
 		).sort({
-			verified: 'desc',
-			moderator: 'desc'
+			moderator: -1,
+			verified: -1,
+			avatar: -1
 		});
 
 		res.render('search', {
