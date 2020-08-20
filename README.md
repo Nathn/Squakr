@@ -1,7 +1,7 @@
-# Nwittr
+# Squakr
 
-https://nwittr.cleverapps.io/
+https://squakr.fr
 
-![Homepage](https://github.com/Nathn/Nwittr/blob/master/screenshot-home.png)
+![Homepage](https://github.com/Nathn/Squakr/blob/master/screenshot-home.png)
 
-![Profile page](https://github.com/Nathn/Nwittr/blob/master/screenshot-profile.png)
+![Profile page](https://github.com/Nathn/Squakr/blob/master/screenshot-profile.png)
