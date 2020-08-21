@@ -71,7 +71,8 @@ exports.searchPage = async (req, res) => {
 		searchresults = uniq(searchresults3)
 
 		res.render('search', {
-			searchresults
+			searchresults,
+			query
 		});
 		return;
 	} catch (e) {
