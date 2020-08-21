@@ -1,4 +1,6 @@
 extends layoutsingle
+include mixins/_replyForm
+include mixins/_replyCard
 block content
 	.single_wrap
 		.single_tweet
@@ -30,3 +32,9 @@ block content
 						|  #{tweet.likes.toString()} likes
 					else
 						|  #{tweet.likes.toString()} like
+		if user
+			+replyForm(tweet)
+		else
+			<br/>
+		each reply in replies
+			+replyCard(reply)

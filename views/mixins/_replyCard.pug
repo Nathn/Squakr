@@ -1,0 +1,35 @@
+mixin replyCard(reply)
+	.tweet_card.tweet_hover
+		.reply_avatar
+			a(href=`/${reply.author.username}` name=`${reply._id}`)
+				img(src=`${reply.author.avatar || '/uploads/no-avatar.jpg'}`)
+		.tweet_text
+			p.reply_author_name(style="display: inline;")
+				a(href=`/${reply.author.username}` style="text-decoration: none;")
+					if (reply.author.verified)
+						strong(style="vertical-align:middle;") #{reply.author.name || reply.author.username}
+						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
+					else
+						strong #{reply.author.name || reply.author.username}
+				span  @#{reply.author.username}
+			div
+				p.the_reply #{reply.reply}
+			p.tweet_meta
+				if user
+					form.heart(method='POST' action=`/api/replies/${reply._id}/heart` style="display: inline;")
+						- const heartStrings = user.hearts.map(obj => obj.toString())
+						- const heartClass = heartStrings.includes(reply._id.toString()) ? 'hearted' : ''
+						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
+							| ❤
+							small  #{reply.likes.toString()}
+				else
+					if reply.likes.toString() > 1
+						|  #{reply.likes.toString()} likes
+					else
+						|  #{reply.likes.toString()} like
+				span
+					a( title=`${moment(reply.created)}` style="text-decoration: none; color: #000")  &middot; #{moment(reply.created).fromNow()}
+				if user && (reply.author.equals(user._id) || user.moderator)
+					span  &middot;
+					span
+					a(href=`/delete/${reply._id}` style="text-decoration: none; color: #000")  Supprimer

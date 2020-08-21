@@ -1,4 +1,6 @@
 const Tweet = require('../models/Tweet');
+const User = require('../models/User');
+const Reply = require('../models/Reply');
 const moment = require('moment');
 moment.locale('fr')
 
@@ -10,6 +12,21 @@ exports.postTweet = async (req, res) => {
 		await tweet.save();
 		res.redirect('back');
 		// res.json(req.body)
+
+
+	} catch (e) {
+		console.log(e);
+		res.redirect('/?msg=squak_failed')
+	}
+}
+
+exports.postReply = async (req, res) => {
+	try {
+		req.body.author = req.user._id;
+		req.body.squak = req.params.id;
+		const reply = new Reply(req.body);
+		await reply.save();
+		res.redirect('back');
 
 
 	} catch (e) {
@@ -36,11 +53,15 @@ exports.deleteTweet = async (req, res) => {
 		const tweet = await Tweet.findOne({
 			_id: req.params.id
 		});
-		if (!req.user.username === 'n') {
+		const reply = await Reply.findOne({
+			_id: req.params.id
+		});
+		if (!req.user.moderator) {
 			confirmedOwner(tweet, req.user);
 		}
 
 		const deleteTweet = await Tweet.deleteOne(tweet);
+		const deleteReply = await Reply.deleteOne(reply);
 		res.redirect('back')
 	} catch (e) {
 		console.log(e);
@@ -56,9 +77,15 @@ exports.singleTweetPage = async (req, res) => {
 		const tweet = await Tweet.findOne({
 			_id: req.params.id
 		}).populate('author');
+
+		const replies = await Reply.find({
+			squak: req.params.id
+		}).populate('author');
+
 		res.render('single', {
 			tweet,
-			moment
+			moment,
+			replies
 		});
 
 	} catch (err) {

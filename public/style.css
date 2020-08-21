@@ -48,9 +48,19 @@ textarea {
 	margin-bottom: 10px;
 }
 
+.reply_textarea {
+	/* padding: 5px 7px; */
+	border: 2px solid #add8e6;
+	margin-bottom: 10px;
+}
+
 .tweet_textarea,
 .tweet_button {
 	font-size: 1.3rem;
+}
+
+.reply_button {
+	font-size: 1rem;
 }
 
 .edit_button {
@@ -171,6 +181,16 @@ textarea {
 	border-radius: 50%;
 }
 
+.reply_avatar {
+	padding-left: 15px;
+}
+
+.reply_avatar img {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+}
+
 
 
 /* Profile section  */
@@ -208,10 +228,6 @@ textarea {
 	margin: 0;
 }
 
-.author_name {
-	/* font-weight: bold; */
-}
-
 .author_name a {
 	color: #333333;
 	text-decoration: none;
@@ -222,8 +238,23 @@ textarea {
 	text-decoration: underline;
 }
 
+.reply_author_name a {
+	color: #333333;
+	text-decoration: none;
+}
+
+.reply_author_name a:hover {
+	color: #39aeb4;
+	text-decoration: underline;
+}
+
 .the_tweet {
 	font-size: 1.3rem;
+	margin: 5px 0;
+}
+
+.the_reply {
+	font-size: 1.1rem;
 	margin: 5px 0;
 }
 

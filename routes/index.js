@@ -16,6 +16,10 @@ router.get('/squak/:id', tweetController.singleTweetPage);
 ////////////////////////////////
 router.post('/api/tweets/:id/heart', userController.heartTweet)
 
+router.post('/api/replies/:id/heart', userController.heartReply)
+
+router.post('/api/tweets/:id/reply', tweetController.postReply)
+
 router.get('/api/users/:id/verify', userController.verifyUser)
 
 router.get('/api/users/:id/confirm', userController.confirmUser)

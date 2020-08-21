@@ -6,6 +6,7 @@ const moment = require('moment');
 const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
+const Reply = require('../models/Reply');
 moment.locale('fr')
 
 
@@ -345,7 +346,6 @@ exports.heartTweet = async (req, res) => {
 	backURL = req.header('Referer') || '/';
 	const hearts = req.user.hearts.map(obj => obj.toString());
 	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
-	const operatornumber = '$set';
 	const user = await User.findByIdAndUpdate(
 		req.user._id, {
 			[operator]: {
@@ -419,6 +419,85 @@ exports.heartTweet = async (req, res) => {
 		);
 	}
 	res.redirect(`${backURL}#${req.params.id}`)
+}
+
+exports.heartReply = async (req, res) => {
+	backURL = req.header('Referer') || '/';
+	const hearts = req.user.hearts.map(obj => obj.toString());
+	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
+	const user = await User.findByIdAndUpdate(
+		req.user._id, {
+			[operator]: {
+				hearts: req.params.id
+			}
+		}, {
+			new: true
+		}
+	);
+	if (hearts.includes(req.params.id) == true) {
+		Reply.findByIdAndUpdate({
+				_id: req.params.id
+			}, {
+				$inc: {
+					likes: -1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
+		User.findByIdAndUpdate({
+				_id: req.user._id
+			}, {
+				$inc: {
+					likes: -1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
+	} else {
+		Reply.findByIdAndUpdate({
+				_id: req.params.id
+			}, {
+				$inc: {
+					likes: 1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
+		User.findByIdAndUpdate({
+				_id: req.user._id
+			}, {
+				$inc: {
+					likes: 1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			}
+		);
+	}
+	res.redirect(`${backURL}`)
 }
 
 
