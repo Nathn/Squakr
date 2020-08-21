@@ -15,7 +15,9 @@ html(lang="fr")
 		meta(name="og:site_name" content="Squakr")
 		meta(property="og:url" content="Squakr.cleverapps.io/")
 		meta(property="og:image" content="https://i.imgur.com/xCsWr5s.png")
-		meta(property="og:description" content=`Découvrez ce que partagent ${tweet.author.name || tweet.author.username} (@${tweet.author.username}) et d'autres sur Squakr, le premier réseau antisocial.`)
+		meta(property="og:description" content=`Découvrez ce que partagent ${tweet.author.name || tweet.author.username} (@${tweet.author.username}) et d'autres sur Squakr, le réseau libre.`)
+		meta(name="description" content=`Découvrez ce que partagent ${tweet.author.name || tweet.author.username} (@${tweet.author.username}) et d'autres sur Squakr, le réseau libre.`)
+		meta(name="robots")
 		title Squakr
 		script(src='https://use.fontawesome.com/74eb59777f.js')
 		script.
@@ -93,7 +95,7 @@ html(lang="fr")
 				block content
 		.footer
 			p
-				small © 2020 Squakr · v1.3.1 <br/>
+				small © 2020 Squakr · v1.4 <br/>
 					a(href='https://discord.gg/C8WPK2B' target='_blank' style="text-decoration: none; color: #fff;") Discord server
 					a(href='https://github.com/Nathn/Squakr' target='_blank' style="text-decoration: none; color: #fff;")  - Github
 					a(href='https://twitter.com/Squakr_fr' target='_blank' style="text-decoration: none; color: #fff;")  - Twitter
