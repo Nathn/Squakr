@@ -41,7 +41,7 @@ exports.searchPage = async (req, res) => {
 		var query = req.query.query;
 		const searchresults1 = await User.find({
 				username: {
-					$regex: `^${query}.*`,
+					$regex: `^.*${query}.*`,
 					$options: "i"
 				}
 			},
@@ -55,7 +55,7 @@ exports.searchPage = async (req, res) => {
 		});
 		var searchresults2 = await User.find({
 				name: {
-					$regex: `^${query}.*`,
+					$regex: `^.*${query}.*`,
 					$options: "i"
 				}
 			},
