@@ -26,13 +26,20 @@ exports.cguPage = (req, res) => {
 	res.render('cgu');
 }
 
+function uniq(a) {
+	var seen = {};
+	return a.filter(function (item) {
+		return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+	});
+}
+
 exports.searchPage = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
 		if (!req.query.query && !backURL.endsWith('err=400')) return res.redirect(`${backURL}?err=400`)
 		if (!req.query.query) return res.redirect(`${backURL}`)
 		var query = req.query.query;
-		const searchresults = await User.find({
+		const searchresults1 = await User.find({
 				username: {
 					$regex: `^${query}.*`,
 					$options: "i"
@@ -46,6 +53,22 @@ exports.searchPage = async (req, res) => {
 			verified: -1,
 			avatar: -1
 		});
+		var searchresults2 = await User.find({
+				name: {
+					$regex: `^${query}.*`,
+					$options: "i"
+				}
+			},
+			(err, data) => {
+				console.log(err);
+			}
+		).sort({
+			moderator: -1,
+			verified: -1,
+			avatar: -1
+		});
+		var searchresults3 = searchresults1.concat(searchresults2);
+		searchresults = uniq(searchresults3)
 
 		res.render('search', {
 			searchresults
