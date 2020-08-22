@@ -10,7 +10,7 @@ exports.indexPage = async (req, res) => {
 				lang: 'fr'
 			})
 			.populate('author')
-			.limit(50)
+			.limit(500)
 			.sort({
 				created: 'desc'
 			});
@@ -25,5 +25,3 @@ exports.indexPage = async (req, res) => {
 	}
 
 }
-
-// Getting the account page
