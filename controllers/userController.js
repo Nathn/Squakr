@@ -503,6 +503,9 @@ exports.heartReply = async (req, res) => {
 
 
 exports.verifyUser = async (req, res) => {
+	if (!req.user.moderator) {
+		res.redirect(`/`)
+	}
 	const user = await User.findByIdAndUpdate(
 		req.params.id, {
 			'$set': {
@@ -514,6 +517,9 @@ exports.verifyUser = async (req, res) => {
 }
 
 exports.confirmUser = async (req, res) => {
+	if (!req.user.moderator) {
+		res.redirect(`/`)
+	}
 	const user = await User.findByIdAndUpdate(
 		req.params.id, {
 			'$set': {
