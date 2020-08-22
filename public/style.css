@@ -109,10 +109,18 @@ textarea {
 }
 
 .site_title {
-	margin: 10px 0;
+	margin: 0px 0px;
 	color: 2C2F33;
 
 }
+
+.site_title img {
+	position: relative;
+	height: 56px;
+	width: 216px;
+}
+
+
 
 .site_title a {
 	color: #2C2F33;
@@ -263,7 +271,11 @@ textarea {
 	margin: 5px 0;
 }
 
-.tweet_actions {}
+@media (max-width : 430px) {
+	.welcome {
+		font-size: 15px;
+	}
+}
 
 .heart {
 	background-color: rgba(255, 255, 255, 0);
