@@ -25,6 +25,20 @@ exports.postReply = async (req, res) => {
 		req.body.author = req.user._id;
 		req.body.squak = req.params.id;
 		const reply = new Reply(req.body);
+		Tweet.findByIdAndUpdate({
+				_id: req.params.id
+			}, {
+				$inc: {
+					replies: 1
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			});
 		await reply.save();
 		res.redirect('back');
 
@@ -32,6 +46,16 @@ exports.postReply = async (req, res) => {
 	} catch (e) {
 		console.log(e);
 		res.redirect('/?msg=squak_failed')
+	}
+}
+
+exports.gotoReply = async (req, res) => {
+	try {
+		id = req.params.id;
+		res.redirect('/squak/' + id);
+	} catch (e) {
+		console.log(e);
+		res.redirect('/?msg=redirect_failed')
 	}
 }
 
@@ -59,7 +83,22 @@ exports.deleteTweet = async (req, res) => {
 		if (!req.user.moderator) {
 			confirmedOwner(tweet, req.user);
 		}
-
+		if (reply) {
+			Tweet.findByIdAndUpdate({
+					_id: reply.squak
+				}, {
+					$inc: {
+						replies: -1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
+				});
+		}
 		const deleteTweet = await Tweet.deleteOne(tweet);
 		const deleteReply = await Reply.deleteOne(reply);
 		res.redirect('back')

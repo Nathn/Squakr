@@ -20,6 +20,8 @@ router.post('/api/replies/:id/heart', userController.heartReply)
 
 router.post('/api/tweets/:id/reply', tweetController.postReply)
 
+router.post('/api/tweets/:id/reply_tweetcard', tweetController.gotoReply)
+
 router.get('/api/users/:id/verify', userController.verifyUser)
 
 router.get('/api/users/:id/confirm', userController.confirmUser)

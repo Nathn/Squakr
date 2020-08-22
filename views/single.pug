@@ -28,10 +28,10 @@ block content
 							i.fa.fa-heart
 							small  #{tweet.likes.toString()}
 				else
-					if tweet.likes.toString() > 1
-						|  #{tweet.likes.toString()} likes
-					else
-						|  #{tweet.likes.toString()} like
+					form.heart(method='POST' action=`/api/tweets/${tweet._id}/heart` style="display: inline;")
+						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
+							i.fa.fa-heart
+							small  #{tweet.likes.toString()}
 		if user
 			+replyForm(tweet)
 		else

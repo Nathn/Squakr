@@ -23,10 +23,10 @@ mixin replyCard(reply)
 							| ❤
 							small  #{reply.likes.toString()}
 				else
-					if reply.likes.toString() > 1
-						|  #{reply.likes.toString()} likes
-					else
-						|  #{reply.likes.toString()} like
+					form.heart(method='POST' action=`/api/tweets/${reply._id}/heart` style="display: inline;")
+						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
+							i.fa.fa-heart
+							small  #{reply.likes.toString()}
 				span
 					a( title=`${moment(reply.created)}` style="text-decoration: none; color: #000")  &middot; #{moment(reply.created).fromNow()}
 				if user && (reply.author.equals(user._id) || user.moderator)

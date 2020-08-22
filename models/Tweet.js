@@ -24,6 +24,10 @@ const tweetSchema = new mongoose.Schema({
 	likes: {
 		type: Number,
 		default: 0
+	},
+	replies: {
+		type: Number,
+		default: 0
 	}
 
 });

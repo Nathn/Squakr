@@ -21,13 +21,17 @@ mixin tweetCard(squak)
 						- const heartStrings = user.hearts.map(obj => obj.toString())
 						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
-							| ❤
+							i.fa.fa-heart
 							small  #{squak.likes.toString()}
 				else
-					if squak.likes.toString() > 1
-						|  #{squak.likes.toString()} likes
-					else
-						|  #{squak.likes.toString()} like
+					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
+						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
+							i.fa.fa-heart
+							small  #{squak.likes.toString()}
+				form.heart(method='POST' action=`/api/tweets/${squak._id}/reply_tweetcard` style="display: inline;")
+					button(type='submit' name='reply' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px")
+						i.fa.fa-comment
+						small  #{squak.replies.toString()}
 				span
 					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000")  &middot; #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
