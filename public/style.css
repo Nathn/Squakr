@@ -116,10 +116,16 @@ textarea {
 
 .site_title img {
 	position: relative;
-	height: 56px;
-	width: 216px;
+	height: 60px;
+	width: 190px;
 }
 
+@media (max-width : 460px) {
+	#logo {
+		width: 160px;
+		height: 60px;
+	}
+}
 
 
 .site_title a {
@@ -271,7 +277,7 @@ textarea {
 	margin: 5px 0;
 }
 
-@media (max-width : 430px) {
+@media (max-width : 460px) {
 	.welcome {
 		font-size: 15px;
 	}

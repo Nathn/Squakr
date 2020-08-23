@@ -35,7 +35,7 @@ body {
 	border-radius: 10px;
 }
 
-@media (max-width : 400px) {
+@media (max-width : 460px) {
 	.single_wrap {
 		width: 100%;
 		padding: 20px 5px 30px 5px;
