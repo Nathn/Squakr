@@ -3,12 +3,21 @@ const User = require('../models/User');
 const Reply = require('../models/Reply');
 const moment = require('moment');
 
+function html(str) {
+	const content = str.replace(/\B\@([\w\-]+)/gim, function (match, name) {
+		post = `<a href="/${name}" style="text-decoration: none; color: #007bff;">${match}</a>`;
+		return post;
+	})
+	return content
+}
+
 
 // Home page to list all tweets
 exports.postTweet = async (req, res) => {
 	try {
 		req.body.author = req.user._id;
 		req.body.lang = req.user.lang;
+		req.body.content = html(req.body.tweet)
 		const tweet = new Tweet(req.body);
 		await tweet.save();
 		res.redirect('back');
@@ -126,13 +135,6 @@ exports.singleTweetPage = async (req, res) => {
 			_id: req.params.id
 		}).populate('author');
 
-		/*
-		const content = squak.tweet.replace(/\B\@([\w\-]+)/gim, function (match, name) {
-			post = `<a href="/${name}">${match}</a>`;
-			return post;
-		})
-		console.log(content)
-		*/
 
 		const replies = await Reply.find({
 			squak: req.params.id
@@ -142,7 +144,6 @@ exports.singleTweetPage = async (req, res) => {
 			squak,
 			moment,
 			replies
-			// ,content
 		});
 
 	} catch (err) {

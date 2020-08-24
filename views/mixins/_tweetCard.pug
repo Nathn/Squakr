@@ -14,7 +14,11 @@ mixin tweetCard(squak)
 				span  @#{squak.author.username}
 			a(href=`/squak/${squak._id}` style="text-decoration:none; color: #000")
 				div
-					p.the_tweet #{squak.tweet}
+					if squak.content
+						p.the_tweet
+							| !{squak.content}
+					else
+						p.the_tweet #{squak.tweet}
 			p.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")

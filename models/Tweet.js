@@ -28,6 +28,9 @@ const tweetSchema = new mongoose.Schema({
 	replies: {
 		type: Number,
 		default: 0
+	},
+	content: {
+		type: String
 	}
 
 });
