@@ -1,11 +1,11 @@
 mixin accountMenu()
-	a(href=`/${user.username}` class='nav_link') #{(user.name || user.username).split(' ')[0]}
+	a(href=`/${user.username}` class='nav_link') #{(user.name || user.username)}
 	.dropdown
 		.dropbtn
 			a(href=`/${user.username}`)
 				img.avatar_top(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.dropdown-content
-			a(href='/') Acceuil
+			a(href='/') Accueil
 			a(href=`/${user.username}`) Profil
 			a(href=`/${user.username}/likes`) Likes
 			a(href='/account') Paramètres
