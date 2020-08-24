@@ -32,6 +32,7 @@ textarea {
 }
 
 .form input,
+.form select,
 .form textarea {
 	margin: 10px 0;
 	border: 1px solid #cccccc;

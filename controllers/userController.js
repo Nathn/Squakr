@@ -7,7 +7,7 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 const Reply = require('../models/Reply');
-moment.locale('fr')
+
 
 
 require('dotenv').config({
@@ -89,6 +89,7 @@ exports.profilePage = async (req, res) => {
 			username: req.params.username
 		});
 		var months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+		var enmonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 		if (reqUser) {
 			// Find all tweets by that user with the _id
 			const tweets = await Tweet.find({
@@ -115,7 +116,8 @@ exports.profilePage = async (req, res) => {
 				tweets,
 				likes,
 				moment,
-				months
+				months,
+				enmonths
 			});
 			return;
 		} else {
@@ -138,6 +140,7 @@ exports.likesProfilePage = async (req, res) => {
 			username: req.params.username
 		});
 		var months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+		var enmonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 		if (reqUser) {
 
 			const tweets = await Tweet.find({
@@ -162,6 +165,7 @@ exports.likesProfilePage = async (req, res) => {
 				reqUser,
 				moment,
 				months,
+				enmonths,
 				likes,
 				tweets
 			});
@@ -201,7 +205,8 @@ exports.accountUpdate = async (req, res) => {
 			website: req.body.website,
 			bio: req.body.bio,
 			avatar: req.body.avatar,
-			banner: req.body.banner
+			banner: req.body.banner,
+			lang: req.body.lang
 		}
 
 		const user = await User.findOneAndUpdate({
@@ -308,7 +313,8 @@ exports.registerUser = async (req, res, next) => {
 	try {
 		const user = new User({
 			username: req.body.username,
-			email: req.body.email
+			email: req.body.email,
+			lang: req.body.lang
 		});
 
 		const register = promisify(User.register, User);

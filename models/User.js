@@ -54,6 +54,10 @@ const userSchema = new mongoose.Schema({
 	confirmed: {
 		type: Boolean,
 		default: false
+	},
+	lang: {
+		type: String,
+		default: 'fr'
 	}
 
 });

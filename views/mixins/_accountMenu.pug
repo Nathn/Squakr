@@ -5,8 +5,15 @@ mixin accountMenu()
 			a(href=`/${user.username}`)
 				img.avatar_top(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.dropdown-content
-			a(href='/') Accueil
-			a(href=`/${user.username}`) Profil
-			a(href=`/${user.username}/likes`) Likes
-			a(href='/account') Paramètres
-			a(href='/logout') Déconnection
+			if user.lang == 'en'
+				a(href='/') Home
+				a(href=`/${user.username}`) Profile
+				a(href=`/${user.username}/likes`) Likes
+				a(href='/account') Settings
+				a(href='/logout') Log out
+			else
+				a(href='/') Accueil
+				a(href=`/${user.username}`) Profil
+				a(href=`/${user.username}/likes`) Likes
+				a(href='/account') Paramètres
+				a(href='/logout') Déconnection

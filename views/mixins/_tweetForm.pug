@@ -3,6 +3,9 @@ mixin tweetForm()
 		.tweet_avatar
 			img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
-			textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='3' required)
+			if user.lang == 'en'
+				textarea(name='tweet' class='tweet_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='3' required)
+			else
+				textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='3' required)
 			.tweet_button
 				input(type='submit' class='button tweet_button' value='Squak')

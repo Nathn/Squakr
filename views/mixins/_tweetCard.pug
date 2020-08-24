@@ -37,4 +37,7 @@ mixin tweetCard(squak)
 				if user && (squak.author.equals(user._id) || user.moderator)
 					span  &middot;
 					span
-					a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Supprimer
+					if user.lang == 'en'
+						a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Delete
+					else
+						a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Supprimer

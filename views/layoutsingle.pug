@@ -94,7 +94,10 @@ html(lang="fr")
 		.content_area
 				.search(width= "270px")
 					form(action="/search" style="padding-left: 21%;")
-						input.searchTerm(type='text' placeholder='Rechercher un utilisateur...' name="query" autocomplete="off")
+						if user && user.lang == "en"
+							input.searchTerm(type='text' placeholder='Search an user...' name="query" autocomplete="off")
+						else
+							input.searchTerm(type='text' placeholder='Rechercher un utilisateur...' name="query" autocomplete="off")
 						button.searchButton(type='submit')
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")

@@ -1,22 +1,25 @@
-mixin userCard(user)
+mixin userCard(searchuser)
 	.tweet_card.tweet_hover
 		.tweet_avatar
-			a(href=`/${user.username}`)
-				img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
+			a(href=`/${searchuser.username}`)
+				img(src=`${searchuser.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			p.author_name(style="display: inline;")
-				a(href=`/${user.username}` style="text-decoration: none;")
-					if (user.verified)
-						strong(style="vertical-align:middle;") #{user.name || user.username}
+				a(href=`/${searchuser.username}` style="text-decoration: none;")
+					if (searchuser.verified)
+						strong(style="vertical-align:middle;") #{searchuser.name || searchuser.username}
 						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
-						strong #{user.name || user.username}
-				a(href=`/${user.username}` style="text-decoration: none; color: #000")
-					span  @#{user.username}
+						strong #{searchuser.name || searchuser.username}
+				a(href=`/${searchuser.username}` style="text-decoration: none; color: #000")
+					span  @#{searchuser.username}
 			div
-				a(href=`/${user.username}` style="text-decoration: none; color: #000")
-					if user.bio
-						p.the_bio #{user.bio}
+				a(href=`/${searchuser.username}` style="text-decoration: none; color: #000")
+					if searchuser.bio
+						p.the_bio #{searchuser.bio}
 					else
 						p.the_bio
-							i Cet utilisateur n'a pas défini de biographie
+							if user && user.lang == 'en'
+								i This user didn't set a bio
+							else
+								i Cet utilisateur n'a pas défini de biographie

@@ -1,21 +1,48 @@
 extends layout
 block content
 	.single_wrap
-		h2 Votre compte
-		form.form(action='/account' method='POST' enctype='multipart/form-data')
-			label(for='name') Nom :
-			input(type='text' name='name' value=user.name autocomplete='off')
-			label(for='email') Adresse email :
-			input(type='email' name='email' value=user.email autocomplete='off')
-			label(for='website') Site Web :
-			input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
-			h3 Image de profil :
-			small Taille idéale : 240x240
-			input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off' style="width: 415px")
-			h3 Image de bannière :
-			small Taille idéale : 800x160
-			input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off' style="width: 415px")
-			//- small Les uploads d'images sont actuellement désactivés te temps de trouver une solution d'hébergement viable.
-			h3 A propos de vous :
-			textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
-			input(type='submit' class='button' value='Mettre à jour')
+		if user.lang == 'en'
+			h2 Your account
+			form.form(action='/account' method='POST' enctype='multipart/form-data')
+				label(for='name') Name :
+				input(type='text' name='name' value=user.name autocomplete='off')
+				label(for='email') Email adress :
+				input(type='email' name='email' value=user.email autocomplete='off')
+				label(for='website') Website :
+				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
+				label(for='avatar') Profile picture :
+				small Ideal size : 240x240
+				input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off' style="width: 415px")
+				label(for='banner') Banner picture :
+				small Ideal size : 800x160
+				input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off' style="width: 415px")
+				label(for='bio') About section :
+				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
+				label(for='lang') Language :
+				select(name='lang')
+					option(value='en') English
+					option(value='fr') Français
+				input(type='submit' class='button' value='Update')
+		else
+			h2 Votre compte
+			form.form(action='/account' method='POST' enctype='multipart/form-data')
+				label(for='name') Nom :
+				input(type='text' name='name' value=user.name autocomplete='off')
+				label(for='email') Adresse email :
+				input(type='email' name='email' value=user.email autocomplete='off')
+				label(for='website') Site Web :
+				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
+				label(for='avatar') Image de profil :<br>
+				small Taille idéale : 240x240
+				input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off' style="width: 415px")
+				label(for='banner') Image de bannière :<br>
+				small Taille idéale : 800x160
+				input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off' style="width: 415px")
+				//- small Les uploads d'images sont actuellement désactivés te temps de trouver une solution d'hébergement viable.
+				label(for='bio') A propos de vous :
+				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
+				label(for='lang') Langue :
+				select(name='lang')
+					option(value='fr') Français
+					option(value='en') English
+				input(type='submit' class='button' value='Mettre à jour')

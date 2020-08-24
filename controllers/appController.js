@@ -6,8 +6,17 @@ moment.locale('fr')
 // The home page
 exports.indexPage = async (req, res) => {
 	try {
+		if (req.user && req.user.lang == "en") {
+			moment.locale('en')
+		}
+		var lang = '';
+		if (req.user && req.user.lang == 'en') {
+			lang = 'en'
+		} else {
+			lang = 'fr'
+		}
 		const squaks = await Tweet.find({
-				lang: 'fr'
+				lang: lang
 			})
 			.populate('author')
 			.limit(500)

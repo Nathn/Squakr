@@ -5,8 +5,14 @@ include mixins/_userCard
 block content
 	.single_wrap
 		if searchresults[0]
-			h2 Utilisateurs correspondant à votre recherche :
+			if user && user.lang == 'en'
+				h2 Users corresponding to your search :
+			else
+				h2 Utilisateurs correspondant à votre recherche :
 			each user in searchresults
 				+userCard(user)
 		else
-			h2 La recherche n'a retourné aucun résultat.
+			if user && user.lang == 'en'
+				h2 The search didn't return any results.
+			else
+				h2 La recherche n'a retourné aucun résultat.

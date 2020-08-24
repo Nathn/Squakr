@@ -44,15 +44,24 @@ block content
 				if (reqUser._id.toString() == user._id.toString())
 					p
 						.edit_button
-							input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
+							if user.lang == 'en'
+								input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Edit your profile')
+							else
+								input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
 				if ((user.moderator) && !(reqUser.verified) && (reqUser._id.toString() != user._id.toString()))
 					p
 						.edit_button
-							input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Vérifier l\'utilisateur')
+							if user.lang == 'en'
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Verify user')
+							else
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Vérifier l\'utilisateur')
 				if ((user.moderator) && !(reqUser.confirmed))
 					p
 						.edit_button
-							input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
+							if user.lang == 'en'
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Confirm user')
+							else
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
 		.feed_section.single_content
 			div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 			nav

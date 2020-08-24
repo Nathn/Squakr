@@ -2,12 +2,13 @@ const Tweet = require('../models/Tweet');
 const User = require('../models/User');
 const Reply = require('../models/Reply');
 const moment = require('moment');
-moment.locale('fr')
+
 
 // Home page to list all tweets
 exports.postTweet = async (req, res) => {
 	try {
 		req.body.author = req.user._id;
+		req.body.lang = req.user.lang;
 		const tweet = new Tweet(req.body);
 		await tweet.save();
 		res.redirect('back');

@@ -20,7 +20,7 @@ mixin replyCard(reply)
 						- const heartStrings = user.hearts.map(obj => obj.toString())
 						- const heartClass = heartStrings.includes(reply._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
-							| ❤
+							i.fa.fa-heart
 							small  #{reply.likes.toString()}
 				else
 					form.heart(method='POST' action=`/api/tweets/${reply._id}/heart` style="display: inline;")
@@ -28,8 +28,11 @@ mixin replyCard(reply)
 							i.fa.fa-heart
 							small  #{reply.likes.toString()}
 				span
-					a( title=`${moment(reply.created)}` style="text-decoration: none; color: #000")  &middot; #{moment(reply.created).fromNow()}
+					a( title=`${moment(reply.created)}` style="text-decoration: none; color: #000") &middot; #{moment(reply.created).fromNow()}
 				if user && (reply.author.equals(user._id) || user.moderator)
 					span  &middot;
 					span
-					a(href=`/delete/${reply._id}` style="text-decoration: none; color: #000")  Supprimer
+					if user.lang == 'en'
+						a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Delete
+					else
+						a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Supprimer

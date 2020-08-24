@@ -11,7 +11,10 @@ block content
 			else
 				h2.profile_name #{reqUser.name || reqUser.username}
 			h4 @#{reqUser.username}
-			h5 A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+			if user && user.lang == 'en'
+				h5 Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+			else
+				h5 A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 			if reqUser.bio
 				p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
 			if reqUser.website
@@ -63,15 +66,24 @@ block content
 				if (reqUser._id.toString() == user._id.toString())
 					p
 						.edit_button
-							input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
+							if user.lang == 'en'
+								input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Edit your profile')
+							else
+								input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
 				if ((user.moderator) && !(reqUser.verified) && (reqUser._id.toString() != user._id.toString()))
 					p
 						.edit_button
-							input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Vérifier l\'utilisateur')
+							if user.lang == 'en'
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Verify user')
+							else
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Vérifier l\'utilisateur')
 				if ((user.moderator) && !(reqUser.confirmed))
 					p
 						.edit_button
-							input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
+							if user.lang == 'en'
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Confirm user')
+							else
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
 		.feed_section.single_content
 			if user
 				if (reqUser._id.toString() == user._id.toString())

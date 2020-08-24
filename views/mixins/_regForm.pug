@@ -10,6 +10,10 @@ mixin regForm()
 			input(type='password' name='password' required)
 			label(for='password-confirm') Confirmez votre mot de passe :
 			input(type='password' name='password-confirm' required)
+			label(for='lang') Language :
+			select(name='lang')
+				option(value='fr') Français
+				option(value='en') English
 			input(type='submit' class='button' value='Créer un compte')
 
 
