@@ -16,15 +16,15 @@ html(lang="fr")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		link(rel='stylesheet' href='/style.css')
 		link(rel="shortcut icon" type="image/png" href="https://i.postimg.cc/9f1CCCSf/squakr-favicon.png")
-		meta(property="og:title" content=`${tweet.author.name || tweet.author.username} sur Squakr`)
+		meta(property="og:title" content=`${squak.author.name || squak.author.username} sur Squakr`)
 		meta(property="og:type" content="website")
 		meta(name="keywords" content="squakr, squackr, squaker, squacker, twitter, nwitter, clone, nathn, free, français, france, open, source, social, network, website")
 		meta(name="og:site_name" content="Squakr")
 		meta(property="og:url" content="Squakr.cleverapps.io/")
 		meta(property="og:image" content="https://i.imgur.com/xCsWr5s.png")
-		meta(property="og:description" content=`Découvrez ce que partagent ${tweet.author.name || tweet.author.username} (@${tweet.author.username}) et d'autres sur Squakr, le réseau libre.`)
-		meta(name="title" content=`${tweet.author.name || tweet.author.username} sur Squakr`)
-		meta(name="description" content=`Découvrez ce que partagent ${tweet.author.name || tweet.author.username} (@${tweet.author.username}) et d'autres sur Squakr, le réseau libre.`)
+		meta(property="og:description" content=`Découvrez ce que partagent ${squak.author.name || squak.author.username} (@${squak.author.username}) et d'autres sur Squakr, le réseau libre.`)
+		meta(name="title" content=`${squak.author.name || squak.author.username} sur Squakr`)
+		meta(name="description" content=`Découvrez ce que partagent ${squak.author.name || squak.author.username} (@${squak.author.username}) et d'autres sur Squakr, le réseau libre.`)
 		meta(name="robots")
 		meta(name="google-site-verification" content="70mICW8vQbJt8_ACd4-vf1WocsCj6x5mg-Cl8n4G1Os")
 		title Squakr
@@ -58,6 +58,7 @@ html(lang="fr")
 			if(err == '300') return 'La connexion a échoué, veuillez réessayer'
 			if(err == '301') return 'Vous devez être connecté pour effectuer cette action'
 			if(err == '400') return 'La recherche ne peut pas être vide'
+			if(err == '402') return 'Vous n\'avez pas assez de permissions pour supprimer ça.'
 			return;
 			}
 			// The function actually applying the offset
@@ -98,7 +99,7 @@ html(lang="fr")
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
-						if(GetURLParameter('err') == 301 || GetURLParameter('err') == 400)
+						if(GetURLParameter('err') == 301 || GetURLParameter('err') == 400 || GetURLParameter('err') == 402)
 							document.write(GetErrorString(GetURLParameter('err')))
 				block content
 		.footer

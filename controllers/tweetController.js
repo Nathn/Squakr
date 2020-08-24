@@ -64,24 +64,31 @@ exports.gotoReply = async (req, res) => {
 
 // Delete a tweet controller
 // Tweet deleting function
-const confirmedOwner = (tweet, user) => {
-	if (!tweet.author.equals(user._id)) {
-		// You don't have permission to delete this.
+const confirmedOwner = (squak, user, backURL) => {
+	if (!squak.author.equals(user._id)) {
 		throw Error('Vous n\'avez pas assez de permissions pour supprimer ça.')
+		if (!backURL.endsWith('err=402')) return res.redirect(`${backURL}?err=402`)
+		return res.redirect(`${backURL}`)
 	}
 }
 
 
 exports.deleteTweet = async (req, res) => {
 	try {
-		const tweet = await Tweet.findOne({
+		backURL = req.header('Referer') || '/';
+		if (!req.query.query && !backURL.endsWith('err=402')) return res.redirect(`${backURL}?err=402`)
+
+		const squak = await Tweet.findOne({
 			_id: req.params.id
 		});
 		const reply = await Reply.findOne({
 			_id: req.params.id
 		});
-		if (!req.user.moderator) {
-			confirmedOwner(tweet, req.user);
+		if (!req.user.moderator && squak) {
+			confirmedOwner(squak, req.user, backURL);
+		}
+		if (!req.user.moderator && reply) {
+			confirmedOwner(reply, req.user, backURL);
 		}
 		if (reply) {
 			Tweet.findByIdAndUpdate({
@@ -99,7 +106,8 @@ exports.deleteTweet = async (req, res) => {
 					}
 				});
 		}
-		const deleteTweet = await Tweet.deleteOne(tweet);
+		if (squak) console.log(squak.tweet + " deleted")
+		const deleteSquak = await Tweet.deleteOne(squak);
 		const deleteReply = await Reply.deleteOne(reply);
 		res.redirect('back')
 	} catch (e) {
@@ -113,18 +121,27 @@ exports.deleteTweet = async (req, res) => {
 // Getting a single Tweet
 exports.singleTweetPage = async (req, res) => {
 	try {
-		const tweet = await Tweet.findOne({
+		const squak = await Tweet.findOne({
 			_id: req.params.id
 		}).populate('author');
+
+		/*
+		const content = squak.tweet.replace(/\B\@([\w\-]+)/gim, function (match, name) {
+			post = `<a href="/${name}">${match}</a>`;
+			return post;
+		})
+		console.log(content)
+		*/
 
 		const replies = await Reply.find({
 			squak: req.params.id
 		}).populate('author');
 
 		res.render('single', {
-			tweet,
+			squak,
 			moment,
 			replies
+			// ,content
 		});
 
 	} catch (err) {

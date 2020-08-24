@@ -5,35 +5,36 @@ block content
 	.single_wrap
 		.single_tweet
 			p(style="white-space: pre-line")
-				| #{tweet.tweet}
+				// | #{content}
+				| #{squak.tweet}
 			.tweet_avatar(style="display: inline;")
-				a(href=`/${tweet.author.username}`)
-					img(src=`${tweet.author.avatar || '/uploads/no-avatar.jpg'}` width="100" height="100" style="vertical-align:middle; padding: 0px 0px 0px 0px;")
+				a(href=`/${squak.author.username}`)
+					img(src=`${squak.author.avatar || '/uploads/no-avatar.jpg'}` width="100" height="100" style="vertical-align:middle; padding: 0px 0px 0px 0px;")
 			p.tweet_meta(style="display: inline; padding: 0px 0px 0px 10px;")
-				a(href=`/${tweet.author.username}`)
-					if (tweet.author.verified)
-						strong #{tweet.author.name || tweet.author.username}
+				a(href=`/${squak.author.username}`)
+					if (squak.author.verified)
+						strong #{squak.author.name || squak.author.username}
 						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
-						strong #{tweet.author.name || tweet.author.username}
-				span  @#{tweet.author.username}
+						strong #{squak.author.name || squak.author.username}
+				span  @#{squak.author.username}
 				span  &middot;
-				span(style="padding-left: 3px")=  moment(tweet.created).fromNow()
+				span(style="padding-left: 3px")=  moment(squak.created).fromNow()
 				span  &middot;
 				if user
-					form.heart(method='POST' action=`/api/tweets/${tweet._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())
-						- const heartClass = heartStrings.includes(tweet._id.toString()) ? 'hearted' : ''
+						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
-							small  #{tweet.likes.toString()}
+							small  #{squak.likes.toString()}
 				else
-					form.heart(method='POST' action=`/api/tweets/${tweet._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
-							small  #{tweet.likes.toString()}
+							small  #{squak.likes.toString()}
 		if user
-			+replyForm(tweet)
+			+replyForm(squak)
 		else
 			<br/>
 		each reply in replies
