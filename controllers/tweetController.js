@@ -4,7 +4,18 @@ const Reply = require('../models/Reply');
 const moment = require('moment');
 
 function html(str) {
-	const content = str.replace(/\B\@([\w\-]+)/gim, function (match, name) {
+	var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+	//URLs starting with http://, https://, or ftp://
+	replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+	replacedText = str.replace(replacePattern1, '<a href="$1" target="_blank" style="text-decoration: none; color: #32567d;">$1</a>');
+
+	//URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+	replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+	replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank" style="text-decoration: none; color: #32567d;">$2</a>');
+
+
+	const content = replacedText.replace(/\B\@([\w\-]+)/gim, function (match, name) {
 		post = `<a href="/${name}" style="text-decoration: none; color: #007bff;">${match}</a>`;
 		return post;
 	})
@@ -17,7 +28,7 @@ exports.postTweet = async (req, res) => {
 	try {
 		req.body.author = req.user._id;
 		req.body.lang = req.user.lang;
-		req.body.content = html(req.body.tweet)
+		req.body.content = html(req.body.tweet.replace('<', '&lt;').replace('>', '&gt;'))
 		const tweet = new Tweet(req.body);
 		await tweet.save();
 		res.redirect('back');
