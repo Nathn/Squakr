@@ -13,7 +13,8 @@ mixin replyCard(reply)
 						strong #{reply.author.name || reply.author.username}
 				span  @#{reply.author.username}
 			div
-				p.the_reply #{reply.reply}
+				p.the_reply
+					| !{reply.content || reply.reply}
 			p.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/replies/${reply._id}/heart` style="display: inline;")

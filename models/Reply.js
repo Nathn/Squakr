@@ -20,6 +20,9 @@ const replySchema = new mongoose.Schema({
 	likes: {
 		type: Number,
 		default: 0
+	},
+	content: {
+		type: String
 	}
 
 });

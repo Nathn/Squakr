@@ -34,6 +34,7 @@ exports.postReply = async (req, res) => {
 	try {
 		req.body.author = req.user._id;
 		req.body.squak = req.params.id;
+		req.body.content = html(req.body.reply)
 		const reply = new Reply(req.body);
 		Tweet.findByIdAndUpdate({
 				_id: req.params.id
