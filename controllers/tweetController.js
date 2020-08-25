@@ -4,7 +4,7 @@ const Reply = require('../models/Reply');
 const moment = require('moment');
 
 function html(str) {
-	var replacedText, replacePattern1, replacePattern2, replacePattern3, replacePattern4;
+	var replacedText, replacePattern1, replacePattern2, replacePattern3, replacePattern4, replacePattern5;
 
 	//URLs starting with http://, https://, or ftp://
 	replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
@@ -19,6 +19,9 @@ function html(str) {
 
 	replacePattern4 = /\*([^*]+)\*/gim;
 	replacedText = replacedText.replace(replacePattern4, '<i>$1</i>')
+
+	replacePattern5 = /\`([^`]+)\`/gim;
+	replacedText = replacedText.replace(replacePattern5, '<code>$1</code>')
 
 	const content = replacedText.replace(/\B\@([\w\-]+)/gim, function (match, name) {
 		post = `<a href="/${name}" style="text-decoration: none; color: #007bff;">${match}</a>`;
