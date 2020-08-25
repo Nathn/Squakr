@@ -104,7 +104,7 @@ html(lang="fr")
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
 						if(GetURLParameter('err') == 301 || GetURLParameter('err') == 400 || GetURLParameter('err') == 402)
-							document.write(GetErrorString(GetURLParameter('err')))
+							document.write(GetErrorString(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
 				block content
 		.footer
 			p
