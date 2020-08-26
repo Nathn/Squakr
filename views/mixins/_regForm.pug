@@ -2,16 +2,31 @@ mixin regForm()
 
 	form.form(action='/register' method='POST')
 
-			label(for='username') Nom d'utilisateur :
+			label(for='username') Nom d'utilisateur :<br>
+			small Username :
 			input(type='text' name='username' required)
-			label(for='email') Adresse email :
+			<br/>
+			label(for='email') Adresse email :<br>
+			small Email adress :
 			input(type='email' name='email' required)
-			label(for='password') Mot de passe :
+			<br/>
+			label(for='password') Mot de passe :<br>
+			small Password :
 			input(type='password' name='password' required)
-			label(for='password-confirm') Confirmez votre mot de passe :
+			<br />
+			label(for='password-confirm') Confirmez votre mot de passe :<br>
+			small Confirm your password :
 			input(type='password' name='password-confirm' required)
-			label(for='lang') Language :
+			<br/>
+			label(for='lang') Langue d'affichage :<br/>
+			small Display language :
 			select(name='lang')
+				option(value='fr') Français
+				option(value='en') English
+			<br />
+			label(for='lang') Langue du contenu :<br>
+			small Content language :
+			select(name='contentlang')
 				option(value='fr') Français
 				option(value='en') English
 			input(type='submit' class='button' value='Créer un compte')

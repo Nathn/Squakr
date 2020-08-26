@@ -10,7 +10,7 @@ exports.indexPage = async (req, res) => {
 			moment.locale('en')
 		}
 		var lang = '';
-		if (req.user && req.user.lang == 'en') {
+		if (req.user && req.user.contentlang == 'en') {
 			lang = 'en'
 		} else {
 			lang = 'fr'

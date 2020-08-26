@@ -206,7 +206,8 @@ exports.accountUpdate = async (req, res) => {
 			bio: req.body.bio,
 			avatar: req.body.avatar,
 			banner: req.body.banner,
-			lang: req.body.lang
+			lang: req.body.lang,
+			contentlang: req.body.contentlang
 		}
 
 		const user = await User.findOneAndUpdate({
@@ -314,7 +315,8 @@ exports.registerUser = async (req, res, next) => {
 		const user = new User({
 			username: req.body.username,
 			email: req.body.email,
-			lang: req.body.lang
+			lang: req.body.lang,
+			contentlang: req.body.contentlang
 		});
 
 		const register = promisify(User.register, User);

@@ -35,7 +35,7 @@ function html(str) {
 exports.postTweet = async (req, res) => {
 	try {
 		req.body.author = req.user._id;
-		req.body.lang = req.user.lang;
+		req.body.lang = req.user.contentlang;
 		req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		const tweet = new Tweet(req.body);
 		await tweet.save();

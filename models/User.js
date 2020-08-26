@@ -58,6 +58,10 @@ const userSchema = new mongoose.Schema({
 	lang: {
 		type: String,
 		default: 'fr'
+	},
+	contentlang: {
+		type: String,
+		default: 'fr'
 	}
 
 });
