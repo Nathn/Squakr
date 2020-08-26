@@ -267,8 +267,11 @@ exports.resize = async (req, res, next) => {
 exports.verifyRegister = async (req, res, next) => {
 	req.sanitizeBody('username');
 	req.checkBody('username', '200').notEmpty();
-	req.check('username', '201').custom(value => !/\s/.test(value))
-	req.check('username', '202').custom(value => /^[0-9a-zA-Z_]+$/.test(value))
+	req.check('username', '201').custom(value => !/\s/.test(value));
+	req.check('username', '202').custom(value => /^[0-9a-zA-Z_]+$/.test(value));
+	req.check('username', '210').isLength({
+		max: 16
+	});
 	req.sanitizeBody('email');
 	req.checkBody('email', '203').notEmpty();
 	req.checkBody('email', '204').isEmail();

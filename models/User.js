@@ -62,7 +62,15 @@ const userSchema = new mongoose.Schema({
 	contentlang: {
 		type: String,
 		default: 'fr'
-	}
+	},
+	following: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'User'
+	}],
+	followers: [{
+		type: mongoose.Schema.ObjectId,
+		ref: 'User'
+	}]
 
 });
 

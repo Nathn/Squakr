@@ -22,12 +22,12 @@ html(lang="fr")
 		meta(name="og:site_name" content="Squakr")
 		meta(property="og:url" content="Squakr.fr")
 		meta(property="og:image" content="https://i.imgur.com/xCsWr5s.png")
-		meta(property="og:description" content="Partagez vos pensées avec Squakr")
+		meta(property="og:description" content="Partagez vos pensées avec Squakr, le réseau social libre.")
 		meta(name="title" content="Squakr - Le réseau social libre")
-		meta(name="description" content="Partagez vos pensées avec Squakr.")
+		meta(name="description" content="Partagez vos pensées avec Squakr, le réseau social libre.")
 		meta(name="robots")
 		meta(name="google-site-verification" content="70mICW8vQbJt8_ACd4-vf1WocsCj6x5mg-Cl8n4G1Os")
-		title Squakr
+		title Squakr - Le réseau social libre
 		script(src='https://use.fontawesome.com/74eb59777f.js')
 		script.
 			function GetURLParameter(sParam)
@@ -55,6 +55,7 @@ html(lang="fr")
 			if(err == '207') return 'Les mots de passe ne correspondent pas'
 			if(err == '208') return 'Un utilisateur est déjà inscrit avec ce nom d\'utilisateur'
 			if(err == '209') return 'Un utilisateur est déjà inscrit avec cette adresse email'
+			if(err == '210') return 'Le nom d\'utilisateur ne peut pas contenir plus de 16 caractères'
 			if(err == '300') return 'La connexion a échoué, veuillez réessayer'
 			if(err == '301') return 'Vous devez être connecté pour effectuer cette action'
 			if(err == '400') return 'La recherche ne peut pas être vide'
