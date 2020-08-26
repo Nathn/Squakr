@@ -14,7 +14,7 @@ function html(str) {
 	replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
 	replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank" style="text-decoration: none; color: #32567d;">$2</a>');
 
-	replacePattern3 = /\*\*([^*]+)\*\*/gim;
+	replacePattern3 = /\*\*([^]+)\*\*/gim;
 	replacedText = replacedText.replace(replacePattern3, '<b>$1</b>')
 
 	replacePattern4 = /\*([^*]+)\*/gim;
