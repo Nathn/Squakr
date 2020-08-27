@@ -374,6 +374,24 @@ exports.registerUser = async (req, res, next) => {
 				new: true
 			}
 		);
+		await User.findByIdAndUpdate(
+			'5f1daf2680067f0017a9a7e8', {
+				'$addToSet': {
+					followers: user._id
+				}
+			}, {
+				new: true
+			}
+		);
+		await User.findByIdAndUpdate(
+			'5f1ea87352f68c001720c9a3', {
+				'$addToSet': {
+					followers: user._id
+				}
+			}, {
+				new: true
+			}
+		);
 		next();
 
 	} catch (error) {
