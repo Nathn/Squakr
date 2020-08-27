@@ -13,11 +13,18 @@ block content
 			h4 @#{reqUser.username}
 
 			if user
-				if (reqUser._id.toString() != user._id.toString())
-					if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
-						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
-					else
-						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
+				if user.lang == 'en'
+					if (reqUser._id.toString() != user._id.toString())
+						if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Following`)
+						else
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Follow`)
+				else
+					if (reqUser._id.toString() != user._id.toString())
+						if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
+						else
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
 
 
 			if user && user.lang == 'en'

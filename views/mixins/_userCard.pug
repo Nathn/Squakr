@@ -16,10 +16,16 @@ mixin userCard(searchuser)
 					| &nbsp;&nbsp;
 					if user
 						if (searchuser._id.toString() != user._id.toString())
-							if (user.following.map(obj => obj.toString()).includes(searchuser._id.toString()))
-								input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_followed_button' value=`Suivi`)
+							if user.lang == 'en'
+								if (user.following.map(obj => obj.toString()).includes(searchuser._id.toString()))
+									input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_followed_button' value=`Following`)
+								else
+									input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_follow_button' value=`Follow` )
 							else
-								input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_follow_button' value=`Suivre` )
+								if (user.following.map(obj => obj.toString()).includes(searchuser._id.toString()))
+									input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_followed_button' value=`Suivi`)
+								else
+									input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_follow_button' value=`Suivre` )
 			div
 				a(href=`/${searchuser.username}` style="text-decoration: none; color: #000")
 					if searchuser.bio

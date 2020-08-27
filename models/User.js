@@ -59,10 +59,6 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		default: 'fr'
 	},
-	contentlang: {
-		type: String,
-		default: 'fr'
-	},
 	following: [{
 		type: mongoose.Schema.ObjectId,
 		ref: 'User'

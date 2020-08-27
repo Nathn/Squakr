@@ -17,10 +17,6 @@ const tweetSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
-	lang: {
-		type: String,
-		default: 'fr'
-	},
 	likes: {
 		type: Number,
 		default: 0
