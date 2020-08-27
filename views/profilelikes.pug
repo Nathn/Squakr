@@ -11,13 +11,24 @@ block content
 			else
 				h2.profile_name #{reqUser.name || reqUser.username}
 			h4 @#{reqUser.username}
-			h5(style="padding-bottom: 5px") A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+
+			if user
+				if (reqUser._id.toString() != user._id.toString())
+					if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
+						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
+					else
+						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
+
+			if user && user.lang == 'en'
+				h5 Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+			else
+				h5 A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 			if reqUser.bio
 				p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
 			if reqUser.website
-				p.profile_url
-					a(href=reqUser.website rel='no_follow' target='_blank')= reqUser.website
-			<br/>
+				p
+					i.fa.fa-link &nbsp;
+					a(href=reqUser.website rel='no_follow' target='_blank' style="text-decoration: none; color: #1675db; font-weight: bold;")= reqUser.website
 			if reqUser.moderator
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")
 			if reqUser.avatar
@@ -36,6 +47,24 @@ block content
 				img(src="https://i.postimg.cc/nzVvRMFH/badge-voting-1.png" width="35" height = "35" title="A liké au moins un squak")
 			if (likes[10])
 				img(src="https://i.postimg.cc/7brhRQ3g/badge-voting-11.png" width = "44" title="A liké au moins 11 squaks")
+			if (reqUser.likes > 0)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-1a.svg" width="35" height = "35" title="A atteint 1 like sur ses squaks")
+			if (reqUser.likes > 9)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-1b.svg" width="35" height = "35" title="A atteint 10 likes sur ses squaks")
+			if (reqUser.likes > 24)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-1c.svg" width="35" height = "35" title="A atteint 25 likes sur ses squaks")
+			if (reqUser.likes > 49)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-1d.svg" width="35" height = "35" title="A atteint 50 likes sur ses squaks")
+			if (reqUser.likes > 99)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-1e.svg" width="35" height = "35" title="A atteint 100 likes sur ses squaks")
+			if (reqUser.likes > 249)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-2.svg" width="35" height = "35" title="A atteint 250 likes sur ses squaks")
+			if (reqUser.likes > 499)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-3.svg" width="35" height = "35" title="A atteint 500 likes sur ses squaks")
+			if (reqUser.likes > 999)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-4.svg" width="35" height = "35" title="A atteint 1000 likes sur ses squaks")
+			if (reqUser.likes > 4999)
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-5.svg" width="35" height = "35" title="A atteint 5000 likes sur ses squaks")
 			if (((new Date() - new Date(reqUser.created)) / (1000 * 3600 * 24*365) > 1 ))
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-years-1.svg" width = "35" height = "35" title="Membre depuis 1 an")
 			if (reqUser.confirmed)

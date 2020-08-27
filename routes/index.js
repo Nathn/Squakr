@@ -26,6 +26,8 @@ router.get('/api/users/:id/verify', userController.verifyUser)
 
 router.get('/api/users/:id/confirm', userController.confirmUser)
 
+router.get('/api/users/:id/follow', userController.followUser)
+
 // Registration page
 router.get('/register', userController.registerPage);
 

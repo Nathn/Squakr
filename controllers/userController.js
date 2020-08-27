@@ -85,6 +85,9 @@ exports.searchPage = async (req, res) => {
 // The profile page controller
 exports.profilePage = async (req, res) => {
 	try {
+		if (req.user && req.user.lang == "en") {
+			moment.locale('en')
+		}
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
@@ -136,6 +139,9 @@ exports.profilePage = async (req, res) => {
 
 exports.likesProfilePage = async (req, res) => {
 	try {
+		if (req.user && req.user.lang == "en") {
+			moment.locale('en')
+		}
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
@@ -343,6 +349,33 @@ exports.registerUser = async (req, res, next) => {
 				console.log(e)
 			}
 		});
+		await User.findByIdAndUpdate(
+			user._id, {
+				'$addToSet': {
+					following: user._id
+				}
+			}, {
+				new: true
+			}
+		);
+		await User.findByIdAndUpdate(
+			user._id, {
+				'$addToSet': {
+					following: '5f1d6f018c3e615140eb1bac'
+				}
+			}, {
+				new: true
+			}
+		);
+		await User.findByIdAndUpdate(
+			user._id, {
+				'$addToSet': {
+					following: '5f1f1165bdd9065964111e36'
+				}
+			}, {
+				new: true
+			}
+		);
 		next();
 
 	} catch (error) {
@@ -367,68 +400,75 @@ exports.heartTweet = async (req, res) => {
 			new: true
 		}
 	);
+	const squak = await Tweet.findById({
+		_id: req.params.id
+	}).populate('author');
 	if (hearts.includes(req.params.id) == true) {
-		Tweet.findByIdAndUpdate({
-				_id: req.params.id
-			}, {
-				$inc: {
-					likes: -1
+		if (squak.author.username != req.user.username) {
+			Tweet.findByIdAndUpdate({
+					_id: req.params.id
+				}, {
+					$inc: {
+						likes: -1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						// console.log(result);
+					}
 				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
+			);
+			User.findByIdAndUpdate({
+					_id: squak.author._id
+				}, {
+					$inc: {
+						likes: -1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
 				}
-			}
-		);
-		User.findByIdAndUpdate({
-				_id: req.user._id
-			}, {
-				$inc: {
-					likes: -1
-				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
-				}
-			}
-		);
+			);
+		}
 	} else {
-		Tweet.findByIdAndUpdate({
-				_id: req.params.id
-			}, {
-				$inc: {
-					likes: 1
+		if (squak.author.username != req.user.username) {
+			Tweet.findByIdAndUpdate({
+					_id: req.params.id
+				}, {
+					$inc: {
+						likes: 1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
 				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
+			);
+			User.findByIdAndUpdate({
+					_id: squak.author._id
+				}, {
+					$inc: {
+						likes: 1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
 				}
-			}
-		);
-		User.findByIdAndUpdate({
-				_id: req.user._id
-			}, {
-				$inc: {
-					likes: 1
-				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
-				}
-			}
-		);
+			);
+		}
 	}
 	res.redirect(`${backURL}#${req.params.id}`)
 }
@@ -446,68 +486,75 @@ exports.heartReply = async (req, res) => {
 			new: true
 		}
 	);
+	const reply = await Reply.findById({
+		_id: req.params.id
+	}).populate('author');
 	if (hearts.includes(req.params.id) == true) {
-		Reply.findByIdAndUpdate({
-				_id: req.params.id
-			}, {
-				$inc: {
-					likes: -1
+		if (reply.author.username != req.user.username) {
+			Reply.findByIdAndUpdate({
+					_id: req.params.id
+				}, {
+					$inc: {
+						likes: -1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
 				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
+			);
+			User.findByIdAndUpdate({
+					_id: reply.author._id
+				}, {
+					$inc: {
+						likes: -1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
 				}
-			}
-		);
-		User.findByIdAndUpdate({
-				_id: req.user._id
-			}, {
-				$inc: {
-					likes: -1
-				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
-				}
-			}
-		);
+			);
+		}
 	} else {
-		Reply.findByIdAndUpdate({
-				_id: req.params.id
-			}, {
-				$inc: {
-					likes: 1
+		if (reply.author.username != req.user.username) {
+			Reply.findByIdAndUpdate({
+					_id: req.params.id
+				}, {
+					$inc: {
+						likes: 1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
 				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
+			);
+			User.findByIdAndUpdate({
+					_id: reply.author._id
+				}, {
+					$inc: {
+						likes: 1
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
 				}
-			}
-		);
-		User.findByIdAndUpdate({
-				_id: req.user._id
-			}, {
-				$inc: {
-					likes: 1
-				}
-			},
-			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
-				}
-			}
-		);
+			);
+		}
 	}
 	res.redirect(`${backURL}`)
 }
@@ -538,5 +585,33 @@ exports.confirmUser = async (req, res) => {
 			}
 		}
 	);
+	res.redirect(`back`)
+}
+
+exports.followUser = async (req, res) => {
+	if (!req.user) {
+		return res.redirect(`/login`)
+	}
+	const following = req.user.following.map(obj => obj.toString());
+	const operator = following.includes(req.params.id) ? '$pull' : '$addToSet';
+	const user = await User.findByIdAndUpdate(
+		req.user._id, {
+			[operator]: {
+				following: req.params.id
+			}
+		}, {
+			new: true
+		}
+	);
+	const fuser = await User.findByIdAndUpdate(
+		req.params.id, {
+			[operator]: {
+				followers: req.user._id
+			}
+		}, {
+			new: true
+		}
+	);
+
 	res.redirect(`back`)
 }

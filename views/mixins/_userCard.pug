@@ -11,8 +11,15 @@ mixin userCard(searchuser)
 						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{searchuser.name || searchuser.username}
-				a(href=`/${searchuser.username}` style="text-decoration: none; color: #000")
-					span  @#{searchuser.username}
+				span
+					a(href=`/${searchuser.username}` style="text-decoration: none; color: #000; padding-left:5px;") @#{searchuser.username}
+					| &nbsp;&nbsp;
+					if user
+						if (searchuser._id.toString() != user._id.toString())
+							if (user.following.map(obj => obj.toString()).includes(searchuser._id.toString()))
+								input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_followed_button' value=`Suivi`)
+							else
+								input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_follow_button' value=`Suivre` )
 			div
 				a(href=`/${searchuser.username}` style="text-decoration: none; color: #000")
 					if searchuser.bio
@@ -23,3 +30,4 @@ mixin userCard(searchuser)
 								i This user didn't set a bio
 							else
 								i Cet utilisateur n'a pas défini de biographie
+

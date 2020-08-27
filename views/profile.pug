@@ -11,6 +11,15 @@ block content
 			else
 				h2.profile_name #{reqUser.name || reqUser.username}
 			h4 @#{reqUser.username}
+
+			if user
+				if (reqUser._id.toString() != user._id.toString())
+					if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
+						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
+					else
+						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
+
+
 			if user && user.lang == 'en'
 				h5 Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 			else
@@ -19,7 +28,9 @@ block content
 				p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
 			if reqUser.website
 				p
-					a(href=reqUser.website rel='no_follow' target='_blank')= reqUser.website
+					i.fa.fa-link &nbsp;
+					a(href=reqUser.website rel='no_follow' target='_blank' style="text-decoration: none; color: #1675db; font-weight: bold;")= reqUser.website
+
 			if reqUser.moderator
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")
 			if (reqUser.developer)

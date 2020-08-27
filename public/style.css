@@ -68,10 +68,71 @@ textarea {
 	font-size: 1rem;
 }
 
+.follow_button {
+	font-size: 1.2rem;
+	background-color: transparent;
+	border-radius: 10px;
+	font-weight: bold;
+	cursor: pointer;
+	border: 5px solid #69aaf0;
+	width: 100px;
+}
+
+.follow_button:hover {
+	background-color: #69aaf0;
+}
+
+.mini_follow_button {
+	font-size: 1rem;
+	background-color: transparent;
+	border-radius: 8px;
+	font-weight: bold;
+	cursor: pointer;
+	border: 3px solid #69aaf0;
+	width: 70px;
+	height: 25px;
+	vertical-align: middle;
+	padding: 0px;
+}
+
+.mini_follow_button:hover {
+	background-color: #69aaf0;
+}
+
+.followed_button {
+	font-size: 1.2rem;
+	background-color: rgba(105, 170, 240, .9);
+	border-radius: 10px;
+	font-weight: bold;
+	cursor: pointer;
+	border: 5px solid #69aaf0;
+	width: 100px;
+}
+
+.mini_followed_button {
+	font-size: 1rem;
+	background-color: rgba(105, 170, 240, .9);
+	border-radius: 8px;
+	font-weight: bold;
+	cursor: pointer;
+	border: 3px solid #69aaf0;
+	width: 70px;
+	height: 25px;
+	vertical-align: middle;
+	padding: 0px;
+}
+
+.mini_followed_button:hover {
+	background-color: transparent;
+}
+
+.followed_button:hover {
+	background-color: transparent;
+}
+
 /* For all the buttons like login register and tweet  */
-.button {
+.button:not(.follow_button):not(.followed_button):not(.mini_follow_button):not(.mini_followed_button) {
 	background-color: #4bd3db;
-	border-radius: 0;
 	padding-left: 10px;
 	padding-right: 10px;
 	border: 0;
@@ -80,7 +141,7 @@ textarea {
 	border-radius: 7px;
 }
 
-.button:hover {
+.button:hover:not(.follow_button):not(.followed_button):not(.mini_follow_button):not(.mini_followed_button) {
 	background-color: #39aeb4;
 }
 

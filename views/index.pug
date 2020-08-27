@@ -1,6 +1,7 @@
 extends layout
 include mixins/_tweetForm
 include mixins/_tweetCard
+include mixins/_userCard
 block content
 	.single_wrap
 		if user
@@ -10,5 +11,13 @@ block content
 				h1 Bienvenue sur Squakr !
 				h3 Voici les derniers Squaks envoyés :
 		//- - const items = [1,2,3,4,5,6,7,8,9]
+		if user && profiles[0]
+			if user.lang == 'en'
+				h3 Recommended profiles :
+			else
+				h3 Profils recommandés :
+			each profile in profiles
+				+userCard(profile)
+			<br/>
 		each squak in squaks
 			+tweetCard(squak)

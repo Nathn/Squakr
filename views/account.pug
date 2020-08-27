@@ -18,19 +18,10 @@ block content
 				input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off' style="width: 415px")
 				label(for='bio') About section :
 				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
-				label(for='lang') Display language :
+				label(for='lang') Language :
 				select(name='lang')
 					option(value='en') English
 					option(value='fr') Français
-				label(for='contentlang') Content language :
-				if user.contentlang == 'en'
-					select(name='contentlang')
-						option(value='en') English
-						option(value='fr') French
-				else
-					select(name='contentlang')
-						option(value='fr') French
-						option(value='en') English
 				input(type='submit' class='button' value='Update')
 		else
 			h2 Votre compte
@@ -50,17 +41,8 @@ block content
 				//- small Les uploads d'images sont actuellement désactivés te temps de trouver une solution d'hébergement viable.
 				label(for='bio') A propos de vous :
 				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
-				label(for='lang') Langue d'affichage :
+				label(for='lang') Langue :
 				select(name='lang')
 					option(value='fr') Français
 					option(value='en') English
-				label(for='contentlang') Langue du contenu :
-				if user.contentlang == 'en'
-					select(name='contentlang')
-						option(value='en') English
-						option(value='fr') Français
-				else
-					select(name='contentlang')
-						option(value='fr') Français
-						option(value='en') English
 				input(type='submit' class='button' value='Mettre à jour')
