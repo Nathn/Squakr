@@ -21,14 +21,14 @@ block content
 				span(style="padding-left: 3px")=  moment(squak.created).fromNow()
 				span  &middot;
 				if user
-					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())
 						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							small  #{squak.likes.toString()}
 				else
-					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							small  #{squak.likes.toString()}
