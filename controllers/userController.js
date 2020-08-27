@@ -359,7 +359,7 @@ exports.registerUser = async (req, res, next) => {
 		await User.findByIdAndUpdate(
 			user._id, {
 				'$addToSet': {
-					following: '5f1d6f018c3e615140eb1bac'
+					following: '5f1daf2680067f0017a9a7e8'
 				}
 			}, {
 				new: true
@@ -368,7 +368,7 @@ exports.registerUser = async (req, res, next) => {
 		await User.findByIdAndUpdate(
 			user._id, {
 				'$addToSet': {
-					following: '5f1f1165bdd9065964111e36'
+					following: '5f1ea87352f68c001720c9a3'
 				}
 			}, {
 				new: true
