@@ -94,7 +94,7 @@ exports.gotoReply = async (req, res) => {
 // Delete a tweet controller
 // Tweet deleting function
 const confirmedOwner = (squak, user, backURL) => {
-	if (!squak.author.equals(user._id)) {
+	if (!squak.author._id.equals(user._id)) {
 		throw Error('Vous n\'avez pas assez de permissions pour supprimer ça.')
 		if (!backURL.endsWith('err=402')) return res.redirect(`${backURL}?err=402`)
 		return res.redirect(`${backURL}`)
@@ -105,7 +105,6 @@ const confirmedOwner = (squak, user, backURL) => {
 exports.deleteTweet = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
-		if (!req.query.query && !backURL.endsWith('err=402')) return res.redirect(`${backURL}?err=402`)
 
 		const squak = await Tweet.findOne({
 			_id: req.params.id
@@ -141,7 +140,7 @@ exports.deleteTweet = async (req, res) => {
 		res.redirect('back')
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?msg=delete_failed')
+		res.redirect(`${backURL}?err=402`)
 	}
 
 
