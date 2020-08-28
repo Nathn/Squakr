@@ -11,11 +11,14 @@ mixin tweetCard(squak)
 						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{squak.author.name || squak.author.username}
-				span  @#{squak.author.username}
-			a(href=`/squak/${squak._id}` style="text-decoration:none; color: #000")
-				div
+				a(href=`/${squak.author.username}` style="text-decoration: none; color: #333333")
+					span  @#{squak.author.username}
+			div.block
+				a.overlay(href=`/squak/${squak._id}`)
+				.inner
 					p.the_tweet(style="color: #000")
 						| !{squak.content || squak.tweet}
+
 			p.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")

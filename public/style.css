@@ -299,6 +299,35 @@ textarea {
 	background-color: #efefef;
 }
 
+
+
+.block {
+	position: relative;
+}
+
+.block .overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%
+}
+
+.block .inner {
+	position: relative;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.block .inner a {
+	pointer-events: all;
+	position: relative;
+}
+
+
+
+
 .author_name,
 .tweet_meta {
 	margin: 0;
