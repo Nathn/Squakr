@@ -13,11 +13,49 @@ block content
 			h4 @#{reqUser.username}
 
 			if user
-				if (reqUser._id.toString() != user._id.toString())
-					if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
-						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
-					else
-						input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
+				if user.lang == 'en'
+					if (reqUser._id.toString() != user._id.toString())
+						if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Following`)
+						else
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Follow`)
+				else
+					if (reqUser._id.toString() != user._id.toString())
+						if (user.following.map(obj => obj.toString()).includes(reqUser._id.toString()))
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
+						else
+							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
+
+			if user.lang == 'en'
+				if reqUser.followers.length == 1
+					h4 #{reqUser.followers.length} follower
+						if reqUser.following.length - 1 == -1
+							| &nbsp;&middot; 0 following
+						else
+							| &nbsp;&middot; #{reqUser.following.length - 1} following
+				else
+					h4 #{reqUser.followers.length} followers
+						if reqUser.following.length - 1 == -1
+							| &nbsp;&middot; 0 following
+						else
+							| &nbsp;&middot; #{reqUser.following.length - 1} following
+			else
+				if reqUser.followers.length == 1
+					h4 #{reqUser.followers.length} abonné
+						if reqUser.following.length - 1 == -1
+							| &nbsp;&middot; 0 abonnements
+						else if reqUser.following.length - 1 == 1
+							| &nbsp;&middot; #{reqUser.following.length - 1} abonnement
+						else
+							| &nbsp;&middot; #{reqUser.following.length - 1} abonnements
+				else
+					h4 #{reqUser.followers.length} abonnés
+						if reqUser.following.length - 1 == -1
+							| &nbsp;&middot; 0 abonnements
+						else if reqUser.following.length - 1 == 1
+							| &nbsp;&middot; #{reqUser.following.length - 1} abonnement
+						else
+							| &nbsp;&middot; #{reqUser.following.length - 1} abonnements
 
 			if user && user.lang == 'en'
 				h5 Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
