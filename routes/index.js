@@ -77,6 +77,8 @@ router.get('/delete/:id',
 
 
 router.get('/:username/likes', userController.likesProfilePage);
+router.get('/:username/following', userController.followingProfilePage);
+router.get('/:username/followers', userController.followersProfilePage);
 
 
 // Profile Page at the end because :username

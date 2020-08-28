@@ -633,3 +633,52 @@ exports.followUser = async (req, res) => {
 
 	res.redirect(`back`)
 }
+
+
+exports.followingProfilePage = async (req, res) => {
+	try {
+		if (req.user && req.user.lang == "en") {
+			moment.locale('en')
+		}
+		const reqUser = await User.findOne({
+			username: req.params.username
+		});
+		if (reqUser) {
+
+			res.render('/', {
+				reqUser
+			});
+			return;
+		} else {
+			// Else display a not found page
+			res.render('404', {})
+		}
+	} catch (e) {
+		console.log(e);
+		res.redirect('/')
+	}
+}
+
+exports.followersProfilePage = async (req, res) => {
+	try {
+		if (req.user && req.user.lang == "en") {
+			moment.locale('en')
+		}
+		const reqUser = await User.findOne({
+			username: req.params.username
+		});
+		if (reqUser) {
+
+			res.render('/', {
+				reqUser
+			});
+			return;
+		} else {
+			// Else display a not found page
+			res.render('404', {})
+		}
+	} catch (e) {
+		console.log(e);
+		res.redirect('/')
+	}
+}
