@@ -6,6 +6,7 @@ const moment = require('moment');
 const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
+const cloudinary = require('cloudinary').v2;
 const Reply = require('../models/Reply');
 
 
@@ -210,8 +211,6 @@ exports.accountUpdate = async (req, res) => {
 			email: req.body.email || req.user.email,
 			website: req.body.website,
 			bio: req.body.bio,
-			avatar: req.body.avatar,
-			banner: req.body.banner,
 			lang: req.body.lang
 		}
 
@@ -232,40 +231,43 @@ exports.accountUpdate = async (req, res) => {
 	}
 }
 
-// Image upload middlewares
-const multerOptions = {
-	storage: multer.memoryStorage(),
-	fileFilter(req, file, next) {
-		const isImage = file.mimetype.startsWith('image/');
 
-		if (isImage) {
-			next(null, true);
-		} else {
-			next({
-				message: 'Le fichier sélectionné n\'est pas une image valide.'
-			}, false)
+exports.upload = async (req, res, next) => {
+	if (req.files) {
+		const avatarfile = req.files.avatar;
+		const bannerfile = req.files.banner;
+		if (avatarfile) {
+			cloudinary.uploader.upload(avatarfile.tempFilePath, async function (err, result) {
+				var success = true
+				const avatarurl = result.secure_url.toString()
+				var user = await User.findOneAndUpdate({
+					_id: req.user._id
+				}, {
+					'$set': {
+						avatar: avatarurl || req.user.avatar
+					}
+				})
+			})
 		}
-	}
-}
-
-exports.upload = multer(multerOptions).single('avatar');
-
-exports.resize = async (req, res, next) => {
-	if (!req.file) {
+		if (bannerfile) {
+			cloudinary.uploader.upload(bannerfile.tempFilePath, async function (err, result) {
+				var success = true
+				const bannerurl = result.secure_url.toString()
+				var user = await User.findOneAndUpdate({
+					_id: req.user._id
+				}, {
+					'$set': {
+						banner: bannerurl || req.user.banner
+					}
+				})
+			})
+		}
 		next();
-		return;
+	} else {
+		next();
 	}
-
-	const extension = req.file.mimetype.split('/')[1];
-	req.body.avatar = `${uuid.v4()}.${extension}`;
-
-	const image = await jimp.read(req.file.buffer);
-	await image.resize(300, 300);
-	await image.write(`./public/uploads/${req.body.avatar}`);
-	next();
-
-
 }
+
 
 // Registration page middlewares
 // Verify the reg data

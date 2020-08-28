@@ -12,10 +12,10 @@ block content
 				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
 				label(for='avatar') Profile picture :<br>
 				small Ideal size : 240x240
-				input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off' style="width: 415px")
+				input(type='file' name='avatar' accepts='image/png, image/jpeg')
 				label(for='banner') Banner picture :<br>
 				small Ideal size : 800x160
-				input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off' style="width: 415px")
+				input(type='file' name='banner' accepts='image/png, image/jpeg')
 				label(for='bio') About section :
 				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
 				label(for='lang') Language :
@@ -34,11 +34,10 @@ block content
 				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
 				label(for='avatar') Image de profil :<br>
 				small Taille idéale : 240x240
-				input(type='url' name='avatar' placeholder='https://' value=user.avatar autocomplete='off' style="width: 415px")
+				input(type='file' name='avatar' accepts='image/png, image/jpeg')
 				label(for='banner') Image de bannière :<br>
 				small Taille idéale : 800x160
-				input(type='url' name='banner' placeholder='https://' value=user.banner autocomplete='off' style="width: 415px")
-				//- small Les uploads d'images sont actuellement désactivés te temps de trouver une solution d'hébergement viable.
+				input(type='file' name='banner' accepts='image/png, image/jpeg')
 				label(for='bio') A propos de vous :
 				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
 				label(for='lang') Langue :

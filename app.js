@@ -1,10 +1,12 @@
 const express = require('express');
+const fileupload = require('express-fileupload')
 const app = express();
 const promisify = require('es6-promisify');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const cloudinary = require('cloudinary').v2;
 const expressValidator = require('express-validator');
 const routes = require('./routes');
 require('./handlers/passport');
@@ -14,8 +16,18 @@ require('dotenv').config({
 	path: 'variables.env'
 });
 
+cloudinary.config({
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.CLOUD_API_KEY,
+	api_secret: process.env.CLOUD_API_SECRET
+});
+
 // Mongoose
-mongoose.connect(process.env.DATABASE);
+mongoose.connect(process.env.DATABASE, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
 	console.log('Une erreur est survenue avec la base de données : ' + err);
@@ -24,6 +36,10 @@ mongoose.connection.on('error', (err) => {
 // Express session
 app.use(session({
 	secret: process.env.SECRET
+}));
+
+app.use(fileupload({
+	useTempFiles: true
 }));
 
 // Passport.js

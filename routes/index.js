@@ -60,13 +60,11 @@ router.get('/account',
 
 router.post('/account',
 	userController.upload,
-	userController.resize,
 	userController.accountUpdate);
 
 // Uploading a profile image
 router.post('/upload',
 	userController.upload,
-	userController.resize,
 	userController.accountUpdate);
 
 // Tweet Specific routes
