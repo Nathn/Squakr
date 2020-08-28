@@ -14,7 +14,7 @@ mixin tweetCard(squak)
 				span  @#{squak.author.username}
 			a(href=`/squak/${squak._id}` style="text-decoration:none; color: #000")
 				div
-					p.the_tweet
+					p.the_tweet(style="color: #000")
 						| !{squak.content || squak.tweet}
 			p.tweet_meta
 				if user
