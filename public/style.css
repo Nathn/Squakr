@@ -285,6 +285,8 @@ textarea {
 .profile_avatar {
 	border-radius: 10px;
 	border: 1px solid #dddddd;
+	width: 240px;
+	height: 240px
 }
 
 
