@@ -22,10 +22,15 @@ textarea {
 	padding: 5px 7px;
 }
 
+.regform {
+	padding: 0;
+}
+
 @media (max-width : 460px) {
 	.regform {
 		padding-left: 15px;
 	}
+
 }
 
 .form_inline input {
