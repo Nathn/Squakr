@@ -174,3 +174,44 @@ exports.singleTweetPage = async (req, res) => {
 	}
 
 }
+
+exports.singleReplyPage = async (req, res) => {
+	try {
+		backURL = req.header('Referer') || '/';
+		const squak = await Reply.findOne({
+			_id: req.params.id
+		}).populate('author');
+
+		const replies = await Reply.find({
+			squak: req.params.id
+		}).populate('author');
+
+		if (squak) {
+			if (Tweet.find({
+					_id: squak.squak._id
+				})) {
+				const parent = await Tweet.find({
+					_id: squak.squak._id
+				}).populate('author')
+			} else {
+				const parent = 0
+			};
+		} else {
+			res.redirect(`${backURL}?err=100`)
+		};
+
+
+		res.render('singlereply', {
+			squak,
+			moment,
+			replies,
+			parent
+		});
+
+
+	} catch (err) {
+		console.log(err);
+		res.redirect(`${backURL}?err=100`)
+	}
+
+}

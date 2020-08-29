@@ -23,6 +23,10 @@ const replySchema = new mongoose.Schema({
 	},
 	content: {
 		type: String
+	},
+	replies: {
+		type: Number,
+		default: 0
 	}
 
 });

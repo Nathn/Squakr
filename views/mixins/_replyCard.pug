@@ -14,7 +14,7 @@ mixin replyCard(reply)
 				a(href=`/${reply.author.username}` style="text-decoration: none; color: #333333")
 					span  @#{reply.author.username}
 			div.block
-				a.overlay(href=`/reply/${reply._id}`)
+				//- a.overlay(href=`/reply/${reply._id}`)
 				.inner
 					p.the_reply(style="color: #000")
 						| !{reply.content || reply.reply}
