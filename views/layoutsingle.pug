@@ -94,7 +94,7 @@ html(lang="fr")
 		<br/>
 		.content_area
 				.search(width= "270px")
-					form(action="/search" style="padding-left: 21%;")
+					form(action="/search")
 						if user && user.lang == "en"
 							input.searchTerm(type='text' placeholder='Search an user...' name="query" autocomplete="off")
 						else

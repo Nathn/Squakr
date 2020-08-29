@@ -2,7 +2,7 @@ extends layout
 include mixins/_regForm
 block content
 	.single_wrap
-		h1 Créez un nouveau compte !
+		h1(style="padding-left: 15px;") Créez un nouveau compte !
 		h4(style="color: red;")
 			script(type="text/javascript").
 				if(GetErrorString(GetURLParameter('err')))
