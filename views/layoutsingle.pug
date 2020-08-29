@@ -45,6 +45,7 @@ html(lang="fr")
 			}
 			function GetErrorString(err)
 			{
+			if(err == '100') return 'Squak non trouvé'
 			if(err == '200') return 'Le nom d\'utilisateur ne peut pas être vide'
 			if(err == '201') return 'Le nom d\'utilisateur ne peut pas contenir d\'espaces'
 			if(err == '202') return 'Le nom d\'utilisateur ne peut pas contenir de caractères spéciaux'
@@ -103,7 +104,8 @@ html(lang="fr")
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
-						if(GetURLParameter('err') == 301 || GetURLParameter('err') == 400 || GetURLParameter('err') == 402)
+						var err = ['301', '400', '402', '100']
+						if(err.includes(GetURLParameter('err')))
 							document.write(GetErrorString(GetURLParameter('err')))
 				block content
 		.footer

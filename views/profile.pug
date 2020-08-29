@@ -25,7 +25,7 @@ block content
 							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
 						else
 							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
-			if user.lang == 'en'
+			if user && user.lang == 'en'
 				if reqUser.followers.length == 1
 					h4 #{reqUser.followers.length} follower
 						if reqUser.following.length - 1 == -1
@@ -61,7 +61,8 @@ block content
 			else
 				h5 A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 			if reqUser.bio
-				p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
+				p.profile_bio(style="white-space: pre-line; font-weight: bold;")
+					| #{reqUser.bio}
 			if reqUser.website
 				p
 					i.fa.fa-link &nbsp;

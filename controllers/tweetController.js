@@ -149,14 +149,25 @@ exports.deleteTweet = async (req, res) => {
 // Getting a single Tweet
 exports.singleTweetPage = async (req, res) => {
 	try {
+		backURL = req.header('Referer') || '/';
 		const squak = await Tweet.findOne({
 			_id: req.params.id
 		}).populate('author');
 
-
+		if (!squak) {
+			const squak = await Reply.findOne({
+				_id: parseInt(req.params.id)
+			}).populate('author');
+		}
 		const replies = await Reply.find({
 			squak: req.params.id
 		}).populate('author');
+
+		if (!squak) {
+			console.log(typeof parseInt(req.params.id))
+			console.log(parseInt(req.params.id))
+			res.redirect(`${backURL}?err=100`)
+		}
 
 		res.render('single', {
 			squak,
@@ -166,7 +177,7 @@ exports.singleTweetPage = async (req, res) => {
 
 	} catch (err) {
 		console.log(err);
-		res.redirect('/?msg=no_squaks_found')
+		res.redirect(`${backURL}?err=100`)
 	}
 
 }

@@ -19,7 +19,7 @@ html(lang="fr")
 		meta(property="og:title" content="Squakr - Le réseau social libre")
 		meta(property="og:type" content="website")
 		meta(name="keywords" content="squakr, squackr, squaker, squacker, twitter, nwitter, clone, nathn, free, français, france, open, source, social, network, website")
-		meta(name="og:site_name" content="Squakr")
+		meta(name="og:site_name" content="Squakr - Le réseau social libre")
 		meta(property="og:url" content="Squakr.fr")
 		meta(property="og:image" content="https://i.imgur.com/xCsWr5s.png")
 		meta(property="og:description" content="Partagez vos pensées avec Squakr, le réseau social libre.")
@@ -45,6 +45,7 @@ html(lang="fr")
 			}
 			function GetErrorString(err)
 			{
+			if(err == '100') return 'Squak non trouvé'
 			if(err == '200') return 'Le nom d\'utilisateur ne peut pas être vide'
 			if(err == '201') return 'Le nom d\'utilisateur ne peut pas contenir d\'espaces'
 			if(err == '202') return 'Le nom d\'utilisateur ne peut pas contenir de caractères spéciaux'
@@ -104,7 +105,8 @@ html(lang="fr")
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
-						if(GetURLParameter('err') == 301 || GetURLParameter('err') == 400 || GetURLParameter('err') == 402)
+						var err = ['301', '400', '402', '100']
+						if(err.includes(GetURLParameter('err')))
 							document.write(GetErrorString(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
 				block content
 		.footer
