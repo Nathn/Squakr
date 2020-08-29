@@ -11,10 +11,10 @@ mixin replyCard(reply)
 						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{reply.author.name || reply.author.username}
-				a(href=`/${squak.author.username}` style="text-decoration: none; color: #333333")
-					span  @#{squak.author.username}
+				a(href=`/${reply.author.username}` style="text-decoration: none; color: #333333")
+					span  @#{reply.author.username}
 			div.block
-				a.overlay()
+				a.overlay(href=`/reply/${reply._id}`)
 				.inner
 					p.the_reply(style="color: #000")
 						| !{reply.content || reply.reply}

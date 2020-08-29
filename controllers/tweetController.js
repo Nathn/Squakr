@@ -154,18 +154,11 @@ exports.singleTweetPage = async (req, res) => {
 			_id: req.params.id
 		}).populate('author');
 
-		if (!squak) {
-			const squak = await Reply.findOne({
-				_id: parseInt(req.params.id)
-			}).populate('author');
-		}
 		const replies = await Reply.find({
 			squak: req.params.id
 		}).populate('author');
 
 		if (!squak) {
-			console.log(typeof parseInt(req.params.id))
-			console.log(parseInt(req.params.id))
 			res.redirect(`${backURL}?err=100`)
 		}
 

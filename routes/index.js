@@ -11,6 +11,7 @@ router.get('/', appController.indexPage);
 
 // Single tweet page
 router.get('/squak/:id', tweetController.singleTweetPage);
+router.get('/reply/:id', tweetController.singleReplyPage);
 
 // API
 ////////////////////////////////
