@@ -643,10 +643,22 @@ exports.followingProfilePage = async (req, res) => {
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
+		var followingids = reqUser.following
+		followingids.reverse();
+		var following = []
+		for (const index in followingids) {
+			following.push(
+				await User.findOne({
+					_id: followingids[index]
+				})
+			)
+		};
+
 		if (reqUser) {
 
-			res.render('/', {
-				reqUser
+			res.render('following', {
+				reqUser,
+				following
 			});
 			return;
 		} else {
@@ -667,10 +679,22 @@ exports.followersProfilePage = async (req, res) => {
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
+		var followersids = reqUser.followers
+		followersids.reverse();
+		var followers = []
+		for (const index in followersids) {
+			followers.push(
+				await User.findOne({
+					_id: followersids[index]
+				})
+			)
+		};
+
 		if (reqUser) {
 
-			res.render('/', {
-				reqUser
+			res.render('followers', {
+				reqUser,
+				followers
 			});
 			return;
 		} else {

@@ -1,0 +1,17 @@
+extends layout
+include mixins/_userCard
+block content
+	.single_wrap
+		if following[0]
+			if user && user.lang == 'en'
+				h2 Users followed by @#{reqUser.username} :
+			else
+				h2 Utilisateurs suivis par @#{reqUser.username} :
+			each user in following
+				unless user.username == reqUser.username
+					+userCard(user)
+		else
+			if user && user.lang == 'en'
+				h2 This user is not following anyone.
+			else
+				h2 Cet utilisateur n'est abonné à personne.

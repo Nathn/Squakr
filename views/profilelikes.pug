@@ -6,10 +6,10 @@ block content
 		.profile_section
 			img.profile_avatar(src=`${reqUser.avatar || '/uploads/no-avatar.jpg'}` style="max-height:240px; max-width:240px" height="240px" width="240px")
 			if (reqUser.verified)
-				h2.profile_name #{reqUser.name || reqUser.username}
+				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
 					img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="30" height="30" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
 			else
-				h2.profile_name #{reqUser.name || reqUser.username}
+				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
 			h4 @#{reqUser.username}
 
 			if user
@@ -25,42 +25,55 @@ block content
 							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button followed_button' value=`Suivi`)
 						else
 							input(type="button" onclick=`window.location.href = "/api/users/${reqUser._id}/follow";` class='button follow_button' value=`Suivre`)
-
 			if user && user.lang == 'en'
 				if reqUser.followers.length == 1
-					h4 #{reqUser.followers.length} follower
+					h4
+						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} follower
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot; 0 following
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 following
 						else
-							| &nbsp;&middot; #{reqUser.following.length - 1} following
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} following
 				else
-					h4 #{reqUser.followers.length} followers
+					h4
+						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} followers
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot; 0 following
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 following
 						else
-							| &nbsp;&middot; #{reqUser.following.length - 1} following
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} following
 			else
 				if reqUser.followers.length == 1
-					h4 #{reqUser.followers.length} abonné
+					h4
+						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} abonné
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot; 0 abonnements
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 abonnements
 						else if reqUser.following.length - 1 == 1
-							| &nbsp;&middot; #{reqUser.following.length - 1} abonnement
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnement
 						else
-							| &nbsp;&middot; #{reqUser.following.length - 1} abonnements
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnements
 				else
-					h4 #{reqUser.followers.length} abonnés
+					h4
+						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} abonnés
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot; 0 abonnements
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 abonnements
 						else if reqUser.following.length - 1 == 1
-							| &nbsp;&middot; #{reqUser.following.length - 1} abonnement
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnement
 						else
-							| &nbsp;&middot; #{reqUser.following.length - 1} abonnements
+							| &nbsp;&middot;&nbsp;
+							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnements
 
 			if user && user.lang == 'en'
-				h5 Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+				h4(style="font-size:14px") Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 			else
-				h5 A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+				h4(style="font-size:14px") A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 			if reqUser.bio
 				p.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
 			if reqUser.website
