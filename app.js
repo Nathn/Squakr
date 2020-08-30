@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
+const nodemailer = require('nodemailer');
 const expressValidator = require('express-validator');
 const routes = require('./routes');
 require('./handlers/passport');

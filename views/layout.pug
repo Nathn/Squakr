@@ -46,6 +46,7 @@ html(lang="fr")
 			function GetErrorString(err)
 			{
 			if(err == '100') return 'Squak non trouvé'
+			if(err == '101') return 'Votre lien de confirmation n\'est pas valide. Si votre lien est le bon, veuillez envoyer un email à contact@squakr.fr.'
 			if(err == '200') return 'Le nom d\'utilisateur ne peut pas être vide'
 			if(err == '201') return 'Le nom d\'utilisateur ne peut pas contenir d\'espaces'
 			if(err == '202') return 'Le nom d\'utilisateur ne peut pas contenir de caractères spéciaux'
@@ -105,9 +106,11 @@ html(lang="fr")
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
-						var err = ['301', '400', '402', '100']
+						var err = ['301', '400', '402', '100', '101']
 						if(err.includes(GetURLParameter('err')))
 							document.write(GetErrorString(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
+						if(GetURLParameter('msg'))
+							document.write('Votre email a bien été confirmé.<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
 				block content
 		.footer
 			p

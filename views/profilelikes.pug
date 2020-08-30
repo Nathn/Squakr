@@ -139,7 +139,7 @@ block content
 					p
 						.edit_button
 							if user.lang == 'en'
-								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Confirm user')
+								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirm user')
 							else
 								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
 		.feed_section.single_content
