@@ -123,7 +123,7 @@ block content
 			if (((new Date() - new Date(reqUser.created)) / (1000 * 3600 * 24*365) > 1 ))
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-years-1.svg" width = "35" height = "35" title="Membre depuis 1 an")
 			if (reqUser.confirmed)
-				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-verified-1.svg" width = "35" height = "35" title="Confirmé par l'équipe de modération")
+				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-verified-1.svg" width = "35" height = "35" title="A confirmé son adresse email")
 			if user
 				if (reqUser._id.toString() == user._id.toString())
 					p
