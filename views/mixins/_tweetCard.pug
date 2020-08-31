@@ -18,6 +18,10 @@ mixin tweetCard(squak)
 				.inner
 					p.the_tweet(style="color: #000")
 						| !{squak.content || squak.tweet}
+						if (squak.image)
+							if (squak.tweet)
+								br
+							.squakimg(style=`background-image: url(${squak.image});`)
 
 			p.tweet_meta
 				if user

@@ -46,6 +46,10 @@ html(lang="fr")
 			function GetErrorString(err)
 			{
 			if(err == '100') return 'Squak non trouvé'
+			if(err == '101') return 'Votre lien de confirmation n\'est pas valide. Si votre lien est le bon, veuillez envoyer un email à contact@squakr.fr.'
+			if(err == '102') return 'Votre squak ne peut pas être vide'
+			if(err == '103') return 'L\'envoi de l\'image a échoué. Si le problème persiste, veuillez contacter un administatreur.'
+			if(err == '104') return 'L\'envoi deu squak a échoué. Si le problème persiste, veuillez contacter un administatreur.'
 			if(err == '200') return 'Le nom d\'utilisateur ne peut pas être vide'
 			if(err == '201') return 'Le nom d\'utilisateur ne peut pas contenir d\'espaces'
 			if(err == '202') return 'Le nom d\'utilisateur ne peut pas contenir de caractères spéciaux'
@@ -104,7 +108,7 @@ html(lang="fr")
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
 					script(type="text/javascript").
-						var err = ['301', '400', '402', '100']
+						var err = ['301', '400', '402', '100', '101', '102', '103', '104']
 						if(err.includes(GetURLParameter('err')))
 							document.write(GetErrorString(GetURLParameter('err')))
 				block content

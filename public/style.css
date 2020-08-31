@@ -420,6 +420,35 @@ textarea {
 	width: 100%;
 }
 
+.tweet_text {
+	position: relative;
+}
+
+.icon-user {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: 10px;
+	bottom: 50px;
+}
+
+
+.squakimg {
+	width: 350px;
+	height: 200px;
+	background-position: center;
+	/* Make the background image cover the area of the <div>, and clip the excess */
+	background-size: cover;
+	border-radius: 10px;
+	border: 1px solid #000;
+}
+
+.maxheight {
+	max-height: 400px;
+	overflow: auto;
+}
+
+
 
 /* Footer section  */
 .footer {

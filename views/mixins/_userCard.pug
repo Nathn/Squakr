@@ -5,7 +5,7 @@ mixin userCard(searchuser)
 				img(src=`${searchuser.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			p.author_name(style="display: inline;")
-				a(href=`/${searchuser.username}` style="text-decoration: none;")
+				a(href=`/${searchuser.username}` style="text-decoration: none;" title=`@${searchuser.username}`)
 					if (searchuser.verified)
 						strong(style="vertical-align:middle;") #{searchuser.name || searchuser.username}
 						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")

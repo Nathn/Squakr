@@ -80,7 +80,11 @@ block content
 			if reqUser.website
 				p
 					i.fa.fa-link &nbsp;
-					a(href=reqUser.website rel='no_follow' target='_blank' style="text-decoration: none; color: #1675db; font-weight: bold;")= reqUser.website
+					a(href=reqUser.website rel='no_follow' target='_blank' style="text-decoration: none; color: #1675db; font-weight: bold; word-break: break-all;")
+						if reqUser.website.length > 25
+							| #{reqUser.website.replace(/^https?\:\/\//i, "").substring(0, 25)}...
+						else
+							| #{reqUser.website.replace(/^https?\:\/\//i, "")}
 
 			if reqUser.moderator
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")

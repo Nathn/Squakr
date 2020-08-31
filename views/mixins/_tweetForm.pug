@@ -1,11 +1,22 @@
 mixin tweetForm()
-	form.tweet_card(action='/squak' method='POST')
+	form.tweet_card(action='/squak' method='POST' enctype='multipart/form-data')
 		.tweet_avatar
 			img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			if user.lang == 'en'
-				textarea(name='tweet' class='tweet_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='3' required)
+				.tweetform_textarea
+					textarea(name='tweet' class='tweet_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='3' )
+				.icon-user
+					label(for="upload")
+						i.fa.fa-image.icon-pic
+					input(type="file" name="image" style="display: none;" id="upload" accepts='image/png, image/jpeg' onchange="")
 			else
-				textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='3' required)
+				.tweetform_textarea
+					textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='3' )
+				.icon-user
+					label(for="upload")
+						i.fa.fa-image.icon-pic
+					input(type="file" name="image" style="display: none;" id="upload" accepts='image/png, image/jpeg' onchange="")
+
 			.tweet_button
 				input(type='submit' class='button tweet_button' value='Squak')

@@ -2,13 +2,15 @@ const Tweet = require('../models/Tweet');
 const User = require('../models/User');
 const Reply = require('../models/Reply');
 const moment = require('moment');
+const cloudinary = require('cloudinary').v2;
+const fileupload = require('express-fileupload');
 
 function html(str) {
 	var replacedText, replacePattern1, replacePattern2, replacePattern3, replacePattern4, replacePattern5;
 
 	//URLs starting with http://, https://, or ftp://
 	replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-	replacedText = str.replace(replacePattern1, '<a href="$1" target="_blank" style="text-decoration: none; color: #32567d;">$1</a>');
+	replacedText = str.replace(replacePattern1, `<a href="$1" target="_blank" style="text-decoration: none; color: #32567d;">$1</a>`);
 
 	//URLs starting with "www." (without // before it, or it'd re-link the ones done above).
 	replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
@@ -33,9 +35,15 @@ function html(str) {
 
 // Home page to list all tweets
 exports.postTweet = async (req, res) => {
+	backURL = req.header('Referer') || '/';
 	try {
+		if (req.imageurl) {
+			req.body.image = req.imageurl
+		} else if (!req.body.tweet) {
+			res.redirect(backURL + '?err=102')
+		}
 		req.body.author = req.user._id;
-		req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
+		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		const tweet = new Tweet(req.body);
 		await tweet.save();
 		res.redirect('back');
@@ -44,7 +52,27 @@ exports.postTweet = async (req, res) => {
 
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?msg=squak_failed')
+		res.redirect('/?err=104')
+	}
+}
+exports.uploadImage = async (req, res, next) => {
+	try {
+		if (req.files) {
+			const image = req.files.image;
+			if (image) {
+				await cloudinary.uploader.upload(image.tempFilePath, async function (err, result) {
+					var success = true
+					const imageurl = result.secure_url.toString()
+					req.imageurl = imageurl
+				})
+			}
+			next();
+		} else {
+			next();
+		}
+	} catch (e) {
+		console.log(e);
+		res.redirect('/?err=103')
 	}
 }
 
@@ -74,17 +102,7 @@ exports.postReply = async (req, res) => {
 
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?msg=squak_failed')
-	}
-}
-
-exports.gotoReply = async (req, res) => {
-	try {
-		id = req.params.id;
-		res.redirect('/squak/' + id);
-	} catch (e) {
-		console.log(e);
-		res.redirect('/?msg=redirect_failed')
+		res.redirect('/?err=104')
 	}
 }
 
