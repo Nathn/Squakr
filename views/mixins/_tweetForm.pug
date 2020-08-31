@@ -8,14 +8,14 @@ mixin tweetForm()
 					textarea(name='tweet' class='tweet_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='3' )
 				.icon-user
 					label(for="upload")
-						i.fa.fa-image.icon-pic
+						i.fa.fa-image.icon-pic(style="cursor: pointer;")
 					input(type="file" name="image" style="display: none;" id="upload" accepts='image/png, image/jpeg' onchange="")
 			else
 				.tweetform_textarea
 					textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='3' )
 				.icon-user
 					label(for="upload")
-						i.fa.fa-image.icon-pic
+						i.fa.fa-image.icon-pic(style="cursor: pointer;")
 					input(type="file" name="image" style="display: none;" id="upload" accepts='image/png, image/jpeg' onchange="")
 
 			.tweet_button
