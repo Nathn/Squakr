@@ -4,7 +4,7 @@ include mixins/_tweetCard
 block content
 	.double_wrap
 		.profile_section
-			img.profile_avatar(src=`${reqUser.avatar || '/uploads/no-avatar.jpg'}` style="max-height:240px; max-width:240px" height="240px" width="240px")
+			img.profile_avatar(src=`${reqUser.avatar || '/uploads/no-avatar.jpg'}` style="max-height:240px; max-width:240px")
 			if (reqUser.verified)
 				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
 					img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="30" height="30" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
@@ -155,7 +155,7 @@ block content
 				if (reqUser._id.toString() == user._id.toString())
 					+tweetForm()
 				else
-					div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
+					.profile_banner(style=`background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 				nav
 					a(href="") Squaks
 					a(href=`/${reqUser.username}/likes`) Likes
@@ -165,7 +165,7 @@ block content
 				each squak in tweets
 					+tweetCard(squak)
 			else
-				div(style=`width:800px;height: 161px; box-shadow: 0 0 8px 8px white inset; background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
+				.profile_banner(style=`background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 				nav
 					a(href="#") Squaks
 					a(href=`/${reqUser.username}/likes`) Likes
