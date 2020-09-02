@@ -4,7 +4,7 @@ mixin tweetCard(squak)
 			a(href=`/${squak.author.username}` name=`${squak._id}`)
 				img(src=`${squak.author.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
-			p.author_name(style="display: inline;")
+			.author_name(style="display: inline;")
 				a(href=`/${squak.author.username}` style="text-decoration: none;")
 					if (squak.author.verified)
 						strong(style="vertical-align:middle;") #{squak.author.name || squak.author.username}
@@ -16,14 +16,14 @@ mixin tweetCard(squak)
 			div.block
 				a.overlay(href=`/squak/${squak._id}`)
 				.inner
-					p.the_tweet(style="color: #000")
+					.the_tweet(style="color: #000")
 						| !{squak.content || squak.tweet}
 						if (squak.image)
 							if (squak.tweet)
 								br
 							.squakimg(style=`background-image: url(${squak.image});`)
 
-			p.tweet_meta
+			.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())

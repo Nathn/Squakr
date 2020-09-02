@@ -14,7 +14,7 @@ block content
 			.tweet_avatar(style="display: inline;")
 				a(href=`/${squak.author.username}`)
 					img(src=`${squak.author.avatar || '/uploads/no-avatar.jpg'}` width="100" height="100" style="vertical-align:middle; padding: 0px 0px 0px 0px;")
-			p.tweet_meta(style="display: inline; padding: 0px 0px 0px 10px;")
+			.tweet_meta(style="display: inline; padding: 0px 0px 0px 10px;")
 				a(href=`/${squak.author.username}`)
 					if (squak.author.verified)
 						strong #{squak.author.name || squak.author.username}

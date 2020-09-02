@@ -4,7 +4,7 @@ mixin userCard(searchuser)
 			a(href=`/${searchuser.username}`)
 				img(src=`${searchuser.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
-			p.author_name(style="display: inline;")
+			.author_name(style="display: inline;")
 				a(href=`/${searchuser.username}` style="text-decoration: none;" title=`@${searchuser.username}`)
 					if (searchuser.verified)
 						strong(style="vertical-align:middle;") #{searchuser.name || searchuser.username}
@@ -29,9 +29,9 @@ mixin userCard(searchuser)
 			div
 				a(href=`/${searchuser.username}` style="text-decoration: none; color: #000")
 					if searchuser.bio
-						p.the_bio #{searchuser.bio}
+						.the_bio #{searchuser.bio}
 					else
-						p.the_bio
+						.the_bio
 							if user && user.lang == 'en'
 								i This user didn't set a bio
 							else

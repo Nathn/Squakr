@@ -4,7 +4,7 @@ mixin replyCard(reply)
 			a(href=`/${reply.author.username}` name=`${reply._id}`)
 				img(src=`${reply.author.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
-			p.reply_author_name(style="display: inline;")
+			.reply_author_name(style="display: inline;")
 				a(href=`/${reply.author.username}` style="text-decoration: none;")
 					if (reply.author.verified)
 						strong(style="vertical-align:middle;") #{reply.author.name || reply.author.username}
@@ -16,14 +16,14 @@ mixin replyCard(reply)
 				//- div.block
 					//- a.overlay(href=`/reply/${reply._id}`)
 				.inner
-					p.the_reply(style="color: #000")
+					.the_reply(style="color: #000")
 						| !{reply.content || reply.reply}
 					if (reply.image)
-							if (reply.reply)
-								br
-							.maxheightreply
-								img(src=reply.image width="400px" height="100%" style="border-radius: 10px; border: 1px solid #000;" draggable="false")
-			p.tweet_meta
+						if (reply.reply)
+							br
+						.maxheightreply
+							img(src=reply.image width="400px" height="100%" style="border-radius: 10px; border: 1px solid #000;" draggable="false")
+			.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/replies/${reply._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())
