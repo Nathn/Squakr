@@ -40,6 +40,7 @@ exports.postTweet = async (req, res) => {
 		if (req.imageurl) {
 			req.body.image = req.imageurl
 		} else if (!req.body.tweet) {
+			console.log("?????????????????")
 			res.redirect(backURL + '?err=102')
 		}
 		req.body.author = req.user._id;
@@ -78,9 +79,14 @@ exports.uploadImage = async (req, res, next) => {
 
 exports.postReply = async (req, res) => {
 	try {
+		if (req.imageurl) {
+			req.body.image = req.imageurl
+		} else if (!req.body.reply) {
+			return res.redirect(backURL + '?err=102')
+		}
 		req.body.author = req.user._id;
 		req.body.squak = req.params.id;
-		req.body.content = html(req.body.reply)
+		if (req.body.reply != "") req.body.content = html(req.body.reply.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		const reply = new Reply(req.body);
 		Tweet.findByIdAndUpdate({
 				_id: req.params.id

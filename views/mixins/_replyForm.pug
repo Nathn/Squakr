@@ -1,14 +1,22 @@
 mixin replyForm(reqSquak)
-	form.tweet_card(action=`/api/tweets/${reqSquak._id}/reply` method='POST')
+	form.tweet_card(action=`/api/tweets/${reqSquak._id}/reply` method='POST' enctype='multipart/form-data')
 		.reply_avatar
 			img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			if user.lang == 'en'
-				textarea(name='reply' class='reply_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='1' required)
+				textarea(name='reply' class='reply_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='1')
+				.reply-icon-user
+					label(for="upload")
+						i.fa.fa-image.icon-pic(style="cursor: pointer;" width="15px" height="15px")
+					input(type="file" name="image" style="display: none;" id="upload" accepts='image/png, image/jpeg')
 				.reply_button
 					input(type='submit' class='button reply_button' value='Reply')
 			else
-				textarea(name='reply' class='reply_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='1' required)
+				textarea(name='reply' class='reply_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='1')
+				.reply-icon-user
+					label(for="upload")
+						i.fa.fa-image.icon-pic(style="cursor: pointer;")
+					input(type="file" name="image" style="display: none;" id="upload" accepts='image/png, image/jpeg')
 				.reply_button
 					input(type='submit' class='button reply_button' value='Répondre')
 

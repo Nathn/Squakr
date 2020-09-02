@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const replySchema = new mongoose.Schema({
 	reply: {
 		type: String,
-		required: true,
 		trim: true
 	},
 	created: {
@@ -27,6 +26,10 @@ const replySchema = new mongoose.Schema({
 	replies: {
 		type: Number,
 		default: 0
+	},
+	image: {
+		type: String,
+		trim: true
 	}
 
 });

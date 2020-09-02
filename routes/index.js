@@ -19,8 +19,10 @@ router.post('/api/tweets/:id/heart', userController.heartTweet)
 
 router.post('/api/replies/:id/heart', userController.heartReply)
 
-router.post('/api/tweets/:id/reply', tweetController.postReply)
-
+router.post('/api/tweets/:id/reply',
+	tweetController.uploadImage,
+	tweetController.postReply
+)
 
 router.get('/api/users/:id/verify', userController.verifyUser)
 

@@ -13,11 +13,16 @@ mixin replyCard(reply)
 						strong #{reply.author.name || reply.author.username}
 				a(href=`/${reply.author.username}` style="text-decoration: none; color: #333333")
 					span  @#{reply.author.username}
-			div.block
-				//- a.overlay(href=`/reply/${reply._id}`)
+				//- div.block
+					//- a.overlay(href=`/reply/${reply._id}`)
 				.inner
 					p.the_reply(style="color: #000")
 						| !{reply.content || reply.reply}
+					if (reply.image)
+							if (reply.reply)
+								br
+							.maxheightreply
+								img(src=reply.image width="400px" height="100%" style="border-radius: 10px; border: 1px solid #000;" draggable="false")
 			p.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/replies/${reply._id}/heart` style="display: inline;")
