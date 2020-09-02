@@ -1,8 +1,7 @@
 node_modules/
-public/uploads/*
 logs
+tmp
 *.log
 variables.env
 variables.env.now
-!public/uploads/no-avatar.jpg
 Procfile

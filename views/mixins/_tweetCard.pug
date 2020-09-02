@@ -8,7 +8,7 @@ mixin tweetCard(squak)
 				a(href=`/${squak.author.username}` style="text-decoration: none;")
 					if (squak.author.verified)
 						strong(style="vertical-align:middle;") #{squak.author.name || squak.author.username}
-						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
+						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{squak.author.name || squak.author.username}
 				a(href=`/${squak.author.username}` style="text-decoration: none; color: #333333")

@@ -8,7 +8,7 @@ mixin replyCard(reply)
 				a(href=`/${reply.author.username}` style="text-decoration: none;")
 					if (reply.author.verified)
 						strong(style="vertical-align:middle;") #{reply.author.name || reply.author.username}
-						img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
+						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{reply.author.name || reply.author.username}
 				a(href=`/${reply.author.username}` style="text-decoration: none; color: #333333")

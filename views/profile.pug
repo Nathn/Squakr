@@ -7,7 +7,7 @@ block content
 			img.profile_avatar(src=`${reqUser.avatar || '/uploads/no-avatar.jpg'}` style="max-height:240px; max-width:240px")
 			if (reqUser.verified)
 				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
-					img(src="https://i.postimg.cc/P5nK1x1t/Verified-Badge-svg.png" width="30" height="30" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
+					img(src="/uploads/c4ze18c.png" width="30" height="30" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
 			else
 				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
 			h4 @#{reqUser.username}
@@ -89,7 +89,7 @@ block content
 			if reqUser.moderator
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")
 			if (reqUser.developer)
-				img(src="https://i.postimg.cc/dV4jqpv6/badge-devlopement.png" width = "35" height = "35" title="A été d'une aide précieuse pendant\nle dévelopemment de Squakr. Merci !")
+				img(src="/uploads/dV4jqpv6.png" width = "35" height = "35" title="A été d'une aide précieuse pendant\nle dévelopemment de Squakr. Merci !")
 			if reqUser.avatar
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-meme-1.svg" width="35" height = "35" title="A ajouté un avatar à son profil")
 			if reqUser.banner
@@ -101,11 +101,11 @@ block content
 			if (tweets[0])
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-forum-1.svg" width="35" height = "35" title="A publié au moins un squak")
 			if (tweets[10])
-				img(src="https://i.postimg.cc/dth315yw/badge-forum-1.png" width = "44" title="A publié au moins 11 squaks")
+				img(src="/uploads/dth315yw.png" width = "44" title="A publié au moins 11 squaks")
 			if (likes[0])
-				img(src="https://i.postimg.cc/nzVvRMFH/badge-voting-1.png" width="35" height = "35" title="A liké au moins un squak")
+				img(src="/uploads/nzVvRMFH.png" width="35" height = "35" title="A liké au moins un squak")
 			if (likes[10])
-				img(src="https://i.postimg.cc/7brhRQ3g/badge-voting-11.png" width = "44" title="A liké au moins 11 squaks")
+				img(src="/uploads/7brhRQ3g.png" width = "44" title="A liké au moins 11 squaks")
 			if (reqUser.likes > 0)
 				img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-ranking-1a.svg" width="35" height = "35" title="A atteint 1 like sur ses squaks")
 			if (reqUser.likes > 9)
