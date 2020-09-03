@@ -41,8 +41,7 @@ exports.postTweet = async (req, res) => {
 			req.body.image = req.imageurl
 		} else if (!req.body.tweet) {
 			return res.redirect(backURL + '?err=102')
-		}
-		if (!req.body.tweet.replace(/\s/g, '').length) {
+		} else if (!req.body.tweet.replace(/\s/g, '').length) {
 			return res.redirect(backURL + '?err=102')
 		}
 		req.body.author = req.user._id;
@@ -85,10 +84,10 @@ exports.postReply = async (req, res) => {
 			req.body.image = req.imageurl
 		} else if (!req.body.reply) {
 			return res.redirect(backURL + '?err=102')
-		}
-		if (!req.body.reply.replace(/\s/g, '').length) {
+		} else if (!req.body.reply.replace(/\s/g, '').length) {
 			return res.redirect(backURL + '?err=102')
 		}
+
 		req.body.author = req.user._id;
 		req.body.squak = req.params.id;
 		if (req.body.reply != "") req.body.content = html(req.body.reply.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
