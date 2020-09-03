@@ -14,7 +14,7 @@ block content
 				label(for='email') Email adress :
 				input(type='email' name='email' value=user.email autocomplete='off')
 				label(for='website') Website :
-				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
+				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off' maxlength='256')
 				label(for='avatar') Profile picture :<br>
 				small Ideal size : 240x240
 				input(type='file' name='avatar' accepts='image/png, image/jpeg')
@@ -37,7 +37,7 @@ block content
 				label(for='email') Adresse email :
 				input(type='email' name='email' value=user.email autocomplete='off')
 				label(for='website') Site Web :
-				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off')
+				input(type='url' name='website' placeholder='https://' value=user.website autocomplete='off' maxlength='256')
 				label(for='avatar') Image de profil :<br>
 				small Taille idéale : 240x240
 				input(type='file' name='avatar' accepts='image/png, image/jpeg')
