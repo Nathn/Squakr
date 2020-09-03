@@ -40,8 +40,7 @@ exports.postTweet = async (req, res) => {
 		if (req.imageurl) {
 			req.body.image = req.imageurl
 		} else if (!req.body.tweet) {
-			console.log("?????????????????")
-			res.redirect(backURL + '?err=102')
+			return res.redirect(backURL + '?err=102')
 		}
 		req.body.author = req.user._id;
 		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
