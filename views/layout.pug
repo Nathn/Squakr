@@ -67,14 +67,36 @@ html(lang="fr")
 			if(err == '402') return 'Vous n\'avez pas assez de permissions pour supprimer ça.'
 			return;
 			}
-			// The function actually applying the offset
+			function GetErrorStringEn(err)
+			{
+			if(err == '100') return 'Squak not found'
+			if(err == '101') return 'Confirmation link not valid. If you are sure this is the right link, please send a message to contact@squakr.fr.'
+			if(err == '102') return 'Your squak cannot be blank'
+			if(err == '103') return 'Image upload failed. If the problem persists, please contact an administrator.'
+			if(err == '104') return 'Squak upload failed. If the problem persists, please contact an administrator.'
+			if(err == '200') return 'The username cannot be blank'
+			if(err == '201') return 'The usermane connot contain spaces'
+			if(err == '202') return 'The username can only contain letters, numbers and underscores'
+			if(err == '203') return 'The email cannot be blank'
+			if(err == '204') return 'The email is not valid'
+			if(err == '205') return 'The password cannot be blank'
+			if(err == '206') return 'The password confirmation cannot be blank'
+			if(err == '207') return 'The passwords don\'t match'
+			if(err == '208') return 'An user is already registered with this username'
+			if(err == '209') return 'An user is already registered with this email'
+			if(err == '300') return 'The connection failed, please retry'
+			if(err == '301') return 'You have to be logged in to do this'
+			if(err == '400') return 'The search query cannot be blank'
+			if(err == '402') return 'You don\'t have enough permissions to delete this.'
+			return;
+			}
+
+
 			function offsetAnchor() {
 			if(location.hash.length !== 0) {
 			window.scrollTo(window.scrollX, window.scrollY - 300);
 			}
 			}
-
-			// This will capture hash changes while on the page
 			window.addEventListener("hashchange", offsetAnchor);
 			window.setTimeout(offsetAnchor, 1);
 
@@ -108,13 +130,22 @@ html(lang="fr")
 						button.searchButton(type='submit')
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
-					script(type="text/javascript").
-						var err = ['301', '400', '402', '100', '101', '102', '103', '104']
-						var msg = ['200']
-						if(err.includes(GetURLParameter('err')))
-							document.write(GetErrorString(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
-						if(msg.includes(GetURLParameter('msg')))
-							document.write('Votre email a bien été confirmé.<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
+					if user && user.lang == 'en'
+						script(type="text/javascript").
+							var err = ['301', '400', '402', '100', '101', '102', '103', '104']
+							var msg = ['200']
+							if(err.includes(GetURLParameter('err')))
+								document.write(GetErrorStringEn(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Close</small></a>')
+							if(msg.includes(GetURLParameter('msg')))
+								document.write('Your email has been confirmed.<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Close</small></a>')
+					else
+						script(type="text/javascript").
+							var err = ['301', '400', '402', '100', '101', '102', '103', '104']
+							var msg = ['200']
+							if(err.includes(GetURLParameter('err')))
+								document.write(GetErrorString(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
+							if(msg.includes(GetURLParameter('msg')))
+								document.write('Votre email a bien été confirmé.<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
 				block content
 		.footer
 			p
