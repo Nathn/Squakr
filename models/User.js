@@ -55,6 +55,10 @@ const userSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	suggestions: {
+		type: Boolean,
+		default: true
+	},
 	lang: {
 		type: String,
 		default: 'fr'

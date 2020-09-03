@@ -1,0 +1,38 @@
+extends layout
+block content
+	.single_wrap
+		if user.lang == 'en'
+			nav
+				a(href="") General settings
+				a(href="/settings/account") Account settings
+				.animation.start-home
+			br
+			h2 Settings
+			form.form(action='/settings' method='POST' enctype='multipart/form-data')
+				label(for='lang') Language :
+				select(name='lang')
+					option(value='en') English
+					option(value='fr') Français
+				input(type='submit' class='button' value='Update')
+		else
+			nav
+				a(href="") Paramètres généraux
+				a(href="/settings/account") Paramètres de compte
+				.animation.start-home
+			br
+			h2 Paramètres
+			form.form(action='/settings' method='POST' enctype='multipart/form-data')
+				label(for='lang') Langue :
+				select(name='lang')
+					option(value='fr') Français
+					option(value='en') English
+				label(for='suggestions') Suggestions d'utilisateurs :
+				if user.suggestions
+					select(name='suggestions')
+						option(value='true') Activées
+						option(value='false') Désactivées
+				else
+					select(name='suggestions')
+						option(value='false') Désactivées
+						option(value='true') Activées
+				input(type='submit' class='button' value='Mettre à jour')

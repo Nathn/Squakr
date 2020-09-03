@@ -25,7 +25,8 @@ const tweetSchema = new mongoose.Schema({
 		default: 0
 	},
 	content: {
-		type: String
+		type: String,
+		trim: true
 	}
 
 });

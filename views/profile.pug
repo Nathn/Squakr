@@ -176,9 +176,9 @@ block content
 					p
 						.edit_button
 							if user.lang == 'en'
-								input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Edit your profile')
+								input(type="button" onclick="window.location.href = '/settings/account';" class='button edit_button' value='Edit your profile')
 							else
-								input(type="button" onclick="window.location.href = '/account';" class='button edit_button' value='Modifier vos informations')
+								input(type="button" onclick="window.location.href = '/settings/account';" class='button edit_button' value='Modifier vos informations')
 				if ((user.moderator) && !(reqUser.verified) && (reqUser._id.toString() != user._id.toString()))
 					p
 						.edit_button

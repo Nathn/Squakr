@@ -206,6 +206,16 @@ exports.accountPage = async (req, res) => {
 	})
 }
 
+exports.settingsPage = async (req, res) => {
+	const user = await User.findOne({
+		_id: req.user._id
+	});
+	res.render('settings', {
+		user
+	})
+}
+
+
 // Updating the account page POST
 exports.accountUpdate = async (req, res) => {
 	try {
@@ -213,8 +223,7 @@ exports.accountUpdate = async (req, res) => {
 			name: req.body.name,
 			email: req.body.email || req.user.email,
 			website: req.body.website,
-			bio: req.body.bio,
-			lang: req.body.lang
+			bio: req.body.bio
 		}
 
 		const user = await User.findOneAndUpdate({
@@ -228,6 +237,29 @@ exports.accountUpdate = async (req, res) => {
 		})
 
 		res.redirect(`/${req.user.username}`)
+	} catch (e) {
+		console.log(e);
+		res.redirect('back')
+	}
+}
+exports.settingsUpdate = async (req, res) => {
+	try {
+		const updates = {
+			lang: req.body.lang,
+			suggestions: req.body.suggestions
+		}
+
+		const user = await User.findOneAndUpdate({
+			_id: req.user._id
+		}, {
+			$set: updates
+		}, {
+			new: true,
+			runValidators: true,
+			context: 'query'
+		})
+
+		res.redirect(`/`)
 	} catch (e) {
 		console.log(e);
 		res.redirect('back')

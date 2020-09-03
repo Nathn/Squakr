@@ -8,7 +8,7 @@ mixin userCard(searchuser)
 				a(href=`/${searchuser.username}` style="text-decoration: none;" title=`@${searchuser.username}`)
 					if (searchuser.verified)
 						strong(style="vertical-align:middle;") #{searchuser.name || searchuser.username}
-						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
+						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié" )
 					else
 						strong #{searchuser.name || searchuser.username}
 				span

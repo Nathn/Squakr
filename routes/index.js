@@ -56,13 +56,20 @@ router.get('/logout', authController.logout);
 
 
 // Account page
-router.get('/account',
+router.get('/settings/account',
 	authController.isLoggedIn,
 	userController.accountPage);
+router.get('/settings',
+	authController.isLoggedIn,
+	userController.settingsPage);
 
-router.post('/account',
+router.post('/settings/account',
 	userController.upload,
 	userController.accountUpdate);
+
+router.post('/settings',
+	userController.upload,
+	userController.settingsUpdate);
 
 // Uploading a profile image
 router.post('/upload',

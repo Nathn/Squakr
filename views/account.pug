@@ -2,8 +2,13 @@ extends layout
 block content
 	.single_wrap
 		if user.lang == 'en'
+			nav
+				a(href="/settings") General settings
+				a(href="") Account settings
+				.animation.start-about
+			br
 			h2 Your account
-			form.form(action='/account' method='POST' enctype='multipart/form-data')
+			form.form(action='/settings/account' method='POST' enctype='multipart/form-data')
 				label(for='name') Name :
 				input(type='text' name='name' value=user.name autocomplete='off')
 				label(for='email') Email adress :
@@ -18,14 +23,15 @@ block content
 				input(type='file' name='banner' accepts='image/png, image/jpeg')
 				label(for='bio') About section :
 				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
-				label(for='lang') Language :
-				select(name='lang')
-					option(value='en') English
-					option(value='fr') Français
 				input(type='submit' class='button' value='Update')
 		else
+			nav
+				a(href="/settings") Paramètres généraux
+				a(href="") Paramètres de compte
+				.animation.start-about
+			br
 			h2 Votre compte
-			form.form(action='/account' method='POST' enctype='multipart/form-data')
+			form.form(action='/settings/account' method='POST' enctype='multipart/form-data')
 				label(for='name') Nom :
 				input(type='text' name='name' value=user.name autocomplete='off')
 				label(for='email') Adresse email :
@@ -40,9 +46,5 @@ block content
 				input(type='file' name='banner' accepts='image/png, image/jpeg')
 				label(for='bio') A propos de vous :
 				textarea(name='bio' rows='4' cols='50' maxlength='280')= user.bio
-				label(for='lang') Langue :
-				select(name='lang')
-					option(value='fr') Français
-					option(value='en') English
 				input(type='submit' class='button' value='Mettre à jour')
-				small Vous devrez peut être actualiser la page pour voir les changements apparaître.
+				small Vous devrez peut être actualiser la page pour voir certains changements apparaître.
