@@ -13,6 +13,15 @@ block content
 				select(name='lang')
 					option(value='en') English
 					option(value='fr') Français
+				label(for='suggestions') User suggestions :
+				if user.suggestions
+					select(name='suggestions')
+						option(value='true') Enabled
+						option(value='false') Disabled
+				else
+					select(name='suggestions')
+						option(value='false') Désactivées
+						option(value='true') Activées
 				input(type='submit' class='button' value='Update')
 		else
 			nav
