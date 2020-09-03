@@ -21,7 +21,8 @@ const replySchema = new mongoose.Schema({
 		default: 0
 	},
 	content: {
-		type: String
+		type: String,
+		trim: true
 	},
 	replies: {
 		type: Number,

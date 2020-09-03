@@ -42,6 +42,9 @@ exports.postTweet = async (req, res) => {
 		} else if (!req.body.tweet) {
 			return res.redirect(backURL + '?err=102')
 		}
+		if (!req.body.tweet.replace(/\s/g, '').length) {
+			return res.redirect(backURL + '?err=102')
+		}
 		req.body.author = req.user._id;
 		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		const tweet = new Tweet(req.body);
@@ -81,6 +84,9 @@ exports.postReply = async (req, res) => {
 		if (req.imageurl) {
 			req.body.image = req.imageurl
 		} else if (!req.body.reply) {
+			return res.redirect(backURL + '?err=102')
+		}
+		if (!req.body.reply.replace(/\s/g, '').length) {
 			return res.redirect(backURL + '?err=102')
 		}
 		req.body.author = req.user._id;
