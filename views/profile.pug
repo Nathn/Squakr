@@ -101,9 +101,9 @@ block content
 					img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-story-1.svg" width="35" height = "35" title="Added a bio to his profile")
 				if reqUser.website
 					img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-embed-1.svg" width="35" height = "35" title="Added a website to his profile")
-				if (tweets[0])
+				if (tweets[0] || pinned)
 					img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-forum-1.svg" width="35" height = "35" title="Posted at least one squak")
-				if (tweets[10])
+				if ((tweets[9] && pinned) || (tweets[10]))
 					img(src="/uploads/dth315yw.png" width = "44" title="Posted at least 11 squaks")
 				if (likes[0])
 					img(src="/uploads/nzVvRMFH.png" width="35" height = "35" title="Liked at least one squak")
@@ -144,9 +144,9 @@ block content
 					img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-story-1.svg" width="35" height = "35" title="A ajouté une biographie à son profil")
 				if reqUser.website
 					img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-author-embed-1.svg" width="35" height = "35" title="A ajouté un site web à son profil")
-				if (tweets[0])
+				if (tweets[0] || pinned)
 					img(src="https://www.writerranks.com/wp-content/uploads/2019/01/badge-forum-1.svg" width="35" height = "35" title="A publié au moins un squak")
-				if (tweets[10])
+				if ((tweets[9] && pinned) || (tweets[10]))
 					img(src="/uploads/dth315yw.png" width = "44" title="A publié au moins 11 squaks")
 				if (likes[0])
 					img(src="/uploads/nzVvRMFH.png" width="35" height = "35" title="A liké au moins un squak")
