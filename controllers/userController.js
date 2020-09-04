@@ -100,7 +100,10 @@ exports.profilePage = async (req, res) => {
 		if (reqUser) {
 			// Find all tweets by that user with the _id
 			const tweets = await Tweet.find({
-				author: reqUser._id
+				author: reqUser._id,
+				_id: {
+					$ne: reqUser.pinned
+				}
 			}).populate('author').sort({
 				created: 'desc'
 			});
