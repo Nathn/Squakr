@@ -75,7 +75,10 @@ block content
 			else
 				h4(style="font-size:14px") A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 			if reqUser.bio
-				.profile_bio(style="white-space: pre-line") #{reqUser.bio || ''}
+				.profile_bio(style="white-space: pre-line; font-weight: bold;")
+					| #{reqUser.bio}
+				if !reqUser.website
+					br
 			if reqUser.website
 				p
 					i.fa.fa-link &nbsp;
