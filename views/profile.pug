@@ -1,6 +1,7 @@
 extends layoutprofile
 include mixins/_tweetForm
 include mixins/_tweetCard
+include mixins/_pinnedCard
 block content
 	.double_wrap
 		.profile_section
@@ -77,6 +78,8 @@ block content
 			if reqUser.bio
 				.profile_bio(style="white-space: pre-line; font-weight: bold;")
 					| #{reqUser.bio}
+				if !reqUser.website
+					br
 			if reqUser.website
 				p
 					i.fa.fa-link &nbsp;
@@ -204,7 +207,9 @@ block content
 					a(href=`/${reqUser.username}/likes`) Likes
 					.animation.start-home
 				<br/>
-				//- - const items = [1,2,3,4,5,6,7,8,9]
+				if pinned
+					+pinnedCard(pinned)
+				br
 				each squak in tweets
 					+tweetCard(squak)
 			else
@@ -214,5 +219,8 @@ block content
 					a(href=`/${reqUser.username}/likes`) Likes
 					.animation.start-home
 				<br/>
+				if pinned
+					+pinnedCard(pinned)
+				br
 				each squak in tweets
 					+tweetCard(squak)

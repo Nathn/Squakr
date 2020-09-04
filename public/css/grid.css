@@ -84,7 +84,8 @@ body {
 
 
 /* Tweet card grid  */
-.tweet_card {
+.tweet_card,
+.pinned_card {
 	display: grid;
 	grid-template-columns: 60px auto;
 }

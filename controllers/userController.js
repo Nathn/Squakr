@@ -105,6 +105,10 @@ exports.profilePage = async (req, res) => {
 				created: 'desc'
 			});
 
+			const pinned = await Tweet.findOne({
+				_id: reqUser.pinned
+			}).populate('author');
+
 			const likes = await Tweet.find({
 				author: {
 					$ne: reqUser._id
@@ -124,7 +128,8 @@ exports.profilePage = async (req, res) => {
 				likes,
 				moment,
 				months,
-				enmonths
+				enmonths,
+				pinned
 			});
 			return;
 		} else {

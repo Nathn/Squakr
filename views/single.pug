@@ -32,6 +32,18 @@ block content
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							small  #{squak.likes.toString()}
+					if user.pinned
+						if (squak.author.equals(user._id))
+							form.pin(method='POST' action=`/pin/${squak._id}` style="display: inline;")
+								- const pinClass = squak.author.pinned.toString() == squak._id ? 'pinned' : ''
+								- const titlePin = squak.author.pinned.toString() == squak._id ? 'Épinglé' : 'Épingler au profil'
+								button(type='submit' name='pin' class=pinClass style="border:none; background: none; cursor: pointer; padding-top:5px" title=titlePin)
+									i.fa.fa-map-pin
+					else
+						if (squak.author.equals(user._id))
+							form.pin(method='POST' action=`/pin/${squak._id}` style="display: inline;")
+								button(type='submit' name='pin' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Épingler au profil")
+									i.fa.fa-map-pin
 				else
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")

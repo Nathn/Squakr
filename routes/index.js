@@ -86,6 +86,10 @@ router.get('/delete/:id',
 	authController.isLoggedIn,
 	tweetController.deleteTweet);
 
+router.post('/pin/:id',
+	authController.isLoggedIn,
+	tweetController.pinTweet);
+
 
 router.get('/:username/likes', userController.likesProfilePage);
 router.get('/:username/following', userController.followingProfilePage);

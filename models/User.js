@@ -70,7 +70,11 @@ const userSchema = new mongoose.Schema({
 	followers: [{
 		type: mongoose.Schema.ObjectId,
 		ref: 'User'
-	}]
+	}],
+	pinned: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'Tweet'
+	}
 
 });
 

@@ -328,9 +328,13 @@ textarea {
 
 /* Feed section  */
 .tweet_card {
-	/* border: 1px solid red; */
 	padding: 10px;
 	border-bottom: 1px solid #dddddd;
+}
+
+.pinned_card {
+	padding: 10px 10px 20px 10px;
+	border-bottom: 2px solid #2C2F33;
 }
 
 .tweet_card:last-child {
@@ -417,7 +421,8 @@ textarea {
 	}
 }
 
-.heart {
+.heart,
+.pin {
 	background-color: rgba(255, 255, 255, 0);
 	padding: 0;
 	border: none;
@@ -426,7 +431,8 @@ textarea {
 }
 
 
-.hearted {
+.hearted,
+.pinned {
 	color: red;
 }
 

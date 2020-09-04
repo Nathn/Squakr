@@ -174,6 +174,80 @@ exports.deleteTweet = async (req, res) => {
 
 }
 
+exports.pinTweet = async (req, res) => {
+	try {
+		backURL = req.header('Referer') || '/';
+
+		const squak = await Tweet.findOne({
+			_id: req.params.id
+		}).populate('author');
+
+		if (squak) {
+			if (squak.author.username != req.user.username) {
+				return res.redirect(`${backURL}?err=402`)
+			}
+		} else {
+			return res.redirect(`${backURL}?err=100`)
+		}
+		console.log(squak.author.pinned)
+		console.log(squak._id)
+		if (squak.author.pinned) {
+			if (squak.author.pinned.toString() == squak._id.toString()) {
+				User.findByIdAndUpdate({
+						_id: squak.author._id
+					}, {
+						$set: {
+							pinned: undefined
+						}
+					},
+					function (err, result) {
+						if (err) {
+							console.log(err);
+						} else {
+							console.log(result);
+						}
+					});
+			} else {
+				User.findByIdAndUpdate({
+						_id: squak.author._id
+					}, {
+						$set: {
+							pinned: squak._id.toString()
+						}
+					},
+					function (err, result) {
+						if (err) {
+							console.log(err);
+						} else {
+							console.log(result);
+						}
+					});
+			}
+		} else {
+			User.findByIdAndUpdate({
+					_id: squak.author._id
+				}, {
+					$set: {
+						pinned: squak._id.toString()
+					}
+				},
+				function (err, result) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log(result);
+					}
+				});
+		}
+		res.redirect('back')
+	} catch (e) {
+		console.log(e);
+		res.redirect(`${backURL}?err=402`)
+	}
+
+
+}
+
 // Getting a single Tweet
 exports.singleTweetPage = async (req, res) => {
 	try {
