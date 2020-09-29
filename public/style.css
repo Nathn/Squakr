@@ -729,9 +729,10 @@ a:nth-child(2):hover~.animation {
 
 
 .search {
-	width: 100%;
+	width: 1100px;
+	max-width: 100%;
+	margin: 0 auto;
 	z-index: 0;
-	padding-left: 21%;
 }
 
 @media (max-width : 1100px) {
