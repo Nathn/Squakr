@@ -74,7 +74,18 @@ const userSchema = new mongoose.Schema({
 	pinned: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'Tweet'
-	}
+	},
+	notifications: [{
+		txt: {
+			type: String
+		},
+		url: {
+			type: String
+		},
+		icon: {
+			type: String
+		}
+	}]
 
 });
 
