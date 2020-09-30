@@ -367,6 +367,7 @@ exports.registerUser = async (req, res, next) => {
 	try {
 		const user = new User({
 			username: req.body.username,
+			name: req.body.username.charAt(0).toUpperCase() + req.body.username.slice(1),
 			email: req.body.email,
 			lang: req.body.lang
 		});
