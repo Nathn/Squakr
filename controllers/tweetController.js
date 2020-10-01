@@ -37,7 +37,9 @@ function html(str) {
 exports.postTweet = async (req, res) => {
 	backURL = req.header('Referer') || '/';
 	try {
-		if (req.imageurl) {
+		if (req.videourl) {
+			req.body.video = req.videourl
+		} else if (req.imageurl) {
 			req.body.image = req.imageurl
 		} else if (!req.body.tweet) {
 			return res.redirect(backURL + '?err=102')
@@ -61,12 +63,35 @@ exports.uploadImage = async (req, res, next) => {
 	try {
 		if (req.files) {
 			const image = req.files.image;
-			if (image) {
-				await cloudinary.uploader.upload(image.tempFilePath, async function (err, result) {
-					var success = true
-					const imageurl = result.secure_url.toString()
-					req.imageurl = imageurl
-				})
+			const video = req.files.video;
+			if (video) {
+				try {
+					await cloudinary.uploader.upload(video.tempFilePath, {
+							resource_type: "video",
+						},
+						function (error, result) {
+							console.log(result, error)
+							if (result) {
+								var success = true
+								const videourl = result.secure_url.toString()
+								req.videourl = videourl
+							}
+						});
+				} catch (e) {
+					console.log(e);
+					res.redirect('/?err=105')
+				}
+			} else if (image) {
+				try {
+					await cloudinary.uploader.upload(image.tempFilePath, async function (err, result) {
+						var success = true
+						const imageurl = result.secure_url.toString()
+						req.imageurl = imageurl
+					})
+				} catch (e) {
+					console.log(e);
+					res.redirect('/?err=103')
+				}
 			}
 			next();
 		} else {
@@ -74,13 +99,16 @@ exports.uploadImage = async (req, res, next) => {
 		}
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?err=103')
+		res.redirect('/?err=104')
 	}
 }
 
+
 exports.postReply = async (req, res) => {
 	try {
-		if (req.imageurl) {
+		if (req.videourl) {
+			req.body.video = req.videourl
+		} else if (req.imageurl) {
 			req.body.image = req.imageurl
 		} else if (!req.body.reply) {
 			return res.redirect(backURL + '?err=102')

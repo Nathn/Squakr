@@ -16,6 +16,10 @@ const tweetSchema = new mongoose.Schema({
 		type: String,
 		trim: true
 	},
+	video: {
+		type: String,
+		trim: true
+	},
 	likes: {
 		type: Number,
 		default: 0

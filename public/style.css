@@ -491,6 +491,34 @@ textarea {
 	opacity: 0.9;
 }
 
+.reply-icon-user-2 {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: 40px;
+	bottom: 40px;
+	opacity: 0.9;
+}
+
+.video-mask {
+	width: 350px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.video-mask-single {
+	width: 70%;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.video-mask-reply {
+	width: 300px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+
 
 .squakimg {
 	width: 350px;

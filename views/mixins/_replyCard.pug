@@ -23,6 +23,10 @@ mixin replyCard(reply)
 							br
 						.maxheightreply
 							img(src=reply.image width="400px" height="100%" style="border-radius: 10px; border: 1px solid #000;" draggable="false")
+					if (squak.video)
+						.video-mask-reply
+							video(controls crossorigin playsinline width="300")
+								source(src=`${squak.video}` type="video/mp4")
 			.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/replies/${reply._id}/heart` style="display: inline;")
