@@ -135,7 +135,7 @@ html(lang="fr")
 				h4(style="color: white; text-align: center;")
 					if user && user.lang == 'en'
 						script(type="text/javascript").
-							var err = ['301', '400', '402', '100', '101', '102', '103', '104']
+							var err = ['301', '400', '402', '100', '101', '102', '103', '104', '105']
 							var msg = ['200']
 							if(err.includes(GetURLParameter('err')))
 								document.write(GetErrorStringEn(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Close</small></a>')
@@ -143,7 +143,7 @@ html(lang="fr")
 								document.write('Your email has been confirmed.<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Close</small></a>')
 					else
 						script(type="text/javascript").
-							var err = ['301', '400', '402', '100', '101', '102', '103', '104']
+							var err = ['301', '400', '402', '100', '101', '102', '103', '104', '105']
 							var msg = ['200']
 							if(err.includes(GetURLParameter('err')))
 								document.write(GetErrorString(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
