@@ -31,6 +31,10 @@ const replySchema = new mongoose.Schema({
 	image: {
 		type: String,
 		trim: true
+	},
+	video: {
+		type: String,
+		trim: true
 	}
 
 });
