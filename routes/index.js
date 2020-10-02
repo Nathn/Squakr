@@ -5,6 +5,7 @@ const appController = require('../controllers/appController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const tweetController = require('../controllers/tweetController');
+const APIController = require('../controllers/APIController');
 
 // Index page
 router.get('/', appController.indexPage);
@@ -95,6 +96,7 @@ router.post('/pin/:id',
 router.get('/:username/likes', userController.likesProfilePage);
 router.get('/:username/following', userController.followingProfilePage);
 router.get('/:username/followers', userController.followersProfilePage);
+router.get('/:username/json', APIController.ProfilePage);
 
 
 // Profile Page at the end because :username

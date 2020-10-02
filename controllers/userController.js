@@ -204,6 +204,7 @@ exports.likesProfilePage = async (req, res) => {
 
 
 
+
 // Getting the account page
 exports.accountPage = async (req, res) => {
 	const user = await User.findOne({
