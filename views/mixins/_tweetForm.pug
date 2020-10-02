@@ -1,7 +1,8 @@
 mixin tweetForm()
 	form.tweet_card(action='/squak' method='POST' enctype='multipart/form-data')
 		.tweet_avatar
-			img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
+			a(href=`/${user.username}`)
+				img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			if user.lang == 'en'
 				.tweetform_textarea

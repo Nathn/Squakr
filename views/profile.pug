@@ -196,6 +196,19 @@ block content
 								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirm user')
 							else
 								input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
+				if user.devmode
+					p
+						.edit_button
+							if user.lang == 'en'
+								input(type="button" onclick=`window.location.href = '/${reqUser.username}/json';` class='button edit_button' value='Access JSON data')
+								br
+								br
+								input(type="button" onclick=`window.location.href = '/id/${reqUser._id}';` class='button edit_button' value='Copy ID')
+							else
+								input(type="button" onclick=`window.location.href = '/${reqUser.username}/json';` class='button edit_button' value='Accéder aux données JSON')
+								br
+								br
+								input(type="button" onclick=`window.location.href = '/id/${reqUser._id}';` class='button edit_button' value='Copier l\'identifiant')
 		.feed_section.single_content
 			if user
 				if (reqUser._id.toString() == user._id.toString())

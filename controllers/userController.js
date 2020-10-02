@@ -1,6 +1,7 @@
 // Importing the model for use on this controller
 const User = require('../models/User');
 const Tweet = require('../models/Tweet');
+const Reply = require('../models/Reply');
 const promisify = require('es6-promisify');
 const moment = require('moment');
 const multer = require('multer');
@@ -8,8 +9,7 @@ const jimp = require('jimp');
 const uuid = require('uuid');
 const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
-const Reply = require('../models/Reply');
-
+const clipboardy = require('clipboardy');
 
 
 require('dotenv').config({
@@ -255,7 +255,8 @@ exports.settingsUpdate = async (req, res) => {
 	try {
 		const updates = {
 			lang: req.body.lang,
-			suggestions: req.body.suggestions
+			suggestions: req.body.suggestions,
+			devmode: req.body.devmode
 		}
 
 		const user = await User.findOneAndUpdate({
@@ -676,6 +677,28 @@ exports.confirmUser = async (req, res) => {
 		res.redirect(`/?msg=200`)
 	} else {
 		res.redirect(`/?err=101`)
+	}
+}
+
+exports.copyID = async (req, res) => {
+	backURL = req.header('Referer') || '/';
+	const user = await User.findOne({
+		_id: req.params.id
+	});
+	if (user) {
+		clipboardy.writeSync(user._id.toString());
+		return res.redirect(backURL + '?msg=201')
+	} else {
+		const squak = await Tweet.findOne({
+			_id: req.params.id
+		});
+		if (squak) {
+			clipboardy.writeSync(squak._id.toString());
+			return res.redirect(backURL + '?msg=201')
+		} else {
+			return res.redirect(`back`)
+		}
+		return res.redirect(`back`)
 	}
 }
 

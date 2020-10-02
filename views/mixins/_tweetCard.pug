@@ -42,7 +42,7 @@ mixin tweetCard(squak)
 							i.fa.fa-heart
 							small  #{squak.likes.toString()}
 				form.heart(method='POST' action=`/squak/${squak._id}` style="display: inline;")
-					button(type='submit' name='reply' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px")
+					button(type='submit' name='reply' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px;")
 						i.fa.fa-comment
 						small  #{squak.replies.toString()}
 				span

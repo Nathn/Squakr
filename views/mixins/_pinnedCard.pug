@@ -17,7 +17,8 @@ mixin pinnedCard(squak)
 				a(href=`/${squak.author.username}` style="text-decoration: none; color: #333333")
 					span  @#{squak.author.username}
 			div.block
-				a.overlay(href=`/squak/${squak._id}`)
+				unless (squak.video && !squak.tweet)
+					a.overlay(href=`/squak/${squak._id}`)
 				.inner
 					.the_tweet(style="color: #000")
 						| !{squak.content || squak.tweet}
@@ -25,6 +26,10 @@ mixin pinnedCard(squak)
 							if (squak.tweet)
 								br
 							.squakimg(style=`background-image: url(${squak.image});`)
+			if (squak.video)
+				.video-mask
+					video(controls crossorigin playsinline width="350")
+						source(src=`${squak.video}` type="video/mp4")
 
 			.tweet_meta
 				if user

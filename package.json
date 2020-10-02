@@ -6,6 +6,7 @@
 	"dependencies": {
 		"aws-sdk": "2.x",
 		"body-parser": "^1.18.3",
+		"clipboardy": "^2.3.0",
 		"cloudinary": "^1.23.0",
 		"discord.js": "^12.2.0",
 		"dotenv": "^5.0.1",

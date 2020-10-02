@@ -92,6 +92,19 @@ html(lang="fr")
 			if(err == '402') return 'You don\'t have enough permissions to do this.'
 			return;
 			}
+			function GetMsgString(msg)
+			{
+			if(msg == '200') return 'Votre email a bien été confirmé.'
+			if(msg == '201') return 'L\'ID a été copié.'
+			return;
+			}
+			function GetMsgStringEn(msg)
+			{
+			if(msg == '200') return 'The email has been confirmed.'
+			if(msg == '201') return 'The ID has been copied.'
+			return;
+			}
+
 			// The function actually applying the offset
 			function offsetAnchor() {
 			if(location.hash.length !== 0) {
@@ -136,19 +149,19 @@ html(lang="fr")
 					if user && user.lang == 'en'
 						script(type="text/javascript").
 							var err = ['301', '400', '402', '100', '101', '102', '103', '104', '105']
-							var msg = ['200']
+							var msg = ['200','201']
 							if(err.includes(GetURLParameter('err')))
-								document.write(GetErrorStringEn(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Close</small></a>')
+								document.write(GetErrorStringEn(GetURLParameter('err')))
 							if(msg.includes(GetURLParameter('msg')))
-								document.write('Your email has been confirmed.<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Close</small></a>')
+								document.write(GetMsgStringEn(GetURLParameter('msg')))
 					else
 						script(type="text/javascript").
 							var err = ['301', '400', '402', '100', '101', '102', '103', '104', '105']
-							var msg = ['200']
+							var msg = ['200','201']
 							if(err.includes(GetURLParameter('err')))
-								document.write(GetErrorString(GetURLParameter('err')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
+								document.write(GetErrorString(GetURLParameter('err')))
 							if(msg.includes(GetURLParameter('msg')))
-								document.write('Votre email a bien été confirmé.<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
+								document.write(GetMsgString(GetURLParameter('msg')))
 				block content
 		.footer
 			p

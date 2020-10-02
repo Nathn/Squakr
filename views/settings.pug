@@ -20,8 +20,17 @@ block content
 						option(value='false') Disabled
 				else
 					select(name='suggestions')
-						option(value='false') Désactivées
-						option(value='true') Activées
+						option(value='false') Disabled
+						option(value='true') Enabled
+				label(for='devmode') Developer mode :
+				if user.devmode
+					select(name='devmode')
+						option(value='true') Enabled
+						option(value='false') Disabled
+				else
+					select(name='devmode')
+						option(value='false') Disabled
+						option(value='true') Enabled
 				input(type='submit' class='button' value='Update')
 		else
 			nav
@@ -44,4 +53,13 @@ block content
 					select(name='suggestions')
 						option(value='false') Désactivées
 						option(value='true') Activées
+				label(for='devmode') Mode développeur :
+				if user.devmode
+					select(name='devmode')
+						option(value='true') Activé
+						option(value='false') Désactivé
+				else
+					select(name='devmode')
+						option(value='false') Désactivé
+						option(value='true') Activé
 				input(type='submit' class='button' value='Mettre à jour')

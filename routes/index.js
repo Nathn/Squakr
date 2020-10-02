@@ -90,6 +90,7 @@ router.post('/pin/:id',
 router.get('/:username/likes', userController.likesProfilePage);
 router.get('/:username/following', userController.followingProfilePage);
 router.get('/:username/followers', userController.followersProfilePage);
+router.get('/id/:id', userController.copyID);
 router.get('/:username/json', APIController.ProfilePage);
 
 
