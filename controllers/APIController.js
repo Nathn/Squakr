@@ -73,3 +73,39 @@ exports.ProfilePage = async (req, res) => {
 		res.redirect('/')
 	}
 }
+
+
+exports.SquakPage = async (req, res) => {
+	try {
+		const squak = await Tweet.findOne({
+			_id: req.params.id
+		}).populate('author');
+
+		const replies = await Reply.find({
+			squak: req.params.id
+		}).populate('author');
+
+		if (!squak) {
+			res.json({
+				id: null
+			});
+		}
+
+		// Display the JSON page
+		res.json({
+			id: squak._id,
+			author_id: squak.author._id,
+			author_username: squak.author.username,
+			text: squak.tweet,
+			image: squak.image,
+			video: squak.video,
+			likes: squak.likes,
+			replies: squak.replies,
+			creationdate: squak.created
+		});
+		return;
+	} catch (e) {
+		console.log(e);
+		res.redirect('/')
+	}
+}

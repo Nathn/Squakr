@@ -12,24 +12,18 @@ router.get('/', appController.indexPage);
 
 // Single tweet page
 router.get('/squak/:id', tweetController.singleTweetPage);
+router.get('/squak/:id/json', APIController.SquakPage);
 router.post('/squak/:id', tweetController.singleTweetPage);
 // router.get('/reply/:id', tweetController.singleReplyPage);
 
-// API
-////////////////////////////////
 router.post('/api/tweets/:id/heart', userController.heartTweet)
-
 router.post('/api/replies/:id/heart', userController.heartReply)
-
 router.post('/api/tweets/:id/reply',
 	tweetController.uploadImage,
 	tweetController.postReply
 )
-
 router.get('/api/users/:id/verify', userController.verifyUser)
-
 router.get('/api/users/:id/confirm', userController.confirmUser)
-
 router.get('/api/users/:id/follow', userController.followUser)
 
 // Registration page
