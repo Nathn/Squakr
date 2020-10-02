@@ -1,7 +1,8 @@
 mixin replyForm(reqSquak)
 	form.tweet_card(action=`/api/tweets/${reqSquak._id}/reply` method='POST' enctype='multipart/form-data')
 		.reply_avatar
-			img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
+			a(href=`/${user.username}`)
+				img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			if user.lang == 'en'
 				textarea(name='reply' class='reply_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='1')
