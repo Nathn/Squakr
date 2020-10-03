@@ -77,12 +77,17 @@ exports.ProfilePage = async (req, res) => {
 
 exports.SquakPage = async (req, res) => {
 	try {
+		if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+			res.json({
+				id: null
+			});
+		}
 		const squak = await Tweet.findOne({
-			_id: req.params.id
+			_id: req.params.id.toString()
 		}).populate('author');
 
 		const replies = await Reply.find({
-			squak: req.params.id
+			squak: req.params.id.toString()
 		}).populate('author');
 
 		if (!squak) {
