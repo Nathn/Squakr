@@ -86,8 +86,13 @@ const userSchema = new mongoose.Schema({
 		url: {
 			type: String
 		},
-		icon: {
-			type: String
+		author: {
+			type: mongoose.Schema.ObjectId,
+			ref: 'User'
+		},
+		date: {
+			type: Date,
+			default: Date.now
 		}
 	}]
 
