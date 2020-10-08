@@ -135,6 +135,28 @@ exports.postReply = async (req, res) => {
 				}
 			});
 		await reply.save();
+		originalsquak = await Tweet.findById({
+			_id: req.params.id
+		}).populate('author');
+		await User.findByIdAndUpdate({
+				_id: originalsquak.author._id
+			}, {
+				$addToSet: {
+					notifications: {
+						txt: `a répondu à votre squak`,
+						txten: `replied to your squak`,
+						url: `/squak/${originalsquak._id}`,
+						author: req.user._id
+					}
+				}
+			},
+			function (err, result) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log(result);
+				}
+			});
 		res.redirect('back');
 
 

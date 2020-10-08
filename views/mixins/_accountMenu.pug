@@ -1,8 +1,10 @@
 mixin accountMenu()
 	.notification
-		i.fa.fa-bell(style="font-size: 22px;")
-		.counter
-			| 3
+		a(href="/notifications")
+			i.fa.fa-bell(style="font-size: 22px;")
+			unless user.notifications.length < 1
+				.counter
+					| #{user.notifications.length}
 	a(href=`/${user.username}` class='nav_link') #{(user.name || user.username)}
 	.dropdown
 		.dropbtn

@@ -2,6 +2,9 @@ const Tweet = require('../models/Tweet');
 const User = require('../models/User');
 const Reply = require('../models/Reply');
 const moment = require('moment');
+const {
+	findById
+} = require('../models/User');
 moment.locale('fr')
 
 // The default controller for this app
@@ -76,4 +79,25 @@ exports.indexPage = async (req, res) => {
 		res.redirect('/error')
 	}
 
+}
+
+exports.notificationsPage = async (req, res) => {
+	if (!req.user) return res.redirect('/login')
+	var user = await User.findOne({
+		_id: req.user._id
+	}).populate('notifications.author').sort({
+		'notifications.date': 'desc'
+	});
+	const notifications = user.notifications
+	await User.findByIdAndUpdate({
+		_id: req.user._id
+	}, {
+		$set: {
+			notifications: []
+		}
+	});
+	res.render('notifications', {
+		notifications,
+		moment
+	});
 }

@@ -83,6 +83,9 @@ const userSchema = new mongoose.Schema({
 		txt: {
 			type: String
 		},
+		txten: {
+			type: String
+		},
 		url: {
 			type: String
 		},

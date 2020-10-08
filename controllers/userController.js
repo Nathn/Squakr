@@ -549,6 +549,14 @@ exports.heartTweet = async (req, res) => {
 				}, {
 					$inc: {
 						likes: 1
+					},
+					$addToSet: {
+						notifications: {
+							txt: `a aimé votre squak.`,
+							txten: `liked your squak.`,
+							url: `/squak/${req.params.id}`,
+							author: req.user._id
+						}
 					}
 				},
 				function (err, result) {
@@ -635,6 +643,14 @@ exports.heartReply = async (req, res) => {
 				}, {
 					$inc: {
 						likes: 1
+					},
+					$addToSet: {
+						notifications: {
+							txt: `a aimé votre réponse.`,
+							txten: `liked your reply.`,
+							url: `/squak/${reply.squak._id}`,
+							author: req.user._id
+						}
 					}
 				},
 				function (err, result) {
@@ -659,6 +675,14 @@ exports.verifyUser = async (req, res) => {
 		req.params.id, {
 			'$set': {
 				verified: true
+			},
+			$addToSet: {
+				notifications: {
+					txt: `a certifié votre compte !`,
+					txten: `certified your account !.`,
+					url: ``,
+					author: req.user._id
+				}
 			}
 		}
 	);
@@ -720,7 +744,13 @@ exports.followUser = async (req, res) => {
 	const fuser = await User.findByIdAndUpdate(
 		req.params.id, {
 			[operator]: {
-				followers: req.user._id
+				followers: req.user._id,
+				notifications: {
+					txt: `vous suit.`,
+					txten: `follows your account.`,
+					url: `/${req.user.username}`,
+					author: req.user._id
+				}
 			}
 		}, {
 			new: true

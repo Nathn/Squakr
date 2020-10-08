@@ -36,6 +36,8 @@ router.get('/cgu', userController.cguPage);
 
 router.get('/search', userController.searchPage);
 
+router.get('/notifications', appController.notificationsPage);
+
 // Registration POST request
 router.post('/register',
 	userController.verifyRegister,

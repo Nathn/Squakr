@@ -1,0 +1,29 @@
+mixin notificationCard(notification)
+	.tweet_card.tweet_hover
+		.tweet_avatar
+			a(href=`/${notification.author.username}`)
+				img(src=`${notification.author.avatar || '/uploads/no-avatar.jpg'}`)
+		.tweet_text
+			.author_name(style="display: inline;")
+				a(href=`/${notification.author.username}` style="text-decoration: none;" title=`@${notification.author.username}`)
+					if (notification.author.verified)
+						strong(style="vertical-align:middle;") #{notification.author.name || notification.author.username}
+						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié" )
+					else
+						strong #{notification.author.name || notification.author.username}
+				span
+					a(href=`/${notification.author.username}` style="text-decoration: none; color: #000; padding-left:5px;") @#{notification.author.username}
+			div
+				a(href=`${notification.url || '/'}` style="text-decoration: none; color: #000")
+					if notification.txt
+						b
+							if user && user.lang == 'en'
+								.the_bio #{notification.txten}
+							else
+								.the_bio #{notification.txt}
+					else
+						.the_bio
+							if user && user.lang == 'en'
+								i Unknown notification error.
+							else
+								i Notification d'origine inconnue.
