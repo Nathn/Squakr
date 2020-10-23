@@ -32,6 +32,16 @@ function html(str) {
 	return content
 }
 
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
 
 // Home page to list all tweets
 exports.postTweet = async (req, res) => {
@@ -48,6 +58,21 @@ exports.postTweet = async (req, res) => {
 		}
 		req.body.author = req.user._id;
 		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
+		var unique = false
+		while (unique == false){
+			randomid = makeid(7)
+			test = await Tweet.findOne({
+					shortid: randomid
+				})
+			console.log(randomid)
+			console.log(test)
+			if (test == null) {
+				unique = true
+			}
+		}
+		req.body.shortid = randomid
+
+		req.body.shortid
 		const tweet = new Tweet(req.body);
 		await tweet.save();
 		res.redirect('back');
@@ -302,16 +327,28 @@ exports.pinTweet = async (req, res) => {
 exports.singleTweetPage = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
-		const squak = await Tweet.findOne({
-			_id: req.params.id
+		var squak = await Tweet.findOne({
+			shortid: req.params.id.toString()
 		}).populate('author');
 
-		const replies = await Reply.find({
-			squak: req.params.id
-		}).populate('author');
-
-		if (!squak) {
-			res.redirect(`${backURL}?err=100`)
+		if (squak == null) {
+			var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
+			if (!checkForHexRegExp.test(req.params.id)) {
+				return res.redirect(`${backURL}?err=100`)
+			}
+			var squak = await Tweet.findOne({
+				_id: req.params.id
+			}).populate('author');
+			var replies = await Reply.find({
+				squak: req.params.id
+			}).populate('author');
+			if (squak == null) {
+				return res.redirect(`${backURL}?err=100`)
+			}
+		} else {
+			var replies = await Reply.find({
+				squak: squak._id
+			}).populate('author');
 		}
 
 		res.render('single', {

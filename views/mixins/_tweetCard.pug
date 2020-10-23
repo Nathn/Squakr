@@ -15,7 +15,7 @@ mixin tweetCard(squak)
 					span  @#{squak.author.username}
 			div.block
 				unless (squak.video && !squak.tweet)
-					a.overlay(href=`/squak/${squak._id}`)
+					a.overlay(href=`/squak/${squak.shortid || squak._id}`)
 				.inner
 					.the_tweet(style="color: #000")
 						| !{squak.content || squak.tweet}

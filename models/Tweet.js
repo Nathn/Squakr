@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 const tweetSchema = new mongoose.Schema({
+	shortid: {
+		type: String,
+		trim: true,
+		required: true,
+		unique: true,
+	},
 	tweet: {
 		type: String,
 		trim: true
