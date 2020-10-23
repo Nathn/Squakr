@@ -18,10 +18,7 @@ exports.ProfilePage = async (req, res) => {
 		if (reqUser) {
 			// Find all tweets by that user with the _id
 			const squaks = await Tweet.find({
-				author: reqUser._id,
-				_id: {
-					$ne: reqUser.pinned
-				}
+				author: reqUser._id
 			}).populate('author').sort({
 				created: 'desc'
 			});
@@ -99,6 +96,7 @@ exports.SquakPage = async (req, res) => {
 		// Display the JSON page
 		res.json({
 			id: squak._id,
+			short_id: squak.shortid,
 			author_id: squak.author._id,
 			author_username: squak.author.username,
 			text: squak.tweet,
