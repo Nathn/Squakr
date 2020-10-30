@@ -12,17 +12,19 @@ block content
 				h3 Voici les derniers Squaks envoyés :
 		//- - const items = [1,2,3,4,5,6,7,8,9]
 		if !squaks[0]
-			if user.lang == 'en'
-				h2 Your feed is empty.
-				h3 🠗 Follow a few people to complete it !
-			else
-				h2 Votre fil d'actualité est vide.
-				h3 Suivez quelques utilisateurs pour le compléter !
+			.feedtext
+				if user.lang == 'en'
+					h2 Your feed is empty.
+					h3 🠗 Follow a few people to complete it !
+				else
+					h2 Votre fil d'actualité est vide.
+					h3 🠗 Suivez quelques utilisateurs pour le compléter !
 		if user && user.suggestions
-			if user.lang == 'en'
-				h3 Recommended profiles :
-			else
-				h3 Profils recommandés :
+			.feedtext
+				if user.lang == 'en'
+					h3 Recommended profiles :
+				else
+					h3 Profils recommandés :
 			each profile in profiles
 				+userCard(profile)
 			br

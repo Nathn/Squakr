@@ -426,6 +426,10 @@ textarea {
 	font-family: InterBold;
 }
 
+.feedtext {
+	font-family: InterBold;
+}
+
 @media (max-width : 460px) {
 	.welcome {
 		font-size: 15px;
