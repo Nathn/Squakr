@@ -422,13 +422,11 @@ textarea {
 	margin: 5px 0;
 }
 
-.welcome {
-	font-family: InterBold;
-}
-
+.welcome,
 .feedtext {
 	font-family: InterBold;
 }
+
 
 @media (max-width : 460px) {
 	.welcome {
@@ -559,7 +557,7 @@ textarea {
 
 
 .maxheight {
-	max-height: 400px;
+	max-height: 405px;
 	overflow: auto;
 }
 
