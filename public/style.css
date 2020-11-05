@@ -172,26 +172,20 @@ textarea {
 	max-height: 60px;
 	color: #2C2F33;
 	z-index: 20;
-	/* overflow: auto; */
 	position: fixed;
 	/* Set the navbar to fixed position */
 	top: 0;
 	/* Position the navbar at the top of the page */
 	width: 100%;
-	/* Full width */
-	/* box-shadow: 0 10px 10px rgba(21, 77, 75, 0.36); */
+	max-width: 100%;
 }
 
 .site_title {
-	margin: 0px 0px;
-	color: 2C2F33;
-
-}
-
-.site_title img {
+	margin: 10px 0px;
+	color: #2C2F33;
 	position: relative;
-	height: 60px;
-	width: 190px;
+	display: inline-block;
+	font-size: 32px;
 }
 
 @media (max-width : 460px) {
@@ -201,13 +195,28 @@ textarea {
 	}
 }
 
+.site_title img {
+	position: relative;
+	height: 60px;
+	width: 190px;
+}
+
+@media (max-width : 1100px) {
+	.site_title {
+		margin: 10px 5px;
+		color: #2C2F33;
+		position: relative;
+		display: inline-block;
+	}
+}
+
 
 .site_title a {
 	color: #2C2F33;
 	text-decoration: none;
 }
 
-#n4vigation {
+#navigation_bar {
 	text-align: right;
 	float: right;
 	color: #2C2F33;

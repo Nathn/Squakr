@@ -120,11 +120,10 @@ html(lang="fr")
 	body
 		.header
 			.wrapper
-				#logo
-					h1.site_title
-						a(href="/")
-							img(src="/uploads/Q7BAQPv.png" alt="Squakr.fr" style="border-radius: 0%;" )
-				#n4vigation
+				h1.site_title
+					a(href="/")
+						img(src="/uploads/Q7BAQPv.png" alt="Squakr.fr" style="border-radius: 0%;" )
+				#navigation_bar
 					if user
 						+accountMenu()
 					else
