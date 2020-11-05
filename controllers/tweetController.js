@@ -108,16 +108,11 @@ exports.uploadImage = async (req, res, next) => {
 				}
 			} else if (image) {
 				try {
-					await cloudinary.uploader.upload(image.tempFilePath,
-						{format: 'png', transformation: [
-  							{width: 400, crop: "scale"}
-  						]},
-						async function (err, result) {
-							var success = true
-							const imageurl = result.secure_url.toString()
-							req.imageurl = imageurl
-						}
-					)
+					await cloudinary.uploader.upload(image.tempFilePath, async function (err, result) {
+						var success = true
+						const imageurl = result.secure_url.toString()
+						req.imageurl = imageurl
+					})
 				} catch (e) {
 					console.log(e);
 					res.redirect('/?err=103')
