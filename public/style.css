@@ -188,18 +188,13 @@ textarea {
 	font-size: 32px;
 }
 
-@media (max-width : 460px) {
+@media (max-width : 800px) {
 	#logo {
-		width: 160px;
+		width: 200px;
 		height: 60px;
 	}
 }
 
-.site_title img {
-	position: relative;
-	height: 60px;
-	width: 190px;
-}
 
 @media (max-width : 1100px) {
 	.site_title {
@@ -207,6 +202,9 @@ textarea {
 		color: #2C2F33;
 		position: relative;
 		display: inline-block;
+	}
+	#navigation_bar {
+		padding-right: 5px;
 	}
 }
 
@@ -431,17 +429,16 @@ textarea {
 	margin: 5px 0;
 }
 
-.welcome {
-	font-family: InterBold;
-}
-
+.welcome,
 .feedtext {
 	font-family: InterBold;
 }
 
+
 @media (max-width : 460px) {
 	.welcome {
 		font-size: 15px;
+		padding-left: 15px;
 	}
 }
 
@@ -568,7 +565,7 @@ textarea {
 
 
 .maxheight {
-	max-height: 400px;
+	max-height: 405px;
 	overflow: auto;
 }
 
