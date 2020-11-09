@@ -2,9 +2,6 @@ const Tweet = require('../models/Tweet');
 const User = require('../models/User');
 const Reply = require('../models/Reply');
 const moment = require('moment');
-const {
-	findById
-} = require('../models/User');
 moment.locale('fr')
 
 // The default controller for this app
