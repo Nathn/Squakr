@@ -1,6 +1,7 @@
 /* Importing the parts of the CSS  */
 @import "./css/normalize.css";
 @import "./css/grid.css";
+@import url('https://rsms.me/inter/inter.css');
 
 /* Main CSS layout goes here  */
 body {
@@ -431,7 +432,7 @@ textarea {
 
 .welcome,
 .feedtext {
-	font-family: InterBold;
+	font-family: Inter;
 }
 
 
