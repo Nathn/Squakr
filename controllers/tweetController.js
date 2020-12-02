@@ -64,8 +64,6 @@ exports.postTweet = async (req, res) => {
 			test = await Tweet.findOne({
 					shortid: randomid
 				})
-			console.log(randomid)
-			console.log(test)
 			if (test == null) {
 				unique = true
 			}
