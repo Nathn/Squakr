@@ -40,7 +40,7 @@ app.use(session({
 }));
 
 app.use(fileupload({
-	useTempFiles: false
+	useTempFiles: true
 }));
 
 // Passport.js
