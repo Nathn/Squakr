@@ -267,7 +267,7 @@ exports.accountUpdate = async (req, res) => {
 					}
 				});
 
-				const user = await User.findByIdAndUpdate(
+				var user = await User.findByIdAndUpdate(
 						req.user._id, {
 							'$set': {
 								confirmed: false
@@ -277,7 +277,7 @@ exports.accountUpdate = async (req, res) => {
 			}
 		}
 
-		const user = await User.findOneAndUpdate({
+		var user = await User.findOneAndUpdate({
 			_id: req.user._id
 		}, {
 			$set: updates
