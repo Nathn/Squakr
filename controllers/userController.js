@@ -266,14 +266,14 @@ exports.accountUpdate = async (req, res) => {
 						console.log('Email sent : ' + info.response);
 					}
 				});
-
+				/*
 				var user = await User.findByIdAndUpdate(
 						req.user._id, {
 							'$set': {
 								confirmed: false
 							}
 						}
-				);
+				); */
 			}
 		}
 
