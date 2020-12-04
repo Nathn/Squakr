@@ -64,6 +64,10 @@ exports.indexPage = async (req, res) => {
 				.sort({
 					created: 'desc'
 				});
+			function filter_users(squak) {
+				return squak.author.confirmed == true;
+			}
+			squaks = squaks.filter(filter_users);
 		}
 		res.render('index', {
 			squaks,
