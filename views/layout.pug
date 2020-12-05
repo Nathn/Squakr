@@ -15,7 +15,6 @@ html(lang="fr")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		link(rel='stylesheet' href='/style.css')
-		link(rel="stylesheet" media="screen" href="https://fontlibrary.org/face/inter-ui" type="text/css")
 		link(rel="shortcut icon" type="image/png" href="/uploads/btz18vt.png")
 		meta(property="og:title" content="Squakr - Le réseau social libre")
 		meta(property="og:type" content="website")
@@ -103,12 +102,34 @@ html(lang="fr")
 				return;
 			}
 
-
 			function offsetAnchor() {
 				if (location.hash.length !== 0) {
 					window.scrollTo(window.scrollX, window.scrollY - 300);
 				}
 			}
+
+			function getOutput(type) {
+				outputfile = document.getElementById('outputfile');
+				uploadimg = document.getElementById('uploadimg');
+				uploadvideo = document.getElementById('uploadvideo');
+				if (type == "image") {
+					outputfile.innerHTML = uploadimg.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
+					uploadvideo.value = ''
+				}
+				if (type == "video") {
+					outputfile.innerHTML = uploadvideo.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
+					uploadimg.value = ''
+				}
+				return false;
+			}
+
+			function clearInput() {
+				outputfile.innerHTML = '';
+				uploadimg.value = ''
+				uploadvideo.value = ''
+				return false;
+			}
+
 			window.addEventListener("hashchange", offsetAnchor);
 			window.setTimeout(offsetAnchor, 1);
 

@@ -510,6 +510,12 @@ textarea {
 	bottom: 50px;
 }
 
+.outputfile {
+	position: absolute;
+	left: 70px;
+	bottom: 50px;
+}
+
 .reply-icon-user {
 	position: absolute;
 	width: 20px;
