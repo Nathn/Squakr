@@ -31,44 +31,44 @@ block content
 					h4
 						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} follower
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 following
 						else
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} following
 				else
 					h4
 						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} followers
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 following
 						else
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} following
 			else
 				if reqUser.followers.length == 1
 					h4
 						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} abonné
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 abonnements
 						else if reqUser.following.length - 1 == 1
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnement
 						else
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnements
 				else
 					h4
 						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} abonnés
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 abonnements
 						else if reqUser.following.length - 1 == 1
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnement
 						else
-							| &nbsp;&middot;&nbsp;
+							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnements
 
 			if user && user.lang == 'en'

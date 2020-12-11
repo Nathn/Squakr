@@ -41,9 +41,9 @@ mixin replyCard(reply)
 							i.fa.fa-heart
 							small  #{reply.likes.toString()}
 				span
-					a( title=`${moment(reply.created)}` style="text-decoration: none; color: #000") &middot; #{moment(reply.created).fromNow()}
+					a( title=`${moment(reply.created)}` style="text-decoration: none; color: #000") &bull; #{moment(reply.created).fromNow()}
 				if user && (reply.author.equals(user._id) || user.moderator)
-					span  &middot;
+					span  &bull;
 					span
 					if user.lang == 'en'
 						a(href=`/delete/${reply._id}` style="text-decoration: none; color: #000")  Delete

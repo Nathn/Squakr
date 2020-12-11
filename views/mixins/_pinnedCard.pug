@@ -49,9 +49,9 @@ mixin pinnedCard(squak)
 						i.fa.fa-comment
 						small  #{squak.replies.toString()}
 				span
-					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000")  &middot; #{moment(squak.created).fromNow()}
+					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000")  &bull; #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
-					span  &middot;
+					span  &bull;
 					span
 					if user.lang == 'en'
 						a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Delete
