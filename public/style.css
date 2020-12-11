@@ -564,11 +564,7 @@ textarea {
 	border: 1px solid #000;
 }
 
-@media (max-width : 1100px) {
-	.squakimg {
-		width: 100%;
-	}
-}
+
 
 
 .maxheight {
@@ -689,12 +685,12 @@ nav {
 	z-index: 0;
 }
 
-nav a:nth-child(1):not(.dropdown-content) {
+nav a:nth-child(1) {
 	width: 50%;
 	z-index: 1;
 }
 
-nav a:nth-child(2):not(.dropdown-content) {
+nav a:nth-child(2) {
 	width: 50%;
 	z-index: 1;
 }
