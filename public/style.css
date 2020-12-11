@@ -16,7 +16,7 @@ img {
 	height: auto;
 }
 
-a, button, input[type='submit'], textarea, input[type='submit']:focus, button[type='submit']:focus {
+a, button, input, textarea, input[type='submit']:focus, button[type='submit']:focus {
 	outline: none;
 }
 
