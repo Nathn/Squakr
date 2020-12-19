@@ -818,19 +818,20 @@ exports.followingProfilePage = async (req, res) => {
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
-		var followingids = reqUser.following
-		followingids.reverse();
-		var following = []
-		for (const index in followingids) {
-			following.push(
-				await User.findOne({
-					_id: followingids[index]
-				})
-			)
-		};
-
 		if (reqUser) {
-
+			var followingids = reqUser.following
+			followingids.reverse();
+			var following = []
+			for (const index in followingids) {
+				following.push(
+					await User.findOne({
+						_id: followingids[index]
+					})
+				)
+			};
+			following.sort(function(a, b) {
+    			return b.followers.length - a.followers.length;
+			})
 			res.render('following', {
 				reqUser,
 				following
@@ -854,24 +855,24 @@ exports.followersProfilePage = async (req, res) => {
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
-		var followersids = reqUser.followers
-		followersids.reverse();
-		var followers = []
-		for (const index in followersids) {
-			followers.push(
-				await User.findOne({
-					_id: followersids[index]
-				})
-			)
-		};
-
 		if (reqUser) {
-
-			res.render('followers', {
+			var followersids = reqUser.followers
+			followersids.reverse();
+			var followers = []
+			for (const index in followersids) {
+				followers.push(
+					await User.findOne({
+						_id: followersids[index]
+					})
+				)
+			};
+			followers.sort(function(a, b) {
+    			return b.followers.length - a.followers.length;
+			})
+			 return res.render('followers', {
 				reqUser,
 				followers
 			});
-			return;
 		} else {
 			// Else display a not found page
 			res.render('404', {})
