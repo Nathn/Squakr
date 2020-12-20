@@ -52,7 +52,7 @@ exports.searchPage = async (req, res) => {
 					}
 				},
 				(err, data) => {
-					console.log(err);
+					if (err) console.log(err);
 				}
 			).sort({
 				moderator: -1,
@@ -66,7 +66,7 @@ exports.searchPage = async (req, res) => {
 					}
 				},
 				(err, data) => {
-					console.log(err);
+					if (err) console.log(err);
 				}
 			).sort({
 				moderator: -1,
@@ -87,7 +87,7 @@ exports.searchPage = async (req, res) => {
 						}
 					},
 					(err, data) => {
-						console.log(err);
+						if (err) console.log(err);
 					}
 				).sort({
 					created: 'desc'

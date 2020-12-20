@@ -201,7 +201,6 @@ exports.postReply = async (req, res) => {
 // Tweet deleting function
 const confirmedOwner = (squak, user, backURL) => {
 	if (!squak.author._id.equals(user._id)) {
-		throw Error('Vous n\'avez pas assez de permissions pour supprimer ça.')
 		if (!backURL.endsWith('err=402')) return res.redirect(`${backURL}?err=402`)
 		return res.redirect(`${backURL}`)
 	}
@@ -235,8 +234,6 @@ exports.deleteTweet = async (req, res) => {
 				function (err, result) {
 					if (err) {
 						console.log(err);
-					} else {
-						console.log(result);
 					}
 				});
 		}
