@@ -25,10 +25,15 @@ function html(str) {
 	replacePattern5 = /\`([^`]+)\`/gim;
 	replacedText = replacedText.replace(replacePattern5, '<code>$1</code>')
 
-	const content = replacedText.replace(/\B\@([\w\-]+)/gim, function (match, name) {
+	var content = replacedText.replace(/\B\@([\w\-]+)/gim, function (match, name) {
 		post = `<a href="/${name}" style="text-decoration: none; color: #007bff;">${match}</a>`;
 		return post;
 	})
+	content = content.replace(/\B\#([\w\-]+)/gim, function (match, hashtag) {
+		post = `<a href="/search?query=${hashtag}&type=squak" style="text-decoration: none; color: #007bff;">${match}</a>`;
+		return post;
+	})
+
 	return content
 }
 
