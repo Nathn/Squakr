@@ -1,5 +1,7 @@
 include mixins/_loginForm
 include mixins/_accountMenu
+include mixins/_searchBar
+include mixins/_footer
 <!DOCTYPE html>
 html(lang="fr")
 	head
@@ -158,19 +160,7 @@ html(lang="fr")
 		<br/>
 		.content_area
 				.search(width= "270px")
-					form(action="/search")
-						if user && user.lang == "en"
-							if query
-								input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off" value=`${query}`)
-							else
-								input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off")
-						else
-							if query
-								input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off" value=`${query}`)
-							else
-								input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off")
-						button.searchButton(type='submit')
-							i.fa.fa-search
+					+searchBar()
 				h4(style="color: white; text-align: center;")
 					if user && user.lang == 'en'
 						script(type="text/javascript").
@@ -186,12 +176,7 @@ html(lang="fr")
 								document.write(GetMsgString(GetURLParameter('msg')) + '<br/ ><a href="/" style="text-decoration: none; color: white; border-bottom: 1px solid white"><small>Fermer</small></a>')
 				block content
 		.footer
-			p
-				small © 2020 Squakr &bull; v1.7.5.4 <br/>
-					a(href='https://discord.gg/C8WPK2B' target='_blank' style="text-decoration: none; color: #fff;") Discord
-					a(href='https://github.com/Nathn/Squakr' target='_blank' style="text-decoration: none; color: #fff;")  - Github
-					a(href='https://twitter.com/Squakr_fr' target='_blank' style="text-decoration: none; color: #fff;")  - Twitter
-					a(href='/cgu' target='_blank' style="text-decoration: none; color: #fff;")  - CGU <br/>
+			+footer()
 
 
 

@@ -1,0 +1,14 @@
+mixin searchBar()
+	form(action="/search")
+		if user && user.lang == "en"
+			if query
+				input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off" value=`${query}`)
+			else
+				input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off")
+		else
+			if query
+				input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off" value=`${query}`)
+			else
+				input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off")
+		button.searchButton(type='submit')
+			i.fa.fa-search

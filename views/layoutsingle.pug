@@ -1,5 +1,7 @@
 include mixins/_loginForm
 include mixins/_accountMenu
+include mixins/_searchBar
+include mixins/_footer
 <!DOCTYPE html>
 html(lang="fr")
 	head
@@ -102,16 +104,37 @@ html(lang="fr")
 				return;
 			}
 
-			// The function actually applying the offset
 			function offsetAnchor() {
 				if (location.hash.length !== 0) {
 					window.scrollTo(window.scrollX, window.scrollY - 300);
 				}
 			}
 
-			// This will capture hash changes while on the page
+			function getOutput(type) {
+				outputfile = document.getElementById('outputfile');
+				uploadimg = document.getElementById('uploadimg');
+				uploadvideo = document.getElementById('uploadvideo');
+				if (type == "image") {
+					outputfile.innerHTML = uploadimg.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
+					uploadvideo.value = ''
+				}
+				if (type == "video") {
+					outputfile.innerHTML = uploadvideo.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
+					uploadimg.value = ''
+				}
+				return false;
+			}
+
+			function clearInput() {
+				outputfile.innerHTML = '';
+				uploadimg.value = ''
+				uploadvideo.value = ''
+				return false;
+			}
+
 			window.addEventListener("hashchange", offsetAnchor);
 			window.setTimeout(offsetAnchor, 1);
+
 	body
 		.header
 			.wrapper
@@ -135,19 +158,7 @@ html(lang="fr")
 		<br/>
 		.content_area
 				.search(width= "270px")
-					form(action="/search")
-						if user && user.lang == "en"
-							if query
-								input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off" value=`${query}`)
-							else
-								input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off")
-						else
-							if query
-								input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off" value=`${query}`)
-							else
-								input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off")
-						button.searchButton(type='submit')
-							i.fa.fa-search
+					+searchBar()
 				h4(style="color: white; text-align: center;")
 					if user && user.lang == 'en'
 						script(type="text/javascript").
@@ -163,11 +174,6 @@ html(lang="fr")
 								document.write(GetMsgString(GetURLParameter('msg')))
 				block content
 		.footer
-			p
-				small © 2020 Squakr &bull; v1.7.5.4 <br/>
-					a(href='https://discord.gg/C8WPK2B' target='_blank' style="text-decoration: none; color: #fff;") Discord
-					a(href='https://github.com/Nathn/Squakr' target='_blank' style="text-decoration: none; color: #fff;")  - Github
-					a(href='https://twitter.com/Squakr_fr' target='_blank' style="text-decoration: none; color: #fff;")  - Twitter
-					a(href='/cgu' target='_blank' style="text-decoration: none; color: #fff;")  - CGU <br/>
+			+footer()
 
 
