@@ -138,27 +138,29 @@ html(lang="fr")
 				.search(width= "270px")
 					form(action="/search")
 						if user && user.lang == "en"
-							input.searchTerm(type='text' placeholder='Search an user...' name="query" autocomplete="off")
+							if query
+								input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off" value=`${query}`)
+							else
+								input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off")
 						else
-							input.searchTerm(type='text' placeholder='Rechercher un utilisateur...' name="query" autocomplete="off")
+							if query
+								input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off" value=`${query}`)
+							else
+								input.searchTerm(type='text' placeholder='Rechercher sur Squakr...' name="query" autocomplete="off")
 						button.searchButton(type='submit')
 							i.fa.fa-search
 				h4(style="color: white; text-align: center;")
 					if user && user.lang == 'en'
 						script(type="text/javascript").
-							var err = ['301', '400', '402', '100', '101', '102', '103', '104', '105']
-							var msg = ['200','201']
-							if(err.includes(GetURLParameter('err')))
+							if(GetErrorStringEn(GetURLParameter('err')))
 								document.write(GetErrorStringEn(GetURLParameter('err')))
-							if(msg.includes(GetURLParameter('msg')))
+							if(GetErrorStringEn(GetURLParameter('msg')))
 								document.write(GetMsgStringEn(GetURLParameter('msg')))
 					else
 						script(type="text/javascript").
-							var err = ['301', '400', '402', '100', '101', '102', '103', '104', '105']
-							var msg = ['200','201']
-							if(err.includes(GetURLParameter('err')))
+							if(GetErrorStringEn(GetURLParameter('err')))
 								document.write(GetErrorString(GetURLParameter('err')))
-							if(msg.includes(GetURLParameter('msg')))
+							if(GetErrorStringEn(GetURLParameter('msg')))
 								document.write(GetMsgString(GetURLParameter('msg')))
 				block content
 		.footer

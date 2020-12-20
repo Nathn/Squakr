@@ -39,45 +39,69 @@ function uniq(a) {
 exports.searchPage = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
-		if (!req.query.query && !backURL.endsWith('err=400')) return res.redirect(`${backURL}?err=400`)
+		if (!req.query.query && !backURL.endsWith('err=400')) return res.redirect(`/?err=400`)
 		if (!req.query.query) return res.redirect(`${backURL}`)
 		var query = req.query.query;
-		const searchresults1 = await User.find({
-				username: {
-					$regex: `^.*${query}.*`,
-					$options: "i"
+		if (!/^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g.test(query) && !backURL.endsWith('err=401')) return res.redirect(`/?err=401`)
+		var typesearch = req.query.type;
+		if (typesearch == 'user' || !typesearch) {
+			const searchresults1 = await User.find({
+					username: {
+						$regex: `^.*${query}.*`,
+						$options: "i"
+					}
+				},
+				(err, data) => {
+					console.log(err);
 				}
-			},
-			(err, data) => {
-				console.log(err);
-			}
-		).sort({
-			moderator: -1,
-			verified: -1,
-			avatar: -1
-		});
-		var searchresults2 = await User.find({
-				name: {
-					$regex: `^.*${query}.*`,
-					$options: "i"
+			).sort({
+				moderator: -1,
+				verified: -1,
+				avatar: -1
+			});
+			var searchresults2 = await User.find({
+					name: {
+						$regex: `^.*${query}.*`,
+						$options: "i"
+					}
+				},
+				(err, data) => {
+					console.log(err);
 				}
-			},
-			(err, data) => {
-				console.log(err);
-			}
-		).sort({
-			moderator: -1,
-			verified: -1,
-			avatar: -1
-		});
-		var searchresults3 = searchresults1.concat(searchresults2);
-		searchresults = uniq(searchresults3)
-
-		res.render('search', {
-			searchresults,
-			query
-		});
-		return;
+			).sort({
+				moderator: -1,
+				verified: -1,
+				avatar: -1
+			});
+			var searchresults3 = searchresults1.concat(searchresults2);
+			searchresults = uniq(searchresults3)
+			return res.render('search', {
+				searchresults,
+				query
+			});
+		} else if (typesearch == 'squak') {
+			var searchresults = await Tweet.find({
+						tweet: {
+							$regex: `^.*${query}.*`,
+							$options: "i"
+						}
+					},
+					(err, data) => {
+						console.log(err);
+					}
+				).sort({
+					created: 'desc'
+				})
+				.populate('author')
+				.limit(500);
+			return res.render('searchsquaks', {
+				searchresults,
+				query,
+				moment
+			});
+		} else {
+			return res.redirect('back');
+		}
 	} catch (e) {
 		console.log(e);
 		res.redirect('back')

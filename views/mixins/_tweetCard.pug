@@ -18,7 +18,14 @@ mixin tweetCard(squak)
 					a.overlay(href=`/squak/${squak.shortid || squak._id}`)
 				.inner
 					.the_tweet(style="color: #000")
-						| !{squak.content || squak.tweet}
+						if query
+							if squak.content
+								//| !{squak.content.split(`${query}`).join(`<mark>${query}</mark>`)}
+								| !{squak.content.replace(new RegExp("(^|>)([^<>]*)(" + query + ")([^<>]*)", 'gim'), `$1$2<mark>$3</mark>$4`)}
+							else
+								| !{squak.tweet.split(`(?i)${query}`).join(`<mark>${query}</mark>`)}
+						else
+							| !{squak.content || squak.tweet}
 						if (squak.image)
 							if (squak.tweet)
 								br
