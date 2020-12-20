@@ -23,7 +23,7 @@ mixin tweetCard(squak)
 								//| !{squak.content.split(`${query}`).join(`<mark>${query}</mark>`)}
 								| !{squak.content.replace(new RegExp("(^|>)([^<>]*)(" + query + ")([^<>]*)", 'gim'), `$1$2<mark>$3</mark>$4`)}
 							else
-								| !{squak.tweet.split(`(?i)${query}`).join(`<mark>${query}</mark>`)}
+								| !{squak.tweet.replace(new RegExp("(^|>)([^<>]*)(" + query + ")([^<>]*)", 'gim'), `$1$2<mark>$3</mark>$4`)}
 						else
 							| !{squak.content || squak.tweet}
 						if (squak.image)
