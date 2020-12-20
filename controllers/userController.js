@@ -83,7 +83,7 @@ exports.searchPage = async (req, res) => {
 			var searchresults = await Tweet.find({
 						tweet: {
 							$regex: `^.*${query}.*`,
-							$options: "i"
+							$options: "im"
 						}
 					},
 					(err, data) => {
@@ -95,6 +95,7 @@ exports.searchPage = async (req, res) => {
 				.populate('author')
 				.limit(500);
 			return res.render('searchsquaks', {
+				typesearch,
 				searchresults,
 				query,
 				moment

@@ -1,5 +1,7 @@
 mixin searchBar()
 	form(action="/search")
+		if typesearch
+			input(type='text' name="type" value=`${typesearch}` style="display: none;")
 		if user && user.lang == "en"
 			if query
 				input.searchTerm(type='text' placeholder='Search on Squakr...' name="query" autocomplete="off" value=`${query}`)
