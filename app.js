@@ -4,6 +4,7 @@ const app = express();
 const promisify = require('es6-promisify');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
@@ -36,7 +37,10 @@ mongoose.connection.on('error', (err) => {
 
 // Express session
 app.use(session({
-	secret: process.env.SECRET
+	secret: process.env.SECRET,
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection
+	})
 }));
 
 app.use(fileupload({
