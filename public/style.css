@@ -825,3 +825,13 @@ mark {
 	bottom: 10px;
 	right: 5px;
 }
+
+.alinks {
+	text-decoration: none;
+	color: #32567d;
+}
+
+.mentions {
+	text-decoration: none;
+	color: #007bff;
+}

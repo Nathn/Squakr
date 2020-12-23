@@ -10,11 +10,11 @@ function html(str) {
 
 	//URLs starting with http://, https://, or ftp://
 	replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-	replacedText = str.replace(replacePattern1, `<a href="$1" target="_blank" style="text-decoration: none; color: #32567d;">$1</a>`);
+	replacedText = str.replace(replacePattern1, `<a href="$1" target="_blank" class="alinks">$1</a>`);
 
 	//URLs starting with "www." (without // before it, or it'd re-link the ones done above).
 	replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-	replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank" style="text-decoration: none; color: #32567d;">$2</a>');
+	replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank" class="alinks">$2</a>');
 
 	replacePattern3 = /\*\*([^]+)\*\*/gim;
 	replacedText = replacedText.replace(replacePattern3, '<b>$1</b>')
@@ -26,11 +26,11 @@ function html(str) {
 	replacedText = replacedText.replace(replacePattern5, '<code>$1</code>')
 
 	var content = replacedText.replace(/\B\@([\w\-]+)/gim, function (match, name) {
-		post = `<a href="/${name}" style="text-decoration: none; color: #007bff;">${match}</a>`;
+		post = `<a href="/${name}" class="mentions">${match}</a>`;
 		return post;
 	})
 	content = content.replace(/\B\#([\w\-]+)/gim, function (match, hashtag) {
-		post = `<a href="/search?query=${hashtag}&type=squak" style="text-decoration: none; color: #007bff;">${match}</a>`;
+		post = `<a href="/search?query=${hashtag}&type=squak" class="mentions">${match}</a>`;
 		return post;
 	})
 
