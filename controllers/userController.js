@@ -18,11 +18,23 @@ require('dotenv').config({
 
 // The default controller for this app
 exports.registerPage = (req, res) => {
-	res.render('register');
+	if (!req.user) {
+		res.render('register', {
+			status: req.flash('status').pop() || req.flash('error').pop() || req.query.status || '200'
+		});
+	} else {
+		res.redirect('/')
+	}
 }
 
 exports.loginPage = (req, res) => {
-	res.render('login');
+	if (!req.user) {
+		res.render('login', {
+			status: req.flash('status').pop() || req.flash('error').pop() || req.query.status || '200'
+		});
+	} else {
+		res.redirect('/')
+	}
 }
 
 exports.cguPage = (req, res) => {
@@ -39,10 +51,15 @@ function uniq(a) {
 exports.searchPage = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
-		if (!req.query.query && !backURL.endsWith('err=400')) return res.redirect(`/?err=400`)
-		if (!req.query.query) return res.redirect(`${backURL}`)
+		if (!req.query.query) {
+			req.flash('status', '450')
+			return res.redirect(`${backURL}`)
+		}
 		var query = req.query.query;
-		if (!/^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g.test(query) && !backURL.endsWith('err=401')) return res.redirect(`/?err=401`)
+		if (!/^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g.test(query)) {
+			req.flash('status', '451')
+			return res.redirect(`${backURL}`)
+		}
 		var typesearch = req.query.type;
 		if (typesearch == 'user' || !typesearch) {
 			const searchresults1 = await User.find({
@@ -385,24 +402,24 @@ exports.upload = async (req, res, next) => {
 // Verify the reg data
 exports.verifyRegister = async (req, res, next) => {
 	req.sanitizeBody('username');
-	req.checkBody('username', '200').notEmpty();
-	req.check('username', '201').custom(value => !/\s/.test(value));
-	req.check('username', '202').custom(value => /^[0-9a-zA-Z_]+$/.test(value));
-	req.check('username', '210').isLength({
+	req.checkBody('username', '500').notEmpty();
+	req.check('username', '501').custom(value => !/\s/.test(value));
+	req.check('username', '502').custom(value => /^[0-9a-zA-Z_]+$/.test(value));
+	req.check('username', '510').isLength({
 		max: 16
 	});
 	req.sanitizeBody('email');
-	req.checkBody('email', '203').notEmpty();
-	req.checkBody('email', '204').isEmail();
-	req.checkBody('password', '205').notEmpty();
-	req.checkBody('password-confirm', '206').notEmpty();
-	req.checkBody('password-confirm', '207').equals(req.body.password);
+	req.checkBody('email', '503').notEmpty();
+	req.checkBody('email', '504').isEmail();
+	req.checkBody('password', '505').notEmpty();
+	req.checkBody('password-confirm', '506').notEmpty();
+	req.checkBody('password-confirm', '507').equals(req.body.password);
 
 	const errors = req.validationErrors();
 	if (errors) {
 		console.log(errors);
-		res.redirect(`register?err=${errors[0].msg}`)
-		return;
+		req.flash('status', `${errors[0].msg}`)
+		return res.redirect(`register`)
 	}
 	next();
 }
@@ -416,8 +433,8 @@ exports.checkUserExists = async (req, res, next) => {
 	// console.log(user);
 
 	if (user.length) {
-		res.redirect(`register?err=208`)
-		return;
+		req.flash('status', '508')
+		return res.redirect(`register`)
 	}
 
 	user = await User.find({
@@ -425,8 +442,8 @@ exports.checkUserExists = async (req, res, next) => {
 	})
 
 	if (user.length) {
-		res.redirect(`register?err=209`)
-		return;
+		req.flash('status', '509')
+		return res.redirect(`register`)
 	}
 	next();
 }
@@ -772,9 +789,11 @@ exports.confirmUser = async (req, res) => {
 		}
 	);
 	if (user) {
-		res.redirect(`/?msg=200`)
+		req.flash('status', '100')
+		res.redirect(`/`)
 	} else {
-		res.redirect(`/?err=101`)
+		req.flash('status', '401')
+		res.redirect(`/`)
 	}
 }
 
@@ -785,18 +804,20 @@ exports.copyID = async (req, res) => {
 	});
 	if (user) {
 		clipboardy.writeSync(user._id.toString());
-		return res.redirect(backURL + '?msg=201')
+		req.flash('status', '101')
+		return res.redirect(backURL || '/')
 	} else {
 		const squak = await Tweet.findOne({
 			_id: req.params.id
 		});
 		if (squak) {
 			clipboardy.writeSync(squak._id.toString());
-			return res.redirect(backURL + '?msg=201')
+			req.flash('status', '101')
+			return res.redirect(backURL || '/')
 		} else {
+			req.flash('status', '404')
 			return res.redirect(`back`)
 		}
-		return res.redirect(`back`)
 	}
 }
 

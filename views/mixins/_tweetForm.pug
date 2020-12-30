@@ -6,18 +6,18 @@ mixin tweetForm()
 		.tweet_text
 			if user.lang == 'en'
 				.tweetform_textarea
-					textarea(name='tweet' class='tweet_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='3' )
+					textarea(name='tweet' class='tweet_textarea' placeholder='Share your thoughts...' maxlength="1024")
 				.icon-user
 					label(for="uploadimg")
 						i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Add an image")
-					input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="")
+					input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
 				.icon-user-2
 					label(for="uploadvideo")
 						i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
-					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="")
+					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
 			else
 				.tweetform_textarea
-					textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='3' )
+					textarea(name='tweet' class='tweet_textarea' placeholder='Exprimez-vous...' maxlength="1024")
 				.outputfile(id="outputfile")
 				.icon-user
 					label(for="uploadimg")

@@ -5,9 +5,7 @@ block content
 		.regform
 			h1 Créez un nouveau compte !
 		h4(style="color: red;")
-			script(type="text/javascript").
-				if(GetErrorString(GetURLParameter('err')))
-					document.write(GetErrorString(GetURLParameter('err')))
+			#regstatus
 		+regForm()
 
 

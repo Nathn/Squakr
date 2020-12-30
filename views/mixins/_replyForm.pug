@@ -5,7 +5,7 @@ mixin replyForm(reqSquak)
 				img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			if user.lang == 'en'
-				textarea(name='reply' class='reply_textarea' placeholder='Share your thoughts...' maxlength="1024" rows='1')
+				textarea(name='reply' class='reply_textarea' placeholder='Share your thoughts...' maxlength="1024")
 				.reply-icon-user
 					label(for="upload")
 						i.fa.fa-image.icon-pic(style="cursor: pointer;" width="15px" height="15px")
@@ -17,7 +17,7 @@ mixin replyForm(reqSquak)
 				.reply_button
 					input(type='submit' class='button reply_button' value='Reply')
 			else
-				textarea(name='reply' class='reply_textarea' placeholder='Exprimez-vous...' maxlength="1024" rows='1')
+				textarea(name='reply' class='reply_textarea' placeholder='Exprimez-vous...' maxlength="1024")
 				.reply-icon-user
 					label(for="upload")
 						i.fa.fa-image.icon-pic(style="cursor: pointer;")

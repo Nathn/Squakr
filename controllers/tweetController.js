@@ -57,9 +57,11 @@ exports.postTweet = async (req, res) => {
 		} else if (req.imageurl) {
 			req.body.image = req.imageurl
 		} else if (!req.body.tweet) {
-			return res.redirect(backURL + '?err=102')
+			req.flash('status', '402')
+			return res.redirect(`${backURL}`)
 		} else if (!req.body.tweet.replace(/\s/g, '').length) {
-			return res.redirect(backURL + '?err=102')
+			req.flash('status', '402')
+			return res.redirect(`${backURL}`)
 		}
 		req.body.author = req.user._id;
 		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
@@ -84,7 +86,8 @@ exports.postTweet = async (req, res) => {
 
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?err=104')
+		req.flash('status', '400')
+		res.redirect('/')
 	}
 }
 exports.uploadImage = async (req, res, next) => {
@@ -107,7 +110,8 @@ exports.uploadImage = async (req, res, next) => {
 						});
 				} catch (e) {
 					console.log(e);
-					res.redirect('/?err=105')
+					req.flash('status', '405')
+					res.redirect('/')
 				}
 			} else if (image) {
 				try {
@@ -123,7 +127,8 @@ exports.uploadImage = async (req, res, next) => {
 					)
 				} catch (e) {
 					console.log(e);
-					res.redirect('/?err=103')
+					req.flash('status', '403')
+					res.redirect('/')
 				}
 			}
 			next();
@@ -132,7 +137,8 @@ exports.uploadImage = async (req, res, next) => {
 		}
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?err=104')
+		req.flash('status', '400')
+		res.redirect('/')
 	}
 }
 
@@ -144,9 +150,11 @@ exports.postReply = async (req, res) => {
 		} else if (req.imageurl) {
 			req.body.image = req.imageurl
 		} else if (!req.body.reply) {
-			return res.redirect(backURL + '?err=102')
+			req.flash('status', '402')
+			return res.redirect(`${backURL}`)
 		} else if (!req.body.reply.replace(/\s/g, '').length) {
-			return res.redirect(backURL + '?err=102')
+			req.flash('status', '402')
+			return res.redirect(`${backURL}`)
 		}
 
 		req.body.author = req.user._id;
@@ -195,7 +203,8 @@ exports.postReply = async (req, res) => {
 
 	} catch (e) {
 		console.log(e);
-		res.redirect('/?err=104')
+		req.flash('status', '400')
+		res.redirect('/')
 	}
 }
 
@@ -206,7 +215,7 @@ exports.postReply = async (req, res) => {
 // Tweet deleting function
 const confirmedOwner = (squak, user, backURL) => {
 	if (!squak.author._id.equals(user._id)) {
-		if (!backURL.endsWith('err=402')) return res.redirect(`${backURL}?err=402`)
+		req.flash('status', '600')
 		return res.redirect(`${backURL}`)
 	}
 }
@@ -248,7 +257,8 @@ exports.deleteTweet = async (req, res) => {
 		res.redirect('back')
 	} catch (e) {
 		console.log(e);
-		res.redirect(`${backURL}?err=402`)
+		req.flash('status', '600')
+		return res.redirect(`${backURL}`)
 	}
 
 
@@ -264,10 +274,12 @@ exports.pinTweet = async (req, res) => {
 
 		if (squak) {
 			if (squak.author.username != req.user.username) {
-				return res.redirect(`${backURL}?err=402`)
+				req.flash('status', '600')
+				return res.redirect(`${backURL}`)
 			}
 		} else {
-			return res.redirect(`${backURL}?err=100`)
+			req.flash('status', '404')
+			return res.redirect(`${backURL}`)
 		}
 		console.log(squak.author.pinned)
 		console.log(squak._id)
@@ -322,7 +334,8 @@ exports.pinTweet = async (req, res) => {
 		res.redirect('back')
 	} catch (e) {
 		console.log(e);
-		res.redirect(`${backURL}?err=402`)
+		req.flash('status', '600')
+		return res.redirect(`${backURL}`)
 	}
 
 
@@ -339,7 +352,8 @@ exports.singleTweetPage = async (req, res) => {
 		if (squak == null) {
 			var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
 			if (!checkForHexRegExp.test(req.params.id)) {
-				return res.redirect(`${backURL}?err=100`)
+				req.flash('status', '404')
+				return res.redirect(`${backURL}`)
 			}
 			var squak = await Tweet.findOne({
 				_id: req.params.id
@@ -348,7 +362,8 @@ exports.singleTweetPage = async (req, res) => {
 				squak: req.params.id
 			}).populate('author');
 			if (squak == null) {
-				return res.redirect(`${backURL}?err=100`)
+				req.flash('status', '404')
+				return res.redirect(`${backURL}`)
 			}
 		} else {
 			var replies = await Reply.find({
@@ -364,7 +379,8 @@ exports.singleTweetPage = async (req, res) => {
 
 	} catch (err) {
 		console.log(err);
-		res.redirect(`${backURL}?err=100`)
+		req.flash('status', '404')
+		return res.redirect(`${backURL}`)
 	}
 
 }
@@ -391,7 +407,8 @@ exports.singleReplyPage = async (req, res) => {
 				const parent = 0
 			};
 		} else {
-			res.redirect(`${backURL}?err=100`)
+			req.flash('status', '404')
+			return res.redirect(`${backURL}`)
 		};
 
 
@@ -405,7 +422,8 @@ exports.singleReplyPage = async (req, res) => {
 
 	} catch (err) {
 		console.log(err);
-		res.redirect(`${backURL}?err=100`)
+		req.flash('status', '404')
+		return res.redirect(`${backURL}`)
 	}
 
 }

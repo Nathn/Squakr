@@ -61,16 +61,17 @@ textarea {
 }
 
 .tweet_textarea {
-	/* padding: 5px 7px; */
 	border: 2px solid #add8e6;
 	margin-bottom: 10px;
+	min-height: 90px;
+	resize: vertical;
 }
 
 .reply_textarea {
-	/* padding: 5px 7px; */
 	border: 2px solid #add8e6;
 	margin-bottom: 10px;
-	min-height: 50px;
+	min-height: 60px;
+	resize: vertical;
 }
 
 .tweet_textarea,

@@ -20,7 +20,6 @@ mixin tweetCard(squak)
 					.the_tweet(style="color: #000")
 						if query
 							if squak.content
-								//| !{squak.content.split(`${query}`).join(`<mark>${query}</mark>`)}
 								| !{squak.content.replace(new RegExp("(^|>)([^<>]*)(" + query + ")([^<>]*)", 'gim'), `$1$2<mark>$3</mark>$4`)}
 							else
 								| !{squak.tweet.replace(new RegExp("(^|>)([^<>]*)(" + query + ")([^<>]*)", 'gim'), `$1$2<mark>$3</mark>$4`)}
@@ -53,7 +52,7 @@ mixin tweetCard(squak)
 						i.fa.fa-comment
 						small  #{squak.replies.toString()}
 				span
-					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000")  &bull; #{moment(squak.created).fromNow()}
+					a(href=`/squak/${squak.shortid || squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000")  &bull; #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
 					span  &bull;
 					span

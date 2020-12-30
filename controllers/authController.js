@@ -1,8 +1,9 @@
 const passport = require('passport');
 
 exports.login = passport.authenticate('local', {
-	failureRedirect: '/login?err=300',
-	successRedirect: '/'
+	failureRedirect: '/login',
+	successRedirect: '/',
+	failureFlash: '300'
 });
 
 exports.logout = (req, res) => {
@@ -12,7 +13,8 @@ exports.logout = (req, res) => {
 
 exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
-		res.redirect('/?err=301');
+		req.flash('status', '301')
+		res.redirect('/');
 		return;
 	}
 

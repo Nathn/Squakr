@@ -10,6 +10,8 @@ const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
 const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+const cookieParser = require('cookie-parser')
 const routes = require('./routes');
 require('./handlers/passport');
 
@@ -36,12 +38,16 @@ mongoose.connection.on('error', (err) => {
 })
 
 // Express session
+
+app.use(cookieParser(process.env.SECRET));
 app.use(session({
 	secret: process.env.SECRET,
 	store: new MongoStore({
 		mongooseConnection: mongoose.connection
-	})
+	}),
+	cookie: { maxAge: 60000 }
 }));
+app.use(flash());
 
 app.use(fileupload({
 	useTempFiles: true

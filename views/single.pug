@@ -27,6 +27,7 @@ block content
 						strong #{squak.author.name || squak.author.username}
 				span  @#{squak.author.username}
 				span  &bull;
+				span &nbsp;
 				span(style="padding-left: 3px")=  moment(squak.created).fromNow()
 				span  &bull;
 				if user

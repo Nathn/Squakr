@@ -69,10 +69,13 @@ exports.indexPage = async (req, res) => {
 			}
 			squaks = squaks.filter(filter_users);
 		}
+
+
 		res.render('index', {
 			squaks,
 			profiles,
-			moment
+			moment,
+			status: req.flash('status').pop() || req.query.status || '200'
 		});
 
 	} catch (e) {
