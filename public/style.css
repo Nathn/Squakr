@@ -895,3 +895,24 @@ mark {
 	text-decoration: none;
 	color: var(--author-name-color);
 }
+
+.notifreadmark {
+	display: none;
+}
+
+.notifreadmark:first-of-type {
+	display: block;
+}
+
+@media (max-width : 520px) {
+	.sshide {
+		display: none;
+	}
+}
+
+@media (min-width : 520px) {
+	.ssshow,
+	.sshide {
+		display: inline;
+	}
+}

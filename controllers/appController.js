@@ -91,17 +91,23 @@ exports.notificationsPage = async (req, res) => {
 		_id: req.user._id
 	}).populate('notifications.author').sort({
 		'notifications.date': 'desc'
+	}).populate('readnotifications.author').sort({
+		'readnotifications.date': 'desc'
 	});
-	const notifications = user.notifications
+	var notifications = user.notifications
+	var readnotifications = user.readnotifications
+	readnotifs = user.readnotifications.concat(user.notifications)
 	await User.findByIdAndUpdate({
 		_id: req.user._id
 	}, {
 		$set: {
-			notifications: []
+			notifications: [],
+			readnotifications: readnotifs
 		}
 	});
 	res.render('notifications', {
-		notifications,
+		unreadnotifications: notifications || [],
+		readnotifications: readnotifications || [],
 		moment,
 		status: req.flash('status').pop() || req.query.status || '200'
 	});

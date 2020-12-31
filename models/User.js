@@ -101,6 +101,25 @@ const userSchema = new mongoose.Schema({
 			type: Date,
 			default: Date.now
 		}
+	}],
+	readnotifications: [{
+		txt: {
+			type: String
+		},
+		txten: {
+			type: String
+		},
+		url: {
+			type: String
+		},
+		author: {
+			type: mongoose.Schema.ObjectId,
+			ref: 'User'
+		},
+		date: {
+			type: Date,
+			default: Date.now
+		}
 	}]
 
 });

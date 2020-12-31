@@ -3,8 +3,12 @@ block content
 	.single_wrap
 		if user.lang == 'en'
 			nav
-				a(href="/settings") General settings
-				a(href="") Account settings
+				a(href="/settings")
+					.sshide General
+					.ssshow  settings
+				a(href="")
+					.ssshow Account
+					.sshide  settings
 				.animation.start-about
 			br
 			h2 Your account
@@ -26,8 +30,12 @@ block content
 				input(type='submit' class='button' value='Update')
 		else
 			nav
-				a(href="/settings") Paramètres généraux
-				a(href="") Paramètres de compte
+				a(href="/settings")
+					.ssshow Paramètres
+					.sshide  généraux
+				a(href="")
+					.sshide Paramètres de
+					.ssshow  compte
 				.animation.start-about
 			br
 			h2 Votre compte

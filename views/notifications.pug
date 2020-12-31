@@ -4,15 +4,24 @@ include mixins/_tweetCard
 include mixins/_notificationCard
 block content
 	.single_wrap
-		if notifications[0]
+		if unreadnotifications[0]
 			if user && user.lang == 'en'
 				h2 Unread notifications :
 			else
 				h2 Notifications non lues :
-			each notification in notifications
+			each notification in unreadnotifications
 				+notificationCard(notification)
 		else
 			if user && user.lang == 'en'
 				h2 You don't have any unread notification.
 			else
 				h2 Vous n'avez aucune notification non lue.
+		if readnotifications[0]
+			br
+			if user && user.lang == 'en'
+				h4 Last notifications :
+			else
+				h4 Dernières notifications :
+			each notification in readnotifications
+				+notificationCard(notification)
+
