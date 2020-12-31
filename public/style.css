@@ -565,6 +565,22 @@ textarea {
 	position: absolute;
 	left: 70px;
 	bottom: 50px;
+	color: var(--links-color);
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.outputfilerep {
+	position: absolute;
+	left: 70px;
+	bottom: 42px;
+	color: var(--links-color);
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 .reply-icon-user {

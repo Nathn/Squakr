@@ -6,26 +6,28 @@ mixin replyForm(reqSquak)
 		.tweet_text
 			if user.lang == 'en'
 				textarea(name='reply' class='reply_textarea' placeholder='Share your thoughts...' maxlength="1024")
+				.outputfile(id="outputfile")
 				.reply-icon-user
-					label(for="upload")
+					label(for="uploadimg")
 						i.fa.fa-image.icon-pic(style="cursor: pointer;" width="15px" height="15px")
-					input(type="file" name="image" style="display: none;" id="upload" accepts='image/*')
+					input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
 				.reply-icon-user-2
 					label(for="uploadvideo")
 						i.fa.fa-film(style="cursor: pointer;" title="Add video")
-					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="")
+					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
 				.reply_button
 					input(type='submit' class='button reply_button' value='Reply')
 			else
 				textarea(name='reply' class='reply_textarea' placeholder='Exprimez-vous...' maxlength="1024")
+				.outputfilerep(id="outputfile")
 				.reply-icon-user
-					label(for="upload")
+					label(for="uploadimg")
 						i.fa.fa-image.icon-pic(style="cursor: pointer;")
-					input(type="file" name="image" style="display: none;" id="upload" accepts='image/*')
+					input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
 				.reply-icon-user-2
 					label(for="uploadvideo")
 						i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
-					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="")
+					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
 				.reply_button
 					input(type='submit' class='button reply_button' value='Répondre')
 

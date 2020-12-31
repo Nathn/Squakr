@@ -7,6 +7,7 @@ mixin tweetForm()
 			if user.lang == 'en'
 				.tweetform_textarea
 					textarea(name='tweet' class='tweet_textarea' placeholder='Share your thoughts...' maxlength="1024")
+				.outputfile(id="outputfile")
 				.icon-user
 					label(for="uploadimg")
 						i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Add an image")
