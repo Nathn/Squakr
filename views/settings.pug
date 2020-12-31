@@ -13,6 +13,20 @@ block content
 				select(name='lang')
 					option(value='en') English
 					option(value='fr') Français
+				label(for='theme') Color theme :
+				br
+				.themeswitch
+					label(class="switch")
+						if user.darkmode
+							input(id="themeswitch" class="themecheck" type="checkbox" checked onchange="changeTheme();" name="theme")
+						else
+							input(id="themeswitch" class="themecheck" type="checkbox" onchange="changeTheme();" name="theme")
+						span(class="slider round")
+					.currentthemeen
+						if user.darkmode
+							| Dark
+						else
+							| Light
 				label(for='suggestions') User suggestions :
 				if user.suggestions
 					select(name='suggestions')
@@ -44,6 +58,20 @@ block content
 				select(name='lang')
 					option(value='fr') Français
 					option(value='en') English
+				label(for='theme') Thème :
+				br
+				.themeswitch
+					label(class="switch")
+						if user.darkmode
+							input(id="themeswitch" class="themecheck" type="checkbox" checked onchange="changeTheme();" name="theme")
+						else
+							input(id="themeswitch" class="themecheck" type="checkbox" onchange="changeTheme();" name="theme")
+						span(class="slider round")
+					.currenttheme
+						if user.darkmode
+							| Nuit
+						else
+							| Jour
 				label(for='suggestions') Suggestions d'utilisateurs :
 				if user.suggestions
 					select(name='suggestions')

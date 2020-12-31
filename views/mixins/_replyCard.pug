@@ -5,18 +5,18 @@ mixin replyCard(reply)
 				img(src=`${reply.author.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			.reply_author_name(style="display: inline;")
-				a(href=`/${reply.author.username}` style="text-decoration: none;")
+				a(href=`/${reply.author.username}`)
 					if (reply.author.verified)
 						strong(style="vertical-align:middle;") #{reply.author.name || reply.author.username}
 						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{reply.author.name || reply.author.username}
-				a(href=`/${reply.author.username}` style="text-decoration: none; color: #333333")
+				a.author_username(href=`/${reply.author.username}` style="text-decoration: none;")
 					span  @#{reply.author.username}
 				//- div.block
 					//- a.overlay(href=`/reply/${reply._id}`)
 				.inner
-					.the_reply(style="color: #000")
+					.the_reply
 						| !{reply.content || reply.reply}
 					if (reply.image)
 						if (reply.reply)
@@ -41,11 +41,11 @@ mixin replyCard(reply)
 							i.fa.fa-heart
 							small  #{reply.likes.toString()}
 				span
-					a( title=`${moment(reply.created)}` style="text-decoration: none; color: #000") &bull; #{moment(reply.created).fromNow()}
+					span(title=`${moment(reply.created)}` style="text-decoration: none;") &bull; #{moment(reply.created).fromNow()}
 				if user && (reply.author.equals(user._id) || user.moderator)
 					span  &bull;
 					span
 					if user.lang == 'en'
-						a(href=`/delete/${reply._id}` style="text-decoration: none; color: #000")  Delete
+						a(href=`/delete/${reply._id}` style="text-decoration: none;")  Delete
 					else
-						a(href=`/delete/${reply._id}` style="text-decoration: none; color: #000")  Supprimer
+						a(href=`/delete/${reply._id}` style="text-decoration: none;")  Supprimer

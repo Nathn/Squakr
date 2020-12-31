@@ -5,19 +5,19 @@ mixin tweetCard(squak)
 				img(src=`${squak.author.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			.author_name(style="display: inline;")
-				a(href=`/${squak.author.username}` style="text-decoration: none;")
+				a(href=`/${squak.author.username}`)
 					if (squak.author.verified)
 						strong(style="vertical-align:middle;") #{squak.author.name || squak.author.username}
 						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
 					else
 						strong #{squak.author.name || squak.author.username}
-				a(href=`/${squak.author.username}` style="text-decoration: none; color: #333333")
+				a.author_username(href=`/${squak.author.username}` style="text-decoration: none;")
 					span  @#{squak.author.username}
 			div.block
 				unless (squak.video && !squak.tweet)
-					a.overlay(href=`/squak/${squak.shortid || squak._id}`)
+					a.overlay(href=`/squak/${squak.shortid || squak._id}` draggable="false")
 				.inner
-					.the_tweet(style="color: #000")
+					.the_tweet
 						if query
 							if squak.content
 								| !{squak.content.replace(new RegExp("(^|>)([^<>]*)(" + query + ")([^<>]*)", 'gim'), `$1$2<mark>$3</mark>$4`)}
@@ -52,11 +52,11 @@ mixin tweetCard(squak)
 						i.fa.fa-comment
 						small  #{squak.replies.toString()}
 				span
-					a(href=`/squak/${squak.shortid || squak._id}` title=`${moment(squak.created)}` style="text-decoration: none; color: #000")  &bull; #{moment(squak.created).fromNow()}
+					a(href=`/squak/${squak.shortid || squak._id}` title=`${moment(squak.created)}` style="text-decoration: none;")  &bull; #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
 					span  &bull;
 					span
 					if user.lang == 'en'
-						a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Delete
+						a(href=`/delete/${squak._id}` style="text-decoration: none;")  Delete
 					else
-						a(href=`/delete/${squak._id}` style="text-decoration: none; color: #000")  Supprimer
+						a(href=`/delete/${squak._id}` style="text-decoration: none;")  Supprimer

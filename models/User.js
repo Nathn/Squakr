@@ -63,6 +63,10 @@ const userSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	darkmode: {
+		type: Boolean,
+		default: false
+	},
 	lang: {
 		type: String,
 		default: 'fr'

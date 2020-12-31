@@ -119,6 +119,28 @@ function clearStatus() {
 	}
 }
 
+function changeTheme() {
+	if (document.getElementById("themeswitch")) {
+		if (document.getElementById("themeswitch").checked) {
+			var body = document.getElementsByTagName("body")[0];
+			body.dataset['theme'] = 'dark';
+			if (document.getElementsByClassName("currenttheme")[0]) {
+				document.getElementsByClassName("currenttheme")[0].innerHTML = 'Nuit'
+			} else if (document.getElementsByClassName("currentthemeen")[0]) {
+				document.getElementsByClassName("currentthemeen")[0].innerHTML = 'Dark'
+			}
+		} else {
+			var body = document.getElementsByTagName("body")[0];
+			body.dataset['theme'] = 'light';
+			if (document.getElementsByClassName("currenttheme")[0]) {
+				document.getElementsByClassName("currenttheme")[0].innerHTML = 'Jour'
+			} else if (document.getElementsByClassName("currentthemeen")[0]) {
+				document.getElementsByClassName("currentthemeen")[0].innerHTML = 'Light'
+			}
+		}
+	}
+}
+
 
 window.addEventListener("hashchange", offsetAnchor);
 window.setTimeout(offsetAnchor, 1);

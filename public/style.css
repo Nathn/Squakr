@@ -1,6 +1,7 @@
 /* Importing the parts of the CSS  */
 @import "./css/normalize.css";
 @import "./css/grid.css";
+@import "./css/themes.css";
 @import url('https://rsms.me/inter/inter.css');
 
 /* Main CSS layout goes here  */
@@ -8,7 +9,36 @@ body {
 	font-size: 1rem;
 	font-family: Arial, sans-serif;
 	word-break: break-word;
+}
+
+body[data-theme = 'light'] {
 	color: #333333;
+	--wrap-bgcolor: #ffffff;
+	--squak-color: #333333;
+	--hover-squak: #efefef;
+	--links-color: #32567d;
+	--hashtags-color: #007bff;
+	--border-squaks-color: #dddddd;
+	--author-name-color: #333333;
+	--text-hover-color: #39aeb4;
+	--meta-color: #000;
+	--liked-color: red;
+	--follow-button-color: #69aaf0;
+}
+
+body[data-theme = 'dark'] {
+	color: #CCD5D4;
+	--wrap-bgcolor: #373E48;
+	--squak-color: #CCD5D4;
+	--hover-squak: #454C57;
+	--links-color: #1675db;
+	--hashtags-color: #1c71ce;
+	--border-squaks-color: #454C57;
+	--author-name-color: #e4e4e4;
+	--text-hover-color: #94e0e4;
+	--meta-color: #CCD5D4;
+	--liked-color: #ce2727;
+	--follow-button-color: #69aaf0;
 }
 
 img {
@@ -93,12 +123,14 @@ textarea {
 	border-radius: 10px;
 	font-weight: bold;
 	cursor: pointer;
-	border: 5px solid #69aaf0;
+	border: 5px solid var(--follow-button-color);
 	width: 100px;
+	color: var(--follow-button-color);
 }
 
 .follow_button:hover {
-	background-color: #69aaf0;
+	background-color: var(--follow-button-color);
+	color: var(--wrap-bgcolor);
 }
 
 .mini_follow_button {
@@ -107,15 +139,17 @@ textarea {
 	border-radius: 8px;
 	font-weight: bold;
 	cursor: pointer;
-	border: 3px solid #69aaf0;
+	border: 3px solid var(--follow-button-color);
 	width: 70px;
 	height: 25px;
 	vertical-align: middle;
 	padding: 0px;
+	color: var(--follow-button-color);
 }
 
 .mini_follow_button:hover {
-	background-color: #69aaf0;
+	background-color: var(--follow-button-color);
+	color: var(--wrap-bgcolor);
 }
 
 .followed_button {
@@ -124,7 +158,7 @@ textarea {
 	border-radius: 10px;
 	font-weight: bold;
 	cursor: pointer;
-	border: 5px solid #69aaf0;
+	border: 5px solid var(--follow-button-color);
 	width: 100px;
 }
 
@@ -134,15 +168,17 @@ textarea {
 	border-radius: 8px;
 	font-weight: bold;
 	cursor: pointer;
-	border: 3px solid #69aaf0;
+	border: 3px solid var(--follow-button-color);
 	width: 70px;
 	height: 25px;
 	vertical-align: middle;
 	padding: 0px;
+	color: var(--wrap-bgcolor);
 }
 
 .mini_followed_button:hover {
 	background-color: transparent;
+	color: var(--follow-button-color);
 }
 
 .followed_button:hover {
@@ -273,7 +309,7 @@ textarea {
 }
 
 .content {
-	background-color: #ffffff;
+	background-color: var(--squak-color);
 	padding: 20px;
 }
 
@@ -305,7 +341,7 @@ textarea {
 
 .profile_avatar {
 	border-radius: 10px;
-	border: 1px solid #dddddd;
+	border: 1px solid var(--border-squaks-color);
 	width: 240px;
 	height: 240px;
 	z-index: 99;
@@ -338,7 +374,7 @@ textarea {
 .profile_banner {
 	width: 800px;
 	height: 161px;
-	box-shadow: 0 0 8px 8px white inset;
+	box-shadow: 0 0 8px 8px var(--wrap-bgcolor) inset;
 }
 
 @media (max-width : 1100px) {
@@ -350,7 +386,7 @@ textarea {
 /* Feed section  */
 .tweet_card {
 	padding: 10px;
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 1px solid var(--border-squaks-color);
 }
 
 .pinned_card {
@@ -363,7 +399,7 @@ textarea {
 }
 
 .tweet_hover:hover {
-	background-color: #efefef;
+	background-color: var(--hover-squak);
 }
 
 
@@ -402,38 +438,41 @@ textarea {
 }
 
 .author_name a {
-	color: #333333;
+	color: var(--author-name-color);
 	text-decoration: none;
 }
 
-.author_name a:hover {
-	color: #39aeb4;
-	text-decoration: underline;
+.author_name a:hover:not(.author_username) {
+	color: var(--text-hover-color);
+	text-decoration: none;
 }
 
 .reply_author_name a {
-	color: #333333;
+	color: var(--author-name-color);
 	text-decoration: none;
 }
 
-.reply_author_name a:hover {
-	color: #39aeb4;
-	text-decoration: underline;
+.reply_author_name a:hover:not(.author_username) {
+	color: var(--text-hover-color);
+	text-decoration: none;
 }
 
 .the_tweet {
 	font-size: 1.3rem;
 	margin: 5px 0;
+	color: var(--squak-color)
 }
 
 .the_reply {
 	font-size: 1.2rem;
 	margin: 5px 0;
+	color: var(--squak-color)
 }
 
 .the_bio {
 	font-size: 1.1rem;
 	margin: 5px 0;
+	color: var(--squak-color)
 }
 
 .welcome,
@@ -451,7 +490,6 @@ textarea {
 
 .heart,
 .pin {
-	background-color: rgba(255, 255, 255, 0);
 	padding: 0;
 	border: none;
 	background: none;
@@ -461,12 +499,17 @@ textarea {
 
 .hearted,
 .pinned {
-	color: red;
+	color: var(--liked-color);
 }
 
 .tweet_meta {
 	font-size: 1rem;
-	color: #000;
+	color: var(--meta-color);
+}
+
+.tweet_meta button:not(.hearted):not(.pinned) {
+	font-size: 1rem;
+	color: var(--meta-color);
 }
 
 .tweet_meta a {
@@ -476,7 +519,7 @@ textarea {
 
 .tweet_meta a:hover {
 	text-decoration: underline;
-	color: #39aeb4;
+	color: var(--text-hover-color);
 }
 
 /* Single tweet page  */
@@ -501,6 +544,7 @@ textarea {
 }
 
 .icon-user {
+	color: #000;
 	position: absolute;
 	width: 20px;
 	height: 20px;
@@ -509,6 +553,7 @@ textarea {
 }
 
 .icon-user-2 {
+	color: #000;
 	position: absolute;
 	width: 20px;
 	height: 20px;
@@ -523,6 +568,7 @@ textarea {
 }
 
 .reply-icon-user {
+	color: #000;
 	position: absolute;
 	width: 20px;
 	height: 20px;
@@ -532,6 +578,7 @@ textarea {
 }
 
 .reply-icon-user-2 {
+	color: #000;
 	position: absolute;
 	width: 20px;
 	height: 20px;
@@ -829,10 +876,22 @@ mark {
 
 .alinks {
 	text-decoration: none;
-	color: #32567d;
+	color: var(--links-color);
 }
 
 .mentions {
 	text-decoration: none;
-	color: #007bff;
+	color: var(--hashtags-color);
+}
+
+.user_website {
+	color: var(--links-color);
+	text-decoration: none;
+	font-weight: bold;
+	word-break: break-all;
+}
+
+.followcount {
+	text-decoration: none;
+	color: var(--author-name-color);
 }

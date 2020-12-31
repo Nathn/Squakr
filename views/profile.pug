@@ -29,47 +29,47 @@ block content
 			if user && user.lang == 'en'
 				if reqUser.followers.length == 1
 					h4
-						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} follower
+						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} follower
 						if reqUser.following.length - 1 == -1
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 following
+							a(href=`/${reqUser.username}/following` class="followcount") 0 following
 						else
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} following
+							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} following
 				else
 					h4
-						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} followers
+						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} followers
 						if reqUser.following.length - 1 == -1
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 following
+							a(href=`/${reqUser.username}/following` class="followcount") 0 following
 						else
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} following
+							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} following
 			else
 				if reqUser.followers.length == 1
 					h4
-						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} abonné
+						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} abonné
 						if reqUser.following.length - 1 == -1
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 abonnements
+							a(href=`/${reqUser.username}/following` class="followcount") 0 abonnements
 						else if reqUser.following.length - 1 == 1
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnement
+							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnement
 						else
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnements
+							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnements
 				else
 					h4
-						a(href=`/${reqUser.username}/followers` style="text-decoration: none; color: #333333;") #{reqUser.followers.length} abonnés
+						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} abonnés
 						if reqUser.following.length - 1 == -1
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") 0 abonnements
+							a(href=`/${reqUser.username}/following` class="followcount") 0 abonnements
 						else if reqUser.following.length - 1 == 1
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnement
+							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnement
 						else
 							| &nbsp;&bull;&nbsp;
-							a(href=`/${reqUser.username}/following` style="text-decoration: none; color: #333333;") #{reqUser.following.length - 1} abonnements
+							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnements
 
 			if user && user.lang == 'en'
 				h4(style="font-size:14px") Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
@@ -83,7 +83,7 @@ block content
 			if reqUser.website
 				p
 					i.fa.fa-link &nbsp;
-					a(href=reqUser.website rel='no_follow' target='_blank' style="text-decoration: none; color: #1675db; font-weight: bold; word-break: break-all;")
+					a(href=reqUser.website rel='no_follow' target='_blank' class="user_website")
 						if reqUser.website.length > 25
 							| #{reqUser.website.replace(/^https?\:\/\//i, "").substring(0, 25)}...
 						else

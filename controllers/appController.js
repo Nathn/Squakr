@@ -102,6 +102,7 @@ exports.notificationsPage = async (req, res) => {
 	});
 	res.render('notifications', {
 		notifications,
-		moment
+		moment,
+		status: req.flash('status').pop() || req.query.status || '200'
 	});
 }

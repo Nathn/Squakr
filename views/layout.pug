@@ -37,7 +37,12 @@ html(lang="fr")
 			document.addEventListener("DOMContentLoaded", function(event) {
 				dispStatus(`${"#{status}" || "200"}`);
 			});
-	body
+
+	if user && user.darkmode
+		- var theme = 'dark'
+	else
+		- var theme = 'light'
+	body(data-theme=theme)
 		.header
 			.wrapper
 				#logo

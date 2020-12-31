@@ -374,7 +374,8 @@ exports.singleTweetPage = async (req, res) => {
 		res.render('single', {
 			squak,
 			moment,
-			replies
+			replies,
+			status: req.flash('status').pop() || req.query.status || '200'
 		});
 
 	} catch (err) {
@@ -416,7 +417,8 @@ exports.singleReplyPage = async (req, res) => {
 			squak,
 			moment,
 			replies,
-			parent
+			parent,
+			status: req.flash('status').pop() || req.query.status || '200'
 		});
 
 

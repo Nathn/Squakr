@@ -94,7 +94,8 @@ exports.searchPage = async (req, res) => {
 			searchresults = uniq(searchresults3)
 			return res.render('search', {
 				searchresults,
-				query
+				query,
+				status: req.flash('status').pop() || req.query.status || '200'
 			});
 		} else if (typesearch == 'squak') {
 			var searchresults = await Tweet.find({
@@ -115,7 +116,8 @@ exports.searchPage = async (req, res) => {
 				typesearch,
 				searchresults,
 				query,
-				moment
+				moment,
+				status: req.flash('status').pop() || req.query.status || '200'
 			});
 		} else {
 			return res.redirect('back');
@@ -174,7 +176,8 @@ exports.profilePage = async (req, res) => {
 				moment,
 				months,
 				enmonths,
-				pinned
+				pinned,
+				status: req.flash('status').pop() || req.query.status || '200'
 			});
 			return;
 		} else {
@@ -227,7 +230,8 @@ exports.likesProfilePage = async (req, res) => {
 				months,
 				enmonths,
 				likes,
-				tweets
+				tweets,
+				status: req.flash('status').pop() || req.query.status || '200'
 			});
 			return;
 		} else {
@@ -277,7 +281,10 @@ exports.accountUpdate = async (req, res) => {
 			bio: req.body.bio
 		}
 
-		if (!req.user) return res.redirect('back')
+		if (!req.user) {
+			req.flash('status', '301')
+			return res.redirect('back')
+		}
 
 		if (req.body.email && req.body.email != req.user.email) {
 			if (process.env.EMAIL_HOST && process.env.EMAIL_PORT && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
@@ -340,7 +347,8 @@ exports.settingsUpdate = async (req, res) => {
 		const updates = {
 			lang: req.body.lang,
 			suggestions: req.body.suggestions,
-			devmode: req.body.devmode
+			devmode: req.body.devmode,
+			darkmode: req.body.theme ? true : false
 		}
 
 		const user = await User.findOneAndUpdate({

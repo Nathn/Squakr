@@ -12,9 +12,9 @@ mixin notificationCard(notification)
 					else
 						strong #{notification.author.name || notification.author.username}
 				span
-					a(href=`/${notification.author.username}` style="text-decoration: none; color: #000; padding-left:5px;") @#{notification.author.username}
+					a.author_username(href=`/${notification.author.username}` style="padding-left:5px;") @#{notification.author.username}
 			div
-				a(href=`${notification.url || '/'}` style="text-decoration: none; color: #000")
+				a(href=`${notification.url || '/'}` style="text-decoration: none;")
 					if notification.txt
 						b
 							if user && user.lang == 'en'

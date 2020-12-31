@@ -12,7 +12,7 @@ mixin userCard(searchuser)
 					else
 						strong #{searchuser.name || searchuser.username}
 				span
-					a(href=`/${searchuser.username}` style="text-decoration: none; color: #000; padding-left:5px;") @#{searchuser.username}
+					a.author_username(href=`/${searchuser.username}` style="padding-left:5px;") @#{searchuser.username}
 					| &nbsp;&nbsp;
 					if user
 						if (searchuser._id.toString() != user._id.toString())
@@ -27,7 +27,7 @@ mixin userCard(searchuser)
 								else
 									input(type="button" onclick=`window.location.href = "/api/users/${searchuser._id}/follow";` class='button mini_follow_button' value=`Suivre` )
 			div
-				a(href=`/${searchuser.username}` style="text-decoration: none; color: #000")
+				a(href=`/${searchuser.username}` style="text-decoration: none;")
 					if searchuser.bio
 						.the_bio #{searchuser.bio}
 					else
