@@ -604,7 +604,7 @@ textarea {
 }
 
 .video-mask {
-	width: 350px;
+	max-width: 350px;
 	border-radius: 10px;
 	overflow: hidden;
 }
@@ -624,7 +624,7 @@ textarea {
 
 
 .squakimg {
-	width: 350px;
+	max-width: 350px;
 	height: 200px;
 	background-position: center;
 	/* Make the background image cover the area of the <div>, and clip the excess */
