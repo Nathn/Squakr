@@ -23,7 +23,9 @@ body[data-theme = 'light'] {
 	--text-hover-color: #39aeb4;
 	--meta-color: #000;
 	--liked-color: red;
-	--follow-button-color: #69aaf0;
+	--follow-button-color: #88cde3;
+	--follow-inside-color: #333333;
+	--followed-inside-color: #333333;
 }
 
 body[data-theme = 'dark'] {
@@ -39,6 +41,8 @@ body[data-theme = 'dark'] {
 	--meta-color: #CCD5D4;
 	--liked-color: #ce2727;
 	--follow-button-color: #69aaf0;
+	--follow-inside-color: #69aaf0;
+	--followed-inside-color: #373E48;
 }
 
 img {
@@ -109,13 +113,11 @@ textarea {
 	font-size: 1.3rem;
 }
 
-.reply_button {
-	font-size: 1rem;
-}
-
+.reply_button,
 .edit_button {
 	font-size: 1rem;
 }
+
 
 .follow_button {
 	font-size: 1.2rem;
@@ -124,13 +126,13 @@ textarea {
 	font-weight: bold;
 	cursor: pointer;
 	border: 5px solid var(--follow-button-color);
-	width: 100px;
-	color: var(--follow-button-color);
+	min-width: 100px;
+	color: var(--follow-inside-color);
 }
 
 .follow_button:hover {
 	background-color: var(--follow-button-color);
-	color: var(--wrap-bgcolor);
+	color: var(--followed-inside-color);
 }
 
 .mini_follow_button {
@@ -140,48 +142,50 @@ textarea {
 	font-weight: bold;
 	cursor: pointer;
 	border: 3px solid var(--follow-button-color);
-	width: 70px;
+	min-width: 70px;
 	height: 25px;
 	vertical-align: middle;
 	padding: 0px;
-	color: var(--follow-button-color);
+	color: var(--follow-inside-color);
 }
 
 .mini_follow_button:hover {
 	background-color: var(--follow-button-color);
-	color: var(--wrap-bgcolor);
+	color: var(--followed-inside-color);
 }
 
 .followed_button {
 	font-size: 1.2rem;
-	background-color: rgba(105, 170, 240, .9);
+	background-color: var(--follow-button-color);
 	border-radius: 10px;
 	font-weight: bold;
 	cursor: pointer;
 	border: 5px solid var(--follow-button-color);
-	width: 100px;
+	min-width: 100px;
+	color: var(--followed-inside-color);
 }
 
 .mini_followed_button {
 	font-size: 1rem;
-	background-color: rgba(105, 170, 240, .9);
+	background-color: var(--follow-button-color);
 	border-radius: 8px;
 	font-weight: bold;
 	cursor: pointer;
 	border: 3px solid var(--follow-button-color);
-	width: 70px;
+	min-width: 70px;
 	height: 25px;
 	vertical-align: middle;
 	padding: 0px;
-	color: var(--wrap-bgcolor);
+	color: var(--followed-inside-color);
 }
 
 .mini_followed_button:hover {
+	color: var(--follow-inside-color);
 	background-color: transparent;
-	color: var(--follow-button-color);
 }
 
 .followed_button:hover {
+	color: var(--follow-inside-color);
 	background-color: transparent;
 }
 
@@ -564,8 +568,8 @@ textarea {
 .outputfile {
 	position: absolute;
 	left: 70px;
-	bottom: 50px;
-	color: var(--links-color);
+	bottom: 51px;
+	color: var(--squak-color);
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -576,7 +580,7 @@ textarea {
 	position: absolute;
 	left: 70px;
 	bottom: 42px;
-	color: var(--links-color);
+	color: var(--squak-color);
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
