@@ -7,8 +7,8 @@ mixin replyCard(reply)
 			.reply_author_name(style="display: inline;")
 				a(href=`/${reply.author.username}`)
 					if (reply.author.verified)
-						strong(style="vertical-align:middle;") #{reply.author.name || reply.author.username}
-						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
+						strong #{reply.author.name || reply.author.username}
+						img.verificationbadge(src="/uploads/c4ze18c.png" width="20" height="20" title="Utilisateur vérifié")
 					else
 						strong #{reply.author.name || reply.author.username}
 				a.author_username(href=`/${reply.author.username}` style="text-decoration: none;")
@@ -34,14 +34,16 @@ mixin replyCard(reply)
 						- const heartClass = heartStrings.includes(reply._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
-							small  #{reply.likes.toString()}
+							if reply.likes > 0
+								small  #{reply.likes.toString()}
 				else
 					form.heart(method='POST' action=`/api/tweets/${reply._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
-							small  #{reply.likes.toString()}
+							if reply.likes > 0
+								small  #{reply.likes.toString()}
 				span
-					span(title=`${moment(reply.created)}` style="text-decoration: none;") &bull; #{moment(reply.created).fromNow()}
+					span(title=`${moment(reply.created)}` style="text-decoration: none;")  #{moment(reply.created).fromNow()}
 				if user && (reply.author.equals(user._id) || user.moderator)
 					span  &bull;
 					span

@@ -323,6 +323,7 @@ exports.accountUpdate = async (req, res) => {
 							}
 						}
 				); */
+				// It throws a MongoError when I add this and try it on cloud (works on localhost), don't know why :/
 			}
 		}
 
@@ -575,7 +576,6 @@ exports.registerUser = async (req, res, next) => {
 };
 
 
-// Heart a tweet
 exports.heartTweet = async (req, res) => {
 	backURL = req.header('Referer') || '/';
 	if (!req.user) return res.redirect(`/login`)
@@ -639,7 +639,7 @@ exports.heartTweet = async (req, res) => {
 					if (err) {
 						console.log(err);
 					} else {
-						console.log(result);
+						// console.log(result);
 					}
 				}
 			);

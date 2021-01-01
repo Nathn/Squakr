@@ -26,28 +26,28 @@ block content
 					else
 						strong #{squak.author.name || squak.author.username}
 				span  @#{squak.author.username}
-				span  &bull;
-				span &nbsp;
-				span(style="padding-left: 3px")=  moment(squak.created).fromNow()
-				span  &bull;
+				span(style="padding: 0 5px;") &bull;
+				span= moment(squak.created).fromNow()
+				span(style="padding: 0 5px;") &bull;
 				if user
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())
 						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : ''
-						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
+						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding: 0 5px;" title="Like !")
 							i.fa.fa-heart
-							small  #{squak.likes.toString()}
+							if squak.likes > 0
+								small  #{squak.likes.toString()}
 					if user.pinned
 						if (squak.author.equals(user._id))
-							form.pin(method='POST' action=`/pin/${squak._id}` style="display: inline;")
+							form.pin(method='POST' action=`/pin/${squak._id}` style="display: inline; padding-right: 10px;")
 								- const pinClass = squak.author.pinned.toString() == squak._id ? 'pinned' : ''
 								- const titlePin = squak.author.pinned.toString() == squak._id ? 'Épinglé' : 'Épingler au profil'
-								button(type='submit' name='pin' class=pinClass style="border:none; background: none; cursor: pointer; padding-top:5px" title=titlePin)
+								button(type='submit' name='pin' class=pinClass style="border:none; background: none; cursor: pointer; padding: 0 5px;" title=titlePin)
 									i.fa.fa-map-pin
 					else
 						if (squak.author.equals(user._id))
-							form.pin(method='POST' action=`/pin/${squak._id}` style="display: inline;")
-								button(type='submit' name='pin' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Épingler au profil")
+							form.pin(method='POST' action=`/pin/${squak._id}` style="display: inline; padding-right: 10px;")
+								button(type='submit' name='pin' style="border:none; background: none; cursor: pointer;" title="Épingler au profil")
 									i.fa.fa-map-pin
 					if user.devmode
 						.reply_button(style="display: inline;")

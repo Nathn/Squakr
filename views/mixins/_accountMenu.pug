@@ -2,13 +2,13 @@ mixin accountMenu()
 	if user.notifications.length > 0
 		.notification
 			a(href="/notifications")
-				i.fa.fa-bell(style="font-size: 22px;")
+				i.fa.fa-bell
 				.counter
 					| #{user.notifications.length}
 	else
 		.emptynotification
 			a(href="/notifications")
-				i.fa.fa-bell(style="font-size: 22px;")
+				i.fa.fa-bell
 
 	a(href=`/${user.username}` class='nav_link') #{(user.name || user.username)}
 	.dropdown

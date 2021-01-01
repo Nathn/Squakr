@@ -872,6 +872,18 @@ mark {
 	color: #000
 }
 
+.notification i {
+	position: fixed;
+	font-size: 22px;
+}
+
+.emptynotification i {
+	position: relative;
+	font-size: 22px;
+	top: 3px;
+	left: 1px;
+}
+
 @media (max-width : 400px) {
 	.emptynotification {
 		visibility: hidden;
@@ -891,7 +903,7 @@ mark {
 	width: 1.3em;
 	position: relative;
 	bottom: 10px;
-	right: 5px;
+	left: 10px;
 }
 
 .alinks {
@@ -935,4 +947,10 @@ mark {
 	.sshide {
 		display: inline;
 	}
+}
+
+.verificationbadge {
+	padding: 0px 0px 0px 5px;
+	position: relative;
+	bottom: -1px;
 }

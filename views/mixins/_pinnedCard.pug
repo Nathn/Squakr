@@ -10,8 +10,8 @@ mixin pinnedCard(squak)
 			.author_name(style="display: inline;")
 				a(href=`/${squak.author.username}`)
 					if (squak.author.verified)
-						strong(style="vertical-align:middle;") #{squak.author.name || squak.author.username}
-						img(src="/uploads/c4ze18c.png" width="20" height="20" style="vertical-align:middle; padding: 0px 0px 0px 5px;" title="Utilisateur vérifié")
+						strong #{squak.author.name || squak.author.username}
+						img.verificationbadge(src="/uploads/c4ze18c.png" width="20" height="20" title="Utilisateur vérifié")
 					else
 						strong #{squak.author.name || squak.author.username}
 				a(href=`/${squak.author.username}` style="text-decoration: none; color: #333333")
@@ -38,18 +38,21 @@ mixin pinnedCard(squak)
 						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : 'nothearted'
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
-							small  #{squak.likes.toString()}
+							if squak.likes > 0
+								small  #{squak.likes.toString()}
 				else
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
-							small  #{squak.likes.toString()}
+							if squak.likes > 0
+								small  #{squak.likes.toString()}
 				form.heart(method='POST' action=`/squak/${squak._id}` style="display: inline;")
 					button(type='submit' name='reply' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px")
 						i.fa.fa-comment
-						small  #{squak.replies.toString()}
+						if squak.replies > 0
+							small  #{squak.replies.toString()}
 				span
-					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none;")  &bull; #{moment(squak.created).fromNow()}
+					a(href=`/squak/${squak._id}` title=`${moment(squak.created)}` style="text-decoration: none;")  #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
 					span  &bull;
 					span
