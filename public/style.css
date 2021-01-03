@@ -467,6 +467,18 @@ textarea {
 	color: var(--squak-color)
 }
 
+@media (max-width : 460px) {
+	.the_tweet {
+		font-size: 1.2rem;
+	}
+}
+
+@media (max-width : 420px) {
+	.the_tweet {
+		font-size: 1.1rem;
+	}
+}
+
 .the_reply {
 	font-size: 1.2rem;
 	margin: 5px 0;
@@ -485,10 +497,16 @@ textarea {
 }
 
 
-@media (max-width : 460px) {
+@media (max-width : 480px) {
 	.welcome {
 		font-size: 15px;
 		padding-left: 15px;
+	}
+}
+
+@media (max-width : 365px) {
+	.welcome {
+		font-size: 14px;
 	}
 }
 
@@ -953,4 +971,21 @@ mark {
 	padding: 0px 0px 0px 5px;
 	position: relative;
 	bottom: -1px;
+}
+
+.connexionLink {
+	font-size: 1rem;
+	color: #2C2F33
+}
+
+@media (max-width : 380px) {
+	.connexionLink {
+		font-size: 0.9rem;
+	}
+}
+
+@media (max-width : 360px) {
+	.connexionLink {
+		font-size: 0.8rem;
+	}
 }

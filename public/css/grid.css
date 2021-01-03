@@ -42,10 +42,22 @@ body[data-theme = 'dark'] {
 	border-radius: 10px;
 }
 
+@media (max-width : 550px) {
+	.single_wrap {
+		padding: 20px 20px 30px 20px;
+	}
+}
+
+@media (max-width : 460px) {
+	.single_wrap {
+		padding: 20px 10px 30px 10px;
+	}
+}
+
 @media (max-width : 420px) {
 	.single_wrap {
 		width: 100%;
-		padding: 20px 10px 30px 10px;
+		padding: 20px 5px 30px 5px;
 	}
 }
 
