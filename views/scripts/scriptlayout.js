@@ -74,9 +74,9 @@ function offsetAnchor() {
 }
 
 function getOutput(type) {
-	outputfile = document.getElementById('outputfile');
-	uploadimg = document.getElementById('uploadimg');
-	uploadvideo = document.getElementById('uploadvideo');
+	var outputfile = document.getElementById('outputfile');
+	var uploadimg = document.getElementById('uploadimg');
+	var uploadvideo = document.getElementById('uploadvideo');
 	if (type == "image") {
 		outputfile.innerHTML = uploadimg.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
 		uploadvideo.value = ''

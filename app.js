@@ -1,5 +1,5 @@
 const express = require('express');
-const fileupload = require('express-fileupload')
+const fileupload = require('express-fileupload');
 const app = express();
 const promisify = require('es6-promisify');
 const bodyParser = require('body-parser');
@@ -8,10 +8,9 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
-const nodemailer = require('nodemailer');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 require('./handlers/passport');
 
@@ -35,7 +34,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
 	console.log('Une erreur est survenue avec la base de données : ' + err);
-})
+});
 
 // Express session
 

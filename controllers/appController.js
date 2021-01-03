@@ -96,7 +96,7 @@ exports.notificationsPage = async (req, res) => {
 	});
 	var notifications = user.notifications
 	var readnotifications = user.readnotifications
-	readnotifs = user.readnotifications.concat(user.notifications)
+	var readnotifs = user.readnotifications.concat(user.notifications)
 	await User.findByIdAndUpdate({
 		_id: req.user._id
 	}, {

@@ -26,11 +26,11 @@ function html(str) {
 	replacedText = replacedText.replace(replacePattern5, '<code>$1</code>')
 
 	var content = replacedText.replace(/\B\@([\w\-]+)/gim, function (match, name) {
-		post = `<a href="/${name}" class="mentions">${match}</a>`;
+		var post = `<a href="/${name}" class="mentions">${match}</a>`;
 		return post;
 	})
 	content = content.replace(/\B\#([\w\-]+)/gim, function (match, hashtag) {
-		post = `<a href="/search?query=${hashtag}&type=squak" class="mentions">${match}</a>`;
+		var post = `<a href="/search?query=${hashtag}&type=squak" class="mentions">${match}</a>`;
 		return post;
 	})
 
@@ -50,7 +50,7 @@ function makeid(length) {
 
 // Home page to list all tweets
 exports.postTweet = async (req, res) => {
-	backURL = req.header('Referer') || '/';
+	var backURL = req.header('Referer') || '/';
 	try {
 		if (req.videourl) {
 			req.body.video = req.videourl
@@ -58,26 +58,24 @@ exports.postTweet = async (req, res) => {
 			req.body.image = req.imageurl
 		} else if (!req.body.tweet) {
 			req.flash('status', '402')
-			return res.redirect(`${backURL}`)
+			return res.redirect(`${backURL}`);
 		} else if (!req.body.tweet.replace(/\s/g, '').length) {
 			req.flash('status', '402')
-			return res.redirect(`${backURL}`)
+			return res.redirect(`${backURL}`);
 		}
 		req.body.author = req.user._id;
 		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		var unique = false
 		while (unique == false){
 			randomid = makeid(7)
-			test = await Tweet.findOne({
+			var test = await Tweet.findOne({
 					shortid: randomid
 				})
-			if (test == null) {
+			if (!test || test == null) {
 				unique = true
 			}
 		}
 		req.body.shortid = randomid
-
-		req.body.shortid
 		const tweet = new Tweet(req.body);
 		await tweet.save();
 		res.redirect('back');
@@ -103,7 +101,6 @@ exports.uploadImage = async (req, res, next) => {
 						function (error, result) {
 							console.log(result, error)
 							if (result) {
-								var success = true
 								const videourl = result.secure_url.toString()
 								req.videourl = videourl
 							}
@@ -120,7 +117,6 @@ exports.uploadImage = async (req, res, next) => {
   							{width: 400, crop: "scale"}
   						]},
 						async function (err, result) {
-							var success = true
 							const imageurl = result.secure_url.toString()
 							req.imageurl = imageurl
 						}
@@ -151,10 +147,10 @@ exports.postReply = async (req, res) => {
 			req.body.image = req.imageurl
 		} else if (!req.body.reply) {
 			req.flash('status', '402')
-			return res.redirect(`${backURL}`)
+			return res.redirect(`${backURL}`);
 		} else if (!req.body.reply.replace(/\s/g, '').length) {
 			req.flash('status', '402')
-			return res.redirect(`${backURL}`)
+			return res.redirect(`${backURL}`);
 		}
 
 		req.body.author = req.user._id;
@@ -176,7 +172,7 @@ exports.postReply = async (req, res) => {
 				}
 			});
 		await reply.save();
-		originalsquak = await Tweet.findById({
+		var originalsquak = await Tweet.findById({
 			_id: req.params.id
 		}).populate('author');
 		if (originalsquak.author._id.toString() != req.user._id.toString()) {
@@ -218,7 +214,7 @@ exports.postReply = async (req, res) => {
 const confirmedOwner = (squak, user, backURL) => {
 	if (!squak.author._id.equals(user._id)) {
 		req.flash('status', '600')
-		return res.redirect(`${backURL}`)
+		return res.redirect(`${backURL}`);
 	}
 }
 
@@ -260,7 +256,7 @@ exports.deleteTweet = async (req, res) => {
 	} catch (e) {
 		console.log(e);
 		req.flash('status', '600')
-		return res.redirect(`${backURL}`)
+		return res.redirect(`${backURL}`);
 	}
 
 
@@ -277,11 +273,11 @@ exports.pinTweet = async (req, res) => {
 		if (squak) {
 			if (squak.author.username != req.user.username) {
 				req.flash('status', '600')
-				return res.redirect(`${backURL}`)
+				return res.redirect(`${backURL}`);
 			}
 		} else {
 			req.flash('status', '404')
-			return res.redirect(`${backURL}`)
+			return res.redirect(`${backURL}`);
 		}
 		console.log(squak.author.pinned)
 		console.log(squak._id)
@@ -337,7 +333,7 @@ exports.pinTweet = async (req, res) => {
 	} catch (e) {
 		console.log(e);
 		req.flash('status', '600')
-		return res.redirect(`${backURL}`)
+		return res.redirect(`${backURL}`);
 	}
 
 
@@ -355,7 +351,7 @@ exports.singleTweetPage = async (req, res) => {
 			var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
 			if (!checkForHexRegExp.test(req.params.id)) {
 				req.flash('status', '404')
-				return res.redirect(`${backURL}`)
+				return res.redirect(`${backURL}`);
 			}
 			var squak = await Tweet.findOne({
 				_id: req.params.id
@@ -365,7 +361,7 @@ exports.singleTweetPage = async (req, res) => {
 			}).populate('author');
 			if (squak == null) {
 				req.flash('status', '404')
-				return res.redirect(`${backURL}`)
+				return res.redirect(`${backURL}`);
 			}
 		} else {
 			var replies = await Reply.find({
@@ -383,7 +379,7 @@ exports.singleTweetPage = async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		req.flash('status', '404')
-		return res.redirect(`${backURL}`)
+		return res.redirect(`${backURL}`);
 	}
 
 }
@@ -411,7 +407,7 @@ exports.singleReplyPage = async (req, res) => {
 			};
 		} else {
 			req.flash('status', '404')
-			return res.redirect(`${backURL}`)
+			return res.redirect(`${backURL}`);
 		};
 
 
@@ -427,7 +423,7 @@ exports.singleReplyPage = async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		req.flash('status', '404')
-		return res.redirect(`${backURL}`)
+		return res.redirect(`${backURL}`);
 	}
 
 }
