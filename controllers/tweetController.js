@@ -62,6 +62,9 @@ exports.postTweet = async (req, res) => {
 		} else if (!req.body.tweet.replace(/\s/g, '').length) {
 			req.flash('status', '402')
 			return res.redirect(`${backURL}`);
+		} else if (!req.user) {
+			req.flash('status', '301')
+			return res.redirect(`${backURL}`);
 		}
 		req.body.author = req.user._id;
 		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
