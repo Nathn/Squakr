@@ -14,7 +14,7 @@ mixin pinnedCard(squak)
 						img.verificationbadge(src="/uploads/c4ze18c.png" width="20" height="20" title="Utilisateur vérifié")
 					else
 						strong #{squak.author.name || squak.author.username}
-				a(href=`/${squak.author.username}` style="text-decoration: none; color: #333333")
+				a.author_username(href=`/${squak.author.username}` style="text-decoration: none;")
 					span  @#{squak.author.username}
 			div.block
 				unless (squak.video && !squak.tweet)
