@@ -10,6 +10,11 @@ const uuid = require('uuid');
 const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
 const clipboardy = require('clipboardy');
+const Discord = require("discord.js");
+const {
+	Client,
+	Util
+} = require("discord.js");
 
 
 require('dotenv').config({
@@ -437,8 +442,6 @@ exports.checkUserExists = async (req, res, next) => {
 		username: req.body.username
 	})
 
-	// console.log(user);
-
 	if (user.length) {
 		req.flash('status', '508')
 		return res.redirect(`register`)
@@ -452,6 +455,13 @@ exports.checkUserExists = async (req, res, next) => {
 		req.flash('status', '509')
 		return res.redirect(`register`)
 	}
+
+	let blacklist = ['register', 'login', 'api', 'squak', 'cgu', 'notifications', 'search', 'logout', 'settings', 'delete', 'id']
+	if (blacklist.includes(req.body.username.toLowerCase())) {
+		req.flash('status', '511')
+		return res.redirect(`register`)
+	}
+
 	next();
 }
 
@@ -469,11 +479,6 @@ exports.registerUser = async (req, res, next) => {
 		await register(user, req.body.password);
 
 		if(process.env.TOKEN){
-			const Discord = require("discord.js");
-			const {
-				Client,
-				Util
-			} = require("discord.js");
 			const client = new Discord.Client();
 			client.login(process.env.TOKEN);
 			client.on('ready', () => {

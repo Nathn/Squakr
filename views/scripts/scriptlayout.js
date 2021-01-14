@@ -34,6 +34,7 @@ function GetStatusString(status) {
 	if (status == '508') return 'Un utilisateur est déjà inscrit avec ce nom d\'utilisateur.'
 	if (status == '509') return 'Un utilisateur est déjà inscrit avec cette adresse email.'
 	if (status == '510') return 'Le nom d\'utilisateur ne peut pas contenir plus de 16 caractères.'
+	if (status == '511') return 'Le nom d\'utilisateur choisi est réservé pour des raisons techniques.'
 	if (status == '600') return 'Vous n\'avez pas assez de permissions pour faire ça.'
 	return;
 }
@@ -63,6 +64,7 @@ function GetStatusStringEn(status) {
 	if (status == '508') return 'An user is already registered with this username.'
 	if (status == '509') return 'An user is already registered with this email.'
 	if (status == '510') return 'The username cannot contain more than 16 characters.'
+	if (status == '511') return 'The chosen username is reserved for technical reasons.'
 	if (status == '600') return 'You don\'t have enough permissions to do this.'
 	return;
 }

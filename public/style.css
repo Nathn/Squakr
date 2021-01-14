@@ -596,7 +596,7 @@ textarea {
 	position: absolute;
 	left: 70px;
 	bottom: 51px;
-	color: var(--squak-color);
+	color: #373E48;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -607,7 +607,7 @@ textarea {
 	position: absolute;
 	left: 70px;
 	bottom: 42px;
-	color: var(--squak-color);
+	color: #373E48;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
