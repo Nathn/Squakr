@@ -96,14 +96,12 @@ body[data-theme = 'dark'] {
 	}
 }
 
-
-
-
-
-
-/* Tweet card grid  */
-.tweet_card,
-.pinned_card {
+.tweet_card {
 	display: grid;
 	grid-template-columns: 60px auto;
+}
+
+.notification_card {
+	display: grid;
+	grid-template-columns: 60px 80% auto;
 }

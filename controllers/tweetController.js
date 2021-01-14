@@ -186,17 +186,13 @@ exports.postReply = async (req, res) => {
 						notifications: {
 							txt: `a répondu à votre squak`,
 							txten: `replied to your squak`,
-							url: `/squak/${originalsquak._id}`,
+							url: `/squak/${originalsquak.shortid}`,
 							author: req.user._id
 						}
 					}
 				},
 				function (err, result) {
-					if (err) {
-						console.log(err);
-					} else {
-						console.log(result);
-					}
+					if (err) console.log(err);
 				});
 		}
 		res.redirect('back');
@@ -222,7 +218,7 @@ const confirmedOwner = (squak, user, backURL) => {
 }
 
 
-exports.deleteTweet = async (req, res) => {
+exports.deleteSquak = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
 
@@ -232,11 +228,8 @@ exports.deleteTweet = async (req, res) => {
 		const reply = await Reply.findOne({
 			_id: req.params.id
 		});
-		if (!req.user.moderator && squak) {
-			confirmedOwner(squak, req.user, backURL);
-		}
-		if (!req.user.moderator && reply) {
-			confirmedOwner(reply, req.user, backURL);
+		if (!req.user.moderator) {
+			confirmedOwner(squak || reply, req.user, backURL);
 		}
 		if (reply) {
 			Tweet.findByIdAndUpdate({
@@ -248,24 +241,90 @@ exports.deleteTweet = async (req, res) => {
 				},
 				function (err, result) {
 					if (err) {
-						console.log(err);
+						if (err) console.log(err);
 					}
 				});
 		}
 		if (squak) console.log(squak.tweet + " deleted")
-		const deleteSquak = await Tweet.deleteOne(squak);
-		const deleteReply = await Reply.deleteOne(reply);
+		await Tweet.deleteOne(squak);
+		await Reply.deleteOne(reply);
 		res.redirect('back')
 	} catch (e) {
 		console.log(e);
 		req.flash('status', '600')
 		return res.redirect(`${backURL}`);
 	}
+}
+
+exports.reportSquak = async (req, res) => {
+	try {
+		backURL = req.header('Referer') || '/';
+
+		const squak = await Tweet.findOne({
+			_id: req.params.id
+		});
+		const reply = await Reply.findOne({
+			_id: req.params.id
+		});
+		if (squak) {
+			await Tweet.findByIdAndUpdate({
+					_id: squak._id
+				}, {
+					$inc: {
+						reports: 1
+					}
+				},
+				function (err, result) {
+					if (err) console.log(err);
+				});
+		} else if (reply) {
+			await Reply.findByIdAndUpdate({
+					_id: reply._id
+				}, {
+					$inc: {
+						reports: 1
+					}
+				},
+				function (err, result) {
+					if (err) console.log(err);
+				});
+		} else {
+			req.flash('status', '404')
+			return res.redirect('/')
+		}
+		User.find({
+			moderator: true
+		}).then((result) => {
+			result.forEach(moderator => {
+				User.findByIdAndUpdate({
+					_id: moderator._id
+				}, {
+					$addToSet: {
+						notifications: {
+							txt: `a signalé un squak`,
+							txten: `reported a squak`,
+							url: `/squak/${squak.shortid || reply.shortid}`,
+							author: req.user._id
+						}
+					}
+				},
+				function (err, result) {
+					if (err) console.log(err);
+				});
+			})
+		})
+		req.flash('status', '102')
+		res.redirect('back')
+	} catch (e) {
+		console.log(e);
+		req.flash('status', '600')
+		return res.redirect('back');
+	}
 
 
 }
 
-exports.pinTweet = async (req, res) => {
+exports.pinSquak = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
 
@@ -294,11 +353,7 @@ exports.pinTweet = async (req, res) => {
 						}
 					},
 					function (err, result) {
-						if (err) {
-							console.log(err);
-						} else {
-							console.log(result);
-						}
+						if (err) console.log(err);
 					});
 			} else {
 				User.findByIdAndUpdate({
@@ -309,11 +364,7 @@ exports.pinTweet = async (req, res) => {
 						}
 					},
 					function (err, result) {
-						if (err) {
-							console.log(err);
-						} else {
-							console.log(result);
-						}
+						if (err) console.log(err);
 					});
 			}
 		} else {
@@ -325,11 +376,7 @@ exports.pinTweet = async (req, res) => {
 					}
 				},
 				function (err, result) {
-					if (err) {
-						console.log(err);
-					} else {
-						console.log(result);
-					}
+					if (err) console.log(err);
 				});
 		}
 		res.redirect('back')

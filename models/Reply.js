@@ -28,6 +28,10 @@ const replySchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+	reports: {
+		type: Number,
+		default: 0
+	},
 	image: {
 		type: String,
 		trim: true

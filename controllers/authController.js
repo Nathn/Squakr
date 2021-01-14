@@ -14,8 +14,7 @@ exports.logout = (req, res) => {
 exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
 		req.flash('status', '301')
-		res.redirect('/');
-		return;
+		return res.redirect('/');
 	}
 
 	next();

@@ -42,24 +42,29 @@ mixin tweetCard(squak)
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							if squak.likes > 0
-								small  #{squak.likes.toString()}
+								small &nbsp;#{squak.likes.toString()}
 				else
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							if squak.likes > 0
-								small  #{squak.likes.toString()}
+								small &nbsp;#{squak.likes.toString()}
 				form.heart(method='POST' action=`/squak/${squak._id}` style="display: inline;")
 					button(type='submit' name='reply' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px;")
 						i.fa.fa-comment
 						if squak.replies > 0
-							small  #{squak.replies.toString()}
+							small &nbsp;#{squak.replies.toString()}
 				span
 					a(href=`/squak/${squak.shortid || squak._id}` title=`${moment(squak.created)}` style="text-decoration: none;")  #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
-					span  &middot;
-					span
+					span &nbsp;&middot;
 					if user.lang == 'en'
-						a(href=`/delete/${squak._id}` style="text-decoration: none;")  Delete
+						a(href=`/delete/${squak._id}` style="text-decoration: none;") &nbsp;Delete
 					else
-						a(href=`/delete/${squak._id}` style="text-decoration: none;")  Supprimer
+						a(href=`/delete/${squak._id}` style="text-decoration: none;") &nbsp;Supprimer
+				else if user
+					span &nbsp;&middot;
+					if user.lang == 'en'
+						a(href=`/report/${squak._id}` style="text-decoration: none;") &nbsp;Report
+					else
+						a(href=`/report/${squak._id}` style="text-decoration: none;") &nbsp;Signaler

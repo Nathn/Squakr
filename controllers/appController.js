@@ -89,14 +89,17 @@ exports.notificationsPage = async (req, res) => {
 	if (!req.user) return res.redirect('/login')
 	var user = await User.findOne({
 		_id: req.user._id
-	}).populate('notifications.author').sort({
-		'notifications.date': 'desc'
-	}).populate('readnotifications.author').sort({
-		'readnotifications.date': 'desc'
-	});
+	}).populate('notifications.author')
+	  .populate('readnotifications.author');
 	var notifications = user.notifications
 	var readnotifications = user.readnotifications
 	var readnotifs = user.readnotifications.concat(user.notifications)
+	notifications.sort(function(a,b){
+  		return b.date - a.date;
+	});
+	readnotifications.sort(function(a,b){
+  		return b.date - a.date;
+	});
 	await User.findByIdAndUpdate({
 		_id: req.user._id
 	}, {

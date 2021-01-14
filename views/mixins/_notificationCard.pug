@@ -1,5 +1,5 @@
 mixin notificationCard(notification)
-	.tweet_card.tweet_hover
+	.notification_card.tweet_hover
 		.tweet_avatar
 			a(href=`/${notification.author.username}`)
 				img(src=`${notification.author.avatar || '/uploads/no-avatar.jpg'}`)
@@ -27,3 +27,5 @@ mixin notificationCard(notification)
 								i Unknown notification error.
 							else
 								i Notification d'origine inconnue.
+		.notif_date
+			| #{moment(notification.date).fromNow()}

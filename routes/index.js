@@ -82,11 +82,15 @@ router.post('/squak',
 
 router.get('/delete/:id',
 	authController.isLoggedIn,
-	tweetController.deleteTweet);
+	tweetController.deleteSquak);
+
+router.get('/report/:id',
+	authController.isLoggedIn,
+	tweetController.reportSquak);
 
 router.post('/pin/:id',
 	authController.isLoggedIn,
-	tweetController.pinTweet);
+	tweetController.pinSquak);
 
 
 router.get('/:username/likes', userController.likesProfilePage);

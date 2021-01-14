@@ -34,6 +34,10 @@ const tweetSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+	reports: {
+		type: Number,
+		default: 0
+	},
 	content: {
 		type: String,
 		trim: true

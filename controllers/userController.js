@@ -689,7 +689,7 @@ exports.heartReply = async (req, res) => {
 	);
 	const reply = await Reply.findById({
 		_id: req.params.id
-	}).populate('author');
+	}).populate('author').populate('squak');
 	if (hearts.includes(req.params.id) == true) {
 		if (reply.author.username != req.user.username) {
 			Reply.findByIdAndUpdate({
@@ -750,7 +750,7 @@ exports.heartReply = async (req, res) => {
 						notifications: {
 							txt: `a aimé votre réponse.`,
 							txten: `liked your reply.`,
-							url: `/squak/${reply.squak._id}`,
+							url: `/squak/${reply.squak.shortid}`,
 							author: req.user._id
 						}
 					}
@@ -782,7 +782,7 @@ exports.verifyUser = async (req, res) => {
 				notifications: {
 					txt: `a certifié votre compte !`,
 					txten: `certified your account !.`,
-					url: ``,
+					url: `/${req.user.username}`,
 					author: req.user._id
 				}
 			}

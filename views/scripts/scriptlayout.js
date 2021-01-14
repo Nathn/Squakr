@@ -12,7 +12,8 @@ function GetURLParameter(sParam) {
 function GetStatusString(status) {
 	if (status == '100') return 'Votre email a bien été confirmé.'
 	if (status == '101') return 'L\'ID a été copié.'
-	if (status == '101') return 'OK'
+	if (status == '102') return 'Le signalement a bien été transmis.'
+	if (status == '200') return 'OK'
 	if (status == '300') return 'La connexion a échoué, veuillez réessayer.'
 	if (status == '301') return 'Vous devez être connecté pour effectuer cette action.'
 	if (status == '400') return 'L\'envoi du squak a échoué. Si le problème persiste, veuillez contacter un administatreur.'
