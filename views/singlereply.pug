@@ -22,9 +22,9 @@ block content
 					else
 						strong #{squak.author.name || squak.author.username}
 				span  @#{squak.author.username}
-				span  &bull;
-				span(style="padding-left: 3px")=  moment(squak.created).fromNow()
-				span  &bull;
+				span(style="padding: 0 8px;") &bull;
+				span= moment(squak.created).fromNow()
+				span(style="padding: 0 5px;")
 				if user
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())

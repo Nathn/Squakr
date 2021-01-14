@@ -26,9 +26,9 @@ block content
 					else
 						strong #{squak.author.name || squak.author.username}
 				span  @#{squak.author.username}
-				span(style="padding: 0 5px;") &bull;
+				span(style="padding: 0 8px;") &bull;
 				span= moment(squak.created).fromNow()
-				span(style="padding: 0 5px;") &bull;
+				span(style="padding: 0 5px;")
 				if user
 					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())
@@ -50,7 +50,7 @@ block content
 								button(type='submit' name='pin' style="border:none; background: none; cursor: pointer;" title="Épingler au profil")
 									i.fa.fa-map-pin
 					if user.devmode
-						.reply_button(style="display: inline;")
+						.reply_button(style="display: inline; padding-left: 10px")
 							if user.lang == 'en'
 								input(type="button" onclick=`window.location.href = '/squak/${squak._id}/json';` class='button reply_button' value='Access JSON data' style="display: inline;")
 								| &#32;

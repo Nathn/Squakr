@@ -1,17 +1,20 @@
 extends layoutprofile
 include mixins/_tweetForm
 include mixins/_tweetCard
-include mixins/_pinnedCard
 block content
 	.double_wrap
 		.profile_section
 			img.profile_avatar(src=`${reqUser.avatar || '/uploads/no-avatar.jpg'}` style="max-height:240px; max-width:240px")
-			if (reqUser.verified)
-				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
+			h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
+				if (reqUser.verified)
 					img(src="/uploads/c4ze18c.png" width="30" height="30" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
-			else
-				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
-			h4 @#{reqUser.username}
+			h4.profile_username @#{reqUser.username}
+				if user && (reqUser.following.map(obj => obj.toString()).includes(user._id.toString())) && reqUser._id.toString() != user._id.toString()
+					span.follows_you
+						if user.lang == 'en'
+							| Follows you
+						else
+							| Vous suit
 
 			if user
 				if user.lang == 'en'
@@ -210,30 +213,23 @@ block content
 								br
 								input(type="button" onclick=`window.location.href = '/id/${reqUser._id}';` class='button edit_button' value='Copier l\'identifiant')
 		.feed_section.single_content
-			if user
-				if (reqUser._id.toString() == user._id.toString())
-					+tweetForm()
-				else
-					.profile_banner(style=`background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
-				nav
-					a(href="") Squaks
-					a(href=`/${reqUser.username}/likes`) Likes
-					.animation.start-home
-				<br/>
-				if pinned
-					+pinnedCard(pinned)
-					br
-				each squak in tweets
-					+tweetCard(squak)
+			if user && reqUser._id.toString() == user._id.toString()
+				+tweetForm()
 			else
 				.profile_banner(style=`background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
-				nav
-					a(href="#") Squaks
-					a(href=`/${reqUser.username}/likes`) Likes
-					.animation.start-home
-				<br/>
-				if pinned
-					+pinnedCard(pinned)
-					br
-				each squak in tweets
-					+tweetCard(squak)
+			nav
+				a(href="#") Squaks
+				a(href=`/${reqUser.username}/likes`) Likes
+				.animation.start-home
+			br
+			if pinned
+				.pinnedsquak
+					h4(style="margin: 10px 0;")
+						i.fa.fa-map-pin
+						if user && user.lang == 'en'
+							| &#32;Pinned squak
+						else
+							| &#32;Squak épinglé
+					+tweetCard(pinned)
+			each squak in tweets
+				+tweetCard(squak)

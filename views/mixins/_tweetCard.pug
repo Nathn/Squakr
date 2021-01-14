@@ -57,7 +57,7 @@ mixin tweetCard(squak)
 				span
 					a(href=`/squak/${squak.shortid || squak._id}` title=`${moment(squak.created)}` style="text-decoration: none;")  #{moment(squak.created).fromNow()}
 				if user && (squak.author.equals(user._id) || user.moderator)
-					span  &bull;
+					span  &middot;
 					span
 					if user.lang == 'en'
 						a(href=`/delete/${squak._id}` style="text-decoration: none;")  Delete

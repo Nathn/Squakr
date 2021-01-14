@@ -11,7 +11,7 @@ body {
 	word-break: break-word;
 }
 
-body[data-theme = 'light'] {
+body[data-theme='light'] {
 	color: #333333;
 	--wrap-bgcolor: #ffffff;
 	--squak-color: #333333;
@@ -28,7 +28,7 @@ body[data-theme = 'light'] {
 	--followed-inside-color: #333333;
 }
 
-body[data-theme = 'dark'] {
+body[data-theme='dark'] {
 	color: #CCD5D4;
 	--wrap-bgcolor: #373E48;
 	--squak-color: #CCD5D4;
@@ -50,7 +50,12 @@ img {
 	height: auto;
 }
 
-a, button, input, textarea, input[type='submit']:focus, button[type='submit']:focus {
+a,
+button,
+input,
+textarea,
+input[type='submit']:focus,
+button[type='submit']:focus {
 	outline: none;
 }
 
@@ -147,6 +152,7 @@ textarea {
 	vertical-align: middle;
 	padding: 0px;
 	color: var(--follow-inside-color);
+	margin-left: 5px;
 }
 
 .mini_follow_button:hover {
@@ -177,6 +183,7 @@ textarea {
 	vertical-align: middle;
 	padding: 0px;
 	color: var(--followed-inside-color);
+	margin-left: 10px;
 }
 
 .mini_followed_button:hover {
@@ -250,6 +257,7 @@ textarea {
 		position: relative;
 		display: inline-block;
 	}
+
 	#navigation_bar {
 		padding-right: 5px;
 	}
@@ -393,9 +401,10 @@ textarea {
 	border-bottom: 1px solid var(--border-squaks-color);
 }
 
-.pinned_card {
-	padding: 10px 10px 20px 10px;
+.pinnedsquak {
+
 	border-bottom: 2px solid #2C2F33;
+	margin-bottom: 10px;
 }
 
 .tweet_card:last-child {
@@ -879,13 +888,15 @@ mark {
 	background-color: #6df1f8;
 }
 
-.notification, .emptynotification {
+.notification,
+.emptynotification {
 	right: 0px;
 	position: relative;
 	display: inline-block;
 }
 
-.notification a, .emptynotification a {
+.notification a,
+.emptynotification a {
 	text-decoration: none;
 	color: #000
 }
@@ -961,6 +972,7 @@ mark {
 }
 
 @media (min-width : 520px) {
+
 	.ssshow,
 	.sshide {
 		display: inline;
@@ -989,4 +1001,18 @@ mark {
 	.connexionLink {
 		font-size: 0.8rem;
 	}
+}
+
+.follows_you {
+	margin-left: 10px;
+	border: 3px solid var(--squak-color);
+	opacity: .7;
+	border-radius: 8px;
+	padding: 3px;
+	font-size: 12px;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	cursor: initial;
 }

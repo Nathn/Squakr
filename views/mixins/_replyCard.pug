@@ -45,7 +45,7 @@ mixin replyCard(reply)
 				span
 					span(title=`${moment(reply.created)}` style="text-decoration: none;")  #{moment(reply.created).fromNow()}
 				if user && (reply.author.equals(user._id) || user.moderator)
-					span  &bull;
+					span  &middot;
 					span
 					if user.lang == 'en'
 						a(href=`/delete/${reply._id}` style="text-decoration: none;")  Delete

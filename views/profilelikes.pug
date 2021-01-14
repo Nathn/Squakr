@@ -10,7 +10,13 @@ block content
 					img(src="/uploads/c4ze18c.png" width="30" height="30" style="vertical-align:middle; padding: 0px 0px 5px 5px;" title="Utilisateur vérifié")
 			else
 				h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
-			h4 @#{reqUser.username}
+			h4.profile_username @#{reqUser.username}
+				if user && (reqUser.following.map(obj => obj.toString()).includes(user._id.toString())) && reqUser._id.toString() != user._id.toString()
+					span.follows_you
+						if user.lang == 'en'
+							| Follows you
+						else
+							| Vous suit
 
 			if user
 				if user.lang == 'en'
@@ -214,9 +220,7 @@ block content
 				a(href=`/${reqUser.username}`) Squaks
 				a(href="") Likes
 				.animation.start-about
-			<br/>
+			br
 			each squak in likes
 				+tweetCard(squak)
-
-
 
