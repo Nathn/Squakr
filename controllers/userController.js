@@ -573,6 +573,7 @@ exports.registerUser = async (req, res, next) => {
 		next();
 
 	} catch (error) {
+		req.flash('status', '512')
 		res.redirect('/register');
 		console.log(error);
 	}
@@ -581,7 +582,10 @@ exports.registerUser = async (req, res, next) => {
 
 exports.heartTweet = async (req, res) => {
 	backURL = req.header('Referer') || '/';
-	if (!req.user) return res.redirect(`/login`)
+	if (!req.user) {
+		req.flash('status', '301')
+		return res.redirect(`/login`)
+	}
 	const hearts = req.user.hearts.map(obj => obj.toString());
 	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
 	const user = await User.findByIdAndUpdate(

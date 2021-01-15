@@ -5,7 +5,7 @@ const moment = require('moment');
 const cloudinary = require('cloudinary').v2;
 const fileupload = require('express-fileupload');
 
-function html(str) {
+async function html(str) {
 	var replacedText, replacePattern1, replacePattern2, replacePattern3, replacePattern4, replacePattern5;
 
 	//URLs starting with http://, https://, or ftp://
@@ -25,16 +25,71 @@ function html(str) {
 	replacePattern5 = /\`([^`]+)\`/gim;
 	replacedText = replacedText.replace(replacePattern5, '<code>$1</code>')
 
-	var content = replacedText.replace(/\B\@([\w\-]+)/gim, function (match, name) {
-		var post = `<a href="/${name}" class="mentions">${match}</a>`;
-		return post;
-	})
+	var content = await replaceAsync(replacedText, /\B\@([\w\-]+)/gim, detectValidMentions);
+
 	content = content.replace(/\B\#([\w\-]+)/gim, function (match, hashtag) {
 		var post = `<a href="/search?query=${hashtag}&type=squak" class="mentions">${match}</a>`;
 		return post;
 	})
 
 	return content
+}
+
+async function replaceAsync(str, regex, asyncFn) {
+    const promises = [];
+    str.replace(regex, (match, ...args) => {
+        const promise = asyncFn(match, ...args);
+        promises.push(promise);
+    });
+    const data = await Promise.all(promises);
+    return str.replace(regex, () => data.shift());
+}
+
+async function detectValidMentions(match, name) {
+    return new Promise((resolve, reject) => {
+        User.findOne({
+			username: name
+		}).then((mention) => {
+			if (mention) {
+				if (typeof squakId !== 'undefined' && squakId !== null) {
+					User.findOneAndUpdate({
+						username: name
+					}, {
+						$addToSet: {
+							notifications: {
+								txt: `vous a mentionné dans un squak`,
+								txten: `mentionned you in a squak`,
+								url: `/squak/${squakId}`,
+								author: currentUserId
+							}
+						}
+					}).then(() => {
+						let post = `<a href="/${name}" class="mentions">${match}</a>`;
+						resolve(post);
+					});
+				} else {
+					User.findOneAndUpdate({
+						username: name
+					}, {
+						$addToSet: {
+							notifications: {
+								txt: `vous a mentionné dans un squak`,
+								txten: `mentionned you in a squak`,
+								url: `/squak/${originalSquakId}`,
+								author: currentUserId
+							}
+						}
+					}).then(() => {
+						let post = `<a href="/${name}" class="mentions">${match}</a>`;
+						resolve(post);
+					});
+				}
+			} else {
+				let post = match
+				resolve(post);
+			}
+		});
+    });
 }
 
 function makeid(length) {
@@ -67,18 +122,20 @@ exports.postTweet = async (req, res) => {
 			return res.redirect(`${backURL}`);
 		}
 		req.body.author = req.user._id;
-		if (req.body.tweet) req.body.content = html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
-		var unique = false
+		var unique = false;
 		while (unique == false){
 			randomid = makeid(7)
 			var test = await Tweet.findOne({
-					shortid: randomid
-				})
+				shortid: randomid
+			})
 			if (!test || test == null) {
 				unique = true
 			}
-		}
-		req.body.shortid = randomid
+		};
+		req.body.shortid = randomid;
+		currentUserId = req.user._id;
+		squakId = randomid
+		if (req.body.tweet) req.body.content = await html(req.body.tweet.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		const tweet = new Tweet(req.body);
 		await tweet.save();
 		res.redirect('back');
@@ -158,7 +215,9 @@ exports.postReply = async (req, res) => {
 
 		req.body.author = req.user._id;
 		req.body.squak = req.params.id;
-		if (req.body.reply != "") req.body.content = html(req.body.reply.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
+		currentUserId = req.user._id;
+		originalSquakId = req.params.id
+		if (req.body.reply != "") req.body.content = await html(req.body.reply.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		const reply = new Reply(req.body);
 		Tweet.findByIdAndUpdate({
 				_id: req.params.id
@@ -168,11 +227,7 @@ exports.postReply = async (req, res) => {
 				}
 			},
 			function (err, result) {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log(result);
-				}
+				if (err) console.log(err);
 			});
 		await reply.save();
 		var originalsquak = await Tweet.findById({

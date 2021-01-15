@@ -15,18 +15,18 @@ mixin replyCard(reply)
 					span  @#{reply.author.username}
 				//- div.block
 					//- a.overlay(href=`/reply/${reply._id}`)
-				.inner
-					.the_reply
-						| !{reply.content || reply.reply}
-					if (reply.image)
-						if (reply.reply)
-							br
-						.maxheightreply
-							img(src=reply.image width="400px" height="100%" style="border-radius: 10px; border: 1px solid #000;" draggable="false")
-					if (reply.video)
-						.video-mask-reply
-							video(controls crossorigin playsinline width="300")
-								source(src=`${reply.video}` type="video/mp4")
+			.inner
+				.the_reply
+					| !{reply.content || reply.reply}
+				if (reply.image)
+					if (reply.reply)
+						br
+					.maxheightreply
+						img(src=reply.image width="400px" height="100%" style="border-radius: 10px; border: 1px solid #000;" draggable="false")
+				if (reply.video)
+					.video-mask-reply
+						video(controls crossorigin playsinline width="300")
+							source(src=`${reply.video}` type="video/mp4")
 			.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/replies/${reply._id}/heart` style="display: inline;")

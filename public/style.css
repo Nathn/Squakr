@@ -16,7 +16,7 @@ body[data-theme='light'] {
 	--wrap-bgcolor: #ffffff;
 	--squak-color: #333333;
 	--hover-squak: #efefef;
-	--links-color: #32567d;
+	--links-color: #113d6c;
 	--hashtags-color: #007bff;
 	--border-squaks-color: #dddddd;
 	--author-name-color: #333333;
@@ -33,8 +33,8 @@ body[data-theme='dark'] {
 	--wrap-bgcolor: #373E48;
 	--squak-color: #CCD5D4;
 	--hover-squak: #454C57;
-	--links-color: #1675db;
-	--hashtags-color: #1c71ce;
+	--links-color: #97c6f9;
+	--hashtags-color: #2d92ff;
 	--border-squaks-color: #454C57;
 	--author-name-color: #e4e4e4;
 	--text-hover-color: #94e0e4;
