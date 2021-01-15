@@ -27,5 +27,5 @@ mixin notificationCard(notification)
 								i Unknown notification error.
 							else
 								i Notification d'origine inconnue.
-		.notif_date
+		.notif_date(title=`${notification.date}`)
 			| #{moment(notification.date).fromNow()}
