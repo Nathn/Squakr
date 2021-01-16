@@ -478,7 +478,7 @@ exports.registerUser = async (req, res, next) => {
 		const register = promisify(User.register, User);
 		await register(user, req.body.password);
 
-		if(process.env.TOKEN){
+		if(process.env.TOKEN && process.env.CHANNEL_ID){
 			const client = new Discord.Client();
 			client.login(process.env.TOKEN);
 			client.on('ready', () => {
@@ -486,7 +486,7 @@ exports.registerUser = async (req, res, next) => {
 				userEmbed.setColor(0x3333ff);
 				userEmbed.setTitle("Nouveau membre sur Squakr !");
 				userEmbed.setDescription(`Souhaitez la bienvenue à @${req.body.username} !`);
-				var logschannel = client.channels.cache.get('735169754989592648');
+				var logschannel = client.channels.cache.get(process.env.CHANNEL_ID);
 				try {
 					logschannel.send(userEmbed)
 				} catch (e) {
