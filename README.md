@@ -66,6 +66,7 @@ You can easily build and host your own version of Squakr to give your community 
 4. Execute `npm install` to install the dependencies.
 5. Execute `npm start` to start the server.
 6. Open you browser and point it to `http://localhost:3000/` (you can change the port with the environnement variable `PORT`)
+7. Happy Coding !
 
 <br/>
 
