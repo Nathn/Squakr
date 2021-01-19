@@ -25,20 +25,20 @@ A new social network designed to be easy to use, save no data and let the user b
 - Verification badge
 - Moderatiors who can delete squaks and verify users
 - Report system that sends a notification to all moderators
-- Appearance settings (dark theme, developper mode)
+- Appearance settings (dark theme, developper mode, etc)
 - Open API (read-only)
 - English and French supported (other languages coming soon)
 
 ## Screenshots
 
 <p style="text-align: center;">
-<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-home-lm.png" alt="Homepage" width="600"/>
+<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-home.png" alt="Homepage" width="600"/>
 <br/>
 <i>Homepage</i>
 </p>
 <br/>
 <p style="text-align: center;">
-<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-home.png" alt="Homepage" width="600"/>
+<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-home-dark.png" alt="Homepage" width="600"/>
 <br/>
 <i>Homepage (dark theme)</i>
 </p>

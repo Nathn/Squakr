@@ -38,6 +38,10 @@ router.get('/search', userController.searchPage);
 
 router.get('/notifications', appController.notificationsPage);
 
+router.get('/api', APIController.APIHomePage);
+router.get('/api/squaks', APIController.APIGetSquaks);
+router.get('/api/users', APIController.APIGetUsers);
+
 // Registration POST request
 router.post('/register',
 	userController.verifyRegister,

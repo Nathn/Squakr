@@ -26,6 +26,7 @@ body[data-theme='light'] {
 	--follow-button-color: #88cde3;
 	--follow-inside-color: #333333;
 	--followed-inside-color: #333333;
+	--apiurl-color: rgba(27, 31, 35, 0.05);
 }
 
 body[data-theme='dark'] {
@@ -43,6 +44,7 @@ body[data-theme='dark'] {
 	--follow-button-color: #69aaf0;
 	--follow-inside-color: #69aaf0;
 	--followed-inside-color: #373E48;
+	--apiurl-color: rgba(240, 246, 252, 0.15);
 }
 
 img {
@@ -934,6 +936,12 @@ mark {
 	color: var(--links-color);
 }
 
+.apilinks {
+	text-decoration: underline;
+	font-weight: bold;
+	color: var(--hashtags-color);
+}
+
 .mentions {
 	text-decoration: none;
 	color: var(--hashtags-color);
@@ -1016,4 +1024,12 @@ mark {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: initial;
+}
+
+.APIurl code {
+	padding: .2em .4em;
+	margin: 0;
+	font-size: 23px;
+	background-color: var(--apiurl-color);
+	border-radius: 6px;
 }

@@ -10,13 +10,24 @@ const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
 const Reply = require('../models/Reply');
 
+exports.APIHomePage = async (req, res) => {
+	try {
+		res.render('api', {
+			status: req.flash('status').pop() || req.flash('error').pop() || req.query.status || '200'
+		});
+	} catch (e) {
+		console.log(e);
+		res.redirect('/')
+	}
+}
+
+
 exports.ProfilePage = async (req, res) => {
 	try {
 		const reqUser = await User.findOne({
 			username: req.params.username
 		});
 		if (reqUser) {
-			// Find all tweets by that user with the _id
 			const squaks = await Tweet.find({
 				author: reqUser._id
 			}).populate('author').sort({
@@ -38,8 +49,6 @@ exports.ProfilePage = async (req, res) => {
 				created: 'desc'
 			});
 
-
-			// Display the JSON page
 			res.json({
 				id: reqUser._id,
 				username: reqUser.username,
@@ -52,12 +61,13 @@ exports.ProfilePage = async (req, res) => {
 				verified: reqUser.verified,
 				confirmedmail: reqUser.confirmed,
 				moderator: reqUser.moderator,
-				developer: reqUser.developer,
+				conributor: reqUser.developer,
 				likes: reqUser.likes,
 				followers: reqUser.followers.length,
 				following: reqUser.following.length,
 				pinnedsquak: reqUser.pinned,
-				squaks: squaks.length
+				squaks: squaks.length,
+				likedsquaks: likes.length
 			});
 			return;
 		} else {
@@ -67,7 +77,7 @@ exports.ProfilePage = async (req, res) => {
 		}
 	} catch (e) {
 		console.log(e);
-		res.redirect('/')
+		return res.json({id: null, error: e.toLocaleString()});
 	}
 }
 
@@ -75,25 +85,24 @@ exports.ProfilePage = async (req, res) => {
 exports.SquakPage = async (req, res) => {
 	try {
 		if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-			res.json({
-				id: null
-			});
+			var squak = await Tweet.findOne({
+				shortid: req.params.id.toString()
+			}).populate('author');
+		} else {
+			var squak = await Tweet.findOne({
+				_id: req.params.id.toString()
+			}).populate('author');
 		}
-		const squak = await Tweet.findOne({
-			_id: req.params.id.toString()
-		}).populate('author');
-
-		const replies = await Reply.find({
-			squak: req.params.id.toString()
-		}).populate('author');
 
 		if (!squak) {
-			res.json({
+			return res.json({
 				id: null
 			});
 		}
+		const replies = await Reply.find({
+			squak: squak._id.toString()
+		}).populate('author');
 
-		// Display the JSON page
 		res.json({
 			id: squak._id,
 			short_id: squak.shortid,
@@ -109,6 +118,79 @@ exports.SquakPage = async (req, res) => {
 		return;
 	} catch (e) {
 		console.log(e);
-		res.redirect('/')
+		return res.json({id: null, error: e.toLocaleString()});
 	}
 }
+
+exports.APIGetSquaks = async (req, res) => {
+	try {
+		/*
+		Parameters :
+		- author
+		- sort
+		- order
+		- to
+		- from
+		*/
+		if (req.query.author && req.query.author.match(/^[0-9a-fA-F]{24}$/)) {
+			var squaks = await Tweet.find({
+				author: req.query.author
+			}).populate('author')
+			.sort({[req.query.sort || 'created']: req.query.order || 'desc'})
+			.limit(parseInt(req.query.to, 10) || 20);
+		} else if (req.query.author) {
+			return res.json({
+				id: null
+			});
+		} else {
+			var squaks = await Tweet.find()
+			.populate('author')
+			.sort({[req.query.sort || 'created']: req.query.order || 'desc'})
+			.limit(parseInt(req.query.to, 10) || 20);
+		}
+		squakResult = []
+		squaks.forEach(squak => squakResult.push({
+			id: squak._id,
+			author_id: squak.author._id,
+			author_username: squak.author.username
+		}));
+		let from = (parseInt(req.query.from, 10) || 0)
+		return res.json(squakResult.slice(from));
+	} catch (e) {
+		console.log(e);
+		return res.json({id: null, error: e.toLocaleString()});
+	}
+}
+
+
+exports.APIGetUsers = async (req, res) => {
+	try {
+		/*
+		Parameters :
+		- sort
+		- order
+		- to
+		- from
+		*/
+		notAuthorized = ['darkmode', 'devmode', 'suggestions', 'notifications', 'readnotifications', 'lang']
+		if (notAuthorized.includes(req.query.sort)) {
+			sortMethod = 'created'
+		} else {
+			sortMethod = req.query.sort
+		}
+		var users = await User.find()
+		.sort({[sortMethod || 'created']: req.query.order || 'desc'})
+		.limit(parseInt(req.query.to, 10) || 20);
+		usersResult = []
+		users.forEach(user => usersResult.push({
+			id: user._id,
+			username: user.username
+		}));
+		let from = (parseInt(req.query.from, 10) || 0)
+		return res.json(usersResult.slice(from));
+	} catch (e) {
+		console.log(e);
+		return res.json({id: null, error: e.toLocaleString()});
+	}
+}
+

@@ -1,0 +1,474 @@
+extends layout
+block content
+	.single_wrap
+		if user && user.lang == 'en'
+			h1 API : Documentation and links
+		else
+			h1 API : Documentation et liens
+		ul
+			if user && user.lang == 'en'
+				li
+					a.apilinks(href="#user-info") Get user info
+				li
+					a.apilinks(href="#squak-info") Get squak info
+				li
+					a.apilinks(href="#get-users") User lists
+				li
+					a.apilinks(href="#get-squaks") Squak lists
+			else
+				li
+					a.apilinks(href="#user-info") Informations sur un utilisateur
+				li
+					a.apilinks(href="#squak-info") Informations sur un squak
+				li
+					a.apilinks(href="#get-users") Listes d'utilisateurs
+				li
+					a.apilinks(href="#get-squaks") Listes de squaks
+		br
+		section(id="user-info")
+			if user && user.lang == 'en'
+				h3 Get user info
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/USERNAME/json</code>`)
+				br
+				| Access this URL by replacing USERNAME with the desired username.
+				h4 Response :
+				code id
+				|  : Unique user ID
+				code  type:id
+				br
+				code username
+				|  : Unqiue username (@)
+				code  type:string
+				br
+				code name
+				|  : Displayed name
+				code  type:string
+				br
+				code bio
+				|  : "About" profile field
+				code  type:string
+				br
+				code website
+				|  : "Website" profile field
+				code  type:string
+				br
+				code creationdate
+				|  : Date and time of account creation
+				code  type:date
+				br
+				code avatar
+				|  : Avatar URL
+				code  type:string
+				br
+				code banner
+				|  : Banner URL
+				code  type:string
+				br
+				code verified
+				|  : The user is verified (blue badge)
+				code  type:boolean
+				br
+				code confirmedmail
+				|  : The user confirmed his email adress
+				code  type:boolean
+				br
+				code moderator
+				|  : The user is a Squakr moderator
+				code  type:boolean
+				br
+				code conributor
+				|  : The user got the <i>contributor</i> badge (helped to the project's developement)
+				code  type:boolean
+				br
+				code likes
+				|  : Total number of likes received on squaks
+				code  type:number
+				br
+				code followers
+				|  : Number of followers
+				code  type:number
+				br
+				code following
+				|  : Number of follows
+				code  type:number
+				br
+				code pinnedsquak
+				|  : ID of pinned squak
+				code  type:string
+				br
+				code squaks
+				|  : Number of published squaks
+				code  type:number
+				br
+				code likedsquaks
+				|  : Number of squaks liked
+				code  type:number
+			else
+				h3 Obtenir les informations d'un utilisateur
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/USERNAME/json</code>`)
+				br
+				| Accéder à cette URL en remplaçant USERNAME par le nom d'utilisateur voulu.
+				h4 Réponse :
+				code id
+				|  : Identifiant utilisateur unique
+				code  type:id
+				br
+				code username
+				|  : Nom d'utilisateur unique (@)
+				code  type:string
+				br
+				code name
+				|  : Nom affiché
+				code  type:string
+				br
+				code bio
+				|  : Zone "à propos" du profil
+				code  type:string
+				br
+				code website
+				|  : Zone "site web" du profil
+				code  type:string
+				br
+				code creationdate
+				|  : Date et heure de la création du profil
+				code  type:date
+				br
+				code avatar
+				|  : URL de l'avatar
+				code  type:string
+				br
+				code banner
+				|  : URL de la bannière
+				code  type:string
+				br
+				code verified
+				|  : L'utilisateur est vérifié (badge bleu)
+				code  type:boolean
+				br
+				code confirmedmail
+				|  : L'utilisateur a confirmé son adresse email
+				code  type:boolean
+				br
+				code moderator
+				|  : L'utilisateur est modérateur Squakr
+				code  type:boolean
+				br
+				code conributor
+				|  : L'utilisateur a le badge <i>contributeur</i> (a aidé au développement du projet)
+				code  type:boolean
+				br
+				code likes
+				|  : Nombre total de likes reçus sur l'ensemble des squaks
+				code  type:number
+				br
+				code followers
+				|  : Nombre d'abonnés
+				code  type:number
+				br
+				code following
+				|  : Nombre d'abonnements
+				code  type:number
+				br
+				code pinnedsquak
+				|  : ID du squak épinglé au profil
+				code  type:string
+				br
+				code squaks
+				|  : Nombre de squaks publiés
+				code  type:number
+				br
+				code likedsquaks
+				|  : Nombre de squaks likés
+				code  type:number
+		br
+		section(id="squak-info")
+			if user && user.lang == 'en'
+				h3 Get squak info
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/squak/ID/json</code>`)
+				br
+				| Access this URL by replacing ID with the identifier of the desired squak.
+				br
+				| Also works with short IDs (7 characters).
+				h4 Response :
+				code id
+				|  : Unique identifier
+				code  type:string
+				br
+				code short_id
+				|  : Short unique identifier (7 characters)
+				code  type:string
+				br
+				code author_id
+				|  : Squak author identifier
+				code  type:string
+				br
+				code author_username
+				|  : Username of the squak author
+				code  type:string
+				br
+				code text
+				|  : Content (unformatted)
+				code  type:string
+				br
+				code image
+				|  : URL of the image associated with the squak
+				code  type:date
+				br
+				code video
+				|  : URL of the video associated with the squak
+				code  type:string
+				br
+				code likes
+				|  : Number of likes received by the squak
+				code  type:number
+				br
+				code replies
+				|  : Number of responses received by the squak
+				code  type:number
+				br
+				code creationdate
+				|  : Creation date and time
+				code  type:date
+			else
+				h3 Obtenir les informations d'un squak
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/squak/ID/json</code>`)
+				br
+				| Accéder à cette URL en remplaçant ID par l'identifiant du squak voulu.
+				br
+				| Fonctionne aussi avec les IDs courts (7 caractères).
+				h4 Réponse :
+				code id
+				|  : Identifiant unique
+				code  type:string
+				br
+				code short_id
+				|  : Identifiant unique court (7 caractères)
+				code  type:string
+				br
+				code author_id
+				|  : Idendifiant de l'auteur du squak
+				code  type:string
+				br
+				code author_username
+				|  : Nom d'utilisateur de l'auteur du squak
+				code  type:string
+				br
+				code text
+				|  : Contenu (non formaté)
+				code  type:string
+				br
+				code image
+				|  : URL de l'image associée au squak
+				code  type:date
+				br
+				code video
+				|  : URL de la vidéo associée au squak
+				code  type:string
+				br
+				code likes
+				|  : Nombre de likes reçus par le squak
+				code  type:number
+				br
+				code replies
+				|  : Nombre de réponses reçues par le squak
+				code  type:number
+				br
+				code creationdate
+				|  : Date et heure de création
+				code  type:date
+		br
+		section(id="get-users")
+			if user && user.lang == 'en'
+				h3 Get user lists
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/api/users?param1=001&amp;param2=002...</code>`)
+				br
+				| Access this URL by replacing the parameters and their values ​​with those of your choice.
+				h4 Available settings:
+				code sort
+				|  : Indicates by which value the results should be sorted. Possible values : likes, followers, squaks, etc.
+				code  default:created
+				br
+				code order
+				|  : Ranking order of results. Possible values : asc (small to large) et desc (large to small).
+				code  default:desc
+				br
+				code from
+				|  : Allows you to start the response array at the given rank. Numeric value or ignored.
+				code  default:0
+				br
+				code to
+				|  : How far should the response array go. Numerical value, must be greater than from.
+				code  default:20
+
+				h4 Response :
+				| A list of objects each corresponding to a user:
+				br
+				br
+				code id
+				|  : Unique identifier of the user.
+				code  type:string
+				br
+				code username
+				|  : Username (@).
+				code  type:string
+				br
+				br
+				| In the event of an error in the parameters, the response consists of a
+				code  id: null&nbsp;
+				| field and a
+				code  error&nbsp;
+				| field in some cases.
+			else
+				h3 Obtenir des listes d'utilisateurs
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/api/users?param1=001&amp;param2=002...</code>`)
+				br
+				| Accéder à cette URL en remplaçant les paramètres et leur valeurs par ceux de votre choix.
+				h4 Paramètres disponibles :
+				code sort
+				|  : Indique par quelle valeur les résultats doivent être triés. Valeurs possibles: likes, followers, squaks, etc.
+				code  default:created
+				br
+				code order
+				|  : Ordre de classement des résultats. Valeurs possibles : asc (petit vers grand) et desc (grand vers petit).
+				code  default:desc
+				br
+				code from
+				|  : Permet de faire commencer l'array de réponse au rang donné. Valeur numérique ou ignoré.
+				code  default:0
+				br
+				code to
+				|  : Jusqu'à quel rang doit aller l'array de réponse. Valeur numérique, doit être supérieur à from.
+				code  default:20
+
+				h4 Réponse :
+				| Une liste d'objets correspondant chacun à un utilisateur :
+				br
+				br
+				code id
+				|  : Identifiant unique de l'utilisateur.
+				code  type:string
+				br
+				code username
+				|  : Nom d'utilisateur (@).
+				code  type:string
+				br
+				br
+				| En cas d'erreur dans les paramètres, la réponse est composée d'un champ
+				code  id: null&nbsp;
+				| et d'un champ
+				code  error&nbsp;
+				| dans certains cas.
+		br
+		section(id="get-squaks")
+			if user && user.lang == 'en'
+				h3 Get squak lists
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/api/squaks?param1=001&amp;param2=002...</code>`)
+				br
+				| Access this URL by replacing the parameters and their values ​​with those of your choice.
+				h4 Available settings:
+				code author
+				|  : Filters the squaks by keeping only those whose author identifier matches the parameter.
+				code  default:all
+				br
+				code sort
+				|  : Indicates by which value the results should be sorted. Possible values : likes, replies, etc.
+				code  default:created
+				br
+				code order
+				|  : Ranking order of results. Possible values : asc (small to large) et desc (large to small).
+				code  default:desc
+				br
+				code from
+				|  : Allows you to start the response array at the given rank. Numeric value or ignored.
+				code  default:0
+				br
+				code to
+				|  : How far should the response array go. Numerical value, must be greater than from.
+				code  default:20
+
+				h4 Response :
+				| A list of objects each corresponding to a squak:
+				br
+				br
+				code id
+				|  : Unique identifier of the squak.
+				code  type:string
+				br
+				code author_id
+				|  : Unique identifier of the author of the squak.
+				code  type:string
+				br
+				code author_username
+				|  : Username (@) of the author of the squak.
+				code  type:string
+				br
+				br
+				| In the event of an error in the parameters, the response consists of a
+				code  id: null&nbsp;
+				| field and a
+				code  error&nbsp;
+				| field in some cases.
+			else
+				h3 Obtenir des listes de squaks
+				.APIurl
+					script(type="text/javascript").
+						document.write(`<code>${window.location.href.split( '/' )[0] + '//' + window.location.href.split( '/' )[2]}/api/squaks?param1=001&amp;param2=002...</code>`)
+				br
+				| Accéder à cette URL en remplaçant les paramètres et leur valeurs par ceux de votre choix.
+				h4 Paramètres disponibles :
+				code author
+				|  : Filtre les squaks en ne conservant que ceux dont l'identifiant de l'auteur correspond au paramètre.
+				code  default:tous
+				br
+				code sort
+				|  : Indique par quelle valeur les résultats doivent être triés. Valeurs possibles: likes, replies, etc.
+				code  default:created
+				br
+				code order
+				|  : Ordre de classement des résultats. Valeurs possibles : asc (petit vers grand) et desc (grand vers petit).
+				code  default:desc
+				br
+				code from
+				|  : Permet de faire commencer l'array de réponse au rang donné. Valeur numérique ou ignoré.
+				code  default:0
+				br
+				code to
+				|  : Jusqu'à quel rang doit aller l'array de réponse. Valeur numérique, doit être supérieur à from.
+				code  default:20
+
+				h4 Réponse :
+				| Une liste d'objets correspondant chacun à un squak :
+				br
+				br
+				code id
+				|  : Identifiant unique du squak.
+				code  type:string
+				br
+				code author_id
+				|  : Identifiant unique de l'auteur du squak.
+				code  type:string
+				br
+				code author_username
+				|  : Nom d'utilisateur (@) de l'auteur du squak.
+				code  type:string
+				br
+				br
+				| En cas d'erreur dans les paramètres, la réponse est composée d'un champ
+				code  id: null&nbsp;
+				| et d'un champ
+				code  error&nbsp;
+				| dans certains cas.
