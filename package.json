@@ -1,6 +1,6 @@
 {
 	"name": "squakr",
-	"version": "1.9",
+	"version": "1.0.1",
 	"description": "",
 	"main": "app.js",
 	"dependencies": {
