@@ -1,6 +1,6 @@
 {
 	"name": "squakr",
-	"version": "1.0.1",
+	"version": "1.9",
 	"description": "",
 	"main": "app.js",
 	"dependencies": {
@@ -45,5 +45,5 @@
 	},
 	"keywords": [],
 	"author": "Nathn",
-	"license": "ISC"
+	"license": "MIT"
 }
