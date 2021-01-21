@@ -884,11 +884,13 @@ exports.followingProfilePage = async (req, res) => {
 			followingids.reverse();
 			var following = []
 			for (const index in followingids) {
-				following.push(
-					await User.findOne({
-						_id: followingids[index]
-					})
-				)
+				if (followingids[index].toString() != reqUser._id.toString()) {
+					following.push(
+						await User.findOne({
+							_id: followingids[index]
+						})
+					)
+				}
 			};
 			following.sort(function(a, b) {
     			return b.followers.length - a.followers.length;

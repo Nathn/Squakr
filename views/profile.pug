@@ -33,45 +33,39 @@ block content
 				if reqUser.followers.length == 1
 					h4
 						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} follower
+						| &nbsp;&bull;&nbsp;
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") 0 following
 						else
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} following
 				else
 					h4
 						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} followers
+						| &nbsp;&bull;&nbsp;
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") 0 following
 						else
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} following
 			else
 				if reqUser.followers.length == 1
 					h4
 						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} abonné
+						| &nbsp;&bull;&nbsp;
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") 0 abonnements
 						else if reqUser.following.length - 1 == 1
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnement
 						else
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnements
 				else
 					h4
 						a(href=`/${reqUser.username}/followers` class="followcount") #{reqUser.followers.length} abonnés
+						| &nbsp;&bull;&nbsp;
 						if reqUser.following.length - 1 == -1
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") 0 abonnements
 						else if reqUser.following.length - 1 == 1
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnement
 						else
-							| &nbsp;&bull;&nbsp;
 							a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnements
 
 			if user && user.lang == 'en'
