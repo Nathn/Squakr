@@ -2,6 +2,7 @@
 # Squakr
 
 A new social network designed to be easy to use, save no data and let the user be in control of what he sees in his news feed.
+Originally forked from [TamalAnwar/twitter-clone-new](https://github.com/TamalAnwar/twitter-clone-new).
 
 ➡️ <https://squakr.fr/>
 
