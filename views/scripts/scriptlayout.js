@@ -101,7 +101,7 @@ function clearInput() {
 }
 
 function dispStatus(status) {
-	console.log("Status code : "+status)
+	console.log("Status code : " + status)
 	if (GetStatusString(status)) {
 		if (GetStatusString(status) == "OK") return "OK";
 		if (document.getElementById("regstatus")) {
@@ -147,6 +147,26 @@ function changeTheme() {
 }
 
 
+function toggleEmoji() {
+	document.getElementsByClassName('emojiMenu')[0].classList.toggle('shown')
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+	if (document.querySelector('emoji-picker')) document.querySelector('emoji-picker').addEventListener('emoji-click', event => document.getElementsByClassName("squak_textarea")[0].value += `${event.detail.unicode} `);
+	if (document.querySelector('emoji-picker')) {
+		document.addEventListener('click', function (event) {
+			var isClickInside = document.querySelector('emoji-picker').contains(event.target) || document.getElementById('emojiButton').contains(event.target);
+			if (!isClickInside) {
+				if ((document.getElementsByClassName('emojiMenu')[0].classList[1] == 'shown')) toggleEmoji();
+			}
+		});
+	}
+	if (document.getElementsByClassName('squak_textarea')[0]) document.getElementsByClassName('squak_textarea')[0].addEventListener('focus', event => {
+		if (document.getElementsByClassName('emojiMenu')[0].classList[1] == 'shown') {
+			toggleEmoji();
+		}
+	});
+});
+
 window.addEventListener("hashchange", offsetAnchor);
 window.setTimeout(offsetAnchor, 1);
-

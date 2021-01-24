@@ -27,6 +27,7 @@ body[data-theme='light'] {
 	--follow-inside-color: #333333;
 	--followed-inside-color: #333333;
 	--apiurl-color: rgba(27, 31, 35, 0.05);
+	--emoji-bg: #efefeff0;
 }
 
 body[data-theme='dark'] {
@@ -45,6 +46,7 @@ body[data-theme='dark'] {
 	--follow-inside-color: #69aaf0;
 	--followed-inside-color: #373E48;
 	--apiurl-color: rgba(240, 246, 252, 0.15);
+	--emoji-bg: #454C57F2;
 }
 
 img {
@@ -101,21 +103,21 @@ textarea {
 	border: 0;
 }
 
-.tweet_textarea {
+.squak_textarea {
 	border: 2px solid #add8e6;
 	margin-bottom: 10px;
+	resize: vertical;
+}
+
+.squak_textarea[name="tweet"] {
 	min-height: 90px;
-	resize: vertical;
 }
 
-.reply_textarea {
-	border: 2px solid #add8e6;
-	margin-bottom: 10px;
+.squak_textarea[name="reply"] {
 	min-height: 60px;
-	resize: vertical;
 }
 
-.tweet_textarea,
+.squak_textarea[name="tweet"],
 .tweet_button {
 	font-size: 1.3rem;
 }
@@ -252,7 +254,7 @@ textarea {
 }
 
 
-@media (max-width : 1100px) {
+@media (max-width : 1120px) {
 	.site_title {
 		margin: 10px 5px;
 		color: #2C2F33;
@@ -570,22 +572,87 @@ textarea {
 	position: relative;
 }
 
-.icon-user {
+.icon-user,
+.icon-user-2,
+.icon-user-3,
+.emojiMenu {
 	color: #000;
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	left: 10px;
 	bottom: 50px;
 }
 
-.icon-user-2 {
+.reply-icon-user,
+.reply-icon-user-2,
+.reply-icon-user-3 {
 	color: #000;
 	position: absolute;
 	width: 20px;
 	height: 20px;
+	bottom: 40px;
+	opacity: 0.9;
+}
+
+.icon-user,
+.reply-icon-user {
+	left: 10px;
+}
+
+.icon-user-2,
+.reply-icon-user-2 {
 	left: 40px;
-	bottom: 50px;
+}
+
+.icon-user-3,
+.reply-icon-user-3 {
+	left: 70px;
+}
+
+.emojiMenu {
+	left: 100px;
+	z-index: 99;
+}
+
+@media (pointer:coarse) {
+	.icon-user-3,
+	.reply-icon-user-3,
+	.emojiMenu {
+		display: none;
+	}
+}
+
+@media (max-width : 565px) {
+	.icon-user-3,
+	.reply-icon-user-3,
+	.emojiMenu {
+		display: none;
+	}
+}
+
+@media (min-width : 900px) {
+	.icon-user-3,
+	.reply-icon-user-3,
+	.emojiMenu {
+		display: block;
+	}
+}
+
+.emojiMenu emoji-picker {
+	--background: var(--emoji-bg);
+	--outline-size: 0;
+}
+
+.icon-user-3 i::before {
+	font-size: 20px;
+}
+
+.reply-icon-user-3 i::before {
+	font-size: 18.5px;
+}
+
+.emojiMenu:not(.shown) {
+	display: none;
 }
 
 .outputfile {
@@ -610,25 +677,6 @@ textarea {
 	-ms-user-select: none;
 }
 
-.reply-icon-user {
-	color: #000;
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	left: 10px;
-	bottom: 40px;
-	opacity: 0.9;
-}
-
-.reply-icon-user-2 {
-	color: #000;
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	left: 40px;
-	bottom: 40px;
-	opacity: 0.9;
-}
 
 .video-mask {
 	max-width: 350px;
@@ -840,7 +888,7 @@ a:nth-child(2):hover~.animation {
 	z-index: 0;
 }
 
-@media (max-width : 1100px) {
+@media (max-width : 1120px) {
 	.search {
 		padding-left: 5px;
 	}

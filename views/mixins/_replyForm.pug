@@ -5,7 +5,7 @@ mixin replyForm(reqSquak)
 				img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			if user.lang == 'en'
-				textarea(name='reply' class='reply_textarea' placeholder='Share your thoughts...' maxlength="1024")
+				textarea(name='reply' class='squak_textarea' placeholder='Share your thoughts...' maxlength="1024")
 				.outputfile(id="outputfile")
 				.reply-icon-user
 					label(for="uploadimg")
@@ -15,10 +15,14 @@ mixin replyForm(reqSquak)
 					label(for="uploadvideo")
 						i.fa.fa-film(style="cursor: pointer;" title="Add video")
 					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
+				.reply-icon-user-3
+					i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
+				.emojiMenu
+					emoji-picker(class=theme locale="fr" data-source="https://cdn.jsdelivr.net/npm/emoji-picker-element-data@%5E1/fr/emojibase/data.json")
 				.reply_button
 					input(type='submit' class='button reply_button' value='Reply')
 			else
-				textarea(name='reply' class='reply_textarea' placeholder='Exprimez-vous...' maxlength="1024")
+				textarea(name='reply' class='squak_textarea' placeholder='Exprimez-vous...' maxlength="1024")
 				.outputfilerep(id="outputfile")
 				.reply-icon-user
 					label(for="uploadimg")
@@ -28,6 +32,10 @@ mixin replyForm(reqSquak)
 					label(for="uploadvideo")
 						i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
 					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
+				.reply-icon-user-3
+					i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
+				.emojiMenu
+					emoji-picker(class=theme locale="fr" data-source="https://cdn.jsdelivr.net/npm/emoji-picker-element-data@%5E1/fr/emojibase/data.json")
 				.reply_button
 					input(type='submit' class='button reply_button' value='Répondre')
 
