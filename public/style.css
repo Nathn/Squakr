@@ -49,6 +49,50 @@ body[data-theme='dark'] {
 	--emoji-bg: #454C57F2;
 }
 
+
+@media (prefers-color-scheme: light) {
+	body[data-theme='unset'] {
+		color: #333333;
+		--wrap-bgcolor: #ffffff;
+		--squak-color: #333333;
+		--hover-squak: #efefef;
+		--links-color: #113d6c;
+		--hashtags-color: #007bff;
+		--border-squaks-color: #dddddd;
+		--author-name-color: #333333;
+		--text-hover-color: #39aeb4;
+		--meta-color: #000;
+		--liked-color: red;
+		--follow-button-color: #88cde3;
+		--follow-inside-color: #333333;
+		--followed-inside-color: #333333;
+		--apiurl-color: rgba(27, 31, 35, 0.05);
+		--emoji-bg: #efefeff0;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body[data-theme='unset'] {
+		color: #CCD5D4;
+		--wrap-bgcolor: #373E48;
+		--squak-color: #CCD5D4;
+		--hover-squak: #454C57;
+		--links-color: #97c6f9;
+		--hashtags-color: #2d92ff;
+		--border-squaks-color: #454C57;
+		--author-name-color: #e4e4e4;
+		--text-hover-color: #94e0e4;
+		--meta-color: #CCD5D4;
+		--liked-color: #ce2727;
+		--follow-button-color: #69aaf0;
+		--follow-inside-color: #69aaf0;
+		--followed-inside-color: #373E48;
+		--apiurl-color: rgba(240, 246, 252, 0.15);
+		--emoji-bg: #454C57F2;
+	}
+}
+
+
 img {
 	max-width: 100%;
 	height: auto;

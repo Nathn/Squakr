@@ -12,6 +12,20 @@ body[data-theme = 'dark'] {
 	--wrap-bgcolor: #373E48;
 }
 
+@media (prefers-color-scheme: light) {
+	body[data-theme='unset'] {
+		background-color: #2C2F33;
+		--wrap-bgcolor: #ffffff;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body[data-theme='unset'] {
+		background-color: #2C2F33;
+		--wrap-bgcolor: #373E48;
+	}
+}
+
 .wrapper {
 	width: 1100px;
 	max-width: 100%;

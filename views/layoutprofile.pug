@@ -41,7 +41,9 @@ html(lang="fr")
 				dispStatus(`${"#{status}" || "200"}`);
 			});
 
-	if user && user.darkmode
+	if !user
+		- var theme = 'unset'
+	else if user.darkmode
 		- var theme = 'dark'
 	else
 		- var theme = 'light'
