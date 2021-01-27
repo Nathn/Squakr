@@ -151,13 +151,14 @@ textarea {
 	font-weight: bold;
 	cursor: pointer;
 	border: 3px solid var(--follow-button-color);
-	min-width: 70px;
+	min-width: 65px;
 	height: 25px;
 	vertical-align: middle;
 	padding: 0px;
 	color: var(--follow-inside-color);
-	margin-left: 5px;
+	white-space: nowrap;
 }
+
 
 .mini_follow_button:hover {
 	background-color: var(--follow-button-color);
@@ -182,12 +183,12 @@ textarea {
 	font-weight: bold;
 	cursor: pointer;
 	border: 3px solid var(--follow-button-color);
-	min-width: 70px;
+	min-width: 65px;
 	height: 25px;
 	vertical-align: middle;
 	padding: 0px;
 	color: var(--followed-inside-color);
-	margin-left: 10px;
+	white-space: nowrap;
 }
 
 .mini_followed_button:hover {
@@ -461,6 +462,10 @@ textarea {
 .author_name a:hover:not(.author_username) {
 	color: var(--text-hover-color);
 	text-decoration: none;
+}
+
+.author_username {
+	margin-right: 10px;
 }
 
 .reply_author_name a {
@@ -1061,17 +1066,21 @@ mark {
 }
 
 .follows_you {
-	margin-left: 10px;
 	border: 3px solid var(--squak-color);
 	opacity: .7;
 	border-radius: 8px;
 	padding: 3px;
+	margin-right: 5px;
 	font-size: 12px;
+	min-width: 65px;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: initial;
+	white-space: nowrap;
+	display: inline-block;
+	text-align: center;
 }
 
 .APIurl code {

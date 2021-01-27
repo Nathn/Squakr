@@ -4,15 +4,15 @@ mixin userCard(searchuser)
 			a(href=`/${searchuser.username}`)
 				img(src=`${searchuser.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
-			.author_name(style="display: inline;")
-				a(href=`/${searchuser.username}` style="text-decoration: none;" title=`@${searchuser.username}`)
-					if (searchuser.verified)
+			.user_header
+				.author_name
+					a(href=`/${searchuser.username}` style="text-decoration: none; margin-right: 10px;" title=`@${searchuser.username}`)
 						strong #{searchuser.name || searchuser.username}
-						img.verificationbadge(src="/uploads/c4ze18c.png" width="20" height="20" title="Utilisateur vérifié")
-					else
-						strong #{searchuser.name || searchuser.username}
-				span
-					a.author_username(href=`/${searchuser.username}` style="padding-left:5px;") @#{searchuser.username}
+						if (searchuser.verified)
+							img.verificationbadge(src="/uploads/c4ze18c.png" width="20" height="20" title="Utilisateur vérifié")
+					br
+					a.author_username(href=`/${searchuser.username}` style="font-size: 15px;") @#{searchuser.username}
+				.user_buttons
 					if user && (searchuser.following.map(obj => obj.toString()).includes(user._id.toString())) && searchuser._id.toString() != user._id.toString()
 						span.follows_you
 							if user.lang == 'en'

@@ -101,6 +101,11 @@ body[data-theme = 'dark'] {
 	grid-template-columns: 60px auto;
 }
 
+.user_header {
+	display: grid;
+	grid-template-columns: max-content auto;
+}
+
 .notification_card {
 	display: grid;
 	grid-template-columns: 60px 80% auto;
