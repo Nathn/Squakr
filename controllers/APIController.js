@@ -132,12 +132,14 @@ exports.APIGetSquaks = async (req, res) => {
 		- to
 		- from
 		*/
+		var to = parseInt(req.query.to, 10) || 20
+		if (to > 100) to = 100
 		if (req.query.author && req.query.author.match(/^[0-9a-fA-F]{24}$/)) {
 			var squaks = await Tweet.find({
 				author: req.query.author
 			}).populate('author')
 			.sort({[req.query.sort || 'created']: req.query.order || 'desc'})
-			.limit(parseInt(req.query.to, 10) || 20);
+			.limit(to);
 		} else if (req.query.author) {
 			return res.json({
 				id: null
@@ -146,7 +148,7 @@ exports.APIGetSquaks = async (req, res) => {
 			var squaks = await Tweet.find()
 			.populate('author')
 			.sort({[req.query.sort || 'created']: req.query.order || 'desc'})
-			.limit(parseInt(req.query.to, 10) || 20);
+			.limit(to);
 		}
 		squakResult = []
 		squaks.forEach(squak => squakResult.push({
@@ -172,6 +174,8 @@ exports.APIGetUsers = async (req, res) => {
 		- to
 		- from
 		*/
+		var to = parseInt(req.query.to, 10) || 20
+		if (to > 50) to = 50
 		notAuthorized = ['darkmode', 'devmode', 'suggestions', 'notifications', 'readnotifications', 'lang']
 		if (notAuthorized.includes(req.query.sort)) {
 			sortMethod = 'created'
@@ -180,7 +184,7 @@ exports.APIGetUsers = async (req, res) => {
 		}
 		var users = await User.find()
 		.sort({[sortMethod || 'created']: req.query.order || 'desc'})
-		.limit(parseInt(req.query.to, 10) || 20);
+		.limit(to);
 		usersResult = []
 		users.forEach(user => usersResult.push({
 			id: user._id,
