@@ -45,7 +45,7 @@ block content
 							i.fa.fa-heart
 							if squak.likes > 0
 								small  #{squak.likes.toString()}
-					if (squak.author.equals(user._id))
+					if (squak.author.equals(user._id) && type != 'reply')
 						if user.pinned
 							if user.lang == 'en'
 								form.pin(method='POST' action=`/pin/${squak._id}` style="display: inline;")
