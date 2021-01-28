@@ -24,7 +24,7 @@ Originally forked from [TamalAnwar/twitter-clone-new](https://github.com/TamalAn
 - Search function among users and squaks
 - Notifications on follows, likes, replies and mentions
 - Verification badge
-- Moderatiors who can delete squaks and verify users
+- Moderators who can delete squaks and verify users
 - Report system that sends a notification to all moderators
 - Appearance settings (dark theme, developper mode, etc)
 - Open API (read-only)
