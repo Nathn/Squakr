@@ -56,6 +56,28 @@ body[data-theme = 'dark'] {
 	border-radius: 10px;
 }
 
+.single_wrap[data-type = 'reply'] {
+	border-radius: 0 0 10px 10px;
+}
+
+.parent_wrap {
+	width: 1100px;
+	max-width: 100%;
+	margin: 0 auto;
+	background-color: var(--wrap-bgcolor);
+	padding: 15px 40px 0 40px;
+	border-radius: 10px 10px 0 0;
+}
+
+.reply_wrapper[data-type = 'reply']:after {
+    content:'';
+    width: 100%;
+    position: absolute; top: 50%;
+    height: 1px;
+    background: white;
+    transform: rotate(-0.25turn) translate(-120px);
+}
+
 @media (max-width : 550px) {
 	.single_wrap {
 		padding: 20px 20px 30px 20px;
@@ -118,6 +140,7 @@ body[data-theme = 'dark'] {
 .user_header {
 	display: grid;
 	grid-template-columns: max-content auto;
+	align-items: center;
 }
 
 .notification_card {

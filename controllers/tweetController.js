@@ -36,18 +36,18 @@ async function html(str) {
 }
 
 async function replaceAsync(str, regex, asyncFn) {
-    const promises = [];
-    str.replace(regex, (match, ...args) => {
-        const promise = asyncFn(match, ...args);
-        promises.push(promise);
-    });
-    const data = await Promise.all(promises);
-    return str.replace(regex, () => data.shift());
+	const promises = [];
+	str.replace(regex, (match, ...args) => {
+		const promise = asyncFn(match, ...args);
+		promises.push(promise);
+	});
+	const data = await Promise.all(promises);
+	return str.replace(regex, () => data.shift());
 }
 
 async function detectValidMentions(match, name) {
-    return new Promise((resolve, reject) => {
-        User.findOne({
+	return new Promise((resolve, reject) => {
+		User.findOne({
 			username: name
 		}).then((mention) => {
 			if (mention) {
@@ -89,17 +89,17 @@ async function detectValidMentions(match, name) {
 				resolve(post);
 			}
 		});
-    });
+	});
 }
 
 function makeid(length) {
-   var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-   var charactersLength = characters.length;
-   for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
+	var result = '';
+	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	var charactersLength = characters.length;
+	for (var i = 0; i < length; i++) {
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	return result;
 }
 
 
@@ -123,7 +123,7 @@ exports.postTweet = async (req, res) => {
 		}
 		req.body.author = req.user._id;
 		var unique = false;
-		while (unique == false){
+		while (unique == false) {
 			randomid = makeid(7)
 			var test = await Tweet.findOne({
 				shortid: randomid
@@ -172,10 +172,13 @@ exports.uploadImage = async (req, res, next) => {
 				}
 			} else if (image) {
 				try {
-					await cloudinary.uploader.upload(image.tempFilePath,
-						{format: 'png', transformation: [
-  							{width: 400, crop: "scale"}
-  						]},
+					await cloudinary.uploader.upload(image.tempFilePath, {
+							format: 'png',
+							transformation: [{
+								width: 400,
+								crop: "scale"
+							}]
+						},
 						async function (err, result) {
 							const imageurl = result.secure_url.toString()
 							req.imageurl = imageurl
@@ -212,27 +215,40 @@ exports.postReply = async (req, res) => {
 			req.flash('status', '402')
 			return res.redirect(`${backURL}`);
 		}
-
 		req.body.author = req.user._id;
+		var unique = false;
+		while (unique == false) {
+			randomid = makeid(7)
+			var test = await Reply.findOne({
+				shortid: randomid
+			})
+			if (!test || test == null) {
+				unique = true
+			}
+		};
+		req.body.shortid = randomid;
 		req.body.squak = req.params.id;
 		currentUserId = req.user._id;
 		originalSquakId = req.params.id
 		if (req.body.reply != "") req.body.content = await html(req.body.reply.replace(/\</g, "&lt;").replace(/\>/g, "&gt;"))
 		const reply = new Reply(req.body);
-		Tweet.findByIdAndUpdate({
+		var originalsquak = await Tweet.findByIdAndUpdate({
+			_id: req.params.id
+		}, {
+			$inc: {
+				replies: 1
+			}
+		}).populate('author');
+		if (!originalsquak) {
+			var originalsquak = await Reply.findByIdAndUpdate({
 				_id: req.params.id
 			}, {
 				$inc: {
 					replies: 1
 				}
-			},
-			function (err, result) {
-				if (err) console.log(err);
-			});
+			}).populate('author');
+		}
 		await reply.save();
-		var originalsquak = await Tweet.findById({
-			_id: req.params.id
-		}).populate('author');
 		if (originalsquak.author._id.toString() != req.user._id.toString()) {
 			await User.findByIdAndUpdate({
 					_id: originalsquak.author._id
@@ -351,21 +367,42 @@ exports.reportSquak = async (req, res) => {
 			moderator: true
 		}).then((result) => {
 			result.forEach(moderator => {
-				User.findByIdAndUpdate({
-					_id: moderator._id
-				}, {
-					$addToSet: {
-						notifications: {
-							txt: `a signalé un squak`,
-							txten: `reported a squak`,
-							url: `/squak/${squak.shortid || reply.shortid}`,
-							author: req.user._id
-						}
-					}
-				},
-				function (err, result) {
-					if (err) console.log(err);
-				});
+				if(squak) {
+					User.findByIdAndUpdate({
+							_id: moderator._id
+						}, {
+							$addToSet: {
+								notifications: {
+									txt: `a signalé un squak`,
+									txten: `reported a squak`,
+									url: `/squak/${squak.shortid || squak._id}`,
+									author: req.user._id
+								}
+							}
+						},
+						function (err, result) {
+							if (err) console.log(err);
+						});
+				} else if(reply) {
+					User.findByIdAndUpdate({
+							_id: moderator._id
+						}, {
+							$addToSet: {
+								notifications: {
+									txt: `a signalé un squak`,
+									txten: `reported a squak`,
+									url: `/reply/${reply.shortid|| reply._id}`,
+									author: req.user._id
+								}
+							}
+						},
+						function (err, result) {
+							if (err) console.log(err);
+						});
+				} else {
+					req.flash('status', '404')
+					res.redirect('back')
+				}
 			})
 		})
 		req.flash('status', '102')
@@ -478,6 +515,7 @@ exports.singleTweetPage = async (req, res) => {
 			squak,
 			moment,
 			replies,
+			type: 'squak',
 			status: req.flash('status').pop() || req.query.status || '200'
 		});
 
@@ -492,38 +530,71 @@ exports.singleTweetPage = async (req, res) => {
 exports.singleReplyPage = async (req, res) => {
 	try {
 		backURL = req.header('Referer') || '/';
-		const squak = await Reply.findOne({
-			_id: req.params.id
+		var reply = await Reply.findOne({
+			shortid: req.params.id.toString()
 		}).populate('author');
 
-		const replies = await Reply.find({
-			squak: req.params.id
-		}).populate('author');
-
-		if (squak) {
-			if (Tweet.find({
-					_id: squak.squak._id
-				})) {
-				const parent = await Tweet.find({
-					_id: squak.squak._id
-				}).populate('author')
-			} else {
-				const parent = 0
-			};
+		if (reply == null) {
+			var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
+			if (!checkForHexRegExp.test(req.params.id)) {
+				req.flash('status', '404')
+				return res.redirect(`${backURL}`);
+			}
+			var reply = await Reply.findOne({
+				_id: req.params.id
+			}).populate('author');
+			var replies = await Reply.find({
+				squak: req.params.id
+			}).populate('author');
+			if (reply == null) {
+				req.flash('status', '404')
+				return res.redirect(`${backURL}`);
+			}
 		} else {
-			req.flash('status', '404')
-			return res.redirect(`${backURL}`);
-		};
+			var replies = await Reply.find({
+				squak: reply._id
+			}).populate('author');
+		}
 
-
-		res.render('singlereply', {
-			squak,
-			moment,
-			replies,
-			parent,
-			status: req.flash('status').pop() || req.query.status || '200'
-		});
-
+		Tweet.findOne({
+			_id: reply.squak
+		}, (err, prt) => {
+			if (prt) {
+				res.render('single', {
+					squak: reply,
+					parent: prt,
+					parenttype: 'squak',
+					moment,
+					replies,
+					type: 'reply',
+					status: req.flash('status').pop() || req.query.status || '200'
+				});
+			} else {
+				Reply.findOne({
+					_id: reply.squak
+				}, (err, prt) => {
+					if (prt) {
+						res.render('single', {
+							squak: reply,
+							parent: prt,
+							parenttype: 'reply',
+							moment,
+							replies,
+							type: 'reply',
+							status: req.flash('status').pop() || req.query.status || '200'
+						});
+					} else {
+						res.render('single', {
+							squak: reply,
+							moment,
+							replies,
+							type: 'reply',
+							status: req.flash('status').pop() || req.query.status || '200'
+						});
+					}
+				}).populate('author');
+			}
+		}).populate('author');
 
 	} catch (err) {
 		console.log(err);

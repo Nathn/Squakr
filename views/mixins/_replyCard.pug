@@ -1,5 +1,7 @@
-mixin replyCard(reply)
-	.tweet_card.tweet_hover
+mixin replyCard(reply, parent=false)
+	- var radius = parent ? '10px' : 0
+	- var margin = parent ? '40px' : 0
+	.tweet_card.tweet_hover(style=`border-radius: ${radius} ${radius} 0 0; margin-bottom: ${margin}`)
 		.reply_avatar
 			a(href=`/${reply.author.username}` name=`${reply._id}`)
 				img(src=`${reply.author.avatar || '/uploads/no-avatar.jpg'}`)
@@ -13,20 +15,18 @@ mixin replyCard(reply)
 						strong #{reply.author.name || reply.author.username}
 				a.author_username(href=`/${reply.author.username}` style="text-decoration: none;")
 					span  @#{reply.author.username}
-				//- div.block
-					//- a.overlay(href=`/reply/${reply._id}`)
-			.inner
-				.the_reply
-					| !{reply.content || reply.reply}
-				if (reply.image)
-					if (reply.reply)
-						br
-					.maxheightreply
-						img(src=reply.image width="400px" height="100%" style="border-radius: 10px; border: 1px solid #000;" draggable="false")
-				if (reply.video)
-					.video-mask-reply
-						video(controls crossorigin playsinline width="300")
-							source(src=`${reply.video}` type="video/mp4")
+			div.block
+				unless (reply.video && !reply.tweet)
+					a.overlay(href=`/reply/${reply.shortid || reply._id}`)
+				.inner
+					.the_reply
+						| !{reply.content || reply.reply}
+					if (reply.image)
+						.squakimg(style=`background-image: url(${reply.image});`)
+					if (reply.video)
+						.video-mask-reply
+							video(controls crossorigin playsinline width="300")
+								source(src=`${reply.video}` type="video/mp4")
 			.tweet_meta
 				if user
 					form.heart(method='POST' action=`/api/replies/${reply._id}/heart` style="display: inline;")
@@ -37,13 +37,18 @@ mixin replyCard(reply)
 							if reply.likes > 0
 								small &nbsp;#{reply.likes.toString()}
 				else
-					form.heart(method='POST' action=`/api/tweets/${reply._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/squaks/${reply._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							if reply.likes > 0
 								small &nbsp;#{reply.likes.toString()}
+				form.heart(method='POST' action=`/reply/${reply.shortid || reply._id}` style="display: inline;")
+					button(type='submit' name='reply' style="border:none; background: none; cursor: pointer; padding-top:5px;")
+						i.fa.fa-comment
+						if reply.replies > 0
+							small &nbsp;#{reply.replies.toString()}
 				span
-					span(title=`${moment(reply.created)}` style="text-decoration: none;")  #{moment(reply.created).fromNow()}
+					a(href=`/reply/${reply.shortid || reply._id}` title=`${moment(reply.created)}` style="text-decoration: none;")  #{moment(reply.created).fromNow()}
 				if user && (reply.author.equals(user._id) || user.moderator)
 					span &nbsp;&middot;
 					if user.lang == 'en'
@@ -53,6 +58,6 @@ mixin replyCard(reply)
 				else if user
 					span &nbsp;&middot;
 					if user.lang == 'en'
-						a(href=`/report/${squak._id}` style="text-decoration: none;") &nbsp;Report
+						a(href=`/report/${reply._id}` style="text-decoration: none;") &nbsp;Report
 					else
-						a(href=`/report/${squak._id}` style="text-decoration: none;") &nbsp;Signaler
+						a(href=`/report/${reply._id}` style="text-decoration: none;") &nbsp;Signaler

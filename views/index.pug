@@ -1,6 +1,6 @@
 extends layout
 include mixins/_tweetForm
-include mixins/_tweetCard
+include mixins/_squakCard
 include mixins/_userCard
 block content
 	.single_wrap
@@ -28,4 +28,4 @@ block content
 				+userCard(profile)
 			br
 		each squak in squaks
-			+tweetCard(squak)
+			+squakCard(squak)

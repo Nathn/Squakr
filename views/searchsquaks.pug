@@ -1,6 +1,6 @@
 extends layout
 include mixins/_tweetForm
-include mixins/_tweetCard
+include mixins/_squakCard
 include mixins/_userCard
 block content
 	.single_wrap
@@ -18,7 +18,7 @@ block content
 			else
 				h2 Squaks correspondant à votre recherche :
 			each squak in searchresults
-				+tweetCard(squak)
+				+squakCard(squak)
 		else
 			br
 			if user && user.lang == 'en'

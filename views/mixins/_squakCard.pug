@@ -1,5 +1,7 @@
-mixin tweetCard(squak)
-	.tweet_card.tweet_hover
+mixin squakCard(squak, parent=false)
+	- var radius = parent ? '10px' : 0
+	- var margin = parent ? '40px' : 0
+	.tweet_card.tweet_hover(style=`border-radius: ${radius} ${radius} 0 0; margin-bottom: ${margin}`)
 		.tweet_avatar
 			a(href=`/${squak.author.username}` name=`${squak._id}`)
 				img(src=`${squak.author.avatar || '/uploads/no-avatar.jpg'}`)
@@ -28,7 +30,7 @@ mixin tweetCard(squak)
 						if (squak.image)
 							if (squak.tweet)
 								br
-							.squakimg(style=`background-image: url(${squak.image}); margin-top: 3px;`)
+							.squakimg(style=`background-image: url(${squak.image});`)
 			if (squak.video)
 				.video-mask
 					video(controls crossorigin playsinline width="100%")
@@ -36,7 +38,7 @@ mixin tweetCard(squak)
 
 			.tweet_meta
 				if user
-					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())
 						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
@@ -44,13 +46,13 @@ mixin tweetCard(squak)
 							if squak.likes > 0
 								small &nbsp;#{squak.likes.toString()}
 				else
-					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							if squak.likes > 0
 								small &nbsp;#{squak.likes.toString()}
-				form.heart(method='POST' action=`/squak/${squak._id}` style="display: inline;")
-					button(type='submit' name='reply' class=heartClass style="border:none; background: none; cursor: pointer; padding-top:5px;")
+				form.heart(method='POST' action=`/squak/${squak.shortid || squak._id}` style="display: inline;")
+					button(type='submit' name='reply' style="border:none; background: none; cursor: pointer; padding-top:5px;")
 						i.fa.fa-comment
 						if squak.replies > 0
 							small &nbsp;#{squak.replies.toString()}

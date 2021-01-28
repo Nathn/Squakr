@@ -1,10 +1,18 @@
 extends layoutsingle
 include mixins/_replyForm
 include mixins/_replyCard
+include mixins/_squakCard
 block content
-	.single_wrap
+	.single_wrap(data-type=`${type || 'squak'}`)
+		if parent
+			if parenttype == 'squak'
+				+squakCard(parent, true)
+			if parenttype == 'reply'
+				+replyCard(parent, true)
+		else if type == 'reply'
+			h5 Le squak d'origine a été supprimé
 		.single_tweet
-			p(style="white-space: pre-line")
+			p(style=`white-space: pre-line;`)
 				| !{squak.content || squak.tweet}
 				if (squak.image)
 					if (squak.tweet)
@@ -30,7 +38,7 @@ block content
 				span= moment(squak.created).fromNow()
 				span(style="padding: 0 5px;") &bull;
 				if user
-					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
 						- const heartStrings = user.hearts.map(obj => obj.toString())
 						- const heartClass = heartStrings.includes(squak._id.toString()) ? 'hearted' : ''
 						button(type='submit' name='heart' class=heartClass style="border:none; background: none; cursor: pointer; padding: 0 7px;" title="Like !")
@@ -98,7 +106,7 @@ block content
 								| &#32;
 								input(type="button" onclick=`window.location.href = '/id/${squak._id}';` class='button reply_button' value='Copier l\'identifiant' style="display: inline;")
 				else
-					form.heart(method='POST' action=`/api/tweets/${squak._id}/heart` style="display: inline;")
+					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")
 							i.fa.fa-heart
 							small  #{squak.likes.toString()}

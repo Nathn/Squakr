@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 const replySchema = new mongoose.Schema({
+	shortid: {
+		type: String,
+		trim: true,
+		required: true,
+		unique: true,
+	},
 	reply: {
 		type: String,
 		trim: true

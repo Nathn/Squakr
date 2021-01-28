@@ -1,6 +1,6 @@
 extends layoutprofile
 include mixins/_tweetForm
-include mixins/_tweetCard
+include mixins/_squakCard
 block content
 	if user && reqUser._id.toString() == user._id.toString()
 		+tweetForm()
@@ -19,6 +19,6 @@ block content
 					| &#32;Pinned squak
 				else
 					| &#32;Squak épinglé
-			+tweetCard(pinned)
+			+squakCard(pinned)
 	each squak in tweets
-		+tweetCard(squak)
+		+squakCard(squak)

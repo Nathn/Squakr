@@ -1,6 +1,6 @@
 extends layoutprofile
 include mixins/_tweetForm
-include mixins/_tweetCard
+include mixins/_squakCard
 block content
 	.profile_banner(style=`background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 	nav
@@ -9,5 +9,5 @@ block content
 		.animation.start-about
 	br
 	each squak in likes
-		+tweetCard(squak)
+		+squakCard(squak)
 

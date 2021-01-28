@@ -548,7 +548,7 @@ textarea {
 
 .the_bio {
 	font-size: 1.1rem;
-	margin: 5px 0;
+	margin: 5px 0 0 0;
 	color: var(--squak-color)
 }
 
@@ -755,6 +755,7 @@ textarea {
 	background-size: cover;
 	border-radius: 10px;
 	border: 1px solid #000;
+	margin-top: 5px;
 }
 
 

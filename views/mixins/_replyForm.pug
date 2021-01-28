@@ -1,5 +1,5 @@
 mixin replyForm(reqSquak)
-	form.tweet_card(action=`/api/tweets/${reqSquak._id}/reply` method='POST' enctype='multipart/form-data')
+	form.tweet_card(action=`/api/squaks/${reqSquak._id}/reply` method='POST' enctype='multipart/form-data')
 		.reply_avatar
 			a(href=`/${user.username}`)
 				img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)

@@ -14,11 +14,12 @@ router.get('/', appController.indexPage);
 router.get('/squak/:id', tweetController.singleTweetPage);
 router.get('/squak/:id/json', APIController.SquakPage);
 router.post('/squak/:id', tweetController.singleTweetPage);
-// router.get('/reply/:id', tweetController.singleReplyPage);
+router.get('/reply/:id', tweetController.singleReplyPage);
+router.post('/reply/:id', tweetController.singleReplyPage);
 
-router.post('/api/tweets/:id/heart', userController.heartTweet)
+router.post('/api/squaks/:id/heart', userController.heartTweet)
 router.post('/api/replies/:id/heart', userController.heartReply)
-router.post('/api/tweets/:id/reply',
+router.post('/api/squaks/:id/reply',
 	tweetController.uploadImage,
 	tweetController.postReply
 )
