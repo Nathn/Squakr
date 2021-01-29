@@ -61,7 +61,7 @@ exports.searchPage = async (req, res) => {
 			return res.redirect(`${backURL}`);
 		}
 		var query = req.query.query;
-		if (!/^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g.test(query)) {
+		if (!/^[ a-zA-ZÀ-ÿ0-9\u00f1\u00d1]*$/g.test(query)) {
 			req.flash('status', '451')
 			return res.redirect(`${backURL}`);
 		}
