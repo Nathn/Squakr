@@ -82,11 +82,17 @@ function getOutput(type) {
 	var outputfile = document.getElementById('outputfile');
 	var uploadimg = document.getElementById('uploadimg');
 	var uploadvideo = document.getElementById('uploadvideo');
+	var squak_textarea = document.getElementById('squak_textarea');
+	var icon_set = document.getElementById('icon_set');
 	if (type == "image") {
+		squak_textarea.dataset['output'] = 1
+		icon_set.dataset['output'] = 1
 		outputfile.innerHTML = uploadimg.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
 		uploadvideo.value = ''
 	}
 	if (type == "video") {
+		squak_textarea.dataset['output'] = 1
+		icon_set.dataset['output'] = 1
 		outputfile.innerHTML = uploadvideo.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
 		uploadimg.value = ''
 	}
@@ -94,6 +100,8 @@ function getOutput(type) {
 }
 
 function clearInput() {
+	squak_textarea.dataset['output'] = 0
+	icon_set.dataset['output'] = 0
 	outputfile.innerHTML = '';
 	uploadimg.value = ''
 	uploadvideo.value = ''

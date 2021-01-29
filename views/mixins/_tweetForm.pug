@@ -5,36 +5,36 @@ mixin tweetForm()
 				img(src=`${user.avatar || '/uploads/no-avatar.jpg'}`)
 		.tweet_text
 			if user.lang == 'en'
-				.tweetform_textarea
-					textarea(name='tweet' class='squak_textarea' placeholder='Share your thoughts...' maxlength="1024")
+				textarea(name='tweet' class='squak_textarea' placeholder='Share your thoughts...' maxlength="1024" id='squak_textarea')
 				.outputfile(id="outputfile")
-				.icon-user
-					label(for="uploadimg")
-						i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Add an image")
-					input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
-				.icon-user-2
-					label(for="uploadvideo")
-						i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
-					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
-				.icon-user-3
-					i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
-				.emojiMenu
-					emoji-picker(class=theme locale="en" data-source="https://cdn.jsdelivr.net/npm/emoji-picker-element-data@%5E1/en/emojibase/data.json")
+				.icon_set(name="squak" id='icon_set')
+					.icon-1
+						label(for="uploadimg")
+							i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Add an image")
+						input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
+					.icon-2
+						label(for="uploadvideo")
+							i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
+						input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
+					.icon-3
+						i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
+					.emojiMenu
+						emoji-picker(class=theme locale="en" data-source="https://cdn.jsdelivr.net/npm/emoji-picker-element-data@%5E1/en/emojibase/data.json")
 			else
-				.tweetform_textarea
-					textarea(name='tweet' class='squak_textarea' placeholder='Exprimez-vous...' maxlength="1024")
+				textarea(name='tweet' class='squak_textarea' placeholder='Exprimez-vous...' maxlength="1024" id='squak_textarea')
 				.outputfile(id="outputfile")
-				.icon-user
-					label(for="uploadimg")
-						i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Ajouter une image")
-					input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
-				.icon-user-2
-					label(for="uploadvideo")
-						i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
-					input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
-				.icon-user-3
-					i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
-				.emojiMenu
-					emoji-picker(class=theme locale="fr" data-source="https://cdn.jsdelivr.net/npm/emoji-picker-element-data@%5E1/fr/emojibase/data.json")
+				.icon_set(name="squak" id='icon_set')
+					.icon-1
+						label(for="uploadimg")
+							i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Ajouter une image")
+						input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
+					.icon-2
+						label(for="uploadvideo")
+							i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
+						input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
+					.icon-3
+						i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
+					.emojiMenu
+						emoji-picker(class=theme locale="fr" data-source="https://cdn.jsdelivr.net/npm/emoji-picker-element-data@%5E1/fr/emojibase/data.json")
 			.tweet_button
 				input(type='submit' class='button tweet_button' value='Squak')

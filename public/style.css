@@ -161,6 +161,14 @@ textarea {
 	min-height: 60px;
 }
 
+.squak_textarea[name="tweet"][data-output="1"] {
+	min-height: 110px;
+}
+
+.squak_textarea[name="reply"][data-output="1"] {
+	min-height: 80px;
+}
+
 .squak_textarea[name="tweet"],
 .tweet_button {
 	font-size: 1.3rem;
@@ -621,67 +629,59 @@ textarea {
 	position: relative;
 }
 
-.icon-user,
-.icon-user-2,
-.icon-user-3,
+.icon-1,
+.icon-2,
+.icon-3,
 .emojiMenu {
 	color: #000;
-	position: absolute;
+	position: relative;
 	width: 20px;
 	height: 20px;
+	margin-left: 10px;
+}
+
+.icon_set {
+	position: absolute;
+	display: flex;
+}
+
+.icon_set[name="squak"] {
 	bottom: 50px;
 }
 
-.reply-icon-user,
-.reply-icon-user-2,
-.reply-icon-user-3 {
-	color: #000;
-	position: absolute;
-	width: 20px;
-	height: 20px;
+.icon_set[name="reply"] {
 	bottom: 40px;
-	opacity: 0.9;
 }
 
-.icon-user,
-.reply-icon-user {
-	left: 10px;
+.icon_set[name="squak"][data-output="1"] {
+	bottom: 70px;
 }
 
-.icon-user-2,
-.reply-icon-user-2 {
-	left: 40px;
-}
-
-.icon-user-3,
-.reply-icon-user-3 {
-	left: 70px;
+.icon_set[name="reply"][data-output="1"] {
+	bottom: 60px;
 }
 
 .emojiMenu {
-	left: 100px;
 	z-index: 99;
+	display:block;
 }
 
 @media (pointer:coarse) {
-	.icon-user-3,
-	.reply-icon-user-3,
+	.icon-3,
 	.emojiMenu {
 		display: none;
 	}
 }
 
 @media (max-width : 565px) {
-	.icon-user-3,
-	.reply-icon-user-3,
+	.icon-3,
 	.emojiMenu {
 		display: none;
 	}
 }
 
 @media (min-width : 900px) {
-	.icon-user-3,
-	.reply-icon-user-3,
+	.icon-3,
 	.emojiMenu {
 		display: block;
 	}
@@ -692,11 +692,11 @@ textarea {
 	--outline-size: 0;
 }
 
-.icon-user-3 i::before {
+.icon-3 i::before {
 	font-size: 20px;
 }
 
-.reply-icon-user-3 i::before {
+.icon-3 i::before {
 	font-size: 18.5px;
 }
 
@@ -706,7 +706,7 @@ textarea {
 
 .outputfile {
 	position: absolute;
-	left: 70px;
+	left: 10px;
 	bottom: 51px;
 	color: #373E48;
 	user-select: none;
@@ -717,7 +717,7 @@ textarea {
 
 .outputfilerep {
 	position: absolute;
-	left: 70px;
+	left: 10px;
 	bottom: 42px;
 	color: #373E48;
 	user-select: none;
