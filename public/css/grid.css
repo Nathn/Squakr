@@ -4,7 +4,7 @@
 
 body[data-theme = 'light'] {
 	background-color: #2C2F33;
-	--wrap-bgcolor: #ffffff;
+	--wrap-bgcolor: #f7f7f7;
 }
 
 body[data-theme = 'dark'] {
@@ -12,10 +12,15 @@ body[data-theme = 'dark'] {
 	--wrap-bgcolor: #373E48;
 }
 
+body[data-theme='unset'] {
+	background-color: #2C2F33;
+	--wrap-bgcolor: #f7f7f7;
+}
+
 @media (prefers-color-scheme: light) {
 	body[data-theme='unset'] {
 		background-color: #2C2F33;
-		--wrap-bgcolor: #ffffff;
+		--wrap-bgcolor: #f7f7f7;
 	}
 }
 

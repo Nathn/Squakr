@@ -13,7 +13,7 @@ body {
 
 body[data-theme='light'] {
 	color: #333333;
-	--wrap-bgcolor: #ffffff;
+	--wrap-bgcolor: #f7f7f7;
 	--squak-color: #333333;
 	--hover-squak: #efefef;
 	--links-color: #113d6c;
