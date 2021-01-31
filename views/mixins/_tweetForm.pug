@@ -11,11 +11,11 @@ mixin tweetForm()
 					.icon-1
 						label(for="uploadimg")
 							i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Add an image")
-						input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
+						input(type="file" name="image" style="display: none;" id="uploadimg" accept="image/*" onchange="getOutput('image')")
 					.icon-2
 						label(for="uploadvideo")
 							i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
-						input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
+						input(type="file" name="video" style="display: none;" id="uploadvideo" accept='video/*' onchange="getOutput('video')")
 					.icon-3
 						i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
 					.emojiMenu
@@ -27,11 +27,11 @@ mixin tweetForm()
 					.icon-1
 						label(for="uploadimg")
 							i.fa.fa-image.icon-pic(style="cursor: pointer;" title="Ajouter une image")
-						input(type="file" name="image" style="display: none;" id="uploadimg" accepts='image/*' onchange="getOutput('image')")
+						input(type="file" name="image" style="display: none;" id="uploadimg" accept="image/*" onchange="getOutput('image')")
 					.icon-2
 						label(for="uploadvideo")
 							i.fa.fa-film(style="cursor: pointer;" title="Ajouter une vidéo")
-						input(type="file" name="video" style="display: none;" id="uploadvideo" accepts='video/*' onchange="getOutput('video')")
+						input(type="file" name="video" style="display: none;" id="uploadvideo" accept='video/*' onchange="getOutput('video')")
 					.icon-3
 						i.fa.fa-smile-o(style="cursor: pointer;" title="Emojis" onclick="toggleEmoji()" id="emojiButton")
 					.emojiMenu
