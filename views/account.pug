@@ -38,8 +38,8 @@ block content
 					.ssshow  compte
 				.animation.start-about
 			br
-			h2 Votre compte
 			form.form(action='/settings/account' method='POST' enctype='multipart/form-data')
+				h2 Votre compte
 				label(for='name') Nom :
 				input(type='text' name='name' value=user.name autocomplete='off')
 				label(for='email') Adresse email :

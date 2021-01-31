@@ -135,12 +135,20 @@ textarea {
 	margin: 0;
 }
 
+@media (max-width : 460px) {
+	.form {
+		padding-left: 15px;
+	}
+
+}
+
 .form input,
 .form select,
 .form textarea {
 	margin: 10px 0;
 	border: 1px solid #cccccc;
 	display: block;
+	max-width: 90%;
 }
 
 .form input[type='submit'] {
@@ -306,17 +314,24 @@ textarea {
 	}
 }
 
-
 @media (max-width : 1120px) {
-	.site_title {
-		margin: 10px 5px;
-		color: #2C2F33;
-		position: relative;
-		display: inline-block;
+	.header {
+		padding: 0 20px;
 	}
-
-	#navigation_bar {
-		padding-right: 5px;
+}
+@media (max-width : 550px) {
+	.header {
+		padding: 0 15px;
+	}
+}
+@media (max-width : 460px) {
+	.header {
+		padding: 0 10px;
+	}
+}
+@media (max-width : 420px) {
+	.header {
+		padding: 0 5px;
 	}
 }
 
@@ -616,7 +631,7 @@ textarea {
 @media (max-width : 1100px) {
 	.single_tweet {
 		font-size: 1.5rem;
-		padding-left: 15px;
+		padding: 0 10px;
 	}
 }
 
