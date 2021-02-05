@@ -142,13 +142,14 @@ body[data-theme='unset'] {
 	grid-template-columns: 60px auto;
 }
 
-.user_header {
-	display: grid;
-	grid-template-columns: max-content auto;
-	align-items: center;
-}
-
+.user_header,
 .notification_card {
 	display: grid;
-	grid-template-columns: 60px 80% auto;
+	align-items: center;
+}
+.user_header {
+	grid-template-columns: max-content auto;
+}
+.notification_card {
+	grid-template-columns: 60px max-content auto;
 }
