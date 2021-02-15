@@ -86,7 +86,7 @@ html(lang="fr")
 							h2.profile_name(style="font-size:25px") #{reqUser.name || reqUser.username}
 						h4.profile_username @#{reqUser.username}
 							if user && (reqUser.following.map(obj => obj.toString()).includes(user._id.toString())) && reqUser._id.toString() != user._id.toString()
-								span.follows_you
+								span.follows_you(style="margin-left: 10px")
 									if user.lang == 'en'
 										| Follows you
 									else

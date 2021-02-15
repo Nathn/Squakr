@@ -94,12 +94,14 @@ exports.notificationsPage = async (req, res) => {
 	var notifications = user.notifications
 	var readnotifications = user.readnotifications
 	var readnotifs = user.readnotifications.concat(user.notifications)
-	notifications.sort(function(a,b){
-  		return b.date - a.date;
-	});
-	readnotifications.sort(function(a,b){
-  		return b.date - a.date;
-	});
+	if (notifications && readnotifications) {
+		notifications.sort(function(a,b){
+  			return b.date - a.date;
+		});
+		readnotifications.sort(function(a,b){
+  			return b.date - a.date;
+		});
+	}
 	await User.findByIdAndUpdate({
 		_id: req.user._id
 	}, {

@@ -128,7 +128,7 @@ exports.postTweet = async (req, res) => {
 			var test = await Tweet.findOne({
 				shortid: randomid
 			})
-			if (!test || test == null) {
+			if (!test) {
 				unique = true
 			}
 		};
@@ -222,7 +222,7 @@ exports.postReply = async (req, res) => {
 			var test = await Reply.findOne({
 				shortid: randomid
 			})
-			if (!test || test == null) {
+			if (!test) {
 				unique = true
 			}
 		};

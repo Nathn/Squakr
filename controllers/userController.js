@@ -66,7 +66,7 @@ exports.searchPage = async (req, res) => {
 			return res.redirect(`${backURL}`);
 		}
 		var typesearch = req.query.type;
-		if (typesearch == 'user' || !typesearch) {
+		if (typesearch == 'users') {
 			const searchresults1 = await User.find({
 					username: {
 						$regex: `^.*${query}.*`,
@@ -96,13 +96,13 @@ exports.searchPage = async (req, res) => {
 				avatar: -1
 			});
 			var searchresults3 = searchresults1.concat(searchresults2);
-			var searchresults = uniq(searchresults3)
-			return res.render('search', {
+			var searchresults = uniq(searchresults3).slice(0, 50)
+			return res.render('searchusers', {
 				searchresults,
 				query,
 				status: req.flash('status').pop() || req.query.status || '200'
 			});
-		} else if (typesearch == 'squak') {
+		} else {
 			var searchresults = await Tweet.find({
 						tweet: {
 							$regex: `^.*${query}.*`,
@@ -117,15 +117,46 @@ exports.searchPage = async (req, res) => {
 				})
 				.populate('author')
 				.limit(500);
-			return res.render('searchsquaks', {
+
+			var userresults1 = await User.find({
+					username: {
+						$regex: `^.*${query}.*`,
+						$options: "i"
+					}
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			).sort({
+				moderator: -1,
+				verified: -1,
+				avatar: -1
+			});
+			var userresults2 = await User.find({
+					name: {
+						$regex: `^.*${query}.*`,
+						$options: "i"
+					}
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			).sort({
+				moderator: -1,
+				verified: -1,
+				avatar: -1
+			});
+			var userresults = userresults1.concat(userresults2);
+			userresults = uniq(userresults)
+
+			return res.render('search', {
 				typesearch,
 				searchresults,
+				userresults,
 				query,
 				moment,
 				status: req.flash('status').pop() || req.query.status || '200'
 			});
-		} else {
-			return res.redirect('back');
 		}
 	} catch (e) {
 		console.log(e);

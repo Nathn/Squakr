@@ -1,7 +1,7 @@
 /* Importing the parts of the CSS  */
 @import "./css/normalize.css";
 @import "./css/grid.css";
-@import "./css/themes.css";
+@import "./css/themeswitch.css";
 @import url('https://rsms.me/inter/inter.css');
 
 /* Main CSS layout goes here  */
@@ -468,7 +468,8 @@ textarea {
 }
 
 /* Feed section  */
-.tweet_card, .notification_card {
+.tweet_card,
+.notification_card {
 	padding: 10px;
 	border-bottom: 1px solid var(--border-squaks-color);
 }
@@ -478,7 +479,18 @@ textarea {
 	margin-bottom: 10px;
 }
 
-.tweet_card:last-child, .notification_card:last-child {
+.pinned_ind {
+	margin: 10px 0;
+}
+
+@media (max-width : 1100px) {
+	.pinned_ind {
+		margin: 10px 0 10px 10px;
+	}
+}
+
+.tweet_card:last-child,
+.notification_card:last-child {
 	border: 0;
 }
 
@@ -1149,4 +1161,28 @@ mark {
 	font-size: 23px;
 	background-color: var(--apiurl-color);
 	border-radius: 6px;
+}
+
+.userprofiles {
+	margin: 30px 0 10px 0;
+}
+
+.userprofilesheader {
+	font-family: Inter;
+	padding-bottom: 10px;
+}
+
+.userprofilesheader a {
+	color: var(--squak-color);
+	font-size: 15px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.userprofilesheader a:hover {
+	color: var(--text-hover-color);
+}
+
+.userprofilesheader h3 {
+	margin: 0;
 }

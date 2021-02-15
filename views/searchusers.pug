@@ -6,19 +6,19 @@ block content
 	.single_wrap
 		nav
 			if user && user.lang == 'en'
-				a(href=`/search?query=${query}&type=user`) Users
-				a(href="") Squaks
+				a(href=`/search?query=${query}`) Squaks
+				a(href=``) Users
 			else
-				a(href=`/search?query=${query}&type=user`) Utilisateurs
-				a(href="") Squaks
+				a(href=`/search?query=${query}`) Squaks
+				a(href=``) Utilisateurs
 			.animation.start-about
 		if searchresults[0]
 			if user && user.lang == 'en'
-				h2 Squaks corresponding to your search :
+				h2 Users corresponding to your search :
 			else
-				h2 Squaks correspondant à votre recherche :
-			each squak in searchresults
-				+squakCard(squak)
+				h2 Utilisateurs correspondant à votre recherche :
+			each user in searchresults
+				+userCard(user)
 		else
 			br
 			if user && user.lang == 'en'
