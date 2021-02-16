@@ -73,7 +73,7 @@ You can easily build and host your own version of Squakr to give your community 
 
 ## Environnement Variables
 
-You have to declare these variables in a variables.env file inside of your root folder in order to make your Squakr installation work correctly.</br>
+You have to declare these variables in a variables.env file inside of your root folder in order to make your Squakr installation work correctly with the 5 required variables, and to personnalize it with the other ones.</br>
 You will have to create a (free) account on <https://cloudinary.com/> to host image and video uploads. No CB needed and you will only be limited when you reach 1 GB per month.
 
 - `DATABASE` : The URL of the MongoDB database you want to use. On local, if you have MongoDB installed on your machine, it will be `mongodb://localhost/squakr`.
@@ -87,4 +87,7 @@ You will have to create a (free) account on <https://cloudinary.com/> to host im
 - `EMAIL_USER` (optionnal) : The email adress confirmation mails will come from.
 - `EMAIL_HOST` (optionnal) : The outgoing mail server of the email (often something like `smtp.example.com`).
 - `EMAIL_PASS` (optionnal) : The password of the email.
-- `EMAIL_PORT` (optionnal) : The port of the email.
+- `DEFAULT_FOLLOW_FR_1` (optionnal) : The ID of the account to which new users who have selected French as their language will be following by default. You can get IDs directy from the app by turning on the **developer mode** in the settings, go to the wanted profile and click **Copy ID**.
+- `DEFAULT_FOLLOW_FR_2` (optionnal) : The ID of a second account to which new users who have selected French as their language will be following by default. To add more, you have to edit the file `controllers/userController.js` (line ~580)
+- `DEFAULT_FOLLOW_EN_1` (optionnal) : The ID of the account to which new users who have selected English as their language will be following by default.
+- `DEFAULT_FOLLOW_EN_2` (optionnal) : The ID of a second account to which new users who have selected English as their language will be following by default. To add more, you have to edit the file `controllers/userController.js` (line ~620)
