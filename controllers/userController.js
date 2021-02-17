@@ -100,6 +100,7 @@ exports.searchPage = async (req, res) => {
 			return res.render('searchusers', {
 				searchresults,
 				query,
+				typesearch,
 				status: req.flash('status').pop() || req.query.status || '200'
 			});
 		} else {

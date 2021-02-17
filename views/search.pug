@@ -13,6 +13,7 @@ block content
 				a(href=`/search?query=${query}&type=users`) Utilisateurs
 			.animation.start-home
 		if searchresults[0]
+			br
 			if user && user.lang == 'en'
 				h2 Squaks corresponding to your search :
 			else
@@ -23,27 +24,40 @@ block content
 				.userprofiles
 					.userprofilesheader
 						div
-							h3 Profils utilisateur :
+							if user && user.lang == 'en'
+								h3 User profiles :
+							else
+								h3 Profils utilisateur :
 						div
-							a(href=`/search?query=${query}&type=users`)
-								i.fa.fa-plus-circle(style="margin-right: 5px;")
-								if user && user.lang == 'en'
-									| View more
-								else
-									| Voir plus
+							if userresults.length > 3
+								a(href=`/search?query=${query}&type=users`)
+									i.fa.fa-plus-circle(style="margin-right: 5px;")
+									if user && user.lang == 'en'
+										| View more
+									else
+										| Voir plus
 					each user in userresults.slice(0, 3)
 						+userCard(user)
-			br
+				br
 			each squak in searchresults.slice(3, searchresults.length)
 				+squakCard(squak)
 
 		else
 			br
 			if user && user.lang == 'en'
-				h2 The search didn't return any results.
-			else
-				h2 La recherche n'a retourné aucun résultat parmi les squaks.
 				if userresults[0]
+					h2 The search didn't return any results among squaks.
+					h3 User profiles :
+					each user in userresults
+						+userCard(user).slice(0, 10)
+				else
+					h2 The search didn't return any results.
+			else
+				if userresults[0]
+					h2 La recherche n'a retourné aucun résultat parmi les squaks.
 					h3 Profils utilisateur :
 					each user in userresults
 						+userCard(user).slice(0, 10)
+				else
+					h2 La recherche n'a retourné aucun résultat.
+
