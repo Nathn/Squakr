@@ -3,7 +3,6 @@ const User = require('../models/User');
 const Reply = require('../models/Reply');
 const moment = require('moment');
 const cloudinary = require('cloudinary').v2;
-const fileupload = require('express-fileupload');
 
 async function html(str) {
 	var replacedText, replacePattern1, replacePattern2, replacePattern3, replacePattern4, replacePattern5;
@@ -240,7 +239,7 @@ exports.postReply = async (req, res) => {
 			}
 		}).populate('author');
 		if (!originalsquak) {
-			var originalsquak = await Reply.findByIdAndUpdate({
+			originalsquak = await Reply.findByIdAndUpdate({
 				_id: req.params.id
 			}, {
 				$inc: {
@@ -311,9 +310,7 @@ exports.deleteSquak = async (req, res) => {
 					}
 				},
 				function (err, result) {
-					if (err) {
-						if (err) console.log(err);
-					}
+					if (err) console.log(err);
 				});
 		}
 		if (squak) console.log(squak.tweet + " deleted")
@@ -488,6 +485,7 @@ exports.singleTweetPage = async (req, res) => {
 		var squak = await Tweet.findOne({
 			shortid: req.params.id.toString()
 		}).populate('author');
+		var replies;
 
 		if (squak == null) {
 			var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
@@ -495,10 +493,10 @@ exports.singleTweetPage = async (req, res) => {
 				req.flash('status', '404')
 				return res.redirect(`${backURL}`);
 			}
-			var squak = await Tweet.findOne({
+			squak = await Tweet.findOne({
 				_id: req.params.id
 			}).populate('author');
-			var replies = await Reply.find({
+			replies = await Reply.find({
 				squak: req.params.id
 			}).populate('author');
 			if (squak == null) {
@@ -506,7 +504,7 @@ exports.singleTweetPage = async (req, res) => {
 				return res.redirect(`${backURL}`);
 			}
 		} else {
-			var replies = await Reply.find({
+			replies = await Reply.find({
 				squak: squak._id
 			}).populate('author');
 		}
@@ -533,6 +531,7 @@ exports.singleReplyPage = async (req, res) => {
 		var reply = await Reply.findOne({
 			shortid: req.params.id.toString()
 		}).populate('author');
+		var replies;
 
 		if (reply == null) {
 			var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
@@ -540,10 +539,10 @@ exports.singleReplyPage = async (req, res) => {
 				req.flash('status', '404')
 				return res.redirect(`${backURL}`);
 			}
-			var reply = await Reply.findOne({
+			reply = await Reply.findOne({
 				_id: req.params.id
 			}).populate('author');
-			var replies = await Reply.find({
+			replies = await Reply.find({
 				squak: req.params.id
 			}).populate('author');
 			if (reply == null) {
@@ -551,7 +550,7 @@ exports.singleReplyPage = async (req, res) => {
 				return res.redirect(`${backURL}`);
 			}
 		} else {
-			var replies = await Reply.find({
+			replies = await Reply.find({
 				squak: reply._id
 			}).populate('author');
 		}

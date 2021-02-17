@@ -1,13 +1,6 @@
 // Importing the model for use on this controller
 const User = require('../models/User');
 const Tweet = require('../models/Tweet');
-const promisify = require('es6-promisify');
-const moment = require('moment');
-const multer = require('multer');
-const jimp = require('jimp');
-const uuid = require('uuid');
-const cloudinary = require('cloudinary').v2;
-const nodemailer = require('nodemailer');
 const Reply = require('../models/Reply');
 
 exports.APIHomePage = async (req, res) => {
@@ -34,7 +27,7 @@ exports.ProfilePage = async (req, res) => {
 				created: 'desc'
 			});
 
-			const pinned = await Tweet.findOne({
+			await Tweet.findOne({
 				_id: reqUser.pinned
 			}).populate('author');
 
@@ -99,7 +92,7 @@ exports.SquakPage = async (req, res) => {
 				id: null
 			});
 		}
-		const replies = await Reply.find({
+		await Reply.find({
 			squak: squak._id.toString()
 		}).populate('author');
 
@@ -134,8 +127,9 @@ exports.APIGetSquaks = async (req, res) => {
 		*/
 		var to = parseInt(req.query.to, 10) || 20
 		if (to > 100) to = 100
+		var squaks;
 		if (req.query.author && req.query.author.match(/^[0-9a-fA-F]{24}$/)) {
-			var squaks = await Tweet.find({
+			squaks = await Tweet.find({
 				author: req.query.author
 			}).populate('author')
 			.sort({[req.query.sort || 'created']: req.query.order || 'desc'})
@@ -145,7 +139,7 @@ exports.APIGetSquaks = async (req, res) => {
 				id: null
 			});
 		} else {
-			var squaks = await Tweet.find()
+			squaks = await Tweet.find()
 			.populate('author')
 			.sort({[req.query.sort || 'created']: req.query.order || 'desc'})
 			.limit(to);

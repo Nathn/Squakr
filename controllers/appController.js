@@ -1,6 +1,5 @@
 const Tweet = require('../models/Tweet');
 const User = require('../models/User');
-const Reply = require('../models/Reply');
 const moment = require('moment');
 moment.locale('fr')
 
@@ -13,6 +12,8 @@ exports.indexPage = async (req, res) => {
 		} else {
 			moment.locale('fr')
 		}
+
+		var squaks;
 
 		if (req.user) {
 			if (!req.user.following.map(obj => obj.toString()).includes(req.user._id.toString())) {
@@ -29,7 +30,7 @@ exports.indexPage = async (req, res) => {
 
 			var following = req.user.following.map(obj => obj.toString());
 
-			var squaks = await Tweet.find({
+			squaks = await Tweet.find({
 					author: following
 				})
 				.populate('author')
@@ -38,7 +39,7 @@ exports.indexPage = async (req, res) => {
 					created: 'desc'
 				});
 
-			var likedsquaks = await Tweet.find({
+			await Tweet.find({
 					author: following
 				})
 				.populate('author')
@@ -58,7 +59,7 @@ exports.indexPage = async (req, res) => {
 					verified: -1
 				});
 		} else {
-			var squaks = await Tweet.find()
+			squaks = await Tweet.find()
 				.populate('author')
 				.limit(500)
 				.sort({

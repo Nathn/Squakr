@@ -4,18 +4,10 @@ const Tweet = require('../models/Tweet');
 const Reply = require('../models/Reply');
 const promisify = require('es6-promisify');
 const moment = require('moment');
-const multer = require('multer');
-const jimp = require('jimp');
-const uuid = require('uuid');
 const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
 const clipboardy = require('clipboardy');
 const Discord = require("discord.js");
-const {
-	Client,
-	Util
-} = require("discord.js");
-
 
 require('dotenv').config({
 	path: 'variables.env'
@@ -370,7 +362,7 @@ exports.accountUpdate = async (req, res) => {
 			}
 		}
 
-		var user = await User.findOneAndUpdate({
+		await User.findOneAndUpdate({
 			_id: req.user._id
 		}, {
 			$set: updates
@@ -683,7 +675,7 @@ exports.heartTweet = async (req, res) => {
 	}
 	const hearts = req.user.hearts.map(obj => obj.toString());
 	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
-	const user = await User.findByIdAndUpdate(
+	await User.findByIdAndUpdate(
 		req.user._id, {
 			[operator]: {
 				hearts: req.params.id
@@ -777,7 +769,7 @@ exports.heartReply = async (req, res) => {
 	backURL = req.header('Referer') || '/';
 	const hearts = req.user.hearts.map(obj => obj.toString());
 	const operator = hearts.includes(req.params.id) ? '$pull' : '$addToSet';
-	const user = await User.findByIdAndUpdate(
+	await User.findByIdAndUpdate(
 		req.user._id, {
 			[operator]: {
 				hearts: req.params.id
@@ -872,7 +864,7 @@ exports.verifyUser = async (req, res) => {
 	if (!req.user.moderator) {
 		res.redirect(`/`)
 	}
-	const user = await User.findByIdAndUpdate(
+	await User.findByIdAndUpdate(
 		req.params.id, {
 			'$set': {
 				verified: true
