@@ -100,11 +100,11 @@ block content
 							if user.lang == 'en'
 								input(type="button" onclick=`window.location.href = '/squak/${squak._id}/json';` class='button reply_button' value='Access JSON data' style="display: inline;")
 								| &#32;
-								input(type="button" onclick=`window.location.href = '/id/${squak._id}';` class='button reply_button' value='Copy ID' style="display: inline;")
+								input(type="button" onclick=`copyID('${squak._id}', '${squak._id}', true);` class='button reply_button' value='Copy ID' style="display: inline;")
 							else
 								input(type="button" onclick=`window.location.href = '/squak/${squak._id}/json';` class='button reply_button' value='Accéder aux données JSON' style="display: inline;")
 								| &#32;
-								input(type="button" onclick=`window.location.href = '/id/${squak._id}';` class='button reply_button' value='Copier l\'identifiant' style="display: inline;")
+								input(type="button" onclick=`copyID('${squak._id}', '${squak._id}', true);` class='button reply_button' value='Copier l\'identifiant' style="display: inline;")
 				else
 					form.heart(method='POST' action=`/api/squaks/${squak._id}/heart` style="display: inline;")
 						button(type='submit' name='heart' style="border:none; background: none; cursor: pointer; padding-top:5px" title="Like !")

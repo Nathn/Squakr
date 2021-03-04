@@ -899,30 +899,6 @@ exports.confirmUser = async (req, res) => {
 	}
 }
 
-exports.copyID = async (req, res) => {
-	backURL = req.header('Referer') || '/';
-	const user = await User.findOne({
-		_id: req.params.id
-	});
-	if (user) {
-		clipboardy.writeSync(user._id.toString());
-		req.flash('status', '101')
-		return res.redirect(backURL || '/')
-	} else {
-		const squak = await Tweet.findOne({
-			_id: req.params.id
-		});
-		if (squak) {
-			clipboardy.writeSync(squak._id.toString());
-			req.flash('status', '101')
-			return res.redirect(backURL || '/')
-		} else {
-			req.flash('status', '404')
-			return res.redirect(`back`)
-		}
-	}
-}
-
 exports.followUser = async (req, res) => {
 	if (!req.user) {
 		return res.redirect(`/login`)

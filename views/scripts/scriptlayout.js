@@ -1,6 +1,5 @@
 function GetStatusString(status) {
 	if (status == '100') return 'Votre email a bien été confirmé.'
-	if (status == '101') return 'L\'ID a été copié.'
 	if (status == '102') return 'Le signalement a bien été transmis.'
 	if (status == '200') return 'OK'
 	if (status == '300') return 'La connexion a échoué, veuillez réessayer.'
@@ -32,7 +31,7 @@ function GetStatusString(status) {
 
 function GetStatusStringEn(status) {
 	if (status == '100') return 'The email has been confirmed.'
-	if (status == '101') return 'The ID has been copied.'
+	if (status == '102') return 'The report has been sent to moderators.'
 	if (status == '200') return 'OK'
 	if (status == '300') return 'The connection failed, please retry.'
 	if (status == '301') return 'You have to be logged in to do this.'

@@ -36,6 +36,7 @@ html(lang="fr")
 		script(type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js")
 		script
 			include scripts/scriptlayout.js
+			include scripts/copyid.js
 		script.
 			document.addEventListener("DOMContentLoaded", function(event) {
 				dispStatus(`${"#{status}" || "200"}`);
@@ -276,12 +277,12 @@ html(lang="fr")
 											input(type="button" onclick=`window.location.href = '/${reqUser.username}/json';` class='button edit_button' value='Access JSON data')
 											br
 											br
-											input(type="button" onclick=`window.location.href = '/id/${reqUser._id}';` class='button edit_button' value='Copy ID')
+											input(type="button" onclick=`copyID('${reqUser._id}', '${reqUser.username}');` class='button edit_button' value='Copy ID')
 										else
 											input(type="button" onclick=`window.location.href = '/${reqUser.username}/json';` class='button edit_button' value='Accéder aux données JSON')
 											br
 											br
-											input(type="button" onclick=`window.location.href = '/id/${reqUser._id}';` class='button edit_button' value='Copier l\'identifiant')
+											input(type="button" onclick=`copyID('${reqUser._id}', '${reqUser.username}');` class='button edit_button' value='Copier l\'identifiant')
 					.feed_section.single_content
 						block content
 		.footer
