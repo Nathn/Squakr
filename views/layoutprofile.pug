@@ -167,7 +167,7 @@ html(lang="fr")
 								img(src="/uploads/badge-community-moderator-1.svg" width="35" height = "35" title="Community moderator")
 							if (reqUser.developer)
 								img(src="/uploads/dV4jqpv6.png" width = "35" height = "35" title="Contributed to\nthe devloppement of Squakr. Thanks !")
-							if reqUser.avatar
+							if reqUser.avatar && !reqUser.avatar.startsWith("/uploads")
 								img(src="/uploads/badge-profilepic.svg" width="35" height = "35" title="Added an avatar to his profile")
 							if reqUser.banner
 								img(src="/uploads/badge-banner-1.svg" width="35" height = "35" title="Added a banner to his profile")
@@ -210,7 +210,7 @@ html(lang="fr")
 								img(src="/uploads/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")
 							if (reqUser.developer)
 								img(src="/uploads/dV4jqpv6.png" width = "35" height = "35" title="A été d'une aide précieuse pendant\nle dévelopemment de Squakr. Merci !")
-							if reqUser.avatar
+							if reqUser.avatar && !reqUser.avatar.startsWith("/uploads")
 								img(src="/uploads/badge-profilepic.svg" width="35" height = "35" title="A ajouté un avatar à son profil")
 							if reqUser.banner
 								img(src="/uploads/badge-banner-1.svg" width="35" height = "35" title="A ajouté une image de bannière à son profil")
@@ -263,13 +263,20 @@ html(lang="fr")
 											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Verify user')
 										else
 											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Vérifier l\'utilisateur')
+							if ((user.moderator) && (reqUser.confirmed))
+								p
+									.edit_button
+										if user.lang == 'en'
+											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/unconfirm';` class='button edit_button' value='Unconfirm user')
+										else
+											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/unconfirm';` class='button edit_button' value='Déconfirmer l\'utilisateur')
 							if ((user.moderator) && !(reqUser.confirmed))
 								p
 									.edit_button
 										if user.lang == 'en'
-											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirm user')
+											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm?mod=true';` class='button edit_button' value='Confirm user')
 										else
-											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm';` class='button edit_button' value='Confirmer l\'utilisateur')
+											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/confirm?mod=true';` class='button edit_button' value='Confirmer l\'utilisateur')
 							if user.devmode
 								p
 									.edit_button

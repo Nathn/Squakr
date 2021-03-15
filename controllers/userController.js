@@ -498,10 +498,16 @@ exports.checkUserExists = async (req, res, next) => {
 // Register the user into the database
 exports.registerUser = async (req, res, next) => {
 	try {
+		const avatars = ['/uploads/no-avatar-blue.jpg',
+						'/uploads/no-avatar-green.jpg',
+						'/uploads/no-avatar-red.jpg',
+						'/uploads/no-avatar-yellow.jpg',
+						'/uploads/no-avatar-black.jpg']
 		const user = new User({
 			username: req.body.username,
 			name: req.body.username.charAt(0).toUpperCase() + req.body.username.slice(1),
 			email: req.body.email,
+			avatar: avatars[Math.floor(Math.random() * avatars.length)],
 			lang: req.body.lang
 		});
 
@@ -890,11 +896,37 @@ exports.confirmUser = async (req, res) => {
 			}
 		}
 	);
-	if (user) {
+	if (user && req.query.mod == 'true') {
+		req.flash('status', '200')
+		res.redirect(`/${user.username}`)
+	} else if (user) {
 		req.flash('status', '100')
 		res.redirect(`/`)
 	} else {
 		req.flash('status', '401')
+		res.redirect(`/`)
+	}
+}
+
+exports.unConfirmUser = async (req, res) => {
+	const user = await User.findByIdAndUpdate(
+		req.params.id, {
+			'$set': {
+				confirmed: false
+			}
+		}
+	);
+	if (user && req.user && req.user.moderator == true) {
+		req.flash('status', '200')
+		res.redirect(`/${user.username}`)
+	} else if (user && req.user) {
+		req.flash('status', '600')
+		res.redirect(`/`)
+	} else if (user) {
+		req.flash('status', '600')
+		res.redirect(`/`)
+	} else {
+		req.flash('status', '800')
 		res.redirect(`/`)
 	}
 }

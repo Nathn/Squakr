@@ -26,6 +26,7 @@ function GetStatusString(status) {
 	if (status == '511') return 'Le nom d\'utilisateur choisi est réservé pour des raisons techniques.'
 	if (status == '512') return 'Une erreur inconnue est survenue lors de l\'inscription. Si le problème persiste, veuillez contacter un administatreur.'
 	if (status == '600') return 'Vous n\'avez pas assez de permissions pour faire ça.'
+	if (status == '800') return 'Une erreur inconnue est survenue. Si votre l\'URL à laquelle vous vous trouvez est censée être valide, contactez un administrateur.'
 	return;
 }
 
@@ -57,6 +58,7 @@ function GetStatusStringEn(status) {
 	if (status == '511') return 'The chosen username is reserved for technical reasons.'
 	if (status == '512') return 'An unknown error occurred during registration. If the problem persists, please contact an administrator.'
 	if (status == '600') return 'You don\'t have enough permissions to do this.'
+	if (status == '800') return 'An unknown error has occurred. If your URL you are at is believed to be valid, please contact an administrator.'
 	return;
 }
 
