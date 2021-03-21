@@ -3,7 +3,7 @@ mixin loginForm()
 	form.form(action='/login' method='POST')
 		.regform
 			label(for='email')  Email :
-			input(type='email' name='email')
+			input(type='email' name='email' autocomplete='username')
 			label(for='password') Mot de passe :
-			input(type='password' name='password')
+			input(type='password' name='password' autocomplete='current-password')
 			input(type='submit' class='button' value='Se connecter')

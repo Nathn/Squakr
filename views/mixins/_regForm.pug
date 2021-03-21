@@ -5,22 +5,22 @@ mixin regForm()
 			label(for='username') Nom d'utilisateur :
 			br
 			small Username :
-			input(type='text' name='username' required)
+			input(type='text' name='username' autocomplete='username' required)
 			br
 			label(for='email') Adresse email :
 			br
 			small Email adress :
-			input(type='email' name='email' required)
+			input(type='email' name='email' autocomplete='email' required)
 			br
 			label(for='password') Mot de passe :
 			br
 			small Password :
-			input(type='password' name='password' required)
+			input(type='password' name='password' autocomplete='new-password' required)
 			br
 			label(for='password-confirm') Confirmez votre mot de passe :
 			br
 			small Confirm your password :
-			input(type='password' name='password-confirm' required)
+			input(type='password' name='password-confirm' autocomplete='new-password' required)
 			br
 			label(for='lang') Langue :
 			br
