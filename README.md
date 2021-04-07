@@ -73,7 +73,7 @@ You can easily build and host your own version of Squakr to give your community 
 
 ## Environnement Variables
 
-You have to declare these variables in a variables.env file inside of your root folder in order to make your Squakr installation work correctly with the 5 required variables, and to personnalize it with the other ones.</br>
+You have to declare these variables in a `variables.env` file inside of your root folder in order to make your Squakr installation work correctly with the 5 required variables, and to personnalize it with the other ones. If you are not familiar with the env syntax, you can use the file `variables.env.example` as a model.</br>
 You will have to create a (free) account on <https://cloudinary.com/> to host image and video uploads. No CB needed and you will only be limited when you reach 1 GB per month.
 
 - `DATABASE` : The URL of the MongoDB database you want to use. On local, if you have MongoDB installed on your machine, it will be `mongodb://localhost/squakr`.
