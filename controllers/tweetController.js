@@ -510,6 +510,9 @@ exports.singleTweetPage = async (req, res) => {
 		}
 
 		res.render('single', {
+			appname: process.env.APP_NAME || 'Squakr',
+			appurl: process.env.APP_URL || 'Squakr.fr',
+			appheader: process.env.APP_HEADER || 'Squakr.fr',
 			squak,
 			moment,
 			replies,
@@ -560,6 +563,9 @@ exports.singleReplyPage = async (req, res) => {
 		}, (err, prt) => {
 			if (prt) {
 				res.render('single', {
+					appname: process.env.APP_NAME || 'Squakr',
+					appurl: process.env.APP_URL || 'Squakr.fr',
+					appheader: process.env.APP_HEADER || 'Squakr.fr',
 					squak: reply,
 					parent: prt,
 					parenttype: 'squak',
@@ -574,6 +580,9 @@ exports.singleReplyPage = async (req, res) => {
 				}, (err, prt) => {
 					if (prt) {
 						res.render('single', {
+							appname: process.env.APP_NAME || 'Squakr',
+							appurl: process.env.APP_URL || 'Squakr.fr',
+							appheader: process.env.APP_HEADER || 'Squakr.fr',
 							squak: reply,
 							parent: prt,
 							parenttype: 'reply',
@@ -584,6 +593,9 @@ exports.singleReplyPage = async (req, res) => {
 						});
 					} else {
 						res.render('single', {
+							appname: process.env.APP_NAME || 'Squakr',
+							appurl: process.env.APP_URL || 'Squakr.fr',
+							appheader: process.env.APP_HEADER || 'Squakr.fr',
 							squak: reply,
 							moment,
 							replies,

@@ -20,18 +20,18 @@ html(lang="fr")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		link(rel='stylesheet' href='/style.css')
 		link(rel="shortcut icon" type="image/png" href="/uploads/btz18vt.png")
-		meta(property="og:title" content=`Profil de ${reqUser.name || reqUser.username} sur Squakr`)
+		meta(property="og:title" content=`Profil de ${reqUser.name || reqUser.username} sur ${appname}`)
 		meta(property="og:type" content="website")
-		meta(name="keywords" content="squakr, squackr, squaker, squacker, twitter, nwitter, clone, nathn, free, français, france, open, source, social, network, website")
-		meta(name="og:site_name" content="Squakr")
-		meta(property="og:url" content="Squakr.fr")
+		meta(name="keywords" content=`${appname}, squakr, squackr, squaker, squacker, twitter, nwitter, clone, nathn, free, français, france, open, source, social, network, website`)
+		meta(name="og:site_name" content=`${appname} - Le réseau social libre"`)
+		meta(property="og:url" content=`${appurl}`)
 		meta(property="og:image" content=`${reqUser.avatar || "/uploads/xCsWr5s.png"}`)
-		meta(property="og:description" content=`Découvrez ce que partagent ${reqUser.name || reqUser.username} (@${reqUser.username}) et d'autres sur Squakr, le réseau libre.`)
-		meta(name="title" content=`Profil de ${reqUser.name || reqUser.username} sur Squakr`)
+		meta(property="og:description" content=`Découvrez ce que partagent ${reqUser.name || reqUser.username} (@${reqUser.username}) et d'autres sur ${appname}, le réseau libre.`)
+		meta(name="title" content=`Profil de ${reqUser.name || reqUser.username} sur ${appname}`)
 		meta(name="description" content=`Profil de ${reqUser.name || reqUser.username} sur , le réseau social libre`)
 		meta(name="robots")
 		meta(name="google-site-verification" content="70mICW8vQbJt8_ACd4-vf1WocsCj6x5mg-Cl8n4G1Os")
-		title Profil de #{reqUser.name || reqUser.username} - Squakr
+		title Profil de #{reqUser.name || reqUser.username} - #{appname}
 		script(src='https://use.fontawesome.com/74eb59777f.js')
 		script(type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js")
 		script
@@ -54,8 +54,8 @@ html(lang="fr")
 				#logo
 					h1.site_title
 						a(href="/")
-							img(src="/uploads/xCsWr5s.png" alt="Squakr.fr Logo" width="25" height="25" style="border-radius: 50%; padding-right: 10px; box-sizing: content-box;")
-							| Squakr.fr
+							img(src="/uploads/xCsWr5s.png" alt=`${appname} Logo` width="25" height="25" style="border-radius: 50%; padding-right: 10px; box-sizing: content-box;")
+							| #{appheader}
 				#navigation_bar
 					if user
 						+accountMenu()
@@ -146,9 +146,9 @@ html(lang="fr")
 										a(href=`/${reqUser.username}/following` class="followcount") #{reqUser.following.length - 1} abonnements
 
 						if user && user.lang == 'en'
-							h4(style="font-size:14px") Joined Squakr in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+							h4(style="font-size:14px") Joined #{appname} in #{enmonths[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 						else
-							h4(style="font-size:14px") A rejoint Squakr en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
+							h4(style="font-size:14px") A rejoint #{appname} en #{months[new Date(reqUser.created).getMonth()]} #{new Date(reqUser.created).getFullYear()}
 						if reqUser.bio
 							.profile_bio(style="white-space: pre-line; font-weight: bold;")
 								| #{reqUser.bio}
@@ -166,7 +166,7 @@ html(lang="fr")
 							if reqUser.moderator
 								img(src="/uploads/badge-community-moderator-1.svg" width="35" height = "35" title="Community moderator")
 							if (reqUser.developer)
-								img(src="/uploads/dV4jqpv6.png" width = "35" height = "35" title="Contributed to\nthe devloppement of Squakr. Thanks !")
+								img(src="/uploads/dV4jqpv6.png" width = "35" height = "35" title=`Contributed to\nthe devloppement of ${appname}. Thanks !`)
 							if reqUser.avatar && !reqUser.avatar.startsWith("/uploads")
 								img(src="/uploads/badge-profilepic.svg" width="35" height = "35" title="Added an avatar to his profile")
 							if reqUser.banner
@@ -209,7 +209,7 @@ html(lang="fr")
 							if reqUser.moderator
 								img(src="/uploads/badge-community-moderator-1.svg" width="35" height = "35" title="Modérateur de la communauté")
 							if (reqUser.developer)
-								img(src="/uploads/dV4jqpv6.png" width = "35" height = "35" title="A été d'une aide précieuse pendant\nle dévelopemment de Squakr. Merci !")
+								img(src="/uploads/dV4jqpv6.png" width = "35" height = "35" title=`A été d'une aide précieuse pendant\nle dévelopemment de ${appname}. Merci !`)
 							if reqUser.avatar && !reqUser.avatar.startsWith("/uploads")
 								img(src="/uploads/badge-profilepic.svg" width="35" height = "35" title="A ajouté un avatar à son profil")
 							if reqUser.banner

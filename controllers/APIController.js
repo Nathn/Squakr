@@ -6,6 +6,9 @@ const Reply = require('../models/Reply');
 exports.APIHomePage = async (req, res) => {
 	try {
 		res.render('api', {
+			appname: process.env.APP_NAME || 'Squakr',
+			appurl: process.env.APP_URL || 'Squakr.fr',
+			appheader: process.env.APP_HEADER || 'Squakr.fr',
 			status: req.flash('status').pop() || req.flash('error').pop() || req.query.status || '200'
 		});
 	} catch (e) {

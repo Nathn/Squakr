@@ -4,8 +4,8 @@ function GetStatusString(status) {
 	if (status == '200') return 'OK'
 	if (status == '300') return 'La connexion a échoué, veuillez réessayer.'
 	if (status == '301') return 'Vous devez être connecté pour effectuer cette action.'
-	if (status == '400') return 'L\'envoi du squak a échoué. Si le problème persiste, veuillez contacter un administatreur.'
-	if (status == '401') return 'Votre lien de confirmation n\'est pas valide. Si votre lien est le bon, veuillez envoyer un email à contact@squakr.fr'
+	if (status == '400') return `L\'envoi du squak a échoué. Si le problème persiste, veuillez contacter un administatreur.'
+	if (status == '401') return 'Votre lien de confirmation n\'est pas valide. Si votre lien est le bon, veuillez envoyer un email à contact@${appurl}`
 	if (status == '402') return 'Votre squak ne peut pas être vide.'
 	if (status == '403') return 'L\'envoi de l\'image a échoué, vérifiez qu\'elle fasse moins de 10 Mo ainsi que son format.\nSi le problème persiste, veuillez contacter un administatreur.'
 	if (status == '404') return 'Squak non trouvé.'
@@ -37,7 +37,7 @@ function GetStatusStringEn(status) {
 	if (status == '300') return 'The connection failed, please retry.'
 	if (status == '301') return 'You have to be logged in to do this.'
 	if (status == '400') return 'Squak upload failed. If the problem persists, please contact an administrator.'
-	if (status == '401') return 'Confirmation link not valid. If you are sure this is the right link, please send a message to contact@squakr.fr.'
+	if (status == '401') return `Confirmation link not valid. If you are sure this is the right link, please send a message to contact@${appurl}`
 	if (status == '402') return 'Your squak cannot be blank.'
 	if (status == '403') return 'Image upload failed, please verify its format and its size (max : 10 Mb).\nIf the problem persists, please contact an administrator.'
 	if (status == '404') return 'Squak not found.'

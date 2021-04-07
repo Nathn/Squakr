@@ -3,6 +3,10 @@ const User = require('../models/User');
 const moment = require('moment');
 moment.locale('fr')
 
+require('dotenv').config({
+	path: 'variables.env'
+});
+
 // The default controller for this app
 // The home page
 exports.indexPage = async (req, res) => {
@@ -76,6 +80,9 @@ exports.indexPage = async (req, res) => {
 			squaks,
 			profiles,
 			moment,
+			appname: process.env.APP_NAME || 'Squakr',
+			appurl: process.env.APP_URL || 'Squakr.fr',
+			appheader: process.env.APP_HEADER || 'Squakr.fr',
 			status: req.flash('status').pop() || req.query.status || '200'
 		});
 
@@ -112,6 +119,9 @@ exports.notificationsPage = async (req, res) => {
 		}
 	});
 	res.render('notifications', {
+		appname: process.env.APP_NAME || 'Squakr',
+		appurl: process.env.APP_URL || 'Squakr.fr',
+		appheader: process.env.APP_HEADER || 'Squakr.fr',
 		unreadnotifications: notifications || [],
 		readnotifications: readnotifications || [],
 		moment,

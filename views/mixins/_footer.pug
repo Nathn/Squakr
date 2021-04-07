@@ -1,7 +1,23 @@
 mixin footer()
+	- var currentversion = "1.10.3"
+	- var squakrversion = "1.10.3"
 	p
 		small(style="font-size: 14px;")
-			| © 2020-2021 Squakr &middot; v1.10.3
+			| © 2020-2021 #{appname} &middot; v#{currentversion}
+			if appname.toLowerCase() != 'squakr'
+				br
+				if user && user.lang == "en"
+					| Based on
+					| &nbsp;
+					a(href="https://github.com/Nathn/Squakr" target='_blank' style="text-decoration: none; color: #39aeb4") Squakr
+					| &nbsp;
+					| #{squakrversion}
+				else
+					| Basé sur
+					| &nbsp;
+					a(href="https://github.com/Nathn/Squakr" target='_blank' style="text-decoration: none; color: #39aeb4") Squakr
+					| &nbsp;
+					| #{squakrversion}
 			br
 			a(href='https://discord.gg/C8WPK2B' target='_blank' style="text-decoration: none; color: #fff; margin: 0 7px") Discord
 

@@ -17,6 +17,9 @@ require('dotenv').config({
 exports.registerPage = (req, res) => {
 	if (!req.user) {
 		res.render('register', {
+			appname: process.env.APP_NAME || 'Squakr',
+			appurl: process.env.APP_URL || 'Squakr.fr',
+			appheader: process.env.APP_HEADER || 'Squakr.fr',
 			status: req.flash('status').pop() || req.flash('error').pop() || req.query.status || '200'
 		});
 	} else {
@@ -27,6 +30,9 @@ exports.registerPage = (req, res) => {
 exports.loginPage = (req, res) => {
 	if (!req.user) {
 		res.render('login', {
+			appname: process.env.APP_NAME || 'Squakr',
+			appurl: process.env.APP_URL || 'Squakr.fr',
+			appheader: process.env.APP_HEADER || 'Squakr.fr',
 			status: req.flash('status').pop() || req.flash('error').pop() || req.query.status || '200'
 		});
 	} else {
@@ -35,7 +41,11 @@ exports.loginPage = (req, res) => {
 }
 
 exports.cguPage = (req, res) => {
-	res.render('cgu');
+	res.render('cgu', {
+		appname: process.env.APP_NAME || 'Squakr',
+		appurl: process.env.APP_URL || 'Squakr.fr',
+		appheader: process.env.APP_HEADER || 'Squakr.fr',
+	});
 }
 
 function uniq(a) {
@@ -90,6 +100,9 @@ exports.searchPage = async (req, res) => {
 			var searchresults3 = searchresults1.concat(searchresults2);
 			var searchresults = uniq(searchresults3).slice(0, 50)
 			return res.render('searchusers', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
 				searchresults,
 				query,
 				typesearch,
@@ -143,6 +156,9 @@ exports.searchPage = async (req, res) => {
 			userresults = uniq(userresults)
 
 			return res.render('search', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
 				typesearch,
 				searchresults,
 				userresults,
@@ -199,6 +215,9 @@ exports.profilePage = async (req, res) => {
 
 			// Display the profile page
 			res.render('profile', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
 				reqUser,
 				tweets,
 				likes,
@@ -210,7 +229,11 @@ exports.profilePage = async (req, res) => {
 			});
 			return;
 		} else {
-			res.render('404', {})
+			res.render('404', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
+			})
 		}
 
 		// Else display a not found page
@@ -254,6 +277,9 @@ exports.likesProfilePage = async (req, res) => {
 
 			// Display the profile page
 			res.render('profilelikes', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
 				reqUser,
 				moment,
 				months,
@@ -264,7 +290,11 @@ exports.likesProfilePage = async (req, res) => {
 			});
 			return;
 		} else {
-			res.render('404', {})
+			res.render('404', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
+			})
 		}
 
 		// Else display a not found page
@@ -286,6 +316,9 @@ exports.accountPage = async (req, res) => {
 		_id: req.user._id
 	});
 	res.render('account', {
+		appname: process.env.APP_NAME || 'Squakr',
+		appurl: process.env.APP_URL || 'Squakr.fr',
+		appheader: process.env.APP_HEADER || 'Squakr.fr',
 		user
 	})
 }
@@ -295,6 +328,9 @@ exports.settingsPage = async (req, res) => {
 		_id: req.user._id
 	});
 	res.render('settings', {
+		appname: process.env.APP_NAME || 'Squakr',
+		appurl: process.env.APP_URL || 'Squakr.fr',
+		appheader: process.env.APP_HEADER || 'Squakr.fr',
 		user
 	})
 }
@@ -991,13 +1027,20 @@ exports.followingProfilePage = async (req, res) => {
 				return b.followers.length - a.followers.length;
 			})
 			res.render('following', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
 				reqUser,
 				following
 			});
 			return;
 		} else {
 			// Else display a not found page
-			res.render('404', {})
+			res.render('404', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
+			})
 		}
 	} catch (e) {
 		console.log(e);
@@ -1028,12 +1071,19 @@ exports.followersProfilePage = async (req, res) => {
 				return b.followers.length - a.followers.length;
 			})
 			return res.render('followers', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
 				reqUser,
 				followers
 			});
 		} else {
 			// Else display a not found page
-			res.render('404', {})
+			res.render('404', {
+				appname: process.env.APP_NAME || 'Squakr',
+				appurl: process.env.APP_URL || 'Squakr.fr',
+				appheader: process.env.APP_HEADER || 'Squakr.fr',
+			})
 		}
 	} catch (e) {
 		console.log(e);
