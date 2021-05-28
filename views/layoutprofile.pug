@@ -263,7 +263,7 @@ html(lang="fr")
 											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Verify user')
 										else
 											input(type="button" onclick=`window.location.href = '/api/users/${reqUser._id}/verify';` class='button edit_button' value='Vérifier l\'utilisateur')
-							if ((user.moderator) && (reqUser.confirmed))
+							if ((user.moderator) && (reqUser.confirmed) && !(reqUser.moderator))
 								p
 									.edit_button
 										if user.lang == 'en'

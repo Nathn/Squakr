@@ -1097,6 +1097,7 @@ mark {
 	display: flex;
   	justify-content: right;
   	align-items: center;
+	  text-align:right;
 }
 
 @media (max-width : 520px) {
