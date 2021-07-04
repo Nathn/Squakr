@@ -1,6 +1,7 @@
 function GetStatusString(status) {
 	if (status == '100') return 'Votre email a bien été confirmé.'
 	if (status == '102') return 'Le signalement a bien été transmis.'
+	if (status == '103') return 'Votre compte a bien été créé, un email de confirmation vous a été envoyé !'
 	if (status == '200') return 'OK'
 	if (status == '300') return 'La connexion a échoué, veuillez réessayer.'
 	if (status == '301') return 'Vous devez être connecté pour effectuer cette action.'
@@ -33,6 +34,7 @@ function GetStatusString(status) {
 function GetStatusStringEn(status) {
 	if (status == '100') return 'The email has been confirmed.'
 	if (status == '102') return 'The report has been sent to moderators.'
+	if (status == '103') return 'Your account has been created, a confirmation email has been sent to you !'
 	if (status == '200') return 'OK'
 	if (status == '300') return 'The connection failed, please retry.'
 	if (status == '301') return 'You have to be logged in to do this.'

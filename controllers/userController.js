@@ -698,7 +698,7 @@ exports.registerUser = async (req, res, next) => {
 				}
 			});
 		}
-
+		req.flash('status', '103')
 		next();
 
 	} catch (error) {
