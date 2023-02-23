@@ -81,16 +81,16 @@ You will have to create a (free) account on <https://cloudinary.com/> to host im
 - `CLOUD_NAME` : Your Cloudinary cloud name (you can find these informations on the top of the Cloudinary dashboard).
 - `CLOUD_API_KEY` : Your Cloudinary API Key (you can find these informations on the top of the Cloudinary dashboard).
 - `CLOUD_API_SECRET` : Your Cloudinary API Secret (you can find these informations on the top of the Cloudinary dashboard). Do not share it !
-- `APP_NAME` (optionnal) : The name of the app, displayed in various places.  Default is Squakr.
-- `APP_URL` (optionnal) : The URL (without HTTP and WWW) of the app, displayed on some places. Default is Squakr.fr.
-- `APP_HEADER` (optionnal) : The title displayed on the header of all pages. Default is Squakr.fr.
-- `PORT` (optionnal) : The localhost port you want the app to run on. Change it if you have already something running on port 3000.
-- `TOKEN` (optionnal) : If you want to have a Discord Bot that sends a message in a channel when an user joins your Squakr, paste its token here.
-- `CHANNEL_ID` (optionnal) : The Discord channel ID the bot will sends the message in.
-- `EMAIL_USER` (optionnal) : The email adress confirmation mails will come from.
-- `EMAIL_HOST` (optionnal) : The outgoing mail server of the email (often something like `smtp.example.com`).
-- `EMAIL_PASS` (optionnal) : The password of the email.
-- `DEFAULT_FOLLOW_FR_1` (optionnal) : The ID of the account to which new users who have selected French as their language will be following by default. You can get IDs directy from the app by turning on the **developer mode** in the settings, go to the wanted profile and click **Copy ID**.
-- `DEFAULT_FOLLOW_FR_2` (optionnal) : The ID of a second account to which new users who have selected French as their language will be following by default. To add more, you have to edit the file `controllers/userController.js` (line ~580)
-- `DEFAULT_FOLLOW_EN_1` (optionnal) : The ID of the account to which new users who have selected English as their language will be following by default.
-- `DEFAULT_FOLLOW_EN_2` (optionnal) : The ID of a second account to which new users who have selected English as their language will be following by default. To add more, you have to edit the file `controllers/userController.js` (line ~620)
+- `APP_NAME` (optional) : The name of the app, displayed in various places.  Default is Squakr.
+- `APP_URL` (optional) : The URL (without HTTP and WWW) of the app, displayed on some places. Default is Squakr.fr.
+- `APP_HEADER` (optional) : The title displayed on the header of all pages. Default is Squakr.fr.
+- `PORT` (optional) : The localhost port you want the app to run on. Change it if you have already something running on port 3000.
+- `TOKEN` (optional) : If you want to have a Discord Bot that sends a message in a channel when an user joins your Squakr, paste its token here.
+- `CHANNEL_ID` (optional) : The Discord channel ID the bot will sends the message in.
+- `EMAIL_USER` (optional) : The email adress confirmation mails will come from.
+- `EMAIL_HOST` (optional) : The outgoing mail server of the email (often something like `smtp.example.com`).
+- `EMAIL_PASS` (optional) : The password of the email.
+- `DEFAULT_FOLLOW_FR_1` (optional) : The ID of the account to which new users who have selected French as their language will be following by default. You can get IDs directy from the app by turning on the **developer mode** in the settings, go to the wanted profile and click **Copy ID**.
+- `DEFAULT_FOLLOW_FR_2` (optional) : The ID of a second account to which new users who have selected French as their language will be following by default. To add more, you have to edit the file `controllers/userController.js` (line ~580)
+- `DEFAULT_FOLLOW_EN_1` (optional) : The ID of the account to which new users who have selected English as their language will be following by default.
+- `DEFAULT_FOLLOW_EN_2` (optional) : The ID of a second account to which new users who have selected English as their language will be following by default. To add more, you have to edit the file `controllers/userController.js` (line ~620)
