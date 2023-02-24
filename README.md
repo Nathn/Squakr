@@ -6,7 +6,7 @@ Originally forked from [TamalAnwar/twitter-clone-new](https://github.com/TamalAn
 
 ➡️ <http://squakr.tranchant.tech/>
 
-![status](https://img.shields.io/website?url=https%3A%2F%2Fwww.squakr.fr)
+![status](https://img.shields.io/website?url=https%3A%2F%2Fwww.squakr.tranchant.tech)
 
 - [Features](#features)
 - [Screenshots](#screenshots)
