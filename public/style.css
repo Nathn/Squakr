@@ -159,6 +159,8 @@ textarea {
 	border: 2px solid #add8e6;
 	margin-bottom: 10px;
 	resize: vertical;
+	background-color: var(--wrap-bgcolor);
+	color: var(--squak-color);
 }
 
 .squak_textarea[name="tweet"] {
