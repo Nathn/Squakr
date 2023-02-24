@@ -977,6 +977,7 @@ a:nth-child(2):hover~.animation {
 .searchTerm {
 	width: 225px;
 	border: 2px solid #00B4CC;
+	background-color: var(--wrap-bgcolor);
 	border-bottom: 0px;
 	border-right: none;
 	padding: 3px 3px 3px 10px;
