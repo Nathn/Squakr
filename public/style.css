@@ -149,6 +149,8 @@ textarea {
 	border: 1px solid #cccccc;
 	display: block;
 	max-width: 90%;
+	background-color: var(--wrap-bgcolor);
+	color: var(--squak-color);
 }
 
 .form input[type='submit'] {
@@ -662,7 +664,7 @@ textarea {
 .icon-2,
 .icon-3,
 .emojiMenu {
-	color: #000;
+	color: #39aeb4;
 	position: relative;
 	width: 20px;
 	height: 20px;
