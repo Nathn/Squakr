@@ -274,6 +274,7 @@ textarea {
 	font-weight: bold;
 	cursor: pointer;
 	border-radius: 7px;
+	color: var(--wrap-bgcolor);
 }
 
 .button:hover:not(.follow_button):not(.followed_button):not(.mini_follow_button):not(.mini_followed_button) {
