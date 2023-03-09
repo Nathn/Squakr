@@ -503,8 +503,6 @@ textarea {
 	background-color: var(--hover-squak);
 }
 
-
-
 .block {
 	position: relative;
 }
@@ -529,9 +527,6 @@ textarea {
 	pointer-events: all;
 	position: relative;
 }
-
-
-
 
 .author_name,
 .tweet_meta {
@@ -682,7 +677,7 @@ textarea {
 }
 
 .icon_set[name="reply"] {
-	bottom: 40px;
+	bottom: 43px;
 }
 
 .icon_set[name="squak"][data-output="1"] {
@@ -751,7 +746,7 @@ textarea {
 	position: absolute;
 	left: 10px;
 	bottom: 42px;
-	color: #373E48;
+	color: #39aeb4;
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
