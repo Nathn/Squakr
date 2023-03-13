@@ -6,7 +6,7 @@ Originally forked from [TamalAnwar/twitter-clone-new](https://github.com/TamalAn
 
 ➡️ <http://squakr.tranchant.tech/>
 
-![status](https://img.shields.io/website?url=https%3A%2F%2Fwww.squakr.tranchant.tech)
+![status](https://img.shields.io/website?url=http://www.squakr.tranchant.tech)
 
 - [Features](#features)
 - [Screenshots](#screenshots)
@@ -77,7 +77,7 @@ You have to declare these variables in a `variables.env` file inside of your roo
 You will have to create a (free) account on <https://cloudinary.com/> to host image and video uploads. No CB needed and you will only be limited when you reach 1 GB per month.
 
 - `DATABASE` : The URL of the MongoDB database you want to use. On local, if you have MongoDB installed on your machine, it will be `mongodb://localhost/squakr`.
-- `SECRET` : A secret string that will be use by Express to configure sessions. Make it secure if possible.
+- `SECRET` : A secret string that will be use by Express to configure sessions. Make it as secure as possible.
 - `CLOUD_NAME` : Your Cloudinary cloud name (you can find these informations on the top of the Cloudinary dashboard).
 - `CLOUD_API_KEY` : Your Cloudinary API Key (you can find these informations on the top of the Cloudinary dashboard).
 - `CLOUD_API_SECRET` : Your Cloudinary API Secret (you can find these informations on the top of the Cloudinary dashboard). Do not share it !
