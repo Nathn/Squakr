@@ -3,7 +3,7 @@ mixin footer()
 	- var squakrversion = "1.10.4.1"
 	p
 		small(style="font-size: 14px;")
-			| © 2020-2023 #{appname} &middot; v#{currentversion}
+			| © 2020-#{new Date().getFullYear()} #{appname} &middot; v#{currentversion}
 			if appname.toLowerCase() != 'squakr'
 				br
 				if user && user.lang == "en"
