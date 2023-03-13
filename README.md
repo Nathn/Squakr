@@ -33,25 +33,25 @@ Originally forked from [TamalAnwar/twitter-clone-new](https://github.com/TamalAn
 ## Screenshots
 
 <p style="text-align: center;">
-<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-home.png" alt="Homepage" width="600"/>
+<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshots/screenshot-home.png" alt="Homepage" width="600"/>
 <br/>
 <i>Homepage</i>
 </p>
 <br/>
 <p style="text-align: center;">
-<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-home-dark.png" alt="Homepage" width="600"/>
+<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshots/screenshot-home-dark.png" alt="Homepage" width="600"/>
 <br/>
 <i>Homepage (dark theme)</i>
 </p>
 <br/>
 <p style="text-align: center;">
-<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-search.png" alt="Search" width="600"/>
+<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshots/screenshot-search.png" alt="Search" width="600"/>
 <br/>
 <i>Search results page</i>
 </p>
 <br/>
 <p style="text-align: center;">
-<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshot-profile.png" alt="Profile" width="600"/>
+<img src="https://raw.githubusercontent.com/Nathn/Squakr/master/screenshots/screenshot-profile.png" alt="Profile" width="600"/>
 <br/>
 <i>User Profile</i>
 </p>
