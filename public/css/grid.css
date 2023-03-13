@@ -59,7 +59,7 @@ body[data-theme='unset'] {
 	max-width: 100%;
 	margin: 0 auto;
 	background-color: var(--wrap-bgcolor);
-	padding: 20px 50px 30px 50px;
+	padding: 25px 50px 25px 50px;
 	border-radius: 10px;
 }
 
@@ -78,28 +78,28 @@ body[data-theme='unset'] {
 @media (max-width : 1100px) {
 	.double_wrap {
 		display: block;
-		padding: 20px 25px 30px 25px;
+		padding: 25px 25px 25px 25px;
 	}
 }
 
 @media (max-width : 550px) {
 	.single_wrap,
 	.double_wrap {
-		padding: 20px 20px 30px 20px;
+		padding: 25px 20px 35px 20px;
 	}
 }
 
 @media (max-width : 460px) {
 	.single_wrap,
 	.double_wrap {
-		padding: 20px 10px 30px 10px;
+		padding: 25px 10px 25px 10px;
 	}
 }
 
 @media (max-width : 420px) {
 	.single_wrap,
 	.double_wrap {
-		padding: 20px 5px 30px 5px;
+		padding: 25px 5px 25px 5px;
 	}
 }
 
