@@ -1,0 +1,9 @@
+extends layout
+include mixins/_resetForm
+block content
+	.single_wrap
+		.regform
+			h1 Réinitialisez votre mot de passe
+		h4(style="color: red;")
+			#resetstatus
+		+resetForm()

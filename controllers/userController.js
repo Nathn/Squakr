@@ -38,6 +38,19 @@ exports.loginPage = (req, res) => {
 	}
 }
 
+exports.resetPage = (req, res) => {
+	if (!req.user) {
+		res.render('reset', {
+			appname: process.env.APP_NAME || 'Squakr',
+			appurl: process.env.APP_URL || 'Squakr.fr',
+			appheader: process.env.APP_HEADER || 'Squakr.fr',
+			status: req.flash('status').pop() || req.flash('error').pop() || req.query.status || '200'
+		});
+	} else {
+		res.redirect('/')
+	}
+}
+
 exports.cguPage = (req, res) => {
 	res.render('cgu', {
 		appname: process.env.APP_NAME || 'Squakr',

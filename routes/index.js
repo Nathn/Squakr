@@ -34,6 +34,9 @@ router.get('/register', userController.registerPage);
 // Connexion page
 router.get('/login', userController.loginPage);
 
+// Reset password page
+// router.get('/reset', userController.resetPage);
+
 router.get('/cgu', userController.cguPage);
 
 router.get('/search', userController.searchPage);

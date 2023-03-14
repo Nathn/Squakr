@@ -1,0 +1,7 @@
+mixin resetForm()
+
+	form.form(action='/reset' method='POST')
+		.regform
+			label(for='email')  Email associé au compte :
+			input(type='email' name='email' autocomplete='email')
+			input(type='submit' class='button' value='Recevoir un email de réinitialisation')
