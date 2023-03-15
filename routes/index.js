@@ -4,24 +4,24 @@ const router = express.Router();
 const appController = require('../controllers/appController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
-const tweetController = require('../controllers/tweetController');
+const squakController = require('../controllers/squakController');
 const APIController = require('../controllers/APIController');
 
 // Index page
 router.get('/', appController.indexPage);
 
 // Single tweet page
-router.get('/squak/:id', tweetController.singleTweetPage);
+router.get('/squak/:id', squakController.singleTweetPage);
 router.get('/squak/:id/json', APIController.SquakPage);
-router.post('/squak/:id', tweetController.singleTweetPage);
-router.get('/reply/:id', tweetController.singleReplyPage);
-router.post('/reply/:id', tweetController.singleReplyPage);
+router.post('/squak/:id', squakController.singleTweetPage);
+router.get('/reply/:id', squakController.singleReplyPage);
+router.post('/reply/:id', squakController.singleReplyPage);
 
 router.post('/api/squaks/:id/heart', userController.heartTweet)
 router.post('/api/replies/:id/heart', userController.heartReply)
 router.post('/api/squaks/:id/reply',
-	tweetController.uploadImage,
-	tweetController.postReply
+	squakController.uploadImage,
+	squakController.postReply
 )
 router.get('/api/users/:id/verify', userController.verifyUser)
 router.get('/api/users/:id/confirm', userController.confirmUser)
@@ -86,20 +86,20 @@ router.post('/upload',
 // Tweet Specific routes
 ///////////////////////////////
 router.post('/squak',
-	tweetController.uploadImage,
-	tweetController.postTweet);
+	squakController.uploadImage,
+	squakController.postTweet);
 
 router.get('/delete/:id',
 	authController.isLoggedIn,
-	tweetController.deleteSquak);
+	squakController.deleteSquak);
 
 router.get('/report/:id',
 	authController.isLoggedIn,
-	tweetController.reportSquak);
+	squakController.reportSquak);
 
 router.post('/pin/:id',
 	authController.isLoggedIn,
-	tweetController.pinSquak);
+	squakController.pinSquak);
 
 
 router.get('/:username/likes', userController.likesProfilePage);

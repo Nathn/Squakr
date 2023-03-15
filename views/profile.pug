@@ -1,9 +1,9 @@
 extends layoutprofile
-include mixins/_tweetForm
+include mixins/_squakForm
 include mixins/_squakCard
 block content
 	if user && reqUser._id.toString() == user._id.toString()
-		+tweetForm()
+		+squakForm()
 	else
 		.profile_banner(style=`background:url('${reqUser.banner || "/uploads/no-banner.jpg"}')`)
 	nav
