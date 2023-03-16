@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
 		lowercase: true,
 		validate: [validator.isEmail, 'Invalid email']
 	},
+	resetPasswordToken: String,
 	name: String,
 	avatar: String,
 	banner: String,
@@ -120,7 +121,6 @@ const userSchema = new mongoose.Schema({
 			default: Date.now
 		}
 	}]
-
 });
 
 userSchema.plugin(passportLocalMongoose, {

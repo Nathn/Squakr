@@ -1139,6 +1139,14 @@ mark {
 	}
 }
 
+.login_link {
+	font-size: 1rem;
+	font-family: Inter;
+	color: var(--hashtags-color);
+	display: block;
+	margin: 10px 0;
+}
+
 .follows_you {
 	border: 3px solid var(--squak-color);
 	opacity: .7;

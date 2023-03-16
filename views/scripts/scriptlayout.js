@@ -2,11 +2,12 @@ function GetStatusString(status) {
 	if (status == '100') return 'Votre email a bien été confirmé.'
 	if (status == '102') return 'Le signalement a bien été transmis.'
 	if (status == '103') return 'Votre compte a bien été créé, un email de confirmation vous a été envoyé !'
+	if (status == '104') return 'Un email de réinitialisation de mot de passe vous a été envoyé.'
 	if (status == '200') return 'OK'
 	if (status == '300') return 'La connexion a échoué, veuillez réessayer.'
 	if (status == '301') return 'Vous devez être connecté pour effectuer cette action.'
-	if (status == '400') return `L\'envoi du squak a échoué. Si le problème persiste, veuillez contacter un administatreur.'
-	if (status == '401') return 'Votre lien de confirmation n\'est pas valide. Si votre lien est le bon, veuillez envoyer un email à contact@${appurl}`
+	if (status == '400') return 'L\'envoi du squak a échoué. Si le problème persiste, veuillez contacter un administatreur.'
+	if (status == '401') return `Votre lien de confirmation n\'est pas valide. Si votre lien est le bon, veuillez envoyer un email à contact@${appurl}`
 	if (status == '402') return 'Votre squak ne peut pas être vide.'
 	if (status == '403') return 'L\'envoi de l\'image a échoué, vérifiez qu\'elle fasse moins de 10 Mo ainsi que son format.\nSi le problème persiste, veuillez contacter un administatreur.'
 	if (status == '404') return 'Squak non trouvé.'
@@ -35,6 +36,7 @@ function GetStatusStringEn(status) {
 	if (status == '100') return 'The email has been confirmed.'
 	if (status == '102') return 'The report has been sent to moderators.'
 	if (status == '103') return 'Your account has been created successfully, a confirmation email has been sent to you !'
+	if (status == '104') return 'A password reset email has been sent to you.'
 	if (status == '200') return 'OK'
 	if (status == '300') return 'The connection failed, please retry.'
 	if (status == '301') return 'You have to be logged in to do this.'
@@ -108,6 +110,8 @@ function dispStatus(status) {
 			document.getElementById("regstatus").innerHTML = GetStatusString(status)
 		} else if (document.getElementById("loginstatus")) {
 			document.getElementById("loginstatus").innerHTML = GetStatusString(status)
+		} else if (document.getElementById("resetstatus")) {
+			document.getElementById("resetstatus").innerHTML = GetStatusString(status)
 		} else if (document.getElementById("status")) {
 			document.getElementById("status").innerHTML = GetStatusString(status) + '<br/ ><a onclick="clearStatus();" style="text-decoration: none; color: white; border-bottom: 1px solid white; cursor: pointer"><small>Fermer</small></a>'
 		} else if (document.getElementById("statusen")) {
