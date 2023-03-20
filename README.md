@@ -4,7 +4,7 @@
 A new social network designed to be easy to use, save no data and let the user be in control of what he sees in his news feed.<br/>
 Originally forked from [TamalAnwar/twitter-clone-new](https://github.com/TamalAnwar/twitter-clone-new).
 
-![status](https://img.shields.io/website?url=http://www.squakr.tranchant.tech)
+➡️ <http://squakr.tranchant.tech/>
 
 - [Features](#features)
 - [Screenshots](#screenshots)
