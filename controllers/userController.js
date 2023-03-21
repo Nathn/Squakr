@@ -80,36 +80,19 @@ exports.searchPage = async (req, res) => {
 		}
 		var typesearch = req.query.type;
 		if (typesearch == 'users') {
-			const searchresults1 = await User.find({
-					username: {
-						$regex: `^.*${query}.*`,
-						$options: "i"
-					}
-				},
-				(err, data) => {
-					if (err) console.log(err);
-				}
-			).sort({
+			var searchresults = await User.find({
+				$or: [
+				  { username: { $regex: `^.*${query}.*`, $options: "i" } },
+				  { name: { $regex: `^.*${query}.*`, $options: "i" } },
+				  { username: { $regex: `^.*${query.replace(/\s/g, '')}.*`, $options: "i" } },
+				  { name: { $regex: `^.*${query.replace(/\s/g, '')}.*`, $options: "i" } },
+				]
+			}).sort({
 				moderator: -1,
 				verified: -1,
 				avatar: -1
 			});
-			var searchresults2 = await User.find({
-					name: {
-						$regex: `^.*${query}.*`,
-						$options: "i"
-					}
-				},
-				(err, data) => {
-					if (err) console.log(err);
-				}
-			).sort({
-				moderator: -1,
-				verified: -1,
-				avatar: -1
-			});
-			var searchresults3 = searchresults1.concat(searchresults2);
-			var searchresults = uniq(searchresults3).slice(0, 50)
+			searchresults = uniq(searchresults).slice(0, 50)
 			return res.render('searchusers', {
 				appname: process.env.APP_NAME || 'Squakr',
 				appurl: process.env.APP_URL || 'Squakr.fr',
@@ -129,42 +112,24 @@ exports.searchPage = async (req, res) => {
 					(err, data) => {
 						if (err) console.log(err);
 					}
-				).sort({
-					created: 'desc'
-				})
-				.populate('author')
-				.limit(500);
-
-			var userresults1 = await User.find({
-					username: {
-						$regex: `^.*${query}.*`,
-						$options: "i"
-					}
-				},
-				(err, data) => {
-					if (err) console.log(err);
-				}
 			).sort({
+				created: 'desc'
+			})
+			.populate('author')
+			.limit(500);
+			var userresults = await User.find({
+				$or: [
+				  { username: { $regex: `^.*${query}.*`, $options: "i" } },
+				  { name: { $regex: `^.*${query}.*`, $options: "i" } },
+				  { username: { $regex: `^.*${query.replace(/\s/g, '')}.*`, $options: "i" } },
+				  { name: { $regex: `^.*${query.replace(/\s/g, '')}.*`, $options: "i" } },
+				]
+			}).sort({
 				moderator: -1,
 				verified: -1,
 				avatar: -1
 			});
-			var userresults2 = await User.find({
-					name: {
-						$regex: `^.*${query}.*`,
-						$options: "i"
-					}
-				},
-				(err, data) => {
-					if (err) console.log(err);
-				}
-			).sort({
-				moderator: -1,
-				verified: -1,
-				avatar: -1
-			});
-			var userresults = userresults1.concat(userresults2);
-			userresults = uniq(userresults)
+			userresults = uniq(userresults).slice(0, 50);
 
 			return res.render('search', {
 				appname: process.env.APP_NAME || 'Squakr',
