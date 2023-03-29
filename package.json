@@ -2,7 +2,7 @@
 	"name": "squakr",
 	"version": "1.10.2",
 	"description": "",
-	"main": "app.js",
+	"main": "api/index.js",
 	"dependencies": {
 		"aws-sdk": "2.x",
 		"body-parser": "^1.20.1",
@@ -37,8 +37,8 @@
 		"nodemon": "^1.18.3"
 	},
 	"scripts": {
-		"start": "node ./app.js",
-		"dev": "nodemon ./app.js"
+		"start": "node ./api/index.js",
+		"dev": "nodemon ./api/index.js"
 	},
 	"now": {
 		"dotenv": "variables.env.now"
