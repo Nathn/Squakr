@@ -11,8 +11,8 @@ const cloudinary = require('cloudinary').v2;
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
-const routes = require('../routes');
-require('../handlers/passport');
+const routes = require('./routes');
+require('./handlers/passport');
 
 // Dot Env
 require('dotenv').config({
