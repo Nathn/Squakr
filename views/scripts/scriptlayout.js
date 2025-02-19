@@ -81,13 +81,25 @@ function getOutput(type) {
 	if (type == "image") {
 		squak_textarea.dataset['output'] = 1
 		icon_set.dataset['output'] = 1
-		outputfile.innerHTML = uploadimg.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
+		outputfile.textContent = uploadimg.value.replace(/.*[\/\\]/, '');
+		const trashIconImg = document.createElement('i');
+		trashIconImg.className = 'fa fa-trash';
+		trashIconImg.title = 'Supprimer';
+		trashIconImg.style = 'color: #1091FF; cursor: pointer;';
+		trashIconImg.onclick = clearInput;
+		outputfile.appendChild(trashIconImg);
 		uploadvideo.value = ''
 	}
 	if (type == "video") {
 		squak_textarea.dataset['output'] = 1
 		icon_set.dataset['output'] = 1
-		outputfile.innerHTML = uploadvideo.value.replace(/.*[\/\\]/, '') + ' <i class="fa fa-trash" title="Supprimer" onclick="clearInput()" style="color: #1091FF; cursor: pointer;"></i>';
+		outputfile.textContent = uploadvideo.value.replace(/.*[\/\\]/, '');
+		const trashIconVideo = document.createElement('i');
+		trashIconVideo.className = 'fa fa-trash';
+		trashIconVideo.title = 'Supprimer';
+		trashIconVideo.style = 'color: #1091FF; cursor: pointer;';
+		trashIconVideo.onclick = clearInput;
+		outputfile.appendChild(trashIconVideo);
 		uploadimg.value = ''
 	}
 	return false;
