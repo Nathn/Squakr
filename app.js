@@ -44,7 +44,10 @@ app.use(session({
 	store: new MongoStore({
 		mongooseConnection: mongoose.connection
 	}),
-	cookie: { maxAge: 365 * 24 * 60 * 60 * 1000 },
+	cookie: { 
+        maxAge: 365 * 24 * 60 * 60 * 1000,
+        secure: process.env.NODE_ENV === 'production'
+    },
 	resave: false,
 	saveUninitialized: false
 }));
