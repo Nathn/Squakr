@@ -9,7 +9,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm ci
 
-# Copy source code
+# Copy all source files
 COPY . .
 
 # Production stage
@@ -17,10 +17,14 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Copy only necessary files from builder
+# Copy all necessary files from builder
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/app.js ./
+COPY --from=builder /app/routes ./routes
+COPY --from=builder /app/handlers ./handlers
+COPY --from=builder /app/controllers ./controllers
+COPY --from=builder /app/models ./models
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/views ./views
 
@@ -31,8 +35,8 @@ RUN addgroup --system --gid 1001 nodejs && \
 
 USER nodeuser
 
-# Expose the port the app runs on
-EXPOSE 8080
+# Expose the correct port
+EXPOSE 3000
 
 # Set environment variables
 ENV NODE_ENV=production
