@@ -59,13 +59,13 @@ Originally forked from [TamalAnwar/twitter-clone-new](https://github.com/TamalAn
 
 You can easily build and host your own version of Squakr to give your community a safe space to talk.<br/>Here's how :
 
-1. Make sure you have Git and NPM installed.
-2. Clone this repository locally with `git clone https://github.com/Nathn/Squakr`.
-3. Inside the folder, create a `variables.env` file and add the required [envirronnement variables](#environnement-variables).
-4. Execute `npm install` to install the dependencies.
-5. Execute `npm start` to start the server.
-6. Open you browser and point it to `http://localhost:3000/` (you can change the port with the environnement variable `PORT`)
-7. Happy Coding !
+1. Make sure you have [Git](https://git-scm.com/), [NPM](https://www.npmjs.com/) and [Docker](https://www.docker.com/) installed ;
+2. Clone this repository locally with `git clone https://github.com/Nathn/Squakr` ;
+3. Inside the folder, create a `variables.env` file and add the required [envirronnement variables](#environnement-variables) ;
+4. Execute `npm install` to install the dependencies ;
+5. Build the project with `docker build -t squakr .` ;
+6. Run the container with `docker run -p 3000:3000 --env-file variables.env squakr` ;
+7. Open your browser and point it to `http://localhost:3000/` (you can change the port with the environnement variable `PORT`).
 
 <br/>
 
