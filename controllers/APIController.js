@@ -133,9 +133,9 @@ exports.APIGetSquaks = async (req, res) => {
 		var squaks;
 		if (req.query.author && req.query.author.match(/^[0-9a-fA-F]{24}$/)) {
 			squaks = await Tweet.find({
-				author: req.query.author
+				author: { $eq: req.query.author }
 			}).populate('author')
-			.sort({[req.query.sort || 'created']: req.query.order || 'desc'})
+			.sort({[req.query.sort && !notAuthorized.includes(req.query.sort) ? req.query.sort : 'created']: req.query.order === 'asc' || req.query.order === 'desc' ? req.query.order : 'desc'})
 			.limit(to);
 		} else if (req.query.author) {
 			return res.json({
