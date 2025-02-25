@@ -463,7 +463,7 @@ exports.verifyRegister = async (req, res, next) => {
 
 exports.checkUserExists = async (req, res, next) => {
 	var user = await User.find({
-		username: req.body.username
+		username: { $eq: req.body.username }
 	})
 
 	if (user.length) {
@@ -472,7 +472,7 @@ exports.checkUserExists = async (req, res, next) => {
 	}
 
 	user = await User.find({
-		email: req.body.email
+		email: { $eq: req.body.email }
 	})
 
 	if (user.length) {
