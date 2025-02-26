@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const cloudinary = require('cloudinary').v2;
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
+const lusca = require('lusca');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 require('./handlers/passport');
@@ -73,6 +74,9 @@ app.use(bodyParser.urlencoded({
 
 // Express validator
 app.use(expressValidator());
+
+// CSRF protection
+app.use(lusca.csrf());
 
 // Locals
 app.use((req, res, next) => {
