@@ -1,7 +1,6 @@
 const express = require('express');
 const fileupload = require('express-fileupload');
 const app = express();
-const promisify = require('es6-promisify');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -34,7 +33,6 @@ mongoose.connection.on('error', (err) => {
 });
 
 // Express session
-
 app.use(cookieParser(process.env.SECRET));
 app.use(session({
 	secret: process.env.SECRET,
@@ -87,7 +85,8 @@ app.use((req, res, next) => {
 // Setting up the routes
 app.use('/', routes);
 
+// Starting the server
 const port = process.env.PORT || 3000;
 
-// Starting the server
 app.listen(port);
+console.log('Server is running on port ' + port);

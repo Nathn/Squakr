@@ -1,14 +1,22 @@
 // Calling the modules
 const express = require('express');
 const router = express.Router();
+const rateLimit = require('express-rate-limit');
 const appController = require('../controllers/appController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const squakController = require('../controllers/squakController');
 const APIController = require('../controllers/APIController');
 
+// Set up rate limiter: maximum of 500 requests per 15 minutes
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 500, // max 100 requests per windowMs
+	message: 'Too many requests, please try again later.'
+});
+
 // Index page
-router.get('/', appController.indexPage);
+router.get('/', limiter, appController.indexPage);
 
 // Single tweet page
 router.get('/squak/:id', squakController.singleTweetPage);

@@ -5,7 +5,6 @@ const promisify = require('es6-promisify');
 const moment = require('moment');
 const cloudinary = require('cloudinary').v2;
 const nodemailer = require('nodemailer');
-const clipboardy = require('clipboardy');
 const Discord = require("discord.js");
 
 require('dotenv').config({
