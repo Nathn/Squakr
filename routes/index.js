@@ -25,17 +25,17 @@ router.post('/squak/:id', limiter, squakController.singleTweetPage);
 router.get('/reply/:id', limiter, squakController.singleReplyPage);
 router.post('/reply/:id', limiter, squakController.singleReplyPage);
 
-router.post('/api/squaks/:id/heart', limiter, userController.heartTweet)
-router.post('/api/replies/:id/heart', limiter, userController.heartReply)
+router.post('/api/squaks/:id/heart', limiter, userController.heartTweet);
+router.post('/api/replies/:id/heart', limiter, userController.heartReply);
 router.post('/api/squaks/:id/reply',
 	limiter,
 	squakController.uploadImage,
 	squakController.postReply
-)
-router.get('/api/users/:id/verify', limiter, userController.verifyUser)
-router.get('/api/users/:id/confirm', limiter, userController.confirmUser)
-router.get('/api/users/:id/unconfirm', limiter, userController.unConfirmUser)
-router.get('/api/users/:id/follow', limiter, userController.followUser)
+);
+router.get('/api/users/:id/verify', limiter, userController.verifyUser);
+router.get('/api/users/:id/confirm', limiter, userController.confirmUser);
+router.get('/api/users/:id/unconfirm', limiter, userController.unConfirmUser);
+router.get('/api/users/:id/follow', limiter, userController.followUser);
 
 // Registration page
 router.get('/register', limiter, userController.registerPage);
@@ -63,7 +63,7 @@ router.post('/register',
 	userController.checkUserExists,
 	userController.registerUser,
 	authController.login
-)
+);
 
 // Login POST action
 router.post('/login', limiter, authController.login);
@@ -81,12 +81,10 @@ router.get('/settings',
 	limiter,
 	authController.isLoggedIn,
 	userController.settingsPage);
-
 router.post('/settings/account',
 	limiter,
 	userController.upload,
 	userController.accountUpdate);
-
 router.post('/settings',
 	limiter,
 	userController.upload,
@@ -103,17 +101,14 @@ router.post('/squak',
 	limiter,
 	squakController.uploadImage,
 	squakController.postTweet);
-
 router.get('/delete/:id',
 	limiter,
 	authController.isLoggedIn,
 	squakController.deleteSquak);
-
 router.get('/report/:id',
 	limiter,
 	authController.isLoggedIn,
 	squakController.reportSquak);
-
 router.post('/pin/:id',
 	limiter,
 	authController.isLoggedIn,
